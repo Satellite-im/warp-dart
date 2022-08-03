@@ -7,11 +7,11 @@ description: |
 output: 'lib/warp_dart_bindings_generated.dart'
 headers:
   entry-points:
-    - '../warp/warp.h'
-    - '../extensions/warp-mp-ipfs/warp-mp-ipfs.h'
-    - '../extensions/warp-pd-memory/warp-pd-memory.h'
-    - '../extensions/warp-pd-stretto/warp-pd-stretto.h'
-    - '../extensions/warp-pd-flatfile/warp-pd-flatfile.h'
+    - '../../Rust/Warp/warp/warp.h'
+    - '../../Rust/Warp/extensions/warp-mp-ipfs/warp-mp-ipfs.h'
+#    - '../../Rust/Warp/extensions/warp-pd-memory/warp-pd-memory.h'
+#    - '../../Rust/Warp/extensions/warp-pd-stretto/warp-pd-stretto.h'
+#    - '../../Rust/Warp/extensions/warp-pd-flatfile/warp-pd-flatfile.h'
   # include-directives:
   #   - 'src/warp_dart.h'
 # preamble: |
