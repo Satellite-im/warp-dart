@@ -17,9 +17,8 @@ class MyApp extends StatefulWidget {
 
 Tesseract warp = newTesseractInstance();
 
-
 late DID did;
-MultiPass multipass = multipass_ipfs_temporary(warp);
+MultiPass multipass = multipassIpfsTemporary(warp);
 
 class Details extends StatelessWidget {
   const Details({
@@ -200,9 +199,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass
-                        .listOutgoingRequestName()
-                        .toString(),
+                    multipass.listOutgoingRequestName().toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -409,8 +406,7 @@ class ChangeProfile extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.modifyProfileGraphics(
-        textEditingController.text);
+    multipass.modifyProfileGraphics(textEditingController.text);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -460,8 +456,7 @@ class ChangeBanner extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.modifyBannerGraphics(
-        textEditingController.text);
+    multipass.modifyBannerGraphics(textEditingController.text);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -562,8 +557,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    did = multipass.createIdentity(
-        textEditingController.text, "");
+    did = multipass.createIdentity(textEditingController.text, "");
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -613,8 +607,10 @@ class Modify extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => SendRequest()));
               }
               if (newValue == "Select Request") {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SelectRequest()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SelectRequest()));
               }
             },
             items: <String>[
@@ -710,12 +706,12 @@ class AcceptOrDenyRequest extends StatelessWidget {
               if (newValue == "Accept Request") {
                 multipass.acceptRequest(did!);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Details()));
+                    MaterialPageRoute(builder: (context) => const Details()));
               }
               if (newValue == "Deny Request") {
                 multipass.denyRequest(did!);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Details()));
+                    MaterialPageRoute(builder: (context) => const Details()));
               }
             },
             items: <String>['Accept Request', 'Deny Request']
