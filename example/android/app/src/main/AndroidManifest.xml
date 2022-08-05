@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.warp_dart_example">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
    <application
-        android:label="warp_dart_example"
+        android:label="warp-dart"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

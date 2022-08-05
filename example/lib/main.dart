@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:warp_dart/warp_dart.dart';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:warp_dart/multipass.dart';
+import 'package:warp_dart/warp.dart';
+import 'package:warp_dart/mp_ipfs.dart';
 void main() {
   runApp(const MaterialApp(
     title: "Dart Wrapper Identity",
@@ -15,13 +18,14 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-Tesseract warp = newTesseractInstance();
+Tesseract? store;
 
 
-late DID did;
-MultiPass multipass = multipass_ipfs_temporary(warp);
+Identity? identity;
+MultiPass? multipass;
 
 class Details extends StatelessWidget {
+
   const Details({
     Key? key,
   }) : super(key: key);
@@ -50,7 +54,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass.getUsername(did),
+                    identity!.username,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -80,7 +84,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass.getShortId(did).toString(),
+                    identity!.short_id.toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -110,7 +114,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass.getStatus(did),
+                    identity!.status_message,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -140,7 +144,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass.getProfileGraphic(did),
+                    identity!.graphics.profile_picture,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -170,7 +174,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass.getBannerGraphic(did),
+                    identity!.graphics.profile_banner,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -200,8 +204,8 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass
-                        .listOutgoingRequestName()
+                    multipass!
+                        .listOutgoingRequest()
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -232,7 +236,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass.listFriends().toString(),
+                    multipass!.listFriends().toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -309,7 +313,11 @@ class ChangeName extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.modifyName(textEditingController.text);
+    IdentityUpdate update = IdentityUpdate.setUsername(textEditingController.text);
+    multipass!.updateIdentity(update);
+
+    identity = multipass!.getOwnIdentity();
+
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -359,7 +367,9 @@ class ChangeStatus extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.modifyStatus(textEditingController.text);
+    IdentityUpdate update = IdentityUpdate.setStatusMessage(textEditingController.text);
+    multipass!.updateIdentity(update);
+    identity = multipass!.getOwnIdentity();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -409,8 +419,9 @@ class ChangeProfile extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.modifyProfileGraphics(
-        textEditingController.text);
+    IdentityUpdate update = IdentityUpdate.setPicture(textEditingController.text);
+    multipass!.updateIdentity(update);
+    identity = multipass!.getOwnIdentity();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -460,8 +471,9 @@ class ChangeBanner extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.modifyBannerGraphics(
-        textEditingController.text);
+    IdentityUpdate update = IdentityUpdate.setBanner(textEditingController.text);
+    multipass!.updateIdentity(update);
+    identity = multipass!.getOwnIdentity();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -511,7 +523,9 @@ class SendRequest extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    multipass.sendRequest(textEditingController.text);
+    DID did = DID.fromString(textEditingController.text);
+    multipass!.sendFriendRequest(did);
+    did.drop();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -522,6 +536,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    store = Tesseract.newStore();
+    store!.unlock("Hello");
+
+    multipass = multipass_ipfs_temporary(store!);
     super.initState();
   }
 
@@ -562,8 +580,15 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    did = multipass.createIdentity(
-        textEditingController.text, "");
+    try {
+      multipass!.createIdentity(
+          textEditingController.text, "");
+    } on WarpException catch (e) {
+      print(e);
+    }
+
+
+    identity = multipass!.getOwnIdentity();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -646,7 +671,7 @@ class SelectRequest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> list = multipass.listOutgoingRequestDID();
+    List<FriendRequest> list = multipass!.listIncomingRequest();
     return MaterialApp(
       title: _title,
       home: Scaffold(
@@ -666,12 +691,12 @@ class SelectRequest extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          AcceptOrDenyRequest(did: newValue)));
+                          AcceptOrDenyRequest(did: DID.fromString(newValue!) )));
             },
-            items: list.map<DropdownMenuItem<String>>((String value) {
+            items: list.map<DropdownMenuItem<String>>((FriendRequest value) {
               return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
+                value: value.to.toString(),
+                child: Text(value.to.toString()),
               );
             }).toList(),
           ),
@@ -682,7 +707,7 @@ class SelectRequest extends StatelessWidget {
 }
 
 class AcceptOrDenyRequest extends StatelessWidget {
-  final String? did;
+  final DID? did;
   const AcceptOrDenyRequest({
     Key? key,
     this.did,
@@ -692,7 +717,7 @@ class AcceptOrDenyRequest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> list = multipass.listOutgoingRequestDID();
+    List<FriendRequest> list = multipass!.listIncomingRequest();
     return MaterialApp(
       title: _title,
       home: Scaffold(
@@ -708,12 +733,12 @@ class AcceptOrDenyRequest extends StatelessWidget {
             ),
             onChanged: (String? newValue) {
               if (newValue == "Accept Request") {
-                multipass.acceptRequest(did!);
+                multipass!.acceptFriendRequest(did!);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Details()));
               }
               if (newValue == "Deny Request") {
-                multipass.denyRequest(did!);
+                multipass!.denyFriendRequest(did!);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Details()));
               }
