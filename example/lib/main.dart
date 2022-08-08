@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/mp_ipfs.dart';
+
 void main() {
   runApp(const MaterialApp(
     title: "Dart Wrapper Identity",
@@ -20,12 +21,10 @@ class MyApp extends StatefulWidget {
 
 Tesseract? store;
 
-
 Identity? identity;
 MultiPass? multipass;
 
 class Details extends StatelessWidget {
-
   const Details({
     Key? key,
   }) : super(key: key);
@@ -204,9 +203,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    multipass!
-                        .listOutgoingRequest()
-                        .toString(),
+                    multipass!.listOutgoingRequest().toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
@@ -313,7 +310,8 @@ class ChangeName extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    IdentityUpdate update = IdentityUpdate.setUsername(textEditingController.text);
+    IdentityUpdate update =
+        IdentityUpdate.setUsername(textEditingController.text);
     multipass!.updateIdentity(update);
 
     identity = multipass!.getOwnIdentity();
@@ -367,7 +365,8 @@ class ChangeStatus extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    IdentityUpdate update = IdentityUpdate.setStatusMessage(textEditingController.text);
+    IdentityUpdate update =
+        IdentityUpdate.setStatusMessage(textEditingController.text);
     multipass!.updateIdentity(update);
     identity = multipass!.getOwnIdentity();
     Navigator.push(
@@ -419,7 +418,8 @@ class ChangeProfile extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    IdentityUpdate update = IdentityUpdate.setPicture(textEditingController.text);
+    IdentityUpdate update =
+        IdentityUpdate.setPicture(textEditingController.text);
     multipass!.updateIdentity(update);
     identity = multipass!.getOwnIdentity();
     Navigator.push(
@@ -471,7 +471,8 @@ class ChangeBanner extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    IdentityUpdate update = IdentityUpdate.setBanner(textEditingController.text);
+    IdentityUpdate update =
+        IdentityUpdate.setBanner(textEditingController.text);
     multipass!.updateIdentity(update);
     identity = multipass!.getOwnIdentity();
     Navigator.push(
@@ -581,12 +582,10 @@ class _MyAppState extends State<MyApp> {
 
   void _sendDataToSecondScreen(BuildContext context) {
     try {
-      multipass!.createIdentity(
-          textEditingController.text, "");
+      multipass!.createIdentity(textEditingController.text, "");
     } on WarpException catch (e) {
       print(e);
     }
-
 
     identity = multipass!.getOwnIdentity();
     Navigator.push(
@@ -638,8 +637,10 @@ class Modify extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => SendRequest()));
               }
               if (newValue == "Select Request") {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SelectRequest()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SelectRequest()));
               }
             },
             items: <String>[
@@ -691,7 +692,7 @@ class SelectRequest extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          AcceptOrDenyRequest(did: DID.fromString(newValue!) )));
+                          AcceptOrDenyRequest(did: DID.fromString(newValue!))));
             },
             items: list.map<DropdownMenuItem<String>>((FriendRequest value) {
               return DropdownMenuItem<String>(
@@ -735,12 +736,12 @@ class AcceptOrDenyRequest extends StatelessWidget {
               if (newValue == "Accept Request") {
                 multipass!.acceptFriendRequest(did!);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Details()));
+                    MaterialPageRoute(builder: (context) => const Details()));
               }
               if (newValue == "Deny Request") {
                 multipass!.denyFriendRequest(did!);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Details()));
+                    MaterialPageRoute(builder: (context) => const Details()));
               }
             },
             items: <String>['Accept Request', 'Deny Request']
