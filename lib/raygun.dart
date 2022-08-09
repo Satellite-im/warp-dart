@@ -13,8 +13,8 @@ import 'package:warp_dart/warp_dart_bindings_generated.dart';
 class Message {
   late String id;
   late String conversationId;
-  late DID senderId;
-  // DateTime date
+  late String senderId;
+  late int date;
   // Bool pinned
   // List<Reactions> reactions
   // UUID replied
@@ -26,7 +26,7 @@ class Raygun {
   Pointer<G_RayGunAdapter> pointer;
   Raygun(this.pointer);
 
-  Message getMessages(String conversationID) {
+  List<Message> getMessages(String conversationID) {
     G_FFIResult_FFIVec_Message result = bindings.raygun_get_messages(
         pointer, conversationID.toNativeUtf8().cast<Int8>());
 
@@ -34,14 +34,29 @@ class Raygun {
       throw WarpException(result.error);
     }
 
-    Message message = Message();
+    List<Message> msgs = [];
     int length = result.data.ref.len;
 
     for (int i = 0; i < length; i++) {
-      Pointer<G_Message> pointer = result.data.ref.ptr.elementAt(i).value;
-      message.value.add(pointer.toString());
+      Message message = Message();
+      Pointer<G_Message> msgPointer = result.data.ref.ptr.elementAt(i).value;
+      message.id = bindings.message_id(msgPointer).toString();
+      message.conversationId =
+          bindings.message_conversation_id(msgPointer).toString();
+      message.senderId = bindings.message_sender_id(msgPointer).toString();
+
+      // TODO: How to convert Rust ffi.Int8 to Dart int?
+      // message.date = bindings.message_date(msgPointer);
+
+      // Message body
+      Pointer<G_FFIVec_String> lines = bindings.message_lines(msgPointer);
+      int lineLen = lines.ref.len;
+      for (int j = 0; j < lineLen; j++) {
+        message.value.add(lines.ref.ptr.value.toString());
+      }
+      msgs.add(message);
     }
 
-    return message;
+    return msgs;
   }
 }
