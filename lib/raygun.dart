@@ -49,43 +49,49 @@ class Raygun {
     }
 
     List<Message> msgs = [];
+    // Iterate over the messages
     int length = result.data.ref.len;
-
     for (int i = 0; i < length; i++) {
       Message message = Message();
       Pointer<G_Message> msgPointer = result.data.ref.ptr.elementAt(i).value;
 
+      // Message ID
       message.id = bindings.message_id(msgPointer).value.toString();
+      // Conversation ID
       message.conversationId =
           bindings.message_conversation_id(msgPointer).value.toString();
-
-      // TODO: sender ID can be uuid or did with its own class, how to?
+      // Sender ID, DID only
       Pointer<G_SenderId> senderIdPointer =
           bindings.message_sender_id(msgPointer);
-
-      Pointer<Int8> senderId = bindings.sender_id_get_id(senderIdPointer);
-      if (senderId.value != 0) {
-        message.senderId = senderId.value.toString();
-      } else {
-        Pointer<G_DID> senderDid =
-            bindings.sender_id_get_did_key(senderIdPointer);
-        message.senderId = DID(senderDid).toString();
-      }
-
-      // TODO: Is this the right way to convert Rust ffi.Int8 to Dart DateTime?
+      Pointer<G_DID> senderDid =
+          bindings.sender_id_get_did_key(senderIdPointer);
+      message.senderId = DID(senderDid).toString();
+      // DateTime
+      // TODO: test required
+      // The value from Rust is integer (UTC from Chrono ).
+      // Possibly DateTime.fromMillisecondsSinceEpoch() can be used.
       message.date = DateTime(bindings.message_date(msgPointer).value);
-
-      // TODO: Reactions
-      // - seems like we suppose to use the returned pointer for reaction_emoji and reaction_users
-      // - but the message_reactions returns only 1 pointer. Shouldn't there be a list?
-      // message.reactions =
-      bindings.message_reactions(msgPointer);
-
+      // Reactions
+      List<Reaction> reactions = [];
+      Pointer<G_FFIVec_Reaction> reactionsPointer =
+          bindings.message_reactions(msgPointer);
+      int reactionsLen = reactionsPointer.ref.len;
+      for (int j = 0; j < reactionsLen; j++) {
+        Reaction reaction = Reaction();
+        Pointer<G_Reaction> reactionPointer =
+            reactionsPointer.ref.ptr.elementAt(j).value;
+        reaction.emoji = bindings.reaction_emoji(reactionPointer).toString();
+        Pointer<G_FFIVec_SenderId> reactionSendersId =
+            bindings.reaction_users(reactionPointer);
+        int reactionSendersIdLen = reactionSendersId.ref.len;
+        for (int k = 0; k < reactionSendersIdLen; k++) {
+          reaction.senderId
+              .add(reactionSendersId.ref.ptr.elementAt(k).value.toString());
+        }
+      }
+      message.reactions = reactions;
+      // Pinned
       message.pinned = bindings.message_pinned(msgPointer) == 0 ? false : true;
-
-      // TODO: Replied - where is it?
-      // bindings.message_
-
       // Message body
       Pointer<G_FFIVec_String> lines = bindings.message_lines(msgPointer);
       int lineLen = lines.ref.len;
@@ -94,8 +100,8 @@ class Raygun {
       }
       msgs.add(message);
 
-      // TODO: Metadata - Rust struct has a map, but no related function appears.
-      // bindings.metadata
+      // TODO: Replied - Rust binding is not ready
+      // TODO: Metadata - Rust binding is not ready
     }
 
     return msgs;
