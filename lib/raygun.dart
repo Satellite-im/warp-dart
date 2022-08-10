@@ -37,12 +37,12 @@ class SenderId {
 }
 
 class Raygun {
-  Pointer<G_RayGunAdapter> pointer;
-  Raygun(this.pointer);
+  Pointer<G_RayGunAdapter> pRaygun;
+  Raygun(this.pRaygun);
 
   List<Message> getMessages(String conversationID) {
     G_FFIResult_FFIVec_Message result = bindings.raygun_get_messages(
-        pointer, conversationID.toNativeUtf8().cast<Int8>());
+        pRaygun, conversationID.toNativeUtf8().cast<Int8>());
 
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
@@ -53,16 +53,15 @@ class Raygun {
     int length = result.data.ref.len;
     for (int i = 0; i < length; i++) {
       Message message = Message();
-      Pointer<G_Message> msgPointer = result.data.ref.ptr.elementAt(i).value;
+      Pointer<G_Message> pMsg = result.data.ref.ptr.elementAt(i).value;
 
       // Message ID
-      message.id = bindings.message_id(msgPointer).value.toString();
+      message.id = bindings.message_id(pMsg).value.toString();
       // Conversation ID
       message.conversationId =
-          bindings.message_conversation_id(msgPointer).value.toString();
+          bindings.message_conversation_id(pMsg).value.toString();
       // Sender ID, DID only
-      Pointer<G_SenderId> senderIdPointer =
-          bindings.message_sender_id(msgPointer);
+      Pointer<G_SenderId> senderIdPointer = bindings.message_sender_id(pMsg);
       Pointer<G_DID> senderDid =
           bindings.sender_id_get_did_key(senderIdPointer);
       message.senderId = DID(senderDid).toString();
@@ -70,19 +69,17 @@ class Raygun {
       // TODO: test required
       // The value from Rust is integer (UTC from Chrono ).
       // Possibly DateTime.fromMillisecondsSinceEpoch() can be used.
-      message.date = DateTime(bindings.message_date(msgPointer).value);
+      message.date = DateTime(bindings.message_date(pMsg).value);
       // Reactions
       List<Reaction> reactions = [];
-      Pointer<G_FFIVec_Reaction> reactionsPointer =
-          bindings.message_reactions(msgPointer);
-      int reactionsLen = reactionsPointer.ref.len;
+      Pointer<G_FFIVec_Reaction> pReactions = bindings.message_reactions(pMsg);
+      int reactionsLen = pReactions.ref.len;
       for (int j = 0; j < reactionsLen; j++) {
         Reaction reaction = Reaction();
-        Pointer<G_Reaction> reactionPointer =
-            reactionsPointer.ref.ptr.elementAt(j).value;
-        reaction.emoji = bindings.reaction_emoji(reactionPointer).toString();
+        Pointer<G_Reaction> pReaction = pReactions.ref.ptr.elementAt(j).value;
+        reaction.emoji = bindings.reaction_emoji(pReaction).toString();
         Pointer<G_FFIVec_SenderId> reactionSendersId =
-            bindings.reaction_users(reactionPointer);
+            bindings.reaction_users(pReaction);
         int reactionSendersIdLen = reactionSendersId.ref.len;
         for (int k = 0; k < reactionSendersIdLen; k++) {
           reaction.senderId
@@ -91,9 +88,9 @@ class Raygun {
       }
       message.reactions = reactions;
       // Pinned
-      message.pinned = bindings.message_pinned(msgPointer) == 0 ? false : true;
+      message.pinned = bindings.message_pinned(pMsg) == 0 ? false : true;
       // Message body
-      Pointer<G_FFIVec_String> lines = bindings.message_lines(msgPointer);
+      Pointer<G_FFIVec_String> lines = bindings.message_lines(pMsg);
       int lineLen = lines.ref.len;
       for (int j = 0; j < lineLen; j++) {
         message.value.add(lines.ref.ptr.value.toString());
@@ -105,5 +102,16 @@ class Raygun {
     }
 
     return msgs;
+  }
+
+  send(String conversationId, String messageId, Message messages) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+    G_FFIVec_String _messages = messages.value.cast().elementAt(0);
+    int lines = _messages.len;
+
+    bindings.raygun_send(
+        pRaygun, _convoId, _messageId, _messages.ptr.elementAt(0), lines);
   }
 }
