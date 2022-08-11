@@ -56,19 +56,23 @@ class Raygun {
   Raygun(this.pRaygun);
 
   List<Message> getMessages(String conversationID) {
-    G_FFIResult_FFIVec_Message result = bindings.raygun_get_messages(
-        pRaygun, conversationID.toNativeUtf8().cast<Int8>());
+    // During the conversion, make sure:
+    // - the IDs should go with toString as it is an index of something
+    // - the message body should go with toDartString as it is an actual string
 
-    if (result.error.address.toString() != "0") {
-      throw WarpException(result.error);
+    // Get messages and null check
+    G_FFIResult_FFIVec_Message messages = bindings.raygun_get_messages(
+        pRaygun, conversationID.toNativeUtf8().cast<Int8>());
+    if (messages.error.address.toString() != "0") {
+      throw WarpException(messages.error);
     }
 
     List<Message> msgs = [];
     // Iterate over the messages
-    int length = result.data.ref.len;
+    int length = messages.data.ref.len;
     for (int i = 0; i < length; i++) {
       Message message = Message();
-      Pointer<G_Message> pMsg = result.data.ref.ptr.elementAt(i).value;
+      Pointer<G_Message> pMsg = messages.data.ref.ptr.elementAt(i).value;
 
       // Message ID
       message.id = bindings.message_id(pMsg).value.toString();
@@ -76,15 +80,16 @@ class Raygun {
       message.conversationId =
           bindings.message_conversation_id(pMsg).value.toString();
       // Sender ID, DID only
-      Pointer<G_SenderId> senderIdPointer = bindings.message_sender_id(pMsg);
-      Pointer<G_DID> senderDid =
-          bindings.sender_id_get_did_key(senderIdPointer);
-      message.senderId = DID(senderDid).toString();
+      Pointer<G_SenderId> pSenderId = bindings.message_sender_id(pMsg);
+      Pointer<G_DID> pSenderDid = bindings.sender_id_get_did_key(pSenderId);
+      message.senderId = DID(pSenderDid).toString();
       // DateTime
       // TODO: test required
       // The value from Rust is integer (UTC from Chrono ).
       // Possibly DateTime.fromMillisecondsSinceEpoch() can be used.
       message.date = DateTime(bindings.message_date(pMsg).value);
+      // Pinned
+      message.pinned = bindings.message_pinned(pMsg);
       // Reactions
       List<Reaction> reactions = [];
       Pointer<G_FFIVec_Reaction> pReactions = bindings.message_reactions(pMsg);
@@ -93,26 +98,31 @@ class Raygun {
         Reaction reaction = Reaction();
         Pointer<G_Reaction> pReaction = pReactions.ref.ptr.elementAt(j).value;
         reaction.emoji = bindings.reaction_emoji(pReaction).toString();
-        Pointer<G_FFIVec_SenderId> reactionSendersId =
+        Pointer<G_FFIVec_SenderId> pReactionSendersId =
             bindings.reaction_users(pReaction);
-        int reactionSendersIdLen = reactionSendersId.ref.len;
+        int reactionSendersIdLen = pReactionSendersId.ref.len;
         for (int k = 0; k < reactionSendersIdLen; k++) {
           reaction.senderId
-              .add(reactionSendersId.ref.ptr.elementAt(k).value.toString());
+              .add(pReactionSendersId.ref.ptr.elementAt(k).value.toString());
         }
       }
       message.reactions = reactions;
-      // Pinned
-      message.pinned = bindings.message_pinned(pMsg) == 0 ? false : true;
-      // Message body
-      Pointer<G_FFIVec_String> lines = bindings.message_lines(pMsg);
-      int lineLen = lines.ref.len;
-      for (int j = 0; j < lineLen; j++) {
-        message.value.add(lines.ref.ptr.value.toString());
+      // Replied
+      Pointer<Int8> pReplied = bindings.message_replied(pMsg);
+      if (pReplied.address.toString() != "0") {
+        message.replied = pReplied.toString();
       }
-      msgs.add(message);
+      // Message body
+      Pointer<G_FFIVec_String> pLines = bindings.message_lines(pMsg);
+      int lineLen = pLines.ref.len;
+      for (int j = 0; j < lineLen; j++) {
+        message.value
+            .add(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
+      }
 
-      // TODO: Replied - Rust binding is not ready
+      msgs.add(message);
+      bindings.message_free(pMsg);
+
       // TODO: Metadata - Rust binding is not ready
     }
 
