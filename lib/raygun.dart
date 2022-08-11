@@ -145,10 +145,11 @@ class Raygun {
     }
   }
 
-  delete(String conversationId, String messageId) {
+  delete(String conversationId, [String? messageId]) {
     // Convert given values to native friendly types
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
-    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId =
+        messageId != null ? messageId.toNativeUtf8().cast<Int8>() : nullptr;
     // Invoke and result check
     G_FFIResult_Null result =
         bindings.raygun_delete(pRaygun, _convoId, _messageId);
