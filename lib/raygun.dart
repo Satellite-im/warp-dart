@@ -137,17 +137,24 @@ class Raygun {
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
     G_FFIVec_String _messages = messages.value.cast().elementAt(0);
     int lines = _messages.len;
-
-    bindings.raygun_send(
+    // Invoke and result check
+    G_FFIResult_Null result = bindings.raygun_send(
         pRaygun, _convoId, _messageId, _messages.ptr.elementAt(0), lines);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 
   delete(String conversationId, String messageId) {
     // Convert given values to native friendly types
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
-
-    bindings.raygun_delete(pRaygun, _convoId, _messageId);
+    // Invoke and result check
+    G_FFIResult_Null result =
+        bindings.raygun_delete(pRaygun, _convoId, _messageId);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 
   react(String conversationId, String messageId, ReactionState reactionState,
@@ -157,9 +164,12 @@ class Raygun {
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
     int _reactionState = reactionState.index;
     Pointer<Int8> _emoji = emoji.toNativeUtf8().cast<Int8>();
-
-    bindings.raygun_react(
+    // Invoke and result check
+    G_FFIResult_Null result = bindings.raygun_react(
         pRaygun, _convoId, _messageId, _reactionState, _emoji);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 
   pin(String conversationId, String messageId, PinState pinState) {
@@ -167,8 +177,12 @@ class Raygun {
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
     int _pinState = pinState.index;
-
-    bindings.raygun_pin(pRaygun, _convoId, _messageId, _pinState);
+    // Invoke and result check
+    G_FFIResult_Null result =
+        bindings.raygun_pin(pRaygun, _convoId, _messageId, _pinState);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 
   reply(String conversationId, String messageId, Message messages) {
@@ -177,16 +191,22 @@ class Raygun {
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
     G_FFIVec_String _messages = messages.value.cast().elementAt(0);
     int lines = _messages.len;
-
-    bindings.raygun_reply(
+    // Invoke and result check
+    G_FFIResult_Null result = bindings.raygun_reply(
         pRaygun, _convoId, _messageId, _messages.ptr.elementAt(0), lines);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 
   ping(String conversationId) {
     // Convert given values to native friendly types
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
-
-    bindings.raygun_ping(pRaygun, _convoId);
+    // Invoke and result check
+    G_FFIResult_Null result = bindings.raygun_ping(pRaygun, _convoId);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 
   embed(String conversationId, String messageId, Message messages,
@@ -195,7 +215,11 @@ class Raygun {
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
     int _embedState = embedState.index;
-
-    bindings.raygun_embeds(pRaygun, _convoId, _messageId, _embedState);
+    // Invoke and result check
+    G_FFIResult_Null result =
+        bindings.raygun_embeds(pRaygun, _convoId, _messageId, _embedState);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
   }
 }
