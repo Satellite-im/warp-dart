@@ -20,6 +20,16 @@ enum ReactionState {
   remove,
 }
 
+enum PinState {
+  pin,
+  unpin,
+}
+
+enum EmbedState {
+  enabled,
+  disabled,
+}
+
 class Message {
   late String id;
   late String conversationId;
@@ -140,5 +150,42 @@ class Raygun {
 
     bindings.raygun_react(
         pRaygun, _convoId, _messageId, _reactionState, _emoji);
+  }
+
+  pin(String conversationId, String messageId, PinState pinState) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+    int _pinState = pinState.index;
+
+    bindings.raygun_pin(pRaygun, _convoId, _messageId, _pinState);
+  }
+
+  reply(String conversationId, String messageId, Message messages) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+    G_FFIVec_String _messages = messages.value.cast().elementAt(0);
+    int lines = _messages.len;
+
+    bindings.raygun_reply(
+        pRaygun, _convoId, _messageId, _messages.ptr.elementAt(0), lines);
+  }
+
+  ping(String conversationId) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+
+    bindings.raygun_ping(pRaygun, _convoId);
+  }
+
+  embed(String conversationId, String messageId, Message messages,
+      EmbedState embedState) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+    int _embedState = embedState.index;
+
+    bindings.raygun_embeds(pRaygun, _convoId, _messageId, _embedState);
   }
 }
