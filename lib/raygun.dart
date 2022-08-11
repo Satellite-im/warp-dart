@@ -10,6 +10,16 @@ import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
+enum Uid {
+  id,
+  didKey,
+}
+
+enum ReactionState {
+  add,
+  remove,
+}
+
 class Message {
   late String id;
   late String conversationId;
@@ -25,11 +35,6 @@ class Message {
 class Reaction {
   late String emoji;
   late List<String> senderId;
-}
-
-enum Uid {
-  id,
-  didKey,
 }
 
 class SenderId {
@@ -104,6 +109,8 @@ class Raygun {
     return msgs;
   }
 
+  // This method serves for sending and editing.
+  // If there is message sent, Warp will cover the editing part.
   send(String conversationId, String messageId, Message messages) {
     // Convert given values to native friendly types
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
@@ -113,5 +120,25 @@ class Raygun {
 
     bindings.raygun_send(
         pRaygun, _convoId, _messageId, _messages.ptr.elementAt(0), lines);
+  }
+
+  delete(String conversationId, String messageId) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+
+    bindings.raygun_delete(pRaygun, _convoId, _messageId);
+  }
+
+  react(String conversationId, String messageId, ReactionState reactionState,
+      String emoji) {
+    // Convert given values to native friendly types
+    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
+    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
+    int _reactionState = reactionState.index;
+    Pointer<Int8> _emoji = emoji.toNativeUtf8().cast<Int8>();
+
+    bindings.raygun_react(
+        pRaygun, _convoId, _messageId, _reactionState, _emoji);
   }
 }
