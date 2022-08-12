@@ -200,18 +200,7 @@ class Raygun {
     }
   }
 
-  ping(String conversationId) {
-    // Convert given values to native friendly types
-    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
-    // Invoke and result check
-    G_FFIResult_Null result = bindings.raygun_ping(pRaygun, _convoId);
-    if (result.error.address.toString() != "0") {
-      throw WarpException(result.error);
-    }
-  }
-
-  embed(String conversationId, String messageId, Message messages,
-      EmbedState embedState) {
+  embed(String conversationId, String messageId, EmbedState embedState) {
     // Convert given values to native friendly types
     Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
     Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
