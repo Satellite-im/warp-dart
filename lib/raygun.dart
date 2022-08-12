@@ -207,18 +207,39 @@ class Raygun {
     }
   }
 
-  reply(String conversationId, String messageId, Message messages) {
-    // Convert given values to native friendly types
-    Pointer<Int8> _convoId = conversationId.toNativeUtf8().cast<Int8>();
-    Pointer<Int8> _messageId = messageId.toNativeUtf8().cast<Int8>();
-    G_FFIVec_String _messages = messages.value.cast().elementAt(0);
-    int lines = _messages.len;
-    // Invoke and result check
-    G_FFIResult_Null result = bindings.raygun_reply(
-        pRaygun, _convoId, _messageId, _messages.ptr.elementAt(0), lines);
-    if (result.error.address.toString() != "0") {
-      throw WarpException(result.error);
+  reply(String conversationId, [String? messageId, List<String>? messages]) {
+    // Parameter validation
+    if (messageId == null && messages == null) {
+      throw Exception("Both given message ID and body are null");
     }
+    if (messages != null && messages.isEmpty) {
+      throw Exception("The given message is not null but empty");
+    }
+    // With the using keyword the allocated memories by Arena will be released
+    using((Arena arena) {
+      // Convert given values to native friendly types
+      Pointer<Int8> _pConvoId = calloc<Int8>();
+      _pConvoId = conversationId.toNativeUtf8().cast<Int8>();
+      Pointer<Int8> _pMessageId = calloc<Int8>();
+      _pMessageId =
+          messageId != null ? messageId.toNativeUtf8().cast<Int8>() : nullptr;
+      // Allocation
+      Pointer<Pointer<Int8>> _pMessages =
+          Arena().allocate<Pointer<Int8>>(messages!.length);
+      // Copy
+      for (int i = 0; i < messages.length; i++) {
+        _pMessages[i] = messages[i].toNativeUtf8().cast<Int8>();
+      }
+      // Invoke and result check
+      G_FFIResult_Null result = bindings.raygun_reply(
+          pRaygun, _pConvoId, _pMessageId, _pMessages, messages.length);
+      if (result.error.address.toString() != "0") {
+        throw WarpException(result.error);
+      }
+      // Release non-Arena pointers
+      calloc.free(_pConvoId);
+      calloc.free(_pMessageId);
+    });
   }
 
   embed(String conversationId, String messageId, EmbedState embedState) {
