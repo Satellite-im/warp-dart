@@ -152,7 +152,7 @@ class Raygun {
           Arena().allocate<Pointer<Int8>>(messages!.length);
       // Copy
       for (int i = 0; i < messages.length; i++) {
-        _pMessages[i].value = messages[i].toNativeUtf8().cast<Int8>().value;
+        _pMessages[i] = messages[i].toNativeUtf8().cast<Int8>();
       }
       // Invoke and result check
       G_FFIResult_Null result = bindings.raygun_send(
