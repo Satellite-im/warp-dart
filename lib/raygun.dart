@@ -283,7 +283,7 @@ class Raygun {
       throw WarpException(result.error);
     }
     // Release
-    bindings.did_free(did.pointer);
+    did.drop();
   }
 
   List<String> listConversation() {
@@ -297,8 +297,11 @@ class Raygun {
     int conversationsLen = result.data.ref.len;
     List<String> conversationIDs = [];
     for (int i = 0; i < conversationsLen; i++) {
-      conversationIDs.add(result.data.ref.ptr.elementAt(i).value.toString());
+      Pointer<Int8> pConversationID = result.data.ref.ptr.elementAt(i).value;
+      conversationIDs.add(pConversationID.toString());
+      calloc.free(pConversationID);
     }
+
     return conversationIDs;
   }
 }
