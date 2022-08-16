@@ -272,4 +272,33 @@ class Raygun {
     calloc.free(pConvoId);
     calloc.free(pMessageId);
   }
+
+  createConversation(String didKey) {
+    // Prepare a DID
+    DID did = DID.fromString(didKey);
+    // Invoke and result check
+    G_FFIResult_String result =
+        bindings.raygun_create_conversation(pRaygun, did.pointer);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
+    // Release
+    bindings.did_free(did.pointer);
+  }
+
+  List<String> listConversation() {
+    // Invoke and result check
+    G_FFIResult_FFIVec_String result =
+        bindings.raygun_list_conversations(pRaygun);
+    if (result.error.address.toString() != "0") {
+      throw WarpException(result.error);
+    }
+    // Collect conversation IDs
+    int conversationsLen = result.data.ref.len;
+    List<String> conversationIDs = [];
+    for (int i = 0; i < conversationsLen; i++) {
+      conversationIDs.add(result.data.ref.ptr.elementAt(i).value.toString());
+    }
+    return conversationIDs;
+  }
 }
