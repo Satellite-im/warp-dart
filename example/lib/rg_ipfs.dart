@@ -22,9 +22,9 @@ MultiPass newAccount(String pass) {
 }
 
 int main() {
-  MultiPass account_a = newAccount("c_datastore_a");
-  MultiPass account_b = newAccount("c_datastore_b");
-  if (account_a.pointer == nullptr || account_b.pointer == nullptr) {
+  MultiPass accountA = newAccount("c_datastore_a");
+  MultiPass accountB = newAccount("c_datastore_b");
+  if (accountA.pointer == nullptr || accountB.pointer == nullptr) {
     print("Error creating account\n");
     return -1;
   }
