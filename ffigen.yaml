@@ -19,7 +19,9 @@ headers:
 #   // ignore_for_file: camel_case_types
 #   // ignore_for_file: non_constant_identifier_names
 llvm-path:
-  - '/opt/homebrew/Cellar/llvm/14.0.6_1'
+  # - '/opt/homebrew/Cellar/llvm/14.0.6_1' # OSX
+  - '/usr/lib/llvm-14' # Debian/Ubuntu
+
 structs:
   rename:
     '(.*)' : 'G_$1'
