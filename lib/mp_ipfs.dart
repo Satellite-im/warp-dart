@@ -35,10 +35,16 @@ MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
 // - Has a file set
 // - Has autosave enabled
 MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path) {
-  Pointer<G_MpIpfsConfig> config = _ipfs_bindings.mp_ipfs_config_development();
+  G_FFIResult_MpIpfsConfig config = _ipfs_bindings
+      .mp_ipfs_config_production(path.toNativeUtf8().cast<Int8>());
 
-  G_FFIResult_MultiPassAdapter result = _ipfs_bindings
-      .multipass_mp_ipfs_persistent(nullptr, tesseract.getPointer(), config);
+  if (config.error.address.toString() != "0") {
+    throw WarpException(config.error.cast());
+  }
+
+  G_FFIResult_MultiPassAdapter result =
+      _ipfs_bindings.multipass_mp_ipfs_persistent(
+          nullptr, tesseract.getPointer(), config.data);
 
   if (result.error.address.toString() != "0") {
     throw WarpException(result.error.cast());
