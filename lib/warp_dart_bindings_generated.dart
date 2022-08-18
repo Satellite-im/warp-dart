@@ -4991,6 +4991,309 @@ class WarpDartBindings {
           'ffierror_free');
   late final _ffierror_free =
       _ffierror_freePtr.asFunction<void Function(ffi.Pointer<G_FFIError>)>();
+
+  G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
+    ffi.Pointer<ffi.Int8> file,
+  ) {
+    return _mp_ipfs_config_from_file(
+      file,
+    );
+  }
+
+  late final _mp_ipfs_config_from_filePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MpIpfsConfig Function(
+              ffi.Pointer<ffi.Int8>)>>('mp_ipfs_config_from_file');
+  late final _mp_ipfs_config_from_file = _mp_ipfs_config_from_filePtr
+      .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Int8>)>();
+
+  G_FFIResult_MpIpfsConfig mp_ipfs_config_from_str(
+    ffi.Pointer<ffi.Int8> config,
+  ) {
+    return _mp_ipfs_config_from_str(
+      config,
+    );
+  }
+
+  late final _mp_ipfs_config_from_strPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MpIpfsConfig Function(
+              ffi.Pointer<ffi.Int8>)>>('mp_ipfs_config_from_str');
+  late final _mp_ipfs_config_from_str = _mp_ipfs_config_from_strPtr
+      .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Int8>)>();
+
+  ffi.Pointer<G_MpIpfsConfig> mp_ipfs_config_development() {
+    return _mp_ipfs_config_development();
+  }
+
+  late final _mp_ipfs_config_developmentPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_MpIpfsConfig> Function()>>(
+          'mp_ipfs_config_development');
+  late final _mp_ipfs_config_development = _mp_ipfs_config_developmentPtr
+      .asFunction<ffi.Pointer<G_MpIpfsConfig> Function()>();
+
+  ffi.Pointer<G_MpIpfsConfig> mp_ipfs_config_testing() {
+    return _mp_ipfs_config_testing();
+  }
+
+  late final _mp_ipfs_config_testingPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_MpIpfsConfig> Function()>>(
+          'mp_ipfs_config_testing');
+  late final _mp_ipfs_config_testing = _mp_ipfs_config_testingPtr
+      .asFunction<ffi.Pointer<G_MpIpfsConfig> Function()>();
+
+  G_FFIResult_MpIpfsConfig mp_ipfs_config_production(
+    ffi.Pointer<ffi.Int8> path,
+  ) {
+    return _mp_ipfs_config_production(
+      path,
+    );
+  }
+
+  late final _mp_ipfs_config_productionPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MpIpfsConfig Function(
+              ffi.Pointer<ffi.Int8>)>>('mp_ipfs_config_production');
+  late final _mp_ipfs_config_production = _mp_ipfs_config_productionPtr
+      .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Int8>)>();
+
+  G_FFIResult_MultiPassAdapter multipass_mp_ipfs_temporary(
+    ffi.Pointer<G_PocketDimensionAdapter> pocketdimension,
+    ffi.Pointer<G_Tesseract> tesseract,
+    ffi.Pointer<G_MpIpfsConfig> config,
+  ) {
+    return _multipass_mp_ipfs_temporary(
+      pocketdimension,
+      tesseract,
+      config,
+    );
+  }
+
+  late final _multipass_mp_ipfs_temporaryPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MultiPassAdapter Function(
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_Tesseract>,
+              ffi.Pointer<G_MpIpfsConfig>)>>('multipass_mp_ipfs_temporary');
+  late final _multipass_mp_ipfs_temporary =
+      _multipass_mp_ipfs_temporaryPtr.asFunction<
+          G_FFIResult_MultiPassAdapter Function(
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_Tesseract>,
+              ffi.Pointer<G_MpIpfsConfig>)>();
+
+  G_FFIResult_MultiPassAdapter multipass_mp_ipfs_persistent(
+    ffi.Pointer<G_PocketDimensionAdapter> pocketdimension,
+    ffi.Pointer<G_Tesseract> tesseract,
+    ffi.Pointer<G_MpIpfsConfig> config,
+  ) {
+    return _multipass_mp_ipfs_persistent(
+      pocketdimension,
+      tesseract,
+      config,
+    );
+  }
+
+  late final _multipass_mp_ipfs_persistentPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MultiPassAdapter Function(
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_Tesseract>,
+              ffi.Pointer<G_MpIpfsConfig>)>>('multipass_mp_ipfs_persistent');
+  late final _multipass_mp_ipfs_persistent =
+      _multipass_mp_ipfs_persistentPtr.asFunction<
+          G_FFIResult_MultiPassAdapter Function(
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_Tesseract>,
+              ffi.Pointer<G_MpIpfsConfig>)>();
+
+  G_FFIResult_RgIpfsConfig rg_ipfs_config_from_file(
+    ffi.Pointer<ffi.Int8> file,
+  ) {
+    return _rg_ipfs_config_from_file(
+      file,
+    );
+  }
+
+  late final _rg_ipfs_config_from_filePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_RgIpfsConfig Function(
+              ffi.Pointer<ffi.Int8>)>>('rg_ipfs_config_from_file');
+  late final _rg_ipfs_config_from_file = _rg_ipfs_config_from_filePtr
+      .asFunction<G_FFIResult_RgIpfsConfig Function(ffi.Pointer<ffi.Int8>)>();
+
+  G_FFIResult_RgIpfsConfig rg_ipfs_config_from_str(
+    ffi.Pointer<ffi.Int8> config,
+  ) {
+    return _rg_ipfs_config_from_str(
+      config,
+    );
+  }
+
+  late final _rg_ipfs_config_from_strPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_RgIpfsConfig Function(
+              ffi.Pointer<ffi.Int8>)>>('rg_ipfs_config_from_str');
+  late final _rg_ipfs_config_from_str = _rg_ipfs_config_from_strPtr
+      .asFunction<G_FFIResult_RgIpfsConfig Function(ffi.Pointer<ffi.Int8>)>();
+
+  ffi.Pointer<G_RgIpfsConfig> rg_ipfs_config_development() {
+    return _rg_ipfs_config_development();
+  }
+
+  late final _rg_ipfs_config_developmentPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_RgIpfsConfig> Function()>>(
+          'rg_ipfs_config_development');
+  late final _rg_ipfs_config_development = _rg_ipfs_config_developmentPtr
+      .asFunction<ffi.Pointer<G_RgIpfsConfig> Function()>();
+
+  ffi.Pointer<G_RgIpfsConfig> rg_ipfs_config_testing() {
+    return _rg_ipfs_config_testing();
+  }
+
+  late final _rg_ipfs_config_testingPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_RgIpfsConfig> Function()>>(
+          'rg_ipfs_config_testing');
+  late final _rg_ipfs_config_testing = _rg_ipfs_config_testingPtr
+      .asFunction<ffi.Pointer<G_RgIpfsConfig> Function()>();
+
+  G_FFIResult_RgIpfsConfig rg_ipfs_config_production(
+    ffi.Pointer<ffi.Int8> path,
+  ) {
+    return _rg_ipfs_config_production(
+      path,
+    );
+  }
+
+  late final _rg_ipfs_config_productionPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_RgIpfsConfig Function(
+              ffi.Pointer<ffi.Int8>)>>('rg_ipfs_config_production');
+  late final _rg_ipfs_config_production = _rg_ipfs_config_productionPtr
+      .asFunction<G_FFIResult_RgIpfsConfig Function(ffi.Pointer<ffi.Int8>)>();
+
+  G_FFIResult_RayGunAdapter warp_rg_ipfs_temporary_new(
+    ffi.Pointer<G_MultiPassAdapter> account,
+    ffi.Pointer<G_PocketDimensionAdapter> cache,
+    ffi.Pointer<G_RgIpfsConfig> config,
+  ) {
+    return _warp_rg_ipfs_temporary_new(
+      account,
+      cache,
+      config,
+    );
+  }
+
+  late final _warp_rg_ipfs_temporary_newPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_RayGunAdapter Function(
+              ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_RgIpfsConfig>)>>('warp_rg_ipfs_temporary_new');
+  late final _warp_rg_ipfs_temporary_new =
+      _warp_rg_ipfs_temporary_newPtr.asFunction<
+          G_FFIResult_RayGunAdapter Function(
+              ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_RgIpfsConfig>)>();
+
+  G_FFIResult_RayGunAdapter warp_rg_ipfs_persistent_new(
+    ffi.Pointer<G_MultiPassAdapter> account,
+    ffi.Pointer<G_PocketDimensionAdapter> cache,
+    ffi.Pointer<G_RgIpfsConfig> config,
+  ) {
+    return _warp_rg_ipfs_persistent_new(
+      account,
+      cache,
+      config,
+    );
+  }
+
+  late final _warp_rg_ipfs_persistent_newPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_RayGunAdapter Function(
+              ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_RgIpfsConfig>)>>('warp_rg_ipfs_persistent_new');
+  late final _warp_rg_ipfs_persistent_new =
+      _warp_rg_ipfs_persistent_newPtr.asFunction<
+          G_FFIResult_RayGunAdapter Function(
+              ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_PocketDimensionAdapter>,
+              ffi.Pointer<G_RgIpfsConfig>)>();
+
+  ffi.Pointer<ffi.Int32> pocketdimension_memory_new() {
+    return _pocketdimension_memory_new();
+  }
+
+  late final _pocketdimension_memory_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function()>>(
+          'pocketdimension_memory_new');
+  late final _pocketdimension_memory_new = _pocketdimension_memory_newPtr
+      .asFunction<ffi.Pointer<ffi.Int32> Function()>();
+
+  ffi.Pointer<ffi.Int32> pocketdimension_stretto_new() {
+    return _pocketdimension_stretto_new();
+  }
+
+  late final _pocketdimension_stretto_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function()>>(
+          'pocketdimension_stretto_new');
+  late final _pocketdimension_stretto_new = _pocketdimension_stretto_newPtr
+      .asFunction<ffi.Pointer<ffi.Int32> Function()>();
+
+  G_FFIResult_PocketDimensionAdapter pocket_dimension_flatfile_new(
+    ffi.Pointer<ffi.Int8> path,
+    ffi.Pointer<ffi.Int8> index_file,
+  ) {
+    return _pocket_dimension_flatfile_new(
+      path,
+      index_file,
+    );
+  }
+
+  late final _pocket_dimension_flatfile_newPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_PocketDimensionAdapter Function(ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>)>>('pocket_dimension_flatfile_new');
+  late final _pocket_dimension_flatfile_new =
+      _pocket_dimension_flatfile_newPtr.asFunction<
+          G_FFIResult_PocketDimensionAdapter Function(
+              ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
+
+  ffi.Pointer<ffi.Int32> constellation_fs_storj_new(
+    ffi.Pointer<ffi.Int32> pd,
+    ffi.Pointer<ffi.Int8> akey,
+    ffi.Pointer<ffi.Int8> skey,
+  ) {
+    return _constellation_fs_storj_new(
+      pd,
+      akey,
+      skey,
+    );
+  }
+
+  late final _constellation_fs_storj_newPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int32> Function(
+              ffi.Pointer<ffi.Int32>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>)>>('constellation_fs_storj_new');
+  late final _constellation_fs_storj_new =
+      _constellation_fs_storj_newPtr.asFunction<
+          ffi.Pointer<ffi.Int32> Function(ffi.Pointer<ffi.Int32>,
+              ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
+
+  ffi.Pointer<ffi.Int32> constellation_fs_memory_create_context() {
+    return _constellation_fs_memory_create_context();
+  }
+
+  late final _constellation_fs_memory_create_contextPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function()>>(
+          'constellation_fs_memory_create_context');
+  late final _constellation_fs_memory_create_context =
+      _constellation_fs_memory_create_contextPtr
+          .asFunction<ffi.Pointer<ffi.Int32> Function()>();
 }
 
 class G___fsid_t extends ffi.Struct {
@@ -5642,6 +5945,40 @@ class G_FFIResult_Tesseract extends ffi.Struct {
   external ffi.Pointer<G_Tesseract> data;
 
   external ffi.Pointer<G_FFIError> error;
+}
+
+class G_MpIpfsConfig extends ffi.Opaque {}
+
+class G_FFIResult_MpIpfsConfig extends ffi.Struct {
+  external ffi.Pointer<G_MpIpfsConfig> data;
+
+  external ffi.Pointer<ffi.Int32> error;
+}
+
+class G_FFIResult_MultiPassAdapter extends ffi.Struct {
+  external ffi.Pointer<G_MultiPassAdapter> data;
+
+  external ffi.Pointer<ffi.Int32> error;
+}
+
+class G_RgIpfsConfig extends ffi.Opaque {}
+
+class G_FFIResult_RgIpfsConfig extends ffi.Struct {
+  external ffi.Pointer<G_RgIpfsConfig> data;
+
+  external ffi.Pointer<ffi.Int32> error;
+}
+
+class G_FFIResult_RayGunAdapter extends ffi.Struct {
+  external ffi.Pointer<G_RayGunAdapter> data;
+
+  external ffi.Pointer<ffi.Int32> error;
+}
+
+class G_FFIResult_PocketDimensionAdapter extends ffi.Struct {
+  external ffi.Pointer<G_PocketDimensionAdapter> data;
+
+  external ffi.Pointer<ffi.Int32> error;
 }
 
 const int _STDINT_H = 1;
