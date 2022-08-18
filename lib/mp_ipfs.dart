@@ -8,13 +8,16 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libNameIpfs = 'warp_mp_ipfs';
-DynamicLibrary ipfs_dlib = DynamicLibrary.open('lib$_libNameIpfs.so');
+// DynamicLibrary ipfs_dlib = DynamicLibrary.open('lib$_libNameIpfs.so');
+DynamicLibrary ipfs_dlib = Platform.isLinux
+    ? DynamicLibrary.open('../linux/lib$_libNameIpfs.so')
+    : DynamicLibrary.open('lib$_libNameIpfs.so');
 final WarpDartBindings _ipfs_bindings = WarpDartBindings(ipfs_dlib);
 
 MultiPass multipass_ipfs_temporary(Tesseract tesseract) {

@@ -6,10 +6,9 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
-
 
 class Role {
   late String name;
@@ -36,17 +35,19 @@ class Identifier {
   Identifier(this.pointer);
 
   Identifier fromUserName(String username) {
-    return Identifier(bindings.multipass_identifier_user_name(username.toNativeUtf8().cast<Int8>()));
+    return Identifier(bindings
+        .multipass_identifier_user_name(username.toNativeUtf8().cast<Int8>()));
   }
 
   Identifier fromDID(String did_key) {
     DID did;
     try {
       did = DID.fromString(did_key);
-    } on WarpException catch(e) {
+    } on WarpException catch (e) {
       rethrow;
     }
-    Pointer<G_Identifier> ptr = bindings.multipass_identifier_did_key(did.pointer);
+    Pointer<G_Identifier> ptr =
+        bindings.multipass_identifier_did_key(did.pointer);
     did.drop();
     return Identifier(ptr);
   }
@@ -64,17 +65,21 @@ class IdentityUpdate {
   late Pointer<G_IdentityUpdate> pointer;
   IdentityUpdate(this.pointer);
 
-  IdentityUpdate.setUsername(String username){
-    pointer = bindings.multipass_identity_update_set_username(username.toNativeUtf8().cast<Int8>());
+  IdentityUpdate.setUsername(String username) {
+    pointer = bindings.multipass_identity_update_set_username(
+        username.toNativeUtf8().cast<Int8>());
   }
-  IdentityUpdate.setStatusMessage(String status){
-    pointer = bindings.multipass_identity_update_set_status_message(status.toNativeUtf8().cast<Int8>());
+  IdentityUpdate.setStatusMessage(String status) {
+    pointer = bindings.multipass_identity_update_set_status_message(
+        status.toNativeUtf8().cast<Int8>());
   }
-  IdentityUpdate.setPicture(String picture){
-    pointer = bindings.multipass_identity_update_set_graphics_picture(picture.toNativeUtf8().cast<Int8>());
+  IdentityUpdate.setPicture(String picture) {
+    pointer = bindings.multipass_identity_update_set_graphics_picture(
+        picture.toNativeUtf8().cast<Int8>());
   }
-  IdentityUpdate.setBanner(String banner){
-    pointer = bindings.multipass_identity_update_set_username(banner.toNativeUtf8().cast<Int8>());
+  IdentityUpdate.setBanner(String banner) {
+    pointer = bindings.multipass_identity_update_set_username(
+        banner.toNativeUtf8().cast<Int8>());
   }
   void drop() {
     bindings.identityupdate_free(pointer);
@@ -85,8 +90,14 @@ class Graphics {
   late String profile_picture;
   late String profile_banner;
   Graphics(Pointer<G_Graphics> pointer) {
-    profile_picture = bindings.multipass_graphics_profile_picture(pointer).cast<Utf8>().toDartString();
-    profile_banner = bindings.multipass_graphics_profile_banner(pointer).cast<Utf8>().toDartString();
+    profile_picture = bindings
+        .multipass_graphics_profile_picture(pointer)
+        .cast<Utf8>()
+        .toDartString();
+    profile_banner = bindings
+        .multipass_graphics_profile_banner(pointer)
+        .cast<Utf8>()
+        .toDartString();
     bindings.graphics_free(pointer);
   }
 }
@@ -102,7 +113,10 @@ class Identity {
   //late Badge active_badge;
   //late Map<String, String> linked_accounts;
   Identity(Pointer<G_Identity> pointer) {
-    username = bindings.multipass_identity_username(pointer).cast<Utf8>().toDartString();
+    username = bindings
+        .multipass_identity_username(pointer)
+        .cast<Utf8>()
+        .toDartString();
     short_id = bindings.multipass_identity_short_id(pointer);
     //Note that DID throws an exception if there is an error. Maybe handle it?
     did_key = DID(bindings.multipass_identity_did_key(pointer));
@@ -126,7 +140,8 @@ class FriendRequest {
   FriendRequest(Pointer<G_FriendRequest> pointer) {
     from = DID(bindings.multipass_friend_request_from(pointer));
     to = DID(bindings.multipass_friend_request_to(pointer));
-    status = bindings.multipass_friend_request_status(pointer) as FriendRequestStatus;
+    status = bindings.multipass_friend_request_status(pointer)
+        as FriendRequestStatus;
     bindings.friendrequest_free(pointer);
   }
 }
@@ -136,7 +151,10 @@ class MultiPass {
   MultiPass(this.pointer);
 
   DID createIdentity(String username, String password) {
-    G_FFIResult_DID result = bindings.multipass_create_identity(pointer, username.toNativeUtf8().cast<Int8>(), password.toNativeUtf8().cast<Int8>());
+    G_FFIResult_DID result = bindings.multipass_create_identity(
+        pointer,
+        username.toNativeUtf8().cast<Int8>(),
+        password.toNativeUtf8().cast<Int8>());
 
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
@@ -146,7 +164,8 @@ class MultiPass {
   }
 
   Identity getIdentity(Identifier identifier) {
-    G_FFIResult_Identity result = bindings.multipass_get_identity(pointer, identifier.pointer);
+    G_FFIResult_Identity result =
+        bindings.multipass_get_identity(pointer, identifier.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
@@ -162,7 +181,8 @@ class MultiPass {
   }
 
   void updateIdentity(IdentityUpdate option) {
-    G_FFIResult_Null result = bindings.multipass_update_identity(pointer, option.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_update_identity(pointer, option.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
@@ -176,38 +196,47 @@ class MultiPass {
   }
 
   void sendFriendRequest(DID key) {
-    G_FFIResult_Null result = bindings.multipass_send_request(pointer, key.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_send_request(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   void acceptFriendRequest(DID key) {
-    G_FFIResult_Null result = bindings.multipass_accept_request(pointer, key.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_accept_request(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   void denyFriendRequest(DID key) {
-    G_FFIResult_Null result = bindings.multipass_deny_request(pointer, key.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_deny_request(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   void closeFriendRequest(DID key) {
-    G_FFIResult_Null result = bindings.multipass_close_request(pointer, key.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_close_request(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   List<FriendRequest> listIncomingRequest() {
-    G_FFIResult_FFIVec_FriendRequest result = bindings.multipass_list_incoming_request(pointer);
+    G_FFIResult_FFIVec_FriendRequest result =
+        bindings.multipass_list_incoming_request(pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
     List<FriendRequest> list = [];
     int length = result.data.ref.len;
 
-    for(int i = 0; i<length;i++) {
+    for (int i = 0; i < length; i++) {
       Pointer<G_FriendRequest> pointer = result.data.ref.ptr.elementAt(i).value;
       FriendRequest request = FriendRequest(pointer);
       list.add(request);
@@ -219,14 +248,15 @@ class MultiPass {
   }
 
   List<FriendRequest> listOutgoingRequest() {
-    G_FFIResult_FFIVec_FriendRequest result = bindings.multipass_list_outgoing_request(pointer);
+    G_FFIResult_FFIVec_FriendRequest result =
+        bindings.multipass_list_outgoing_request(pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
     List<FriendRequest> list = [];
     int length = result.data.ref.len;
 
-    for(int i = 0; i<length;i++) {
+    for (int i = 0; i < length; i++) {
       Pointer<G_FriendRequest> pointer = result.data.ref.ptr.elementAt(i).value;
       FriendRequest request = FriendRequest(pointer);
       list.add(request);
@@ -238,14 +268,15 @@ class MultiPass {
   }
 
   List<FriendRequest> listAllRequest() {
-    G_FFIResult_FFIVec_FriendRequest result = bindings.multipass_list_all_request(pointer);
+    G_FFIResult_FFIVec_FriendRequest result =
+        bindings.multipass_list_all_request(pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
     List<FriendRequest> list = [];
     int length = result.data.ref.len;
 
-    for(int i = 0; i<length;i++) {
+    for (int i = 0; i < length; i++) {
       Pointer<G_FriendRequest> pointer = result.data.ref.ptr.elementAt(i).value;
       FriendRequest request = FriendRequest(pointer);
       list.add(request);
@@ -257,23 +288,27 @@ class MultiPass {
   }
 
   void removeFriend(DID key) {
-    G_FFIResult_Null result = bindings.multipass_remove_friend(pointer, key.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_remove_friend(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   void block(DID key) {
     G_FFIResult_Null result = bindings.multipass_block(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   void unblock(DID key) {
     G_FFIResult_Null result = bindings.multipass_unblock(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
+
   List<DID> blockList() {
     G_FFIResult_FFIVec_DID result = bindings.multipass_block_list(pointer);
     if (result.error.address.toString() != "0") {
@@ -282,7 +317,7 @@ class MultiPass {
     List<DID> list = [];
     int length = result.data.ref.len;
 
-    for(int i = 0; i<length;i++) {
+    for (int i = 0; i < length; i++) {
       Pointer<G_DID> pointer = result.data.ref.ptr.elementAt(i).value;
       DID key = DID(pointer);
       list.add(key);
@@ -292,6 +327,7 @@ class MultiPass {
     //bindings.ffivec_did_free(result.data);
     return list;
   }
+
   List<DID> listFriends() {
     G_FFIResult_FFIVec_DID result = bindings.multipass_list_friends(pointer);
     if (result.error.address.toString() != "0") {
@@ -300,7 +336,7 @@ class MultiPass {
     List<DID> list = [];
     int length = result.data.ref.len;
 
-    for(int i = 0; i<length;i++) {
+    for (int i = 0; i < length; i++) {
       Pointer<G_DID> pointer = result.data.ref.ptr.elementAt(i).value;
       DID key = DID(pointer);
       list.add(key);
@@ -309,13 +345,14 @@ class MultiPass {
     //bindings.ffivec_did_free(result.data);
     return list;
   }
+
   void hasFriend(DID key) {
-    G_FFIResult_Null result = bindings.multipass_has_friend(pointer, key.pointer);
+    G_FFIResult_Null result =
+        bindings.multipass_has_friend(pointer, key.pointer);
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
   }
-
 }
 
 String generateName() {
