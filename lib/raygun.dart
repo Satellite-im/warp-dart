@@ -35,7 +35,7 @@ class Message {
   late String conversationId;
   late String senderId;
   late DateTime date;
-  late bool pinned;
+  late int pinned;
   late List<Reaction> reactions;
   late String replied;
   late List<String> value;
