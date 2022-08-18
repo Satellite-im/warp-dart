@@ -14,7 +14,7 @@ MultiPass newAccount(String pass) {
   MultiPass mp = multipass_ipfs_temporary(tesseract);
   DID? did = mp.createIdentity("", "");
   if (did.pointer == nullptr) {
-    Exception("DID pointer is null");
+    Exception("Error creating identity");
   }
 
   return mp;
@@ -29,6 +29,9 @@ int main() {
     print("Error creating account\n");
     return -1;
   }
+
+  Identity idB = accountB.getOwnIdentity();
+  if (idB.status_message != "N/A") {}
 
   return 0;
 }

@@ -18,3 +18,4 @@
 3. Run with **dart run lib/main.dart**
 
 
+If asked to place the dark SDK path, please use $FLUTTER_SDK/bin/cache/dart-sdk.
