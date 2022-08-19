@@ -23,7 +23,7 @@ MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
   G_FFIResult_MultiPassAdapter result = _ipfs_bindings
       .multipass_mp_ipfs_temporary(nullptr, tesseract.getPointer(), config);
 
-  if (result.error.address.toString() != "0") {
+  if (result.error != nullptr) {
     throw WarpException(result.error.cast());
   }
 
@@ -38,7 +38,7 @@ MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path) {
   G_FFIResult_MpIpfsConfig config = _ipfs_bindings
       .mp_ipfs_config_production(path.toNativeUtf8().cast<Int8>());
 
-  if (config.error.address.toString() != "0") {
+  if (config.error != nullptr) {
     throw WarpException(config.error.cast());
   }
 
@@ -46,7 +46,7 @@ MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path) {
       _ipfs_bindings.multipass_mp_ipfs_persistent(
           nullptr, tesseract.getPointer(), config.data);
 
-  if (result.error.address.toString() != "0") {
+  if (result.error != nullptr) {
     throw WarpException(result.error.cast());
   }
 
