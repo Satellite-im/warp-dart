@@ -14,7 +14,6 @@ import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libNameIpfs = 'warp_mp_ipfs';
-// DynamicLibrary ipfs_dlib = DynamicLibrary.open('lib$_libNameIpfs.so');
 DynamicLibrary ipfs_dlib = Platform.isLinux
     ? DynamicLibrary.open('../linux/lib$_libNameIpfs.so')
     : DynamicLibrary.open('lib$_libNameIpfs.so');
