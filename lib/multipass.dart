@@ -333,6 +333,10 @@ class MultiPass {
     }
   }
 
+  void drop() {
+    bindings.multipassadapter_free(pointer);
+  }
+
 }
 
 String generateName() {
