@@ -82,7 +82,7 @@ class DID {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    DID(result.data);
+    pointer = result.data;
   }
 
   String toString() {
