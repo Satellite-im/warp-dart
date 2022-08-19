@@ -70,7 +70,8 @@ class DID {
   DID(this.pointer);
 
   DID.fromString(String key) {
-    G_FFIResult_DID result = bindings.did_from_string(key.toNativeUtf8().cast<Int8>());
+    G_FFIResult_DID result =
+        bindings.did_from_string(key.toNativeUtf8().cast<Int8>());
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
     }
@@ -79,7 +80,7 @@ class DID {
 
   String toString() {
     Pointer<Int8> ptr = bindings.did_to_string(pointer);
-    if (ptr.address.toString() != "0") {
+    if (ptr == nullptr) {
       throw Exception("Invalid Pointer");
     }
     String key = ptr.cast<Utf8>().toDartString();
@@ -107,7 +108,7 @@ class Tesseract {
 
   Tesseract.fromFile(String path) {
     G_FFIResult_Tesseract result =
-    bindings.tesseract_from_file(path.toNativeUtf8().cast<Int8>());
+        bindings.tesseract_from_file(path.toNativeUtf8().cast<Int8>());
 
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
@@ -117,7 +118,8 @@ class Tesseract {
   }
 
   void toFile(String path) {
-    G_FFIResult_Null result = bindings.tesseract_to_file(pointer, path.toNativeUtf8().cast<Int8>());
+    G_FFIResult_Null result =
+        bindings.tesseract_to_file(pointer, path.toNativeUtf8().cast<Int8>());
 
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
@@ -162,7 +164,8 @@ class Tesseract {
   }
 
   bool exist(String key) {
-    return bindings.tesseract_exist(pointer, key.toNativeUtf8().cast<Int8>()) == 0;
+    return bindings.tesseract_exist(pointer, key.toNativeUtf8().cast<Int8>()) ==
+        0;
   }
 
   void save() {
@@ -182,8 +185,8 @@ class Tesseract {
   }
 
   String retrieve(String key) {
-    G_FFIResult_String result = bindings.tesseract_retrieve(
-        pointer, key.toNativeUtf8().cast<Int8>());
+    G_FFIResult_String result =
+        bindings.tesseract_retrieve(pointer, key.toNativeUtf8().cast<Int8>());
 
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
@@ -195,8 +198,8 @@ class Tesseract {
   }
 
   void delete(String key) {
-    G_FFIResult_Null result = bindings.tesseract_delete(
-        pointer, key.toNativeUtf8().cast<Int8>());
+    G_FFIResult_Null result =
+        bindings.tesseract_delete(pointer, key.toNativeUtf8().cast<Int8>());
 
     if (result.error.address.toString() != "0") {
       throw WarpException(result.error);
@@ -210,6 +213,4 @@ class Tesseract {
   void drop() {
     bindings.tesseract_free(pointer);
   }
-
-
 }
