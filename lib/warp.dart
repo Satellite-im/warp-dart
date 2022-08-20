@@ -83,7 +83,7 @@ class DID {
 
   String toString() {
     Pointer<Int8> ptr = bindings.did_to_string(pointer);
-    if (ptr.address.toString() != "0") {
+    if (ptr.address.toString() == "0") {
       throw Exception("Invalid Pointer");
     }
     String key = ptr.cast<Utf8>().toDartString();

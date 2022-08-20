@@ -6,7 +6,6 @@ import 'package:warp_dart/mp_ipfs.dart';
 import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/rg_ipfs.dart';
 import 'package:warp_dart/raygun.dart';
-import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 MultiPass newAccount(String pass) {
   Tesseract? tesseract = Tesseract.newStore();
@@ -26,7 +25,7 @@ Raygun newChat(MultiPass mp) {
   return rg;
 }
 
-void rg_ipfs_test() {
+void rgIpfsTest() {
   print("Test for rg_ipfs");
 
   MultiPass accountA = newAccount("c_datastore_a");
@@ -52,7 +51,9 @@ void rg_ipfs_test() {
   sleep(Duration(seconds: 1));
 
   DID didB = idB.did_key;
-  rgA.createConversation(didB.toString()); // Doesn't return but throw an error
+  print(">> ${idB.toString()}");
+  String didBString = didB.toString();
+  rgA.createConversation(didBString); // Doesn't return but throw an error
   List<String> convoID = rgA.listConversation();
 
   sleep(Duration(seconds: 1));
@@ -75,7 +76,7 @@ void rg_ipfs_test() {
 }
 
 int main() {
-  rg_ipfs_test();
+  rgIpfsTest();
   print("End of tests");
   return 0;
 }
