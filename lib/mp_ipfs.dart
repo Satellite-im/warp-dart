@@ -36,7 +36,7 @@ MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
 // - Has autosave enabled
 MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path) {
   G_FFIResult_MpIpfsConfig config = _ipfs_bindings
-      .mp_ipfs_config_production(path.toNativeUtf8().cast<Int8>());
+      .mp_ipfs_config_production(path.toNativeUtf8().cast<Char>());
 
   if (config.error != nullptr) {
     throw WarpException(config.error.cast());

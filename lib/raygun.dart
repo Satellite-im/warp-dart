@@ -62,7 +62,7 @@ class Raygun {
 
     // Get messages and null check
     G_FFIResult_FFIVec_Message messages = bindings.raygun_get_messages(
-        pRaygun, conversationID.toNativeUtf8().cast<Int8>());
+        pRaygun, conversationID.toNativeUtf8().cast<Char>());
     if (messages.error != nullptr) {
       throw WarpException(messages.error);
     }
@@ -108,7 +108,7 @@ class Raygun {
       }
       message.reactions = reactions;
       // Replied
-      Pointer<Int8> pReplied = bindings.message_replied(pMsg);
+      Pointer<Char> pReplied = bindings.message_replied(pMsg);
       if (pReplied.address.toString() != "0") {
         message.replied = pReplied.toString();
       }
@@ -148,17 +148,17 @@ class Raygun {
     // With the using keyword the allocated memories by Arena will be released
     using((Arena arena) {
       // Convert given values to native friendly types
-      Pointer<Int8> pConvoId = calloc<Int8>();
-      pConvoId = conversationId.toNativeUtf8().cast<Int8>();
-      Pointer<Int8> pMessageId = calloc<Int8>();
+      Pointer<Char> pConvoId = calloc<Char>();
+      pConvoId = conversationId.toNativeUtf8().cast<Char>();
+      Pointer<Char> pMessageId = calloc<Char>();
       pMessageId =
-          messageId != null ? messageId.toNativeUtf8().cast<Int8>() : nullptr;
+          messageId != null ? messageId.toNativeUtf8().cast<Char>() : nullptr;
       // Allocation
-      Pointer<Pointer<Int8>> pMessages =
-          Arena().allocate<Pointer<Int8>>(messages!.length);
+      Pointer<Pointer<Char>> pMessages =
+          Arena().allocate<Pointer<Char>>(messages!.length);
       // Copy
       for (int i = 0; i < messages.length; i++) {
-        pMessages[i] = messages[i].toNativeUtf8().cast<Int8>();
+        pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
       }
       // Invoke and result check
       G_FFIResult_Null result = bindings.raygun_send(
@@ -174,9 +174,9 @@ class Raygun {
 
   delete(String conversationId, [String? messageId]) {
     // Convert given values to native friendly types
-    Pointer<Int8> pConvoId = conversationId.toNativeUtf8().cast<Int8>();
-    Pointer<Int8> pMessageId =
-        messageId != null ? messageId.toNativeUtf8().cast<Int8>() : nullptr;
+    Pointer<Char> pConvoId = conversationId.toNativeUtf8().cast<Char>();
+    Pointer<Char> pMessageId =
+        messageId != null ? messageId.toNativeUtf8().cast<Char>() : nullptr;
     // Invoke and result check
     G_FFIResult_Null result =
         bindings.raygun_delete(pRaygun, pConvoId, pMessageId);
@@ -191,10 +191,10 @@ class Raygun {
   react(String conversationId, String messageId, ReactionState reactionState,
       String emoji) {
     // Convert given values to native friendly types
-    Pointer<Int8> pConvoId = conversationId.toNativeUtf8().cast<Int8>();
-    Pointer<Int8> pMessageId = messageId.toNativeUtf8().cast<Int8>();
+    Pointer<Char> pConvoId = conversationId.toNativeUtf8().cast<Char>();
+    Pointer<Char> pMessageId = messageId.toNativeUtf8().cast<Char>();
     int _reactionState = reactionState.index;
-    Pointer<Int8> _emoji = emoji.toNativeUtf8().cast<Int8>();
+    Pointer<Char> _emoji = emoji.toNativeUtf8().cast<Char>();
     // Invoke and result check
     G_FFIResult_Null result = bindings.raygun_react(
         pRaygun, pConvoId, pMessageId, _reactionState, _emoji);
@@ -208,8 +208,8 @@ class Raygun {
 
   pin(String conversationId, String messageId, PinState pinState) {
     // Convert given values to native friendly types
-    Pointer<Int8> pConvoId = conversationId.toNativeUtf8().cast<Int8>();
-    Pointer<Int8> pMessageId = messageId.toNativeUtf8().cast<Int8>();
+    Pointer<Char> pConvoId = conversationId.toNativeUtf8().cast<Char>();
+    Pointer<Char> pMessageId = messageId.toNativeUtf8().cast<Char>();
     int vPinState = pinState.index;
     // Invoke and result check
     G_FFIResult_Null result =
@@ -233,17 +233,17 @@ class Raygun {
     // With the using keyword the allocated memories by Arena will be released
     using((Arena arena) {
       // Convert given values to native friendly types
-      Pointer<Int8> pConvoId = calloc<Int8>();
-      pConvoId = conversationId.toNativeUtf8().cast<Int8>();
-      Pointer<Int8> pMessageId = calloc<Int8>();
+      Pointer<Char> pConvoId = calloc<Char>();
+      pConvoId = conversationId.toNativeUtf8().cast<Char>();
+      Pointer<Char> pMessageId = calloc<Char>();
       pMessageId =
-          messageId != null ? messageId.toNativeUtf8().cast<Int8>() : nullptr;
+          messageId != null ? messageId.toNativeUtf8().cast<Char>() : nullptr;
       // Allocation
-      Pointer<Pointer<Int8>> _pMessages =
-          Arena().allocate<Pointer<Int8>>(messages!.length);
+      Pointer<Pointer<Char>> _pMessages =
+          Arena().allocate<Pointer<Char>>(messages!.length);
       // Copy
       for (int i = 0; i < messages.length; i++) {
-        _pMessages[i] = messages[i].toNativeUtf8().cast<Int8>();
+        _pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
       }
       // Invoke and result check
       G_FFIResult_Null result = bindings.raygun_reply(
@@ -259,8 +259,8 @@ class Raygun {
 
   embed(String conversationId, String messageId, EmbedState embedState) {
     // Convert given values to native friendly types
-    Pointer<Int8> pConvoId = conversationId.toNativeUtf8().cast<Int8>();
-    Pointer<Int8> pMessageId = messageId.toNativeUtf8().cast<Int8>();
+    Pointer<Char> pConvoId = conversationId.toNativeUtf8().cast<Char>();
+    Pointer<Char> pMessageId = messageId.toNativeUtf8().cast<Char>();
     int vEmbedState = embedState.index;
     // Invoke and result check
     G_FFIResult_Null result =
@@ -297,7 +297,7 @@ class Raygun {
     int conversationsLen = result.data.ref.len;
     List<String> conversationIDs = [];
     for (int i = 0; i < conversationsLen; i++) {
-      Pointer<Int8> pConversationID = result.data.ref.ptr.elementAt(i).value;
+      Pointer<Char> pConversationID = result.data.ref.ptr.elementAt(i).value;
       conversationIDs.add(pConversationID.toString());
       calloc.free(pConversationID);
     }
