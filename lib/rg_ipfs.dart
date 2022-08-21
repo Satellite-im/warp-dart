@@ -35,7 +35,7 @@ Raygun raygun_ipfs_temporary(MultiPass account) {
 
 Raygun raygun_ipfs_persistent(MultiPass account, String path) {
   G_FFIResult_RgIpfsConfig config = _raygun_ipfs_bindings
-      .rg_ipfs_config_production(path.toNativeUtf8().cast<Int8>());
+      .rg_ipfs_config_production(path.toNativeUtf8().cast<Char>());
 
   if (config.error != nullptr) {
     throw WarpException(config.error.cast());

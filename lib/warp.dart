@@ -49,7 +49,7 @@ class WarpException implements Exception {
 }
 
 String mnemonic_standard_phrase() {
-  Pointer<Int8> ptr = bindings.generate_mnemonic_phrase(PhraseType.Standard);
+  Pointer<Char> ptr = bindings.generate_mnemonic_phrase(PhraseType.Standard);
   if (ptr.address.toString() != "0") {
     throw Exception("Invalid Pointer");
   }
@@ -59,7 +59,7 @@ String mnemonic_standard_phrase() {
 }
 
 String mnemonic_secured_phrase() {
-  Pointer<Int8> ptr = bindings.generate_mnemonic_phrase(PhraseType.Secure);
+  Pointer<Char> ptr = bindings.generate_mnemonic_phrase(PhraseType.Secure);
   if (ptr.address.toString() != "0") {
     throw Exception("Invalid Pointer");
   }
@@ -70,7 +70,7 @@ String mnemonic_secured_phrase() {
 
 void mnemonic_into_tesseract(Tesseract tesseract, String phrase) {
   G_FFIResult_Null result = bindings.mnemonic_into_tesseract(
-      tesseract.getPointer(), phrase.toNativeUtf8().cast<Int8>());
+      tesseract.getPointer(), phrase.toNativeUtf8().cast<Char>());
   if (result.error != nullptr) {
     throw WarpException(result.error);
   }
@@ -82,7 +82,7 @@ class DID {
 
   DID.fromString(String key) {
     G_FFIResult_DID result =
-        bindings.did_from_string(key.toNativeUtf8().cast<Int8>());
+        bindings.did_from_string(key.toNativeUtf8().cast<Char>());
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -90,7 +90,7 @@ class DID {
   }
 
   String toString() {
-    Pointer<Int8> ptr = bindings.did_to_string(pointer);
+    Pointer<Char> ptr = bindings.did_to_string(pointer);
     if (ptr == nullptr) {
       throw Exception("Invalid Pointer");
     }
@@ -119,7 +119,7 @@ class Tesseract {
 
   Tesseract.fromFile(String path) {
     G_FFIResult_Tesseract result =
-        bindings.tesseract_from_file(path.toNativeUtf8().cast<Int8>());
+        bindings.tesseract_from_file(path.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -130,7 +130,7 @@ class Tesseract {
 
   void toFile(String path) {
     G_FFIResult_Null result =
-        bindings.tesseract_to_file(_pointer, path.toNativeUtf8().cast<Int8>());
+        bindings.tesseract_to_file(_pointer, path.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -138,7 +138,7 @@ class Tesseract {
   }
 
   void setFile(String path) {
-    bindings.tesseract_set_file(_pointer, path.toNativeUtf8().cast<Int8>());
+    bindings.tesseract_set_file(_pointer, path.toNativeUtf8().cast<Char>());
   }
 
   void setAutosave() {
@@ -159,7 +159,7 @@ class Tesseract {
 
   void unlock(String passphrase) {
     G_FFIResult_Null result = bindings.tesseract_unlock(
-        _pointer, passphrase.toNativeUtf8().cast<Int8>());
+        _pointer, passphrase.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -176,7 +176,7 @@ class Tesseract {
 
   bool exist(String key) {
     return bindings.tesseract_exist(
-            _pointer, key.toNativeUtf8().cast<Int8>()) !=
+            _pointer, key.toNativeUtf8().cast<Char>()) !=
         0;
   }
 
@@ -189,7 +189,7 @@ class Tesseract {
 
   void set(String key, String val) {
     G_FFIResult_Null result = bindings.tesseract_set(_pointer,
-        key.toNativeUtf8().cast<Int8>(), val.toNativeUtf8().cast<Int8>());
+        key.toNativeUtf8().cast<Char>(), val.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -198,7 +198,7 @@ class Tesseract {
 
   String retrieve(String key) {
     G_FFIResult_String result =
-        bindings.tesseract_retrieve(_pointer, key.toNativeUtf8().cast<Int8>());
+        bindings.tesseract_retrieve(_pointer, key.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -211,7 +211,7 @@ class Tesseract {
 
   void delete(String key) {
     G_FFIResult_Null result =
-        bindings.tesseract_delete(_pointer, key.toNativeUtf8().cast<Int8>());
+        bindings.tesseract_delete(_pointer, key.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);

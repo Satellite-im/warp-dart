@@ -36,7 +36,7 @@ class Identifier {
 
   Identifier.fromUserName(String username) {
     _pointer = bindings
-        .multipass_identifier_user_name(username.toNativeUtf8().cast<Int8>());
+        .multipass_identifier_user_name(username.toNativeUtf8().cast<Char>());
   }
 
   Identifier.fromDID(DID did_key) {
@@ -75,19 +75,19 @@ class IdentityUpdate {
 
   IdentityUpdate.setUsername(String username) {
     pointer = bindings.multipass_identity_update_set_username(
-        username.toNativeUtf8().cast<Int8>());
+        username.toNativeUtf8().cast<Char>());
   }
   IdentityUpdate.setStatusMessage(String status) {
     pointer = bindings.multipass_identity_update_set_status_message(
-        status.toNativeUtf8().cast<Int8>());
+        status.toNativeUtf8().cast<Char>());
   }
   IdentityUpdate.setPicture(String picture) {
     pointer = bindings.multipass_identity_update_set_graphics_picture(
-        picture.toNativeUtf8().cast<Int8>());
+        picture.toNativeUtf8().cast<Char>());
   }
   IdentityUpdate.setBanner(String banner) {
     pointer = bindings.multipass_identity_update_set_username(
-        banner.toNativeUtf8().cast<Int8>());
+        banner.toNativeUtf8().cast<Char>());
   }
   void drop() {
     bindings.identityupdate_free(pointer);
@@ -121,13 +121,13 @@ class Identity {
   //late Badge active_badge;
   //late Map<String, String> linked_accounts;
   Identity(Pointer<G_Identity> pointer) {
-    Pointer<Int8> u_ptr = bindings.multipass_identity_username(pointer);
+    Pointer<Char> u_ptr = bindings.multipass_identity_username(pointer);
     username = u_ptr.cast<Utf8>().toDartString();
     short_id = bindings.multipass_identity_short_id(pointer);
     //Note that DID throws an exception if there is an error. Maybe handle it?
     did_key = DID(bindings.multipass_identity_did_key(pointer));
     graphics = Graphics(bindings.multipass_identity_graphics(pointer));
-    Pointer<Int8> ptr = bindings.multipass_identity_status_message(pointer);
+    Pointer<Char> ptr = bindings.multipass_identity_status_message(pointer);
 
     status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : "N/A";
 
@@ -167,8 +167,8 @@ class MultiPass {
   DID createIdentity(String username, String password) {
     G_FFIResult_DID result = bindings.multipass_create_identity(
         pointer,
-        username.toNativeUtf8().cast<Int8>(),
-        password.toNativeUtf8().cast<Int8>());
+        username.toNativeUtf8().cast<Char>(),
+        password.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -374,7 +374,7 @@ class MultiPass {
 }
 
 String generateName() {
-  Pointer<Int8> ptr = bindings.multipass_generate_name();
+  Pointer<Char> ptr = bindings.multipass_generate_name();
   String name = ptr.cast<Utf8>().toDartString();
   //TODO: Free ptr
   return name;
