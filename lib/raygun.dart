@@ -273,7 +273,7 @@ class Raygun {
     calloc.free(pMessageId);
   }
 
-  String createConversation(String didKey) {
+  createConversation(String didKey) {
     // Prepare a DID
     DID did = DID.fromString(didKey);
     // Invoke and result check
@@ -282,14 +282,8 @@ class Raygun {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-
-    String convoId = result.data.cast<Utf8>().toDartString();
-
     // Release
     did.drop();
-    calloc.free(result.data);
-
-    return convoId;
   }
 
   List<String> listConversation() {
