@@ -51,7 +51,7 @@ String mnemonic_standard_phrase() {
     throw Exception("Invalid Pointer");
   }
   String phrase = ptr.cast<Utf8>().toDartString();
-  //TODO: Free pointer
+  calloc.free(ptr);
   return phrase;
 }
 
@@ -61,8 +61,15 @@ String mnemonic_secured_phrase() {
     throw Exception("Invalid Pointer");
   }
   String phrase = ptr.cast<Utf8>().toDartString();
-  //TODO: Free pointer
+  calloc.free(ptr);
   return phrase;
+}
+
+void mnemonic_into_tesseract(Tesseract tesseract, String phrase) {
+  G_FFIResult_Null result = bindings.mnemonic_into_tesseract(tesseract.getPointer(), phrase.toNativeUtf8().cast<Int8>());
+  if (result.error != nullptr) {
+    throw WarpException(result.error);
+  }
 }
 
 class DID {
@@ -70,8 +77,9 @@ class DID {
   DID(this.pointer);
 
   DID.fromString(String key) {
-    G_FFIResult_DID result = bindings.did_from_string(key.toNativeUtf8().cast<Int8>());
-    if (result.error.address.toString() != "0") {
+    G_FFIResult_DID result =
+        bindings.did_from_string(key.toNativeUtf8().cast<Int8>());
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     pointer = result.data;
@@ -79,11 +87,11 @@ class DID {
 
   String toString() {
     Pointer<Int8> ptr = bindings.did_to_string(pointer);
-    if (ptr.address.toString() != "0") {
+    if (ptr == nullptr) {
       throw Exception("Invalid Pointer");
     }
     String key = ptr.cast<Utf8>().toDartString();
-    //TODO: Free pointer
+    calloc.free(ptr);
     return key;
   }
 
@@ -93,123 +101,123 @@ class DID {
 }
 
 class Tesseract {
-  late Pointer<G_Tesseract> pointer;
+  late Pointer<G_Tesseract> _pointer;
 
-  Tesseract(this.pointer);
+  Tesseract(this._pointer);
 
   Pointer<G_Tesseract> getPointer() {
-    return pointer;
+    return _pointer;
   }
 
   Tesseract.newStore() {
-    pointer = bindings.tesseract_new();
+    _pointer = bindings.tesseract_new();
   }
 
   Tesseract.fromFile(String path) {
     G_FFIResult_Tesseract result =
-    bindings.tesseract_from_file(path.toNativeUtf8().cast<Int8>());
+        bindings.tesseract_from_file(path.toNativeUtf8().cast<Int8>());
 
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
 
-    pointer = result.data;
+    _pointer = result.data;
   }
 
   void toFile(String path) {
-    G_FFIResult_Null result = bindings.tesseract_to_file(pointer, path.toNativeUtf8().cast<Int8>());
+    G_FFIResult_Null result =
+        bindings.tesseract_to_file(_pointer, path.toNativeUtf8().cast<Int8>());
 
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
   void setFile(String path) {
-    bindings.tesseract_set_file(pointer, path.toNativeUtf8().cast<Int8>());
+    bindings.tesseract_set_file(_pointer, path.toNativeUtf8().cast<Int8>());
   }
 
   void setAutosave() {
-    bindings.tesseract_set_autosave(pointer);
+    bindings.tesseract_set_autosave(_pointer);
   }
 
   bool isKeyCheckEnabled() {
-    return bindings.tesseract_is_key_check_enabled(pointer) == 0;
+    return bindings.tesseract_is_key_check_enabled(_pointer) != 0;
   }
 
   bool isAutosaveEnabled() {
-    return bindings.tesseract_autosave_enabled(pointer) == 0;
+    return bindings.tesseract_autosave_enabled(_pointer) != 0;
   }
 
   void enableKeyCheck() {
-    bindings.tesseract_enable_key_check(pointer);
+    bindings.tesseract_enable_key_check(_pointer);
   }
 
   void unlock(String passphrase) {
     G_FFIResult_Null result = bindings.tesseract_unlock(
-        pointer, passphrase.toNativeUtf8().cast<Int8>());
+        _pointer, passphrase.toNativeUtf8().cast<Int8>());
 
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
   bool is_unlock() {
-    return bindings.tesseract_is_unlock(pointer) == 0;
+    return bindings.tesseract_is_unlock(_pointer) != 0;
   }
 
   void lock() {
-    bindings.tesseract_lock(pointer);
+    bindings.tesseract_lock(_pointer);
   }
 
   bool exist(String key) {
-    return bindings.tesseract_exist(pointer, key.toNativeUtf8().cast<Int8>()) == 0;
+    return bindings.tesseract_exist(_pointer, key.toNativeUtf8().cast<Int8>()) !=
+        0;
   }
 
   void save() {
-    G_FFIResult_Null result = bindings.tesseract_save(pointer);
-    if (result.error.address.toString() != "0") {
+    G_FFIResult_Null result = bindings.tesseract_save(_pointer);
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
   void set(String key, String val) {
-    G_FFIResult_Null result = bindings.tesseract_set(pointer,
+    G_FFIResult_Null result = bindings.tesseract_set(_pointer,
         key.toNativeUtf8().cast<Int8>(), val.toNativeUtf8().cast<Int8>());
 
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
   String retrieve(String key) {
-    G_FFIResult_String result = bindings.tesseract_retrieve(
-        pointer, key.toNativeUtf8().cast<Int8>());
+    G_FFIResult_String result =
+        bindings.tesseract_retrieve(_pointer, key.toNativeUtf8().cast<Int8>());
 
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
 
     String data = result.data.cast<Utf8>().toDartString();
-    //TODO: Free result.data using dart ffi call
+    calloc.free(result.data);
     return data;
   }
 
   void delete(String key) {
-    G_FFIResult_Null result = bindings.tesseract_delete(
-        pointer, key.toNativeUtf8().cast<Int8>());
+    G_FFIResult_Null result =
+        bindings.tesseract_delete(_pointer, key.toNativeUtf8().cast<Int8>());
 
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
   void clear() {
-    bindings.tesseract_clear(pointer);
+    bindings.tesseract_clear(_pointer);
   }
 
   void drop() {
-    bindings.tesseract_free(pointer);
+    bindings.tesseract_free(_pointer);
   }
-
-
 }
