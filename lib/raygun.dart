@@ -35,7 +35,7 @@ class Message {
   late String conversationId;
   late String senderId;
   late DateTime date;
-  late int pinned;
+  late bool pinned;
   late List<Reaction> reactions;
   late String replied;
   late List<String> value;
@@ -63,7 +63,7 @@ class Raygun {
     // Get messages and null check
     G_FFIResult_FFIVec_Message messages = bindings.raygun_get_messages(
         pRaygun, conversationID.toNativeUtf8().cast<Int8>());
-    if (messages.error.address.toString() != "0") {
+    if (messages.error != nullptr) {
       throw WarpException(messages.error);
     }
     // Iterate over the messages
@@ -87,7 +87,7 @@ class Raygun {
       // Possibly DateTime.fromMillisecondsSinceEpoch() can be used.
       message.date = DateTime(bindings.message_date(pMsg).value);
       // Pinned
-      message.pinned = bindings.message_pinned(pMsg);
+      message.pinned = bindings.message_pinned(pMsg) != 0;
       // Reactions
       List<Reaction> reactions = [];
       Pointer<G_FFIVec_Reaction> pReactions = bindings.message_reactions(pMsg);
@@ -163,7 +163,7 @@ class Raygun {
       // Invoke and result check
       G_FFIResult_Null result = bindings.raygun_send(
           pRaygun, pConvoId, pMessageId, pMessages, messages.length);
-      if (result.error.address.toString() != "0") {
+      if (result.error != nullptr) {
         throw WarpException(result.error);
       }
       // Release
@@ -180,7 +180,7 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_Null result =
         bindings.raygun_delete(pRaygun, pConvoId, pMessageId);
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     // Release
@@ -198,7 +198,7 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_Null result = bindings.raygun_react(
         pRaygun, pConvoId, pMessageId, _reactionState, _emoji);
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     // Release
@@ -214,7 +214,7 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_Null result =
         bindings.raygun_pin(pRaygun, pConvoId, pMessageId, vPinState);
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     // Release
@@ -248,7 +248,7 @@ class Raygun {
       // Invoke and result check
       G_FFIResult_Null result = bindings.raygun_reply(
           pRaygun, pConvoId, pMessageId, _pMessages, messages.length);
-      if (result.error.address.toString() != "0") {
+      if (result.error != nullptr) {
         throw WarpException(result.error);
       }
       // Release
@@ -265,7 +265,7 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_Null result =
         bindings.raygun_embeds(pRaygun, pConvoId, pMessageId, vEmbedState);
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     // Release
@@ -279,7 +279,7 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_String result =
         bindings.raygun_create_conversation(pRaygun, did.pointer);
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     // Release
@@ -290,7 +290,7 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_FFIVec_String result =
         bindings.raygun_list_conversations(pRaygun);
-    if (result.error.address.toString() != "0") {
+    if (result.error != nullptr) {
       throw WarpException(result.error);
     }
     // Collect conversation IDs
