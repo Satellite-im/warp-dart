@@ -118,7 +118,8 @@ class Raygun {
       message.value = List.filled(lineLen, "", growable: false);
       for (int j = 0; j < lineLen; j++) {
         message.value[j] =
-            pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString();
+            pLines.ref.ptr.elementAt(j).value.cast<Utf8>().toDartString();
+        // pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString();
       }
       // Add to the upstream variable
       msgs.add(message);

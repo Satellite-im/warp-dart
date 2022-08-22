@@ -63,19 +63,20 @@ void test_rg_ipfs() {
   List<String> chatMessagesA = [];
   chatMessagesA.add("Hello, World!!\x00");
   chatMessagesA.add("How are you??\x00");
-  // chatMessagesA.add("Has your day been good???\x00");
-  // chatMessagesA.add("Mine is great\x00");
-  // chatMessagesA.add("You there????\x00");
-  // chatMessagesA.add("Just tired from dealing with C :D\x00");
-  // chatMessagesA.add("Rust rules!!!\x00");
+  chatMessagesA.add("Has your day been good???\x00");
+  chatMessagesA.add("Mine is great\x00");
+  chatMessagesA.add("You there????\x00");
+  chatMessagesA.add("Just tired from dealing with C :D\x00");
+  chatMessagesA.add("Rust rules!!!\x00");
   rgA.send(convoID, null, chatMessagesA); // Doesn't return but throw an error
   sleep(Duration(seconds: 1));
 
   print("Get messages via account B");
   List<Message> messages = rgB.getMessages(convoID);
-  print(">> $messages");
-  for (int i = 0; i < messages.length; i++) {
-    print(messages[i].toString());
+  for (var msg in messages) {
+    for (var line in msg.value) {
+      print("- $line");
+    }
   }
 }
 
