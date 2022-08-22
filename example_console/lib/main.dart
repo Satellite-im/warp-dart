@@ -73,9 +73,9 @@ void test_rg_ipfs() {
 
   print("Get messages via account B");
   List<Message> messages = rgB.getMessages(convoID);
-  print(messages);
-  for (int i = 0; i < messages[0].value.length; i++) {
-    print(messages[0].value[i].toString());
+  print(">> $messages");
+  for (int i = 0; i < messages.length; i++) {
+    print(messages[i].toString());
   }
 }
 

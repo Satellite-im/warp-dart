@@ -115,14 +115,10 @@ class Raygun {
       // Message body
       Pointer<G_FFIVec_String> pLines = bindings.message_lines(pMsg);
       int lineLen = pLines.ref.len;
-      message.value = List.filled(lineLen, "", growable: true);
+      message.value = List.filled(lineLen, "", growable: false);
       for (int j = 0; j < lineLen; j++) {
-        print(j);
-        // message.value
-        //     .add(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
-        print(pLines.ref.ptr.elementAt(j).cast<Utf8>().toString());
-        // print(pLines.ref.ptr.value.toString());
-        message.value[j] = pLines.ref.ptr.elementAt(j).cast<Utf8>().toString();
+        message.value[j] =
+            pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString();
       }
       // Add to the upstream variable
       msgs.add(message);

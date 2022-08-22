@@ -27,7 +27,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_maxPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max =
       ___ctype_get_mb_cur_maxPtr.asFunction<int Function()>();
 
@@ -367,7 +368,7 @@ class WarpDartBindings {
   late final _initstatePtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate = _initstatePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -435,7 +436,7 @@ class WarpDartBindings {
 
   late final _initstate_rPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r = _initstate_rPtr.asFunction<
       int Function(
@@ -778,7 +779,7 @@ class WarpDartBindings {
   }
 
   late final _mallocPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc =
       _mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -794,8 +795,8 @@ class WarpDartBindings {
   }
 
   late final _callocPtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc =
       _callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -812,9 +813,23 @@ class WarpDartBindings {
   late final _reallocPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc = _reallocPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
+
+  void free(
+    ffi.Pointer<ffi.Void> __ptr,
+  ) {
+    return _free(
+      __ptr,
+    );
+  }
+
+  late final _freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'free');
+  late final _free =
+      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   ffi.Pointer<ffi.Void> reallocarray(
     ffi.Pointer<ffi.Void> __ptr,
@@ -831,23 +846,28 @@ class WarpDartBindings {
   late final _reallocarrayPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
   late final _reallocarray = _reallocarrayPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  void free(
+  ffi.Pointer<ffi.Void> reallocarray1(
     ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
   ) {
-    return _free(
+    return _reallocarray1(
       __ptr,
+      __nmemb,
+      __size,
     );
   }
 
-  late final _freePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free =
-      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+  late final _reallocarray1Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray1 = _reallocarray1Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   ffi.Pointer<ffi.Void> alloca(
     int __size,
@@ -858,7 +878,7 @@ class WarpDartBindings {
   }
 
   late final _allocaPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca =
       _allocaPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -872,7 +892,7 @@ class WarpDartBindings {
   }
 
   late final _vallocPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc =
       _vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -891,8 +911,8 @@ class WarpDartBindings {
 
   late final _posix_memalignPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign = _posix_memalignPtr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -907,8 +927,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_allocPtr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc =
       _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -1194,8 +1214,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch = _bsearchPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -1217,7 +1237,7 @@ class WarpDartBindings {
 
   late final _qsortPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort = _qsortPtr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -1385,8 +1405,13 @@ class WarpDartBindings {
 
   late final _ecvt_rPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r = _ecvt_rPtr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -1411,8 +1436,13 @@ class WarpDartBindings {
 
   late final _fcvt_rPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r = _fcvt_rPtr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -1428,13 +1458,13 @@ class WarpDartBindings {
   }
 
   late final _mblenPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen =
       _mblenPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -1447,10 +1477,10 @@ class WarpDartBindings {
 
   late final _mbtowcPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc = _mbtowcPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb(
     ffi.Pointer<ffi.Char> __s,
@@ -1463,13 +1493,13 @@ class WarpDartBindings {
   }
 
   late final _wctombPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb =
       _wctombPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -1482,14 +1512,14 @@ class WarpDartBindings {
 
   late final _mbstowcsPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs = _mbstowcsPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs(
@@ -1501,10 +1531,10 @@ class WarpDartBindings {
 
   late final _wcstombsPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs = _wcstombsPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch(
     ffi.Pointer<ffi.Char> __response,
@@ -1732,7 +1762,7 @@ class WarpDartBindings {
       G_FFIResult_Item Function(
           ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>)>();
 
-  int directory_has_item(
+  bool directory_has_item(
     ffi.Pointer<G_Directory> ptr,
     ffi.Pointer<ffi.Char> item,
   ) {
@@ -1744,10 +1774,10 @@ class WarpDartBindings {
 
   late final _directory_has_itemPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_Directory>,
+          ffi.Bool Function(ffi.Pointer<G_Directory>,
               ffi.Pointer<ffi.Char>)>>('directory_has_item');
   late final _directory_has_item = _directory_has_itemPtr.asFunction<
-      int Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>)>();
+      bool Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<G_FFIVec_Item> directory_get_items(
     ffi.Pointer<G_Directory> ptr,
@@ -1805,7 +1835,7 @@ class WarpDartBindings {
           G_FFIResult_Item Function(ffi.Pointer<G_Directory>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  int directory_move_item_to(
+  bool directory_move_item_to(
     ffi.Pointer<G_Directory> ptr,
     ffi.Pointer<ffi.Char> src,
     ffi.Pointer<ffi.Char> dst,
@@ -1819,10 +1849,10 @@ class WarpDartBindings {
 
   late final _directory_move_item_toPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
+          ffi.Bool Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('directory_move_item_to');
   late final _directory_move_item_to = _directory_move_item_toPtr.asFunction<
-      int Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
+      bool Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> directory_id(
@@ -2144,7 +2174,7 @@ class WarpDartBindings {
   late final _item_rename = _item_renamePtr.asFunction<
       G_FFIResult_Null Function(ffi.Pointer<G_Item>, ffi.Pointer<ffi.Char>)>();
 
-  int item_is_directory(
+  bool item_is_directory(
     ffi.Pointer<G_Item> item,
   ) {
     return _item_is_directory(
@@ -2153,12 +2183,12 @@ class WarpDartBindings {
   }
 
   late final _item_is_directoryPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Item>)>>(
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<G_Item>)>>(
           'item_is_directory');
   late final _item_is_directory =
-      _item_is_directoryPtr.asFunction<int Function(ffi.Pointer<G_Item>)>();
+      _item_is_directoryPtr.asFunction<bool Function(ffi.Pointer<G_Item>)>();
 
-  int item_is_file(
+  bool item_is_file(
     ffi.Pointer<G_Item> item,
   ) {
     return _item_is_file(
@@ -2167,12 +2197,12 @@ class WarpDartBindings {
   }
 
   late final _item_is_filePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Item>)>>(
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<G_Item>)>>(
           'item_is_file');
   late final _item_is_file =
-      _item_is_filePtr.asFunction<int Function(ffi.Pointer<G_Item>)>();
+      _item_is_filePtr.asFunction<bool Function(ffi.Pointer<G_Item>)>();
 
-  int item_set_description(
+  bool item_set_description(
     ffi.Pointer<G_Item> item,
     ffi.Pointer<ffi.Char> desc,
   ) {
@@ -2184,10 +2214,10 @@ class WarpDartBindings {
 
   late final _item_set_descriptionPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_Item>,
+          ffi.Bool Function(ffi.Pointer<G_Item>,
               ffi.Pointer<ffi.Char>)>>('item_set_description');
   late final _item_set_description = _item_set_descriptionPtr
-      .asFunction<int Function(ffi.Pointer<G_Item>, ffi.Pointer<ffi.Char>)>();
+      .asFunction<bool Function(ffi.Pointer<G_Item>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_Null item_set_size(
     ffi.Pointer<G_Item> item,
@@ -2404,7 +2434,7 @@ class WarpDartBindings {
   G_FFIResult_Null constellation_remove(
     ffi.Pointer<G_ConstellationAdapter> ctx,
     ffi.Pointer<ffi.Char> remote,
-    int recursive,
+    bool recursive,
   ) {
     return _constellation_remove(
       ctx,
@@ -2416,15 +2446,15 @@ class WarpDartBindings {
   late final _constellation_removePtr = _lookup<
       ffi.NativeFunction<
           G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
-              ffi.Pointer<ffi.Char>, ffi.Int)>>('constellation_remove');
+              ffi.Pointer<ffi.Char>, ffi.Bool)>>('constellation_remove');
   late final _constellation_remove = _constellation_removePtr.asFunction<
       G_FFIResult_Null Function(
-          ffi.Pointer<G_ConstellationAdapter>, ffi.Pointer<ffi.Char>, int)>();
+          ffi.Pointer<G_ConstellationAdapter>, ffi.Pointer<ffi.Char>, bool)>();
 
   G_FFIResult_Null constellation_create_directory(
     ffi.Pointer<G_ConstellationAdapter> ctx,
     ffi.Pointer<ffi.Char> remote,
-    int recursive,
+    bool recursive,
   ) {
     return _constellation_create_directory(
       ctx,
@@ -2438,11 +2468,11 @@ class WarpDartBindings {
           G_FFIResult_Null Function(
               ffi.Pointer<G_ConstellationAdapter>,
               ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('constellation_create_directory');
+              ffi.Bool)>>('constellation_create_directory');
   late final _constellation_create_directory =
       _constellation_create_directoryPtr.asFunction<
           G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
-              ffi.Pointer<ffi.Char>, int)>();
+              ffi.Pointer<ffi.Char>, bool)>();
 
   G_FFIResult_Null constellation_move_item(
     ffi.Pointer<G_ConstellationAdapter> ctx,
@@ -4526,7 +4556,7 @@ class WarpDartBindings {
   late final _message_date = _message_datePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Message>)>();
 
-  int message_pinned(
+  bool message_pinned(
     ffi.Pointer<G_Message> ctx,
   ) {
     return _message_pinned(
@@ -4535,10 +4565,10 @@ class WarpDartBindings {
   }
 
   late final _message_pinnedPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Message>)>>(
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<G_Message>)>>(
           'message_pinned');
   late final _message_pinned =
-      _message_pinnedPtr.asFunction<int Function(ffi.Pointer<G_Message>)>();
+      _message_pinnedPtr.asFunction<bool Function(ffi.Pointer<G_Message>)>();
 
   ffi.Pointer<G_FFIVec_Reaction> message_reactions(
     ffi.Pointer<G_Message> ctx,
@@ -4763,7 +4793,7 @@ class WarpDartBindings {
   late final _tesseract_set_autosave = _tesseract_set_autosavePtr
       .asFunction<void Function(ffi.Pointer<G_Tesseract>)>();
 
-  int tesseract_autosave_enabled(
+  bool tesseract_autosave_enabled(
     ffi.Pointer<G_Tesseract> tesseract,
   ) {
     return _tesseract_autosave_enabled(
@@ -4772,10 +4802,10 @@ class WarpDartBindings {
   }
 
   late final _tesseract_autosave_enabledPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Tesseract>)>>(
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<G_Tesseract>)>>(
           'tesseract_autosave_enabled');
   late final _tesseract_autosave_enabled = _tesseract_autosave_enabledPtr
-      .asFunction<int Function(ffi.Pointer<G_Tesseract>)>();
+      .asFunction<bool Function(ffi.Pointer<G_Tesseract>)>();
 
   void tesseract_disable_key_check(
     ffi.Pointer<G_Tesseract> tesseract,
@@ -4805,7 +4835,7 @@ class WarpDartBindings {
   late final _tesseract_enable_key_check = _tesseract_enable_key_checkPtr
       .asFunction<void Function(ffi.Pointer<G_Tesseract>)>();
 
-  int tesseract_is_key_check_enabled(
+  bool tesseract_is_key_check_enabled(
     ffi.Pointer<G_Tesseract> tesseract,
   ) {
     return _tesseract_is_key_check_enabled(
@@ -4814,11 +4844,11 @@ class WarpDartBindings {
   }
 
   late final _tesseract_is_key_check_enabledPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Tesseract>)>>(
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<G_Tesseract>)>>(
           'tesseract_is_key_check_enabled');
   late final _tesseract_is_key_check_enabled =
       _tesseract_is_key_check_enabledPtr
-          .asFunction<int Function(ffi.Pointer<G_Tesseract>)>();
+          .asFunction<bool Function(ffi.Pointer<G_Tesseract>)>();
 
   G_FFIResult_Null tesseract_save(
     ffi.Pointer<G_Tesseract> tesseract,
@@ -4873,7 +4903,7 @@ class WarpDartBindings {
       G_FFIResult_String Function(
           ffi.Pointer<G_Tesseract>, ffi.Pointer<ffi.Char>)>();
 
-  int tesseract_exist(
+  bool tesseract_exist(
     ffi.Pointer<G_Tesseract> tesseract,
     ffi.Pointer<ffi.Char> key,
   ) {
@@ -4885,10 +4915,10 @@ class WarpDartBindings {
 
   late final _tesseract_existPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_Tesseract>,
+          ffi.Bool Function(ffi.Pointer<G_Tesseract>,
               ffi.Pointer<ffi.Char>)>>('tesseract_exist');
   late final _tesseract_exist = _tesseract_existPtr.asFunction<
-      int Function(ffi.Pointer<G_Tesseract>, ffi.Pointer<ffi.Char>)>();
+      bool Function(ffi.Pointer<G_Tesseract>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_Null tesseract_delete(
     ffi.Pointer<G_Tesseract> tesseract,
@@ -4922,7 +4952,7 @@ class WarpDartBindings {
   late final _tesseract_clear =
       _tesseract_clearPtr.asFunction<void Function(ffi.Pointer<G_Tesseract>)>();
 
-  int tesseract_is_unlock(
+  bool tesseract_is_unlock(
     ffi.Pointer<G_Tesseract> tesseract,
   ) {
     return _tesseract_is_unlock(
@@ -4931,10 +4961,10 @@ class WarpDartBindings {
   }
 
   late final _tesseract_is_unlockPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Tesseract>)>>(
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<G_Tesseract>)>>(
           'tesseract_is_unlock');
   late final _tesseract_is_unlock = _tesseract_is_unlockPtr
-      .asFunction<int Function(ffi.Pointer<G_Tesseract>)>();
+      .asFunction<bool Function(ffi.Pointer<G_Tesseract>)>();
 
   G_FFIResult_Null tesseract_unlock(
     ffi.Pointer<G_Tesseract> tesseract,
@@ -4987,7 +5017,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max1 =
       ___ctype_get_mb_cur_max1Ptr.asFunction<int Function()>();
 
@@ -5331,7 +5362,7 @@ class WarpDartBindings {
   late final _initstate1Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate1 = _initstate1Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -5399,7 +5430,7 @@ class WarpDartBindings {
 
   late final _initstate_r1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r1 = _initstate_r1Ptr.asFunction<
       int Function(
@@ -5743,7 +5774,7 @@ class WarpDartBindings {
   }
 
   late final _malloc1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc1 =
       _malloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -5759,8 +5790,8 @@ class WarpDartBindings {
   }
 
   late final _calloc1Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc1 =
       _calloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -5777,28 +5808,9 @@ class WarpDartBindings {
   late final _realloc1Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc1 = _realloc1Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray1(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray1(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray1 = _reallocarray1Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free1(
     ffi.Pointer<ffi.Void> __ptr,
@@ -5814,6 +5826,44 @@ class WarpDartBindings {
   late final _free1 =
       _free1Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray2(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray2(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray2Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray2 = _reallocarray2Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray3(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray3(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray3Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray3 = _reallocarray3Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca1(
     int __size,
   ) {
@@ -5823,7 +5873,7 @@ class WarpDartBindings {
   }
 
   late final _alloca1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca1 =
       _alloca1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -5837,7 +5887,7 @@ class WarpDartBindings {
   }
 
   late final _valloc1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc1 =
       _valloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -5856,8 +5906,8 @@ class WarpDartBindings {
 
   late final _posix_memalign1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign1 = _posix_memalign1Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -5872,8 +5922,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc1Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc1 =
       _aligned_alloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -6159,8 +6209,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch1 = _bsearch1Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -6182,7 +6232,7 @@ class WarpDartBindings {
 
   late final _qsort1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort1 = _qsort1Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -6350,8 +6400,13 @@ class WarpDartBindings {
 
   late final _ecvt_r1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r1 = _ecvt_r1Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -6376,8 +6431,13 @@ class WarpDartBindings {
 
   late final _fcvt_r1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r1 = _fcvt_r1Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -6393,13 +6453,13 @@ class WarpDartBindings {
   }
 
   late final _mblen1Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen1 =
       _mblen1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc1(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -6412,10 +6472,10 @@ class WarpDartBindings {
 
   late final _mbtowc1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc1 = _mbtowc1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb1(
     ffi.Pointer<ffi.Char> __s,
@@ -6428,13 +6488,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb1Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb1 =
       _wctomb1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs1(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -6447,14 +6507,14 @@ class WarpDartBindings {
 
   late final _mbstowcs1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs1 = _mbstowcs1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs1(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs1(
@@ -6466,10 +6526,10 @@ class WarpDartBindings {
 
   late final _wcstombs1Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs1 = _wcstombs1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch1(
     ffi.Pointer<ffi.Char> __response,
@@ -6645,7 +6705,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max2 =
       ___ctype_get_mb_cur_max2Ptr.asFunction<int Function()>();
 
@@ -6989,7 +7050,7 @@ class WarpDartBindings {
   late final _initstate2Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate2 = _initstate2Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -7057,7 +7118,7 @@ class WarpDartBindings {
 
   late final _initstate_r2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r2 = _initstate_r2Ptr.asFunction<
       int Function(
@@ -7401,7 +7462,7 @@ class WarpDartBindings {
   }
 
   late final _malloc2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc2 =
       _malloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -7417,8 +7478,8 @@ class WarpDartBindings {
   }
 
   late final _calloc2Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc2 =
       _calloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -7435,28 +7496,9 @@ class WarpDartBindings {
   late final _realloc2Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc2 = _realloc2Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray2(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray2(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray2 = _reallocarray2Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free2(
     ffi.Pointer<ffi.Void> __ptr,
@@ -7472,6 +7514,44 @@ class WarpDartBindings {
   late final _free2 =
       _free2Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray4(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray4(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray4Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray4 = _reallocarray4Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray5(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray5(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray5Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray5 = _reallocarray5Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca2(
     int __size,
   ) {
@@ -7481,7 +7561,7 @@ class WarpDartBindings {
   }
 
   late final _alloca2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca2 =
       _alloca2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -7495,7 +7575,7 @@ class WarpDartBindings {
   }
 
   late final _valloc2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc2 =
       _valloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -7514,8 +7594,8 @@ class WarpDartBindings {
 
   late final _posix_memalign2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign2 = _posix_memalign2Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -7530,8 +7610,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc2Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc2 =
       _aligned_alloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -7817,8 +7897,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch2 = _bsearch2Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -7840,7 +7920,7 @@ class WarpDartBindings {
 
   late final _qsort2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort2 = _qsort2Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -8008,8 +8088,13 @@ class WarpDartBindings {
 
   late final _ecvt_r2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r2 = _ecvt_r2Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -8034,8 +8119,13 @@ class WarpDartBindings {
 
   late final _fcvt_r2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r2 = _fcvt_r2Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -8051,13 +8141,13 @@ class WarpDartBindings {
   }
 
   late final _mblen2Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen2 =
       _mblen2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc2(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -8070,10 +8160,10 @@ class WarpDartBindings {
 
   late final _mbtowc2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc2 = _mbtowc2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb2(
     ffi.Pointer<ffi.Char> __s,
@@ -8086,13 +8176,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb2Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb2 =
       _wctomb2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs2(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -8105,14 +8195,14 @@ class WarpDartBindings {
 
   late final _mbstowcs2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs2 = _mbstowcs2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs2(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs2(
@@ -8124,10 +8214,10 @@ class WarpDartBindings {
 
   late final _wcstombs2Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs2 = _wcstombs2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch2(
     ffi.Pointer<ffi.Char> __response,
@@ -8303,7 +8393,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max3 =
       ___ctype_get_mb_cur_max3Ptr.asFunction<int Function()>();
 
@@ -8647,7 +8738,7 @@ class WarpDartBindings {
   late final _initstate3Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate3 = _initstate3Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -8715,7 +8806,7 @@ class WarpDartBindings {
 
   late final _initstate_r3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r3 = _initstate_r3Ptr.asFunction<
       int Function(
@@ -9059,7 +9150,7 @@ class WarpDartBindings {
   }
 
   late final _malloc3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc3 =
       _malloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -9075,8 +9166,8 @@ class WarpDartBindings {
   }
 
   late final _calloc3Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc3 =
       _calloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -9093,28 +9184,9 @@ class WarpDartBindings {
   late final _realloc3Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc3 = _realloc3Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray3(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray3(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray3 = _reallocarray3Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free3(
     ffi.Pointer<ffi.Void> __ptr,
@@ -9130,6 +9202,44 @@ class WarpDartBindings {
   late final _free3 =
       _free3Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray6(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray6(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray6Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray6 = _reallocarray6Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray7(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray7(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray7Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray7 = _reallocarray7Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca3(
     int __size,
   ) {
@@ -9139,7 +9249,7 @@ class WarpDartBindings {
   }
 
   late final _alloca3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca3 =
       _alloca3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -9153,7 +9263,7 @@ class WarpDartBindings {
   }
 
   late final _valloc3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc3 =
       _valloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -9172,8 +9282,8 @@ class WarpDartBindings {
 
   late final _posix_memalign3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign3 = _posix_memalign3Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -9188,8 +9298,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc3Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc3 =
       _aligned_alloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -9475,8 +9585,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch3 = _bsearch3Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -9498,7 +9608,7 @@ class WarpDartBindings {
 
   late final _qsort3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort3 = _qsort3Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -9666,8 +9776,13 @@ class WarpDartBindings {
 
   late final _ecvt_r3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r3 = _ecvt_r3Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -9692,8 +9807,13 @@ class WarpDartBindings {
 
   late final _fcvt_r3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r3 = _fcvt_r3Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -9709,13 +9829,13 @@ class WarpDartBindings {
   }
 
   late final _mblen3Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen3 =
       _mblen3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc3(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -9728,10 +9848,10 @@ class WarpDartBindings {
 
   late final _mbtowc3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc3 = _mbtowc3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb3(
     ffi.Pointer<ffi.Char> __s,
@@ -9744,13 +9864,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb3Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb3 =
       _wctomb3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs3(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -9763,14 +9883,14 @@ class WarpDartBindings {
 
   late final _mbstowcs3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs3 = _mbstowcs3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs3(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs3(
@@ -9782,10 +9902,10 @@ class WarpDartBindings {
 
   late final _wcstombs3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs3 = _wcstombs3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch3(
     ffi.Pointer<ffi.Char> __response,
@@ -9856,7 +9976,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max4 =
       ___ctype_get_mb_cur_max4Ptr.asFunction<int Function()>();
 
@@ -10200,7 +10321,7 @@ class WarpDartBindings {
   late final _initstate4Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate4 = _initstate4Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -10268,7 +10389,7 @@ class WarpDartBindings {
 
   late final _initstate_r4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r4 = _initstate_r4Ptr.asFunction<
       int Function(
@@ -10612,7 +10733,7 @@ class WarpDartBindings {
   }
 
   late final _malloc4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc4 =
       _malloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -10628,8 +10749,8 @@ class WarpDartBindings {
   }
 
   late final _calloc4Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc4 =
       _calloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -10646,28 +10767,9 @@ class WarpDartBindings {
   late final _realloc4Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc4 = _realloc4Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray4(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray4(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray4 = _reallocarray4Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free4(
     ffi.Pointer<ffi.Void> __ptr,
@@ -10683,6 +10785,44 @@ class WarpDartBindings {
   late final _free4 =
       _free4Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray8(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray8(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray8Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray8 = _reallocarray8Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray9(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray9(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray9Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray9 = _reallocarray9Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca4(
     int __size,
   ) {
@@ -10692,7 +10832,7 @@ class WarpDartBindings {
   }
 
   late final _alloca4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca4 =
       _alloca4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -10706,7 +10846,7 @@ class WarpDartBindings {
   }
 
   late final _valloc4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc4 =
       _valloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -10725,8 +10865,8 @@ class WarpDartBindings {
 
   late final _posix_memalign4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign4 = _posix_memalign4Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -10741,8 +10881,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc4Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc4 =
       _aligned_alloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -11028,8 +11168,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch4 = _bsearch4Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -11051,7 +11191,7 @@ class WarpDartBindings {
 
   late final _qsort4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort4 = _qsort4Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -11219,8 +11359,13 @@ class WarpDartBindings {
 
   late final _ecvt_r4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r4 = _ecvt_r4Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -11245,8 +11390,13 @@ class WarpDartBindings {
 
   late final _fcvt_r4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r4 = _fcvt_r4Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -11262,13 +11412,13 @@ class WarpDartBindings {
   }
 
   late final _mblen4Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen4 =
       _mblen4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc4(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -11281,10 +11431,10 @@ class WarpDartBindings {
 
   late final _mbtowc4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc4 = _mbtowc4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb4(
     ffi.Pointer<ffi.Char> __s,
@@ -11297,13 +11447,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb4Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb4 =
       _wctomb4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs4(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -11316,14 +11466,14 @@ class WarpDartBindings {
 
   late final _mbstowcs4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs4 = _mbstowcs4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs4(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs4(
@@ -11335,10 +11485,10 @@ class WarpDartBindings {
 
   late final _wcstombs4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs4 = _wcstombs4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch4(
     ffi.Pointer<ffi.Char> __response,
@@ -11409,7 +11559,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max5 =
       ___ctype_get_mb_cur_max5Ptr.asFunction<int Function()>();
 
@@ -11753,7 +11904,7 @@ class WarpDartBindings {
   late final _initstate5Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate5 = _initstate5Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -11821,7 +11972,7 @@ class WarpDartBindings {
 
   late final _initstate_r5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r5 = _initstate_r5Ptr.asFunction<
       int Function(
@@ -12165,7 +12316,7 @@ class WarpDartBindings {
   }
 
   late final _malloc5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc5 =
       _malloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -12181,8 +12332,8 @@ class WarpDartBindings {
   }
 
   late final _calloc5Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc5 =
       _calloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -12199,28 +12350,9 @@ class WarpDartBindings {
   late final _realloc5Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc5 = _realloc5Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray5(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray5(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray5 = _reallocarray5Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free5(
     ffi.Pointer<ffi.Void> __ptr,
@@ -12236,6 +12368,44 @@ class WarpDartBindings {
   late final _free5 =
       _free5Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray10(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray10(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray10Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray10 = _reallocarray10Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray11(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray11(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray11Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray11 = _reallocarray11Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca5(
     int __size,
   ) {
@@ -12245,7 +12415,7 @@ class WarpDartBindings {
   }
 
   late final _alloca5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca5 =
       _alloca5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -12259,7 +12429,7 @@ class WarpDartBindings {
   }
 
   late final _valloc5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc5 =
       _valloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -12278,8 +12448,8 @@ class WarpDartBindings {
 
   late final _posix_memalign5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign5 = _posix_memalign5Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -12294,8 +12464,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc5Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc5 =
       _aligned_alloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -12581,8 +12751,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch5 = _bsearch5Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -12604,7 +12774,7 @@ class WarpDartBindings {
 
   late final _qsort5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort5 = _qsort5Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -12772,8 +12942,13 @@ class WarpDartBindings {
 
   late final _ecvt_r5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r5 = _ecvt_r5Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -12798,8 +12973,13 @@ class WarpDartBindings {
 
   late final _fcvt_r5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r5 = _fcvt_r5Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -12815,13 +12995,13 @@ class WarpDartBindings {
   }
 
   late final _mblen5Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen5 =
       _mblen5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc5(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -12834,10 +13014,10 @@ class WarpDartBindings {
 
   late final _mbtowc5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc5 = _mbtowc5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb5(
     ffi.Pointer<ffi.Char> __s,
@@ -12850,13 +13030,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb5Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb5 =
       _wctomb5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs5(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -12869,14 +13049,14 @@ class WarpDartBindings {
 
   late final _mbstowcs5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs5 = _mbstowcs5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs5(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs5(
@@ -12888,10 +13068,10 @@ class WarpDartBindings {
 
   late final _wcstombs5Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs5 = _wcstombs5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch5(
     ffi.Pointer<ffi.Char> __response,
@@ -12971,7 +13151,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max6 =
       ___ctype_get_mb_cur_max6Ptr.asFunction<int Function()>();
 
@@ -13315,7 +13496,7 @@ class WarpDartBindings {
   late final _initstate6Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate6 = _initstate6Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -13383,7 +13564,7 @@ class WarpDartBindings {
 
   late final _initstate_r6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r6 = _initstate_r6Ptr.asFunction<
       int Function(
@@ -13727,7 +13908,7 @@ class WarpDartBindings {
   }
 
   late final _malloc6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc6 =
       _malloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -13743,8 +13924,8 @@ class WarpDartBindings {
   }
 
   late final _calloc6Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc6 =
       _calloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -13761,28 +13942,9 @@ class WarpDartBindings {
   late final _realloc6Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc6 = _realloc6Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray6(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray6(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray6 = _reallocarray6Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free6(
     ffi.Pointer<ffi.Void> __ptr,
@@ -13798,6 +13960,44 @@ class WarpDartBindings {
   late final _free6 =
       _free6Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray12(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray12(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray12Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray12 = _reallocarray12Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray13(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray13(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray13Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray13 = _reallocarray13Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca6(
     int __size,
   ) {
@@ -13807,7 +14007,7 @@ class WarpDartBindings {
   }
 
   late final _alloca6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca6 =
       _alloca6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -13821,7 +14021,7 @@ class WarpDartBindings {
   }
 
   late final _valloc6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc6 =
       _valloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -13840,8 +14040,8 @@ class WarpDartBindings {
 
   late final _posix_memalign6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign6 = _posix_memalign6Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -13856,8 +14056,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc6Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc6 =
       _aligned_alloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -14143,8 +14343,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch6 = _bsearch6Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -14166,7 +14366,7 @@ class WarpDartBindings {
 
   late final _qsort6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort6 = _qsort6Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -14334,8 +14534,13 @@ class WarpDartBindings {
 
   late final _ecvt_r6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r6 = _ecvt_r6Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -14360,8 +14565,13 @@ class WarpDartBindings {
 
   late final _fcvt_r6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r6 = _fcvt_r6Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -14377,13 +14587,13 @@ class WarpDartBindings {
   }
 
   late final _mblen6Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen6 =
       _mblen6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc6(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -14396,10 +14606,10 @@ class WarpDartBindings {
 
   late final _mbtowc6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc6 = _mbtowc6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb6(
     ffi.Pointer<ffi.Char> __s,
@@ -14412,13 +14622,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb6Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb6 =
       _wctomb6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs6(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -14431,14 +14641,14 @@ class WarpDartBindings {
 
   late final _mbstowcs6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs6 = _mbstowcs6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs6(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs6(
@@ -14450,10 +14660,10 @@ class WarpDartBindings {
 
   late final _wcstombs6Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs6 = _wcstombs6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch6(
     ffi.Pointer<ffi.Char> __response,
@@ -14537,7 +14747,8 @@ class WarpDartBindings {
   }
 
   late final ___ctype_get_mb_cur_max7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('__ctype_get_mb_cur_max');
+      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
+          '__ctype_get_mb_cur_max');
   late final ___ctype_get_mb_cur_max7 =
       ___ctype_get_mb_cur_max7Ptr.asFunction<int Function()>();
 
@@ -14881,7 +15092,7 @@ class WarpDartBindings {
   late final _initstate7Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int)>>('initstate');
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
   late final _initstate7 = _initstate7Ptr.asFunction<
       ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
 
@@ -14949,7 +15160,7 @@ class WarpDartBindings {
 
   late final _initstate_r7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Int,
+          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
               ffi.Pointer<G_random_data>)>>('initstate_r');
   late final _initstate_r7 = _initstate_r7Ptr.asFunction<
       int Function(
@@ -15293,7 +15504,7 @@ class WarpDartBindings {
   }
 
   late final _malloc7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'malloc');
   late final _malloc7 =
       _malloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -15309,8 +15520,8 @@ class WarpDartBindings {
   }
 
   late final _calloc7Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'calloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc7 =
       _calloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -15327,28 +15538,9 @@ class WarpDartBindings {
   late final _realloc7Ptr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int)>>('realloc');
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
   late final _realloc7 = _realloc7Ptr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray7(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray7(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
-  late final _reallocarray7 = _reallocarray7Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
   void free7(
     ffi.Pointer<ffi.Void> __ptr,
@@ -15364,6 +15556,44 @@ class WarpDartBindings {
   late final _free7 =
       _free7Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> reallocarray14(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray14(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray14Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray14 = _reallocarray14Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
+  ffi.Pointer<ffi.Void> reallocarray15(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __nmemb,
+    int __size,
+  ) {
+    return _reallocarray15(
+      __ptr,
+      __nmemb,
+      __size,
+    );
+  }
+
+  late final _reallocarray15Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
+  late final _reallocarray15 = _reallocarray15Ptr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
+
   ffi.Pointer<ffi.Void> alloca7(
     int __size,
   ) {
@@ -15373,7 +15603,7 @@ class WarpDartBindings {
   }
 
   late final _alloca7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'alloca');
   late final _alloca7 =
       _alloca7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -15387,7 +15617,7 @@ class WarpDartBindings {
   }
 
   late final _valloc7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int)>>(
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
           'valloc');
   late final _valloc7 =
       _valloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
@@ -15406,8 +15636,8 @@ class WarpDartBindings {
 
   late final _posix_memalign7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Int,
-              ffi.Int)>>('posix_memalign');
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
+              ffi.Size)>>('posix_memalign');
   late final _posix_memalign7 = _posix_memalign7Ptr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
@@ -15422,8 +15652,8 @@ class WarpDartBindings {
   }
 
   late final _aligned_alloc7Ptr = _lookup<
-          ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Int, ffi.Int)>>(
-      'aligned_alloc');
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
   late final _aligned_alloc7 =
       _aligned_alloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
@@ -15709,8 +15939,8 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Void>,
-              ffi.Int,
-              ffi.Int,
+              ffi.Size,
+              ffi.Size,
               __compar_fn_t)>>('bsearch');
   late final _bsearch7 = _bsearch7Ptr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
@@ -15732,7 +15962,7 @@ class WarpDartBindings {
 
   late final _qsort7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
               __compar_fn_t)>>('qsort');
   late final _qsort7 = _qsort7Ptr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
@@ -15900,8 +16130,13 @@ class WarpDartBindings {
 
   late final _ecvt_r7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('ecvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('ecvt_r');
   late final _ecvt_r7 = _ecvt_r7Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -15926,8 +16161,13 @@ class WarpDartBindings {
 
   late final _fcvt_r7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Double, ffi.Int, ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('fcvt_r');
+          ffi.Int Function(
+              ffi.Double,
+              ffi.Int,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Int>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('fcvt_r');
   late final _fcvt_r7 = _fcvt_r7Ptr.asFunction<
       int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Char>, int)>();
@@ -15943,13 +16183,13 @@ class WarpDartBindings {
   }
 
   late final _mblen7Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mblen');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
   late final _mblen7 =
       _mblen7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbtowc7(
-    ffi.Pointer<ffi.Int> __pwc,
+    ffi.Pointer<ffi.WChar> __pwc,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -15962,10 +16202,10 @@ class WarpDartBindings {
 
   late final _mbtowc7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, ffi.Int)>>('mbtowc');
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
   late final _mbtowc7 = _mbtowc7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wctomb7(
     ffi.Pointer<ffi.Char> __s,
@@ -15978,13 +16218,13 @@ class WarpDartBindings {
   }
 
   late final _wctomb7Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'wctomb');
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
   late final _wctomb7 =
       _wctomb7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
   int mbstowcs7(
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     ffi.Pointer<ffi.Char> __s,
     int __n,
   ) {
@@ -15997,14 +16237,14 @@ class WarpDartBindings {
 
   late final _mbstowcs7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('mbstowcs');
+          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbstowcs');
   late final _mbstowcs7 = _mbstowcs7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Char>, int)>();
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
   int wcstombs7(
     ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.Int> __pwcs,
+    ffi.Pointer<ffi.WChar> __pwcs,
     int __n,
   ) {
     return _wcstombs7(
@@ -16016,10 +16256,10 @@ class WarpDartBindings {
 
   late final _wcstombs7Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>,
-              ffi.Int)>>('wcstombs');
+          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
+              ffi.Size)>>('wcstombs');
   late final _wcstombs7 = _wcstombs7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Int>, int)>();
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
   int rpmatch7(
     ffi.Pointer<ffi.Char> __response,
@@ -16092,12 +16332,6 @@ class G___fsid_t extends ffi.Struct {
   external ffi.Array<ffi.Int> __val;
 }
 
-abstract class idtype_t {
-  static const int P_ALL = 0;
-  static const int P_PID = 1;
-  static const int P_PGID = 2;
-}
-
 class G_div_t extends ffi.Struct {
   @ffi.Int()
   external int quot;
@@ -16154,6 +16388,21 @@ class G_fd_set extends ffi.Struct {
 }
 
 typedef __fd_mask = ffi.Long;
+
+class __atomic_wide_counter extends ffi.Union {
+  @ffi.UnsignedLongLong()
+  external int __value64;
+
+  external UnnamedStruct1 __value32;
+}
+
+class UnnamedStruct1 extends ffi.Struct {
+  @ffi.UnsignedInt()
+  external int __low;
+
+  @ffi.UnsignedInt()
+  external int __high;
+}
 
 class G___pthread_internal_list extends ffi.Struct {
   external ffi.Pointer<G___pthread_internal_list> __prev;
@@ -16231,6 +16480,10 @@ class G___pthread_rwlock_arch_t extends ffi.Struct {
 }
 
 class G___pthread_cond_s extends ffi.Struct {
+  external __atomic_wide_counter __wseq;
+
+  external __atomic_wide_counter __g1_start;
+
   @ffi.Array.multi([2])
   external ffi.Array<ffi.UnsignedInt> __g_refs;
 
@@ -16245,6 +16498,11 @@ class G___pthread_cond_s extends ffi.Struct {
 
   @ffi.Array.multi([2])
   external ffi.Array<ffi.UnsignedInt> __g_signals;
+}
+
+class G___once_flag extends ffi.Struct {
+  @ffi.Int()
+  external int __data;
 }
 
 class pthread_mutexattr_t extends ffi.Union {
@@ -16772,6 +17030,14 @@ class G_FFIResult_PocketDimensionAdapter extends ffi.Struct {
   external ffi.Pointer<ffi.Int> error;
 }
 
+const int __GNUC_VA_LIST = 1;
+
+const int true1 = 1;
+
+const int false1 = 0;
+
+const int __bool_true_false_are_defined = 1;
+
 const int _STDINT_H = 1;
 
 const int _FEATURES_H = 1;
@@ -16804,6 +17070,14 @@ const int __USE_XOPEN2K8 = 1;
 
 const int _ATFILE_SOURCE = 1;
 
+const int __WORDSIZE = 64;
+
+const int __WORDSIZE_TIME64_COMPAT32 = 1;
+
+const int __SYSCALL_WORDSIZE = 64;
+
+const int __TIMESIZE = 64;
+
 const int __USE_MISC = 1;
 
 const int __USE_ATFILE = 1;
@@ -16818,7 +17092,11 @@ const int _STDC_PREDEF_H = 1;
 
 const int __STDC_IEC_559__ = 1;
 
+const int __STDC_IEC_60559_BFP__ = 201404;
+
 const int __STDC_IEC_559_COMPLEX__ = 1;
+
+const int __STDC_IEC_60559_COMPLEX__ = 201404;
 
 const int __STDC_ISO_10646__ = 201706;
 
@@ -16826,19 +17104,17 @@ const int __GNU_LIBRARY__ = 6;
 
 const int __GLIBC__ = 2;
 
-const int __GLIBC_MINOR__ = 31;
+const int __GLIBC_MINOR__ = 35;
 
 const int _SYS_CDEFS_H = 1;
 
+const int __THROW = 1;
+
+const int __THROWNL = 1;
+
 const int __glibc_c99_flexarr_available = 1;
 
-const int __WORDSIZE = 64;
-
-const int __WORDSIZE_TIME64_COMPAT32 = 1;
-
-const int __SYSCALL_WORDSIZE = 64;
-
-const int __LONG_DOUBLE_USES_FLOAT128 = 0;
+const int __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI = 0;
 
 const int __HAVE_GENERIC_SELECTION = 0;
 
@@ -16848,6 +17124,8 @@ const int __GLIBC_USE_IEC_60559_BFP_EXT = 1;
 
 const int __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 1;
 
+const int __GLIBC_USE_IEC_60559_EXT = 1;
+
 const int __GLIBC_USE_IEC_60559_FUNCS_EXT = 1;
 
 const int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 1;
@@ -16855,8 +17133,6 @@ const int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 1;
 const int __GLIBC_USE_IEC_60559_TYPES_EXT = 1;
 
 const int _BITS_TYPES_H = 1;
-
-const int __TIMESIZE = 64;
 
 const int _BITS_TYPESIZES_H = 1;
 
@@ -16867,6 +17143,8 @@ const int __INO_T_MATCHES_INO64_T = 1;
 const int __RLIM_T_MATCHES_RLIM64_T = 1;
 
 const int __STATFS_MATCHES_STATFS64 = 1;
+
+const int __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64 = 1;
 
 const int __FD_SETSIZE = 1024;
 
@@ -16984,6 +17262,8 @@ const int WINT_MIN = 0;
 
 const int WINT_MAX = 4294967295;
 
+const int NULL = 0;
+
 const int _STDLIB_H = 1;
 
 const int WNOHANG = 1;
@@ -17003,8 +17283,6 @@ const int __WNOTHREAD = 536870912;
 const int __WALL = 1073741824;
 
 const int __WCLONE = 2147483648;
-
-const int __ENUM_IDTYPE_T = 1;
 
 const int __W_CONTINUED = 65535;
 
@@ -17095,8 +17373,6 @@ const int _BITS_BYTESWAP_H = 1;
 const int _BITS_UINTN_IDENTITY_H = 1;
 
 const int _SYS_SELECT_H = 1;
-
-const String __FD_ZERO_STOS = 'stosq';
 
 const int __sigset_t_defined = 1;
 
