@@ -120,7 +120,8 @@ class Raygun {
         print(j);
         // message.value
         //     .add(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
-        print(pLines.ref.ptr.elementAt(j).cast<Utf8>().toString());
+        print(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
+        // print(pLines.ref.ptr.value.toString());
         message.value[j] = pLines.ref.ptr.elementAt(j).cast<Utf8>().toString();
       }
       // Add to the upstream variable
