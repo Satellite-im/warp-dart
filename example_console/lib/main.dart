@@ -25,9 +25,10 @@ Raygun newChat(MultiPass mp) {
   return rg;
 }
 
-void rgIpfsTest() {
-  print("Test for rg_ipfs");
+void test_rg_ipfs() {
+  print("==== Test for rg_ipfs ====");
 
+  print("New accounts");
   MultiPass accountA = newAccount("c_datastore_a");
   MultiPass accountB = newAccount("c_datastore_b");
   if (accountA.pointer == nullptr || accountB.pointer == nullptr) {
@@ -35,48 +36,48 @@ void rgIpfsTest() {
     exit(-1);
   }
 
+  print("Get own identity");
   Identity idB = accountB.getOwnIdentity();
   if (idB.status_message != "N/A") {
     print(""); // TODO: What is the appripriate error message?
     exit(-1);
   }
 
+  print("New chats");
   Raygun rgA = newChat(accountA);
   Raygun rgB = newChat(accountB);
   if (rgA.pRaygun == nullptr || rgB.pRaygun == nullptr) {
     print("Error creating account\n");
     exit(-1);
   }
-
   sleep(Duration(seconds: 1));
 
+  print("Create conversation");
   DID didB = idB.did_key;
-  print(">> ${idB.toString()}");
   String didBString = didB.toString();
-  rgA.createConversation(didBString); // Doesn't return but throw an error
-  List<String> convoID = rgA.listConversation();
-
+  String convoID = rgA.createConversation(didBString);
   sleep(Duration(seconds: 1));
 
-  List<String> chatMessageA = [];
-  chatMessageA.add("Hello, World!!");
-  chatMessageA.add("How are you??");
-  chatMessageA.add("Has your day been good???");
-  chatMessageA.add("Mine is great");
-  chatMessageA.add("You there????");
-  chatMessageA.add("Just tired from dealing with C :D");
-  chatMessageA.add("Rust rules!!!");
-
-  rgA.send(convoID[0], null, chatMessageA); // Doesn't return but throw an error
-
+  print("Send messages via account A");
+  // (\x00) A null character must be added at the end of a message.
+  List<String> chatMessagesA = [];
+  chatMessagesA.add("Hello, World!!\x00");
+  chatMessagesA.add("How are you??\x00");
+  chatMessagesA.add("Has your day been good???\x00");
+  chatMessagesA.add("Mine is great\x00");
+  chatMessagesA.add("You there????\x00");
+  chatMessagesA.add("Just tired from dealing with C :D\x00");
+  chatMessagesA.add("Rust rules!!!\x00");
+  rgA.send(convoID, null, chatMessagesA); // Doesn't return but throw an error
   sleep(Duration(seconds: 1));
 
-  List<Message> messages = rgB.getMessages(convoID[0]);
+  print("Get messages via account B");
+  List<Message> messages = rgB.getMessages(convoID);
   print(messages);
 }
 
 int main() {
-  rgIpfsTest();
+  test_rg_ipfs();
   print("End of tests");
   return 0;
 }

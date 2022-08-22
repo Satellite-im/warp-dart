@@ -115,9 +115,13 @@ class Raygun {
       // Message body
       Pointer<G_FFIVec_String> pLines = bindings.message_lines(pMsg);
       int lineLen = pLines.ref.len;
+      message.value = List.filled(lineLen, "", growable: true);
       for (int j = 0; j < lineLen; j++) {
-        message.value
-            .add(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
+        print(j);
+        // message.value
+        //     .add(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
+        print(pLines.ref.ptr.elementAt(j).cast<Utf8>().toString());
+        message.value[j] = pLines.ref.ptr.elementAt(j).cast<Utf8>().toString();
       }
       // Add to the upstream variable
       msgs.add(message);
@@ -130,6 +134,8 @@ class Raygun {
       calloc.free(pSenderId);
 
       // TODO: Metadata - Rust binding is not ready
+
+      sleep(Duration(milliseconds: 100));
     }
 
     return msgs;
@@ -151,8 +157,9 @@ class Raygun {
       Pointer<Char> pConvoId = calloc<Char>();
       pConvoId = conversationId.toNativeUtf8().cast<Char>();
       Pointer<Char> pMessageId = calloc<Char>();
-      pMessageId =
-          messageId != null ? messageId.toNativeUtf8().cast<Char>() : nullptr;
+      pMessageId = messageId == null
+          ? nullptr
+          : pMessageId = messageId.toNativeUtf8().cast<Char>();
       // Allocation
       Pointer<Pointer<Char>> pMessages =
           Arena().allocate<Pointer<Char>>(messages!.length);
