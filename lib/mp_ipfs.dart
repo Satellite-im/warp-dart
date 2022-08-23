@@ -38,6 +38,11 @@ MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path) {
   G_FFIResult_MpIpfsConfig config = _ipfs_bindings
       .mp_ipfs_config_production(path.toNativeUtf8().cast<Char>());
 
+  final _repoLockExist = File('$path/repo_lock').existsSync();
+  if (_repoLockExist) {
+    File('$path/repo_lock').deleteSync();
+  }
+
   if (config.error != nullptr) {
     throw WarpException(config.error.cast());
   }
