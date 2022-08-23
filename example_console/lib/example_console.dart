@@ -79,9 +79,3 @@ void test_rg_ipfs() {
     }
   }
 }
-
-int main() {
-  test_rg_ipfs();
-  print("End of tests");
-  return 0;
-}

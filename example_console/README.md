@@ -3,7 +3,7 @@
 ## How-to
 
 1. Build the Warp project from a target platform
-2. Please copy and paste the dynamic library files from the **Warp/target/debug** to the **example_console/linux**
+2. Please copy and paste the dynamic library files from the **Warp/target/debug** to the **warp-dart/linux**
 - libwarp.so
 - libwarp_derive.so
 - libwarp_pd_memory.so
@@ -15,7 +15,7 @@
 - libwarp_mp_ipfs.so
 - libwarp_mp_solana.so
 - libwarp_rg_ipfs.so
-3. Run with **dart run lib/main.dart**
+3. Run with **dart run**
 
 
-If asked to place the dark SDK path, please use $FLUTTER_SDK/bin/cache/dart-sdk.
+If asked to place the dart SDK path, please use $FLUTTER_SDK/bin/cache/dart-sdk.
