@@ -59,8 +59,8 @@ void test_rg_ipfs() {
 
   print("Send messages via account A");
   List<String> chatMessagesA = [];
-  chatMessagesA.add("Hello, World!!");
-  // chatMessagesA.add("How are you??");
+  chatMessagesA.add("How are you??");
+  // chatMessagesA.add("Hello, World!!");
   // chatMessagesA.add("Has your day been good???");
   // chatMessagesA.add("Mine is great");
   // chatMessagesA.add("You there????");
