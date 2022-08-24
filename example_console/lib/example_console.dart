@@ -62,7 +62,7 @@ void test_rg_ipfs() {
   print("Send messages via account A");
   List<String> chatMessagesA = [];
   chatMessagesA.add("Hello, World!!");
-  chatMessagesA.add("How are you??");
+  // chatMessagesA.add("How are you??");
   // chatMessagesA.add("Has your day been good???");
   // chatMessagesA.add("Mine is great");
   // chatMessagesA.add("You there????");
@@ -83,7 +83,7 @@ void test_rg_ipfs() {
 
   print("Send messages via account B");
   List<String> chatMessagesB = [];
-  chatMessagesB.add("Hello from Catter A :D");
+  chatMessagesB.add("Hello from Chatter A :D");
   // chatMessagesB.add("I've grown tired of C");
   // chatMessagesB.add("Rust is life");
   // chatMessagesB.add("Sooooooooooo tired");
