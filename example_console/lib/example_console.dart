@@ -56,18 +56,17 @@ void test_rg_ipfs() {
   DID didB = idB.did_key;
   String didBString = didB.toString();
   String convoID = rgA.createConversation(didBString);
-  sleep(Duration(seconds: 1));
 
   print("Send messages via account A");
-  // A null character must be added at the end of a message (\x00).
   List<String> chatMessagesA = [];
-  chatMessagesA.add("Hello, World!!\x00");
-  chatMessagesA.add("How are you??\x00");
-  chatMessagesA.add("Has your day been good???\x00");
-  chatMessagesA.add("Mine is great\x00");
-  chatMessagesA.add("You there????\x00");
-  chatMessagesA.add("Just tired from dealing with C :D\x00");
-  chatMessagesA.add("Rust rules!!!\x00");
+  chatMessagesA.add("Hello, World!!");
+  // chatMessagesA.add("How are you??");
+  // chatMessagesA.add("Has your day been good???");
+  // chatMessagesA.add("Mine is great");
+  // chatMessagesA.add("You there????");
+  // chatMessagesA.add("Just tired from dealing with C :D");
+  // chatMessagesA.add("Rust rules!!!");
+  // chatMessagesA.add("\x00");
   rgA.send(convoID, null, chatMessagesA);
   sleep(Duration(seconds: 1));
 

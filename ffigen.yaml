@@ -7,14 +7,14 @@ description: |
 output: 'lib/warp_dart_bindings_generated.dart'
 headers:
   entry-points:
-    - '../warp/warp.h'
-    - '../extensions/warp-mp-ipfs/warp-mp-ipfs.h'
-    - '../extensions/warp-rg-ipfs/warp-rg-ipfs.h'
-    - '../extensions/warp-pd-memory/warp-pd-memory.h'
-    - '../extensions/warp-pd-stretto/warp-pd-stretto.h'
-    - '../extensions/warp-pd-flatfile/warp-pd-flatfile.h'
-    - '../extensions/warp-fs-storj/warp-fs-storj.h'
-    - '../extensions/warp-fs-memory/warp-fs-memory.h'
+    - '../Warp/warp/warp.h'
+    - '../Warp/extensions/warp-mp-ipfs/warp-mp-ipfs.h'
+    - '../Warp/extensions/warp-rg-ipfs/warp-rg-ipfs.h'
+    - '../Warp/extensions/warp-pd-memory/warp-pd-memory.h'
+    - '../Warp/extensions/warp-pd-stretto/warp-pd-stretto.h'
+    - '../Warp/extensions/warp-pd-flatfile/warp-pd-flatfile.h'
+    - '../Warp/extensions/warp-fs-storj/warp-fs-storj.h'
+    - '../Warp/extensions/warp-fs-memory/warp-fs-memory.h'
   # include-directives:
   #   - 'src/warp_dart.h'
 # preamble: |
@@ -22,8 +22,8 @@ headers:
 #   // ignore_for_file: camel_case_types
 #   // ignore_for_file: non_constant_identifier_names
 llvm-path:
-  - '/opt/homebrew/Cellar/llvm/14.0.6_1' # OSX
-  # - '/usr/lib/llvm-14' # Debian/Ubuntu
+  # - '/opt/homebrew/Cellar/llvm/14.0.6_1' # OSX
+  - '/usr/lib/llvm-14' # Debian/Ubuntu
 
 structs:
   rename:

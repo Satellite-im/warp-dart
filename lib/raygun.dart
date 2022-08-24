@@ -148,32 +148,28 @@ class Raygun {
     if (messages != null && messages.isEmpty) {
       throw Exception("The given message is not null but empty");
     }
-    // With the using keyword the allocated memories by Arena will be released
-    using((Arena arena) {
-      // Convert given values to native friendly types
-      Pointer<Char> pConvoId = calloc<Char>();
-      pConvoId = conversationId.toNativeUtf8().cast<Char>();
-      Pointer<Char> pMessageId = calloc<Char>();
-      pMessageId = messageId == null
-          ? nullptr
-          : pMessageId = messageId.toNativeUtf8().cast<Char>();
-      // Allocation
-      Pointer<Pointer<Char>> pMessages =
-          Arena().allocate<Pointer<Char>>(messages!.length);
-      // Copy
-      for (int i = 0; i < messages.length; i++) {
-        pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
-      }
-      // Invoke and result check
-      G_FFIResult_Null result = bindings.raygun_send(
-          pRaygun, pConvoId, pMessageId, pMessages, messages.length);
-      if (result.error != nullptr) {
-        throw WarpException(result.error);
-      }
-      // Release
-      calloc.free(pConvoId);
-      calloc.free(pMessageId);
-    });
+    // Cast pointers. No allocation required since we have the list in the heap already.
+    Pointer<Char> pConvoId = calloc<Char>();
+    pConvoId = conversationId.toNativeUtf8().cast<Char>();
+    Pointer<Char> pMessageId = calloc<Char>();
+    pMessageId = messageId == null
+        ? nullptr
+        : pMessageId = messageId.toNativeUtf8().cast<Char>();
+    Pointer<Pointer<Char>> pMessages = calloc<Pointer<Char>>();
+    // Pass the address of each message
+    for (int i = 0; i < messages!.length; i++) {
+      pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
+    }
+    // Invoke and result check
+    G_FFIResult_Null result = bindings.raygun_send(
+        this.pRaygun, pConvoId, pMessageId, pMessages, messages.length);
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+    // Release
+    calloc.free(pMessages);
+    calloc.free(pConvoId);
+    calloc.free(pMessageId);
   }
 
   delete(String conversationId, [String? messageId]) {

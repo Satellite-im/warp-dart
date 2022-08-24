@@ -29,7 +29,7 @@ migrate_working_dir/
 .packages
 build/
 
-# The tital size of those files with debug mode is over 700 MB....
+example_console/image/main.exe
 linux/libwarp_derive.so
 linux/libwarp_fs_ipfs.so
 linux/libwarp_fs_memory.so
@@ -41,14 +41,3 @@ linux/libwarp_pd_memory.so
 linux/libwarp_pd_stretto.so
 linux/libwarp_rg_ipfs.so
 linux/libwarp.so
-example_console/linux/libwarp_derive.so
-example_console/linux/libwarp_fs_ipfs.so
-example_console/linux/libwarp_fs_memory.so
-example_console/linux/libwarp_fs_storj.so
-example_console/linux/libwarp_mp_ipfs.so
-example_console/linux/libwarp_mp_solana.so
-example_console/linux/libwarp_pd_flatfile.so
-example_console/linux/libwarp_pd_memory.so
-example_console/linux/libwarp_pd_stretto.so
-example_console/linux/libwarp_rg_ipfs.so
-example_console/linux/libwarp.so
