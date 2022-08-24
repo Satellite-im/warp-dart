@@ -30,14 +30,4 @@ migrate_working_dir/
 build/
 
 example_console/image/main.exe
-linux/libwarp_derive.so
-linux/libwarp_fs_ipfs.so
-linux/libwarp_fs_memory.so
-linux/libwarp_fs_storj.so
-linux/libwarp_mp_ipfs.so
-linux/libwarp_mp_solana.so
-linux/libwarp_pd_flatfile.so
-linux/libwarp_pd_memory.so
-linux/libwarp_pd_stretto.so
-linux/libwarp_rg_ipfs.so
-linux/libwarp.so
+
