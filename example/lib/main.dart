@@ -113,7 +113,7 @@ class Details extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    identity!.status_message,
+                    identity!.status_message!,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.blue,
