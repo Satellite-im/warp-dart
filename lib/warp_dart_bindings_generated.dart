@@ -3351,7 +3351,7 @@ class WarpDartBindings {
   late final _multipass_identity_username = _multipass_identity_usernamePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Identity>)>();
 
-  int multipass_identity_short_id(
+  ffi.Pointer<ffi.Char> multipass_identity_short_id(
     ffi.Pointer<G_Identity> identity,
   ) {
     return _multipass_identity_short_id(
@@ -3359,11 +3359,12 @@ class WarpDartBindings {
     );
   }
 
-  late final _multipass_identity_short_idPtr =
-      _lookup<ffi.NativeFunction<ffi.Uint16 Function(ffi.Pointer<G_Identity>)>>(
-          'multipass_identity_short_id');
+  late final _multipass_identity_short_idPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<G_Identity>)>>('multipass_identity_short_id');
   late final _multipass_identity_short_id = _multipass_identity_short_idPtr
-      .asFunction<int Function(ffi.Pointer<G_Identity>)>();
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Identity>)>();
 
   ffi.Pointer<G_DID> multipass_identity_did_key(
     ffi.Pointer<G_Identity> identity,
@@ -3712,7 +3713,7 @@ class WarpDartBindings {
           G_FFIResult_DID Function(ffi.Pointer<G_MultiPassAdapter>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  G_FFIResult_Identity multipass_get_identity(
+  G_FFIResult_FFIVec_Identity multipass_get_identity(
     ffi.Pointer<G_MultiPassAdapter> ctx,
     ffi.Pointer<G_Identifier> identifier,
   ) {
@@ -3724,10 +3725,10 @@ class WarpDartBindings {
 
   late final _multipass_get_identityPtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_Identity Function(ffi.Pointer<G_MultiPassAdapter>,
+          G_FFIResult_FFIVec_Identity Function(ffi.Pointer<G_MultiPassAdapter>,
               ffi.Pointer<G_Identifier>)>>('multipass_get_identity');
   late final _multipass_get_identity = _multipass_get_identityPtr.asFunction<
-      G_FFIResult_Identity Function(
+      G_FFIResult_FFIVec_Identity Function(
           ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_Identifier>)>();
 
   G_FFIResult_Identity multipass_get_own_identity(
@@ -4982,6 +4983,20 @@ class WarpDartBindings {
   late final _ffierror_free =
       _ffierror_freePtr.asFunction<void Function(ffi.Pointer<G_FFIError>)>();
 
+  void ffivec_string(
+    ffi.Pointer<G_FFIVec_String> cvec,
+  ) {
+    return _ffivec_string(
+      cvec,
+    );
+  }
+
+  late final _ffivec_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_FFIVec_String>)>>(
+      'ffivec_string');
+  late final _ffivec_string = _ffivec_stringPtr
+      .asFunction<void Function(ffi.Pointer<G_FFIVec_String>)>();
+
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
     ffi.Pointer<ffi.Char> file,
   ) {
@@ -5855,6 +5870,12 @@ class G_FFIVec_FriendRequest extends ffi.Struct {
   external int cap;
 }
 
+class G_FFIResult_FFIVec_Identity extends ffi.Struct {
+  external ffi.Pointer<G_FFIVec_Identity> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
 class G_FFIResult_Identity extends ffi.Struct {
   external ffi.Pointer<G_Identity> data;
 
@@ -6344,3 +6365,5 @@ const int __PTHREAD_RWLOCK_ELISION_EXTRA = 0;
 const int __have_pthread_attr_t = 1;
 
 const int _ALLOCA_H = 1;
+
+const int SHORT_ID_SIZE = 8;
