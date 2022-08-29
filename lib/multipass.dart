@@ -195,6 +195,37 @@ class MultiPass {
     return list;
   }
 
+  List<Identity> getIdentityByUsername(String username) {
+    Identifier identifier = Identifier.fromUserName(username);
+    List<Identity> list;
+    try {
+      list = getIdentity(identifier);
+    } on WarpException {
+      rethrow;
+    } finally {
+      identifier.drop();
+    }
+    return list;
+  }
+
+  Identity getIdentityByDID(String did_key) {
+    Identifier identifier = Identifier.fromDIDString(did_key);
+    List<Identity> list;
+    try {
+      list = getIdentity(identifier);
+    } on WarpException {
+      rethrow;
+    } finally {
+      identifier.drop();
+    }
+
+    if (list.isEmpty) {
+      throw Exception("Identity not found");
+    }
+    
+    return list.first;
+  }
+
   Identity getOwnIdentity() {
     G_FFIResult_Identity result = bindings.multipass_get_own_identity(pointer);
     if (result.error != nullptr) {
