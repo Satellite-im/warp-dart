@@ -112,28 +112,30 @@ class Graphics {
 
 class Identity {
   late String username;
-  late String short_id;
+  late int short_id;
   late DID did_key;
   late Graphics graphics;
-  late String? status_message;
+  late String status_message;
   //late List<Role> roles;
   //late List<Badge> available_badges;
   //late Badge active_badge;
   //late Map<String, String> linked_accounts;
   Identity(Pointer<G_Identity> pointer) {
-    Pointer<Char> pUsername = bindings.multipass_identity_username(pointer);
-    username = pUsername.cast<Utf8>().toDartString();
-    Pointer<Char> pShortId = bindings.multipass_identity_short_id(pointer);
-    short_id = pShortId.cast<Utf8>().toDartString();
+    Pointer<Char> u_ptr = bindings.multipass_identity_username(pointer);
+    username = u_ptr.cast<Utf8>().toDartString();
+    short_id = bindings.multipass_identity_short_id(pointer);
+    //Note that DID throws an exception if there is an error. Maybe handle it?
     did_key = DID(bindings.multipass_identity_did_key(pointer));
     graphics = Graphics(bindings.multipass_identity_graphics(pointer));
     Pointer<Char> ptr = bindings.multipass_identity_status_message(pointer);
-    status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : null;
+
+    status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : "N/A";
 
     //TODO: Complete
-    calloc.free(pShortId);
+    //Once finish, free the pointer
+
     calloc.free(ptr);
-    calloc.free(pUsername);
+    calloc.free(u_ptr);
     bindings.identity_free(pointer);
   }
 }
@@ -175,24 +177,13 @@ class MultiPass {
     return DID(result.data);
   }
 
-  List<Identity> getIdentity(Identifier identifier) {
-    G_FFIResult_FFIVec_Identity result =
+  Identity getIdentity(Identifier identifier) {
+    G_FFIResult_Identity result =
         bindings.multipass_get_identity(pointer, identifier.pointer());
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    List<Identity> list = [];
-    int length = result.data.ref.len;
-
-    for (int i = 0; i < length; i++) {
-      Pointer<G_Identity> pointer = result.data.ref.ptr.elementAt(i).value;
-      Identity identity = Identity(pointer);
-      list.add(identity);
-    }
-
-    //TODO: Determine if we need to free the pointer array
-    // bindings.ffivec_identity_free(result.data);
-    return list;
+    return Identity(result.data);
   }
 
   Identity getOwnIdentity() {
