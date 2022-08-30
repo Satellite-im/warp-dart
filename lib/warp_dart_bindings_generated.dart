@@ -4172,21 +4172,6 @@ class WarpDartBindings {
   late final _message_free =
       _message_freePtr.asFunction<void Function(ffi.Pointer<G_Message>)>();
 
-  void ffivec_senderid_free(
-    ffi.Pointer<G_FFIVec_SenderId> cvec,
-  ) {
-    return _ffivec_senderid_free(
-      cvec,
-    );
-  }
-
-  late final _ffivec_senderid_freePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<G_FFIVec_SenderId>)>>('ffivec_senderid_free');
-  late final _ffivec_senderid_free = _ffivec_senderid_freePtr
-      .asFunction<void Function(ffi.Pointer<G_FFIVec_SenderId>)>();
-
   void ffivec_reaction_free(
     ffi.Pointer<G_FFIVec_Reaction> cvec,
   ) {
@@ -4497,20 +4482,20 @@ class WarpDartBindings {
   late final _message_conversation_id = _message_conversation_idPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Message>)>();
 
-  ffi.Pointer<G_SenderId> message_sender_id(
+  ffi.Pointer<G_DID> message_sender(
     ffi.Pointer<G_Message> ctx,
   ) {
-    return _message_sender_id(
+    return _message_sender(
       ctx,
     );
   }
 
-  late final _message_sender_idPtr = _lookup<
+  late final _message_senderPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<G_SenderId> Function(
-              ffi.Pointer<G_Message>)>>('message_sender_id');
-  late final _message_sender_id = _message_sender_idPtr
-      .asFunction<ffi.Pointer<G_SenderId> Function(ffi.Pointer<G_Message>)>();
+          ffi.Pointer<G_DID> Function(
+              ffi.Pointer<G_Message>)>>('message_sender');
+  late final _message_sender = _message_senderPtr
+      .asFunction<ffi.Pointer<G_DID> Function(ffi.Pointer<G_Message>)>();
 
   ffi.Pointer<ffi.Char> message_date(
     ffi.Pointer<G_Message> ctx,
@@ -4601,7 +4586,7 @@ class WarpDartBindings {
   late final _reaction_emoji = _reaction_emojiPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Reaction>)>();
 
-  ffi.Pointer<G_FFIVec_SenderId> reaction_users(
+  ffi.Pointer<G_FFIVec_DID> reaction_users(
     ffi.Pointer<G_Reaction> ctx,
   ) {
     return _reaction_users(
@@ -4611,70 +4596,10 @@ class WarpDartBindings {
 
   late final _reaction_usersPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<G_FFIVec_SenderId> Function(
+          ffi.Pointer<G_FFIVec_DID> Function(
               ffi.Pointer<G_Reaction>)>>('reaction_users');
   late final _reaction_users = _reaction_usersPtr.asFunction<
-      ffi.Pointer<G_FFIVec_SenderId> Function(ffi.Pointer<G_Reaction>)>();
-
-  ffi.Pointer<G_SenderId> sender_id_from_id(
-    ffi.Pointer<ffi.Char> id,
-  ) {
-    return _sender_id_from_id(
-      id,
-    );
-  }
-
-  late final _sender_id_from_idPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<G_SenderId> Function(
-              ffi.Pointer<ffi.Char>)>>('sender_id_from_id');
-  late final _sender_id_from_id = _sender_id_from_idPtr
-      .asFunction<ffi.Pointer<G_SenderId> Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<G_SenderId> sender_id_from_did_key(
-    ffi.Pointer<G_DID> public_key,
-  ) {
-    return _sender_id_from_did_key(
-      public_key,
-    );
-  }
-
-  late final _sender_id_from_did_keyPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<G_SenderId> Function(
-              ffi.Pointer<G_DID>)>>('sender_id_from_did_key');
-  late final _sender_id_from_did_key = _sender_id_from_did_keyPtr
-      .asFunction<ffi.Pointer<G_SenderId> Function(ffi.Pointer<G_DID>)>();
-
-  ffi.Pointer<ffi.Char> sender_id_get_id(
-    ffi.Pointer<G_SenderId> sender_id,
-  ) {
-    return _sender_id_get_id(
-      sender_id,
-    );
-  }
-
-  late final _sender_id_get_idPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<G_SenderId>)>>('sender_id_get_id');
-  late final _sender_id_get_id = _sender_id_get_idPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_SenderId>)>();
-
-  ffi.Pointer<G_DID> sender_id_get_did_key(
-    ffi.Pointer<G_SenderId> sender_id,
-  ) {
-    return _sender_id_get_did_key(
-      sender_id,
-    );
-  }
-
-  late final _sender_id_get_did_keyPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<G_DID> Function(
-              ffi.Pointer<G_SenderId>)>>('sender_id_get_did_key');
-  late final _sender_id_get_did_key = _sender_id_get_did_keyPtr
-      .asFunction<ffi.Pointer<G_DID> Function(ffi.Pointer<G_SenderId>)>();
+      ffi.Pointer<G_FFIVec_DID> Function(ffi.Pointer<G_Reaction>)>();
 
   void tesseract_free(
     ffi.Pointer<G_Tesseract> ptr,
@@ -5689,8 +5614,6 @@ class G_Reaction extends ffi.Opaque {}
 
 class G_Role extends ffi.Opaque {}
 
-class G_SenderId extends ffi.Opaque {}
-
 class G_Tesseract extends ffi.Opaque {}
 
 class G_X25519PublicKey extends ffi.Opaque {}
@@ -5902,16 +5825,6 @@ class G_FFIResult_QueryBuilder extends ffi.Struct {
 
 class G_FFIVec_Message extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_Message>> ptr;
-
-  @uintptr_t()
-  external int len;
-
-  @uintptr_t()
-  external int cap;
-}
-
-class G_FFIVec_SenderId extends ffi.Struct {
-  external ffi.Pointer<ffi.Pointer<G_SenderId>> ptr;
 
   @uintptr_t()
   external int len;
