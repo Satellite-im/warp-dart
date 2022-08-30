@@ -78,9 +78,8 @@ class Raygun {
       message.conversationId =
           bindings.message_conversation_id(pMsg).value.toString();
       // Sender ID, DID only
-      Pointer<G_SenderId> pSenderId = bindings.message_sender_id(pMsg);
-      Pointer<G_DID> pSenderDid = bindings.sender_id_get_did_key(pSenderId);
-      message.senderId = DID(pSenderDid).toString();
+      Pointer<G_DID> pSender = bindings.message_sender(pMsg);
+      message.senderId = DID(pSender).toString();
       // DateTime
       // TODO: test required
       // The value from Rust is integer (UTC from Chrono ).
@@ -96,7 +95,7 @@ class Raygun {
         Reaction reaction = Reaction();
         Pointer<G_Reaction> pReaction = pReactions.ref.ptr.elementAt(j).value;
         reaction.emoji = bindings.reaction_emoji(pReaction).toString();
-        Pointer<G_FFIVec_SenderId> pReactionSendersId =
+        Pointer<G_FFIVec_DID> pReactionSendersId =
             bindings.reaction_users(pReaction);
         int reactionSendersIdLen = pReactionSendersId.ref.len;
         for (int k = 0; k < reactionSendersIdLen; k++) {
@@ -126,8 +125,7 @@ class Raygun {
       calloc.free(pReactions);
       calloc.free(pReplied);
       calloc.free(pLines);
-      calloc.free(pSenderDid);
-      calloc.free(pSenderId);
+      calloc.free(pSender);
 
       // TODO: Metadata - Rust binding is not ready
     }
