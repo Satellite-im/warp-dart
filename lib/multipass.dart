@@ -128,7 +128,7 @@ class Identity {
     did_key = DID(bindings.multipass_identity_did_key(pointer));
     graphics = Graphics(bindings.multipass_identity_graphics(pointer));
     Pointer<Char> ptr = bindings.multipass_identity_status_message(pointer);
-    status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : null;
+    status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : "N/A";
 
     //TODO: Complete
 
