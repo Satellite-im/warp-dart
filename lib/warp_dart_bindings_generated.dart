@@ -22,753 +22,256 @@ class WarpDartBindings {
           lookup)
       : _lookup = lookup;
 
-  int __ctype_get_mb_cur_max() {
-    return ___ctype_get_mb_cur_max();
-  }
-
-  late final ___ctype_get_mb_cur_maxPtr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max =
-      ___ctype_get_mb_cur_maxPtr.asFunction<int Function()>();
-
-  double atof(
-    ffi.Pointer<ffi.Char> __nptr,
+  /// For historical reasons; programs expect signal's return value to be
+  /// defined by <sys/signal.h>.
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> signal(
+    int arg0,
+    ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> arg1,
   ) {
-    return _atof(
-      __nptr,
+    return _signal(
+      arg0,
+      arg1,
     );
   }
 
-  late final _atofPtr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof =
-      _atofPtr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi(
-      __nptr,
-    );
-  }
-
-  late final _atoiPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi = _atoiPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol(
-      __nptr,
-    );
-  }
-
-  late final _atolPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol = _atolPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll(
-      __nptr,
-    );
-  }
-
-  late final _atollPtr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll =
-      _atollPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtodPtr = _lookup<
+  late final _signalPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod = _strtodPtr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtofPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof = _strtofPtr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtolPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol = _strtolPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoulPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul = _strtoulPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoqPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq = _strtoqPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouqPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq = _strtouqPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtollPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll = _strtollPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoullPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull = _strtoullPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a(
-    int __n,
-  ) {
-    return _l64a(
-      __n,
-    );
-  }
-
-  late final _l64aPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a = _l64aPtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l(
-      __s,
-    );
-  }
-
-  late final _a64lPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l = _a64lPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _selectPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
+          ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(
               ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select = _selectPtr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
+              ffi.Pointer<
+                  ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>>('signal');
+  late final _signal = _signalPtr.asFunction<
+      ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>> Function(
+          int, ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>)>();
 
-  int pselect(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
+  int getpriority(
+    int arg0,
+    int arg1,
   ) {
-    return _pselect(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
+    return _getpriority(
+      arg0,
+      arg1,
     );
   }
 
-  late final _pselectPtr = _lookup<
+  late final _getpriorityPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t)>>(
+          'getpriority');
+  late final _getpriority =
+      _getpriorityPtr.asFunction<int Function(int, int)>();
+
+  int getiopolicy_np(
+    int arg0,
+    int arg1,
+  ) {
+    return _getiopolicy_np(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _getiopolicy_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>(
+          'getiopolicy_np');
+  late final _getiopolicy_np =
+      _getiopolicy_npPtr.asFunction<int Function(int, int)>();
+
+  int getrlimit(
+    int arg0,
+    ffi.Pointer<G_rlimit> arg1,
+  ) {
+    return _getrlimit(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _getrlimitPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<G_rlimit>)>>(
+      'getrlimit');
+  late final _getrlimit =
+      _getrlimitPtr.asFunction<int Function(int, ffi.Pointer<G_rlimit>)>();
+
+  int getrusage(
+    int arg0,
+    ffi.Pointer<G_rusage> arg1,
+  ) {
+    return _getrusage(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _getrusagePtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<G_rusage>)>>(
+      'getrusage');
+  late final _getrusage =
+      _getrusagePtr.asFunction<int Function(int, ffi.Pointer<G_rusage>)>();
+
+  int setpriority(
+    int arg0,
+    int arg1,
+    int arg2,
+  ) {
+    return _setpriority(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _setpriorityPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, id_t, ffi.Int)>>(
+          'setpriority');
+  late final _setpriority =
+      _setpriorityPtr.asFunction<int Function(int, int, int)>();
+
+  int setiopolicy_np(
+    int arg0,
+    int arg1,
+    int arg2,
+  ) {
+    return _setiopolicy_np(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _setiopolicy_npPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int, ffi.Int)>>(
+          'setiopolicy_np');
+  late final _setiopolicy_np =
+      _setiopolicy_npPtr.asFunction<int Function(int, int, int)>();
+
+  int setrlimit(
+    int arg0,
+    ffi.Pointer<G_rlimit> arg1,
+  ) {
+    return _setrlimit(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _setrlimitPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<G_rlimit>)>>(
+      'setrlimit');
+  late final _setrlimit =
+      _setrlimitPtr.asFunction<int Function(int, ffi.Pointer<G_rlimit>)>();
+
+  int wait1(
+    ffi.Pointer<ffi.Int> arg0,
+  ) {
+    return _wait1(
+      arg0,
+    );
+  }
+
+  late final _wait1Ptr =
+      _lookup<ffi.NativeFunction<pid_t Function(ffi.Pointer<ffi.Int>)>>('wait');
+  late final _wait1 =
+      _wait1Ptr.asFunction<int Function(ffi.Pointer<ffi.Int>)>();
+
+  int waitpid(
+    int arg0,
+    ffi.Pointer<ffi.Int> arg1,
+    int arg2,
+  ) {
+    return _waitpid(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _waitpidPtr = _lookup<
+      ffi.NativeFunction<
+          pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int)>>('waitpid');
+  late final _waitpid =
+      _waitpidPtr.asFunction<int Function(int, ffi.Pointer<ffi.Int>, int)>();
+
+  int waitid(
+    int arg0,
+    int arg1,
+    ffi.Pointer<siginfo_t> arg2,
+    int arg3,
+  ) {
+    return _waitid(
+      arg0,
+      arg1,
+      arg2,
+      arg3,
+    );
+  }
+
+  late final _waitidPtr = _lookup<
       ffi.NativeFunction<
           ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect = _pselectPtr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
+              ffi.Int32, id_t, ffi.Pointer<siginfo_t>, ffi.Int)>>('waitid');
+  late final _waitid = _waitidPtr
+      .asFunction<int Function(int, int, ffi.Pointer<siginfo_t>, int)>();
 
-  int random() {
-    return _random();
-  }
-
-  late final _randomPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random = _randomPtr.asFunction<int Function()>();
-
-  void srandom(
-    int __seed,
+  int wait3(
+    ffi.Pointer<ffi.Int> arg0,
+    int arg1,
+    ffi.Pointer<G_rusage> arg2,
   ) {
-    return _srandom(
-      __seed,
+    return _wait3(
+      arg0,
+      arg1,
+      arg2,
     );
   }
 
-  late final _srandomPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom = _srandomPtr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstatePtr = _lookup<
+  late final _wait3Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate = _initstatePtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
+          pid_t Function(
+              ffi.Pointer<ffi.Int>, ffi.Int, ffi.Pointer<G_rusage>)>>('wait3');
+  late final _wait3 = _wait3Ptr.asFunction<
+      int Function(ffi.Pointer<ffi.Int>, int, ffi.Pointer<G_rusage>)>();
 
-  ffi.Pointer<ffi.Char> setstate(
-    ffi.Pointer<ffi.Char> __statebuf,
+  int wait4(
+    int arg0,
+    ffi.Pointer<ffi.Int> arg1,
+    int arg2,
+    ffi.Pointer<G_rusage> arg3,
   ) {
-    return _setstate(
-      __statebuf,
+    return _wait4(
+      arg0,
+      arg1,
+      arg2,
+      arg3,
     );
   }
 
-  late final _setstatePtr = _lookup<
+  late final _wait4Ptr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate = _setstatePtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+          pid_t Function(pid_t, ffi.Pointer<ffi.Int>, ffi.Int,
+              ffi.Pointer<G_rusage>)>>('wait4');
+  late final _wait4 = _wait4Ptr.asFunction<
+      int Function(int, ffi.Pointer<ffi.Int>, int, ffi.Pointer<G_rusage>)>();
 
-  int random_r(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
+  ffi.Pointer<ffi.Void> alloca(
+    int arg0,
   ) {
-    return _random_r(
-      __buf,
-      __result,
+    return _alloca(
+      arg0,
     );
   }
 
-  late final _random_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r = _random_rPtr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
+  late final _allocaPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
+          'alloca');
+  late final _alloca =
+      _allocaPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
 
-  int srandom_r(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r(
-      __seed,
-      __buf,
-    );
-  }
+  late final ffi.Pointer<ffi.Int> ___mb_cur_max =
+      _lookup<ffi.Int>('__mb_cur_max');
 
-  late final _srandom_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r =
-      _srandom_rPtr.asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
+  int get __mb_cur_max => ___mb_cur_max.value;
 
-  int initstate_r(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r = _initstate_rPtr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r = _setstate_rPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand() {
-    return _rand();
-  }
-
-  late final _randPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand = _randPtr.asFunction<int Function()>();
-
-  void srand(
-    int __seed,
-  ) {
-    return _srand(
-      __seed,
-    );
-  }
-
-  late final _srandPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand = _srandPtr.asFunction<void Function(int)>();
-
-  int rand_r(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r(
-      __seed,
-    );
-  }
-
-  late final _rand_rPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r =
-      _rand_rPtr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand48() {
-    return _drand48();
-  }
-
-  late final _drand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand48 = _drand48Ptr.asFunction<double Function()>();
-
-  double erand48(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand48(
-      __xsubi,
-    );
-  }
-
-  late final _erand48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand48 =
-      _erand48Ptr.asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand48() {
-    return _lrand48();
-  }
-
-  late final _lrand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand48 = _lrand48Ptr.asFunction<int Function()>();
-
-  int nrand48(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand48(
-      __xsubi,
-    );
-  }
-
-  late final _nrand48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand48 =
-      _nrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand48() {
-    return _mrand48();
-  }
-
-  late final _mrand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand48 = _mrand48Ptr.asFunction<int Function()>();
-
-  int jrand48(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand48(
-      __xsubi,
-    );
-  }
-
-  late final _jrand48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand48 =
-      _jrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand48(
-    int __seedval,
-  ) {
-    return _srand48(
-      __seedval,
-    );
-  }
-
-  late final _srand48Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand48 = _srand48Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed48(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed48(
-      __seed16v,
-    );
-  }
-
-  late final _seed48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed48 = _seed48Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong48(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong48(
-      __param,
-    );
-  }
-
-  late final _lcong48Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong48 =
-      _lcong48Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r = _drand48_rPtr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r = _erand48_rPtr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r = _lrand48_rPtr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r = _nrand48_rPtr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r = _mrand48_rPtr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r = _jrand48_rPtr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r = _srand48_rPtr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r = _seed48_rPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r = _lcong48_rPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
+  set __mb_cur_max(int value) => ___mb_cur_max.value = value;
 
   ffi.Pointer<ffi.Void> malloc(
     int __size,
@@ -785,11 +288,11 @@ class WarpDartBindings {
       _mallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
 
   ffi.Pointer<ffi.Void> calloc(
-    int __nmemb,
+    int __count,
     int __size,
   ) {
     return _calloc(
-      __nmemb,
+      __count,
       __size,
     );
   }
@@ -799,6 +302,20 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
   late final _calloc =
       _callocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
+
+  void free(
+    ffi.Pointer<ffi.Void> arg0,
+  ) {
+    return _free(
+      arg0,
+    );
+  }
+
+  late final _freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'free');
+  late final _free =
+      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   ffi.Pointer<ffi.Void> realloc(
     ffi.Pointer<ffi.Void> __ptr,
@@ -817,77 +334,11 @@ class WarpDartBindings {
   late final _realloc = _reallocPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  void free(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free(
-      __ptr,
-    );
-  }
-
-  late final _freePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free =
-      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarrayPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray = _reallocarrayPtr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray1(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray1(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray1 = _reallocarray1Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca(
-    int __size,
-  ) {
-    return _alloca(
-      __size,
-    );
-  }
-
-  late final _allocaPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca =
-      _allocaPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
   ffi.Pointer<ffi.Void> valloc(
-    int __size,
+    int arg0,
   ) {
     return _valloc(
-      __size,
+      arg0,
     );
   }
 
@@ -896,6 +347,22 @@ class WarpDartBindings {
           'valloc');
   late final _valloc =
       _vallocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
+
+  ffi.Pointer<ffi.Void> aligned_alloc(
+    int __alignment,
+    int __size,
+  ) {
+    return _aligned_alloc(
+      __alignment,
+      __size,
+    );
+  }
+
+  late final _aligned_allocPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
+  late final _aligned_alloc =
+      _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
 
   int posix_memalign(
     ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
@@ -916,22 +383,6 @@ class WarpDartBindings {
   late final _posix_memalign = _posix_memalignPtr
       .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
 
-  ffi.Pointer<ffi.Void> aligned_alloc(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_allocPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc =
-      _aligned_allocPtr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
   void abort() {
     return _abort();
   }
@@ -940,11 +391,23 @@ class WarpDartBindings {
       _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
   late final _abort = _abortPtr.asFunction<void Function()>();
 
+  int abs(
+    int arg0,
+  ) {
+    return _abs(
+      arg0,
+    );
+  }
+
+  late final _absPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
+  late final _abs = _absPtr.asFunction<int Function(int)>();
+
   int atexit(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
+    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> arg0,
   ) {
     return _atexit(
-      __func,
+      arg0,
     );
   }
 
@@ -955,256 +418,75 @@ class WarpDartBindings {
   late final _atexit = _atexitPtr.asFunction<
       int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
 
-  int at_quick_exit(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
+  double atof(
+    ffi.Pointer<ffi.Char> arg0,
   ) {
-    return _at_quick_exit(
-      __func,
+    return _atof(
+      arg0,
     );
   }
 
-  late final _at_quick_exitPtr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit = _at_quick_exitPtr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
+  late final _atofPtr =
+      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
+          'atof');
+  late final _atof =
+      _atofPtr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
 
-  int on_exit(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
+  int atoi(
+    ffi.Pointer<ffi.Char> arg0,
   ) {
-    return _on_exit(
-      __func,
-      __arg,
+    return _atoi(
+      arg0,
     );
   }
 
-  late final _on_exitPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit = _on_exitPtr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit(
-    int __status,
-  ) {
-    return _exit(
-      __status,
-    );
-  }
-
-  late final _exitPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit = _exitPtr.asFunction<void Function(int)>();
-
-  void quick_exit(
-    int __status,
-  ) {
-    return _quick_exit(
-      __status,
-    );
-  }
-
-  late final _quick_exitPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit = _quick_exitPtr.asFunction<void Function(int)>();
-
-  void _Exit(
-    int __status,
-  ) {
-    return __Exit(
-      __status,
-    );
-  }
-
-  late final __ExitPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit = __ExitPtr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv(
-      __name,
-    );
-  }
-
-  late final _getenvPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv = _getenvPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv(
-      __string,
-    );
-  }
-
-  late final _putenvPtr =
+  late final _atoiPtr =
       _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv =
-      _putenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+          'atoi');
+  late final _atoi = _atoiPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
-  int setenv(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
+  int atol(
+    ffi.Pointer<ffi.Char> arg0,
   ) {
-    return _setenv(
-      __name,
-      __value,
-      __replace,
+    return _atol(
+      arg0,
     );
   }
 
-  late final _setenvPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv = _setenvPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+  late final _atolPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
+          'atol');
+  late final _atol = _atolPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
-  int unsetenv(
-    ffi.Pointer<ffi.Char> __name,
+  int atoll(
+    ffi.Pointer<ffi.Char> arg0,
   ) {
-    return _unsetenv(
-      __name,
+    return _atoll(
+      arg0,
     );
   }
 
-  late final _unsetenvPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv =
-      _unsetenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv() {
-    return _clearenv();
-  }
-
-  late final _clearenvPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv = _clearenvPtr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp(
-      __template,
-    );
-  }
-
-  late final _mktempPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp = _mktempPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp(
-      __template,
-    );
-  }
-
-  late final _mkstempPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp =
-      _mkstempPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstempsPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps =
-      _mkstempsPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp(
-      __template,
-    );
-  }
-
-  late final _mkdtempPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp = _mkdtempPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system(
-      __command,
-    );
-  }
-
-  late final _systemPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system =
-      _systemPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpathPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath = _realpathPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+  late final _atollPtr =
+      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
+          'atoll');
+  late final _atoll =
+      _atollPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Void> bsearch(
     ffi.Pointer<ffi.Void> __key,
     ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
+    int __nel,
+    int __width,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
   ) {
     return _bsearch(
       __key,
       __base,
-      __nmemb,
-      __size,
+      __nel,
+      __width,
       __compar,
     );
   }
@@ -1216,75 +498,29 @@ class WarpDartBindings {
               ffi.Pointer<ffi.Void>,
               ffi.Size,
               ffi.Size,
-              __compar_fn_t)>>('bsearch');
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('bsearch');
   late final _bsearch = _bsearchPtr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
+      ffi.Pointer<ffi.Void> Function(
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
 
-  void qsort(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsortPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort = _qsortPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs(
-    int __x,
-  ) {
-    return _abs(
-      __x,
-    );
-  }
-
-  late final _absPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs = _absPtr.asFunction<int Function(int)>();
-
-  int labs(
-    int __x,
-  ) {
-    return _labs(
-      __x,
-    );
-  }
-
-  late final _labsPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs = _labsPtr.asFunction<int Function(int)>();
-
-  int llabs(
-    int __x,
-  ) {
-    return _llabs(
-      __x,
-    );
-  }
-
-  late final _llabsPtr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs = _llabsPtr.asFunction<int Function(int)>();
-
+  /// calloc is now declared in _malloc.h
   G_div_t div(
-    int __numer,
-    int __denom,
+    int arg0,
+    int arg1,
   ) {
     return _div(
-      __numer,
-      __denom,
+      arg0,
+      arg1,
     );
   }
 
@@ -1292,13 +528,52 @@ class WarpDartBindings {
       _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
   late final _div = _divPtr.asFunction<G_div_t Function(int, int)>();
 
+  void exit(
+    int arg0,
+  ) {
+    return _exit(
+      arg0,
+    );
+  }
+
+  late final _exitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
+  late final _exit = _exitPtr.asFunction<void Function(int)>();
+
+  /// free is now declared in _malloc.h
+  ffi.Pointer<ffi.Char> getenv(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _getenv(
+      arg0,
+    );
+  }
+
+  late final _getenvPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
+  late final _getenv = _getenvPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+
+  int labs(
+    int arg0,
+  ) {
+    return _labs(
+      arg0,
+    );
+  }
+
+  late final _labsPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
+  late final _labs = _labsPtr.asFunction<int Function(int)>();
+
   G_ldiv_t ldiv(
-    int __numer,
-    int __denom,
+    int arg0,
+    int arg1,
   ) {
     return _ldiv(
-      __numer,
-      __denom,
+      arg0,
+      arg1,
     );
   }
 
@@ -1307,13 +582,25 @@ class WarpDartBindings {
           'ldiv');
   late final _ldiv = _ldivPtr.asFunction<G_ldiv_t Function(int, int)>();
 
+  int llabs(
+    int arg0,
+  ) {
+    return _llabs(
+      arg0,
+    );
+  }
+
+  late final _llabsPtr =
+      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
+  late final _llabs = _llabsPtr.asFunction<int Function(int)>();
+
   G_lldiv_t lldiv(
-    int __numer,
-    int __denom,
+    int arg0,
+    int arg1,
   ) {
     return _lldiv(
-      __numer,
-      __denom,
+      arg0,
+      arg1,
     );
   }
 
@@ -1322,131 +609,7 @@ class WarpDartBindings {
       'lldiv');
   late final _lldiv = _lldivPtr.asFunction<G_lldiv_t Function(int, int)>();
 
-  ffi.Pointer<ffi.Char> ecvt(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvtPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt = _ecvtPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvtPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt = _fcvtPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvtPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt = _gcvtPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r = _ecvt_rPtr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r = _fcvt_rPtr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
+  /// malloc is now declared in _malloc.h
   int mblen(
     ffi.Pointer<ffi.Char> __s,
     int __n,
@@ -1463,50 +626,15 @@ class WarpDartBindings {
   late final _mblen =
       _mblenPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
 
-  int mbtowc(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowcPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc = _mbtowcPtr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctombPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb =
-      _wctombPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
   int mbstowcs(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
+    ffi.Pointer<ffi.WChar> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    int arg2,
   ) {
     return _mbstowcs(
-      __pwcs,
-      __s,
-      __n,
+      arg0,
+      arg1,
+      arg2,
     );
   }
 
@@ -1517,15 +645,222 @@ class WarpDartBindings {
   late final _mbstowcs = _mbstowcsPtr.asFunction<
       int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
 
+  int mbtowc(
+    ffi.Pointer<ffi.WChar> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    int arg2,
+  ) {
+    return _mbtowc(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _mbtowcPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
+              ffi.Size)>>('mbtowc');
+  late final _mbtowc = _mbtowcPtr.asFunction<
+      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
+
+  /// posix_memalign is now declared in _malloc.h
+  void qsort(
+    ffi.Pointer<ffi.Void> __base,
+    int __nel,
+    int __width,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
+  ) {
+    return _qsort(
+      __base,
+      __nel,
+      __width,
+      __compar,
+    );
+  }
+
+  late final _qsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('qsort');
+  late final _qsort = _qsortPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+
+  int rand() {
+    return _rand();
+  }
+
+  late final _randPtr = _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
+  late final _rand = _randPtr.asFunction<int Function()>();
+
+  /// realloc is now declared in _malloc.h
+  void srand(
+    int arg0,
+  ) {
+    return _srand(
+      arg0,
+    );
+  }
+
+  late final _srandPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
+  late final _srand = _srandPtr.asFunction<void Function(int)>();
+
+  double strtod(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
+  ) {
+    return _strtod(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _strtodPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Double Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
+  late final _strtod = _strtodPtr.asFunction<
+      double Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  double strtof(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
+  ) {
+    return _strtof(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _strtofPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Float Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
+  late final _strtof = _strtofPtr.asFunction<
+      double Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  int strtol(
+    ffi.Pointer<ffi.Char> __str,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
+    int __base,
+  ) {
+    return _strtol(
+      __str,
+      __endptr,
+      __base,
+    );
+  }
+
+  late final _strtolPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Long Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
+  late final _strtol = _strtolPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+
+  int strtoll(
+    ffi.Pointer<ffi.Char> __str,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
+    int __base,
+  ) {
+    return _strtoll(
+      __str,
+      __endptr,
+      __base,
+    );
+  }
+
+  late final _strtollPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
+  late final _strtoll = _strtollPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+
+  int strtoul(
+    ffi.Pointer<ffi.Char> __str,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
+    int __base,
+  ) {
+    return _strtoul(
+      __str,
+      __endptr,
+      __base,
+    );
+  }
+
+  late final _strtoulPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
+  late final _strtoul = _strtoulPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+
+  int strtoull(
+    ffi.Pointer<ffi.Char> __str,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
+    int __base,
+  ) {
+    return _strtoull(
+      __str,
+      __endptr,
+      __base,
+    );
+  }
+
+  late final _strtoullPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
+  late final _strtoull = _strtoullPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+
+  int system(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _system(
+      arg0,
+    );
+  }
+
+  late final _systemPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'system');
+  late final _system =
+      _systemPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
   int wcstombs(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.WChar> arg1,
+    int arg2,
   ) {
     return _wcstombs(
-      __s,
-      __pwcs,
-      __n,
+      arg0,
+      arg1,
+      arg2,
     );
   }
 
@@ -1536,29 +871,141 @@ class WarpDartBindings {
   late final _wcstombs = _wcstombsPtr.asFunction<
       int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
 
-  int rpmatch(
-    ffi.Pointer<ffi.Char> __response,
+  int wctomb(
+    ffi.Pointer<ffi.Char> arg0,
+    int arg1,
   ) {
-    return _rpmatch(
-      __response,
+    return _wctomb(
+      arg0,
+      arg1,
     );
   }
 
-  late final _rpmatchPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch =
-      _rpmatchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+  late final _wctombPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
+  late final _wctomb =
+      _wctombPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
+
+  void _Exit(
+    int arg0,
+  ) {
+    return __Exit(
+      arg0,
+    );
+  }
+
+  late final __ExitPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
+  late final __Exit = __ExitPtr.asFunction<void Function(int)>();
+
+  int a64l(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _a64l(
+      arg0,
+    );
+  }
+
+  late final _a64lPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
+          'a64l');
+  late final _a64l = _a64lPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
+  double drand48() {
+    return _drand48();
+  }
+
+  late final _drand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
+  late final _drand48 = _drand48Ptr.asFunction<double Function()>();
+
+  ffi.Pointer<ffi.Char> ecvt(
+    double arg0,
+    int arg1,
+    ffi.Pointer<ffi.Int> arg2,
+    ffi.Pointer<ffi.Int> arg3,
+  ) {
+    return _ecvt(
+      arg0,
+      arg1,
+      arg2,
+      arg3,
+    );
+  }
+
+  late final _ecvtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
+  late final _ecvt = _ecvtPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  double erand48(
+    ffi.Pointer<ffi.UnsignedShort> arg0,
+  ) {
+    return _erand48(
+      arg0,
+    );
+  }
+
+  late final _erand48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
+  late final _erand48 =
+      _erand48Ptr.asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
+
+  ffi.Pointer<ffi.Char> fcvt(
+    double arg0,
+    int arg1,
+    ffi.Pointer<ffi.Int> arg2,
+    ffi.Pointer<ffi.Int> arg3,
+  ) {
+    return _fcvt(
+      arg0,
+      arg1,
+      arg2,
+      arg3,
+    );
+  }
+
+  late final _fcvtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
+  late final _fcvt = _fcvtPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
+
+  ffi.Pointer<ffi.Char> gcvt(
+    double arg0,
+    int arg1,
+    ffi.Pointer<ffi.Char> arg2,
+  ) {
+    return _gcvt(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _gcvtPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
+  late final _gcvt = _gcvtPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
 
   int getsubopt(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg2,
   ) {
     return _getsubopt(
-      __optionp,
-      __tokens,
-      __valuep,
+      arg0,
+      arg1,
+      arg2,
     );
   }
 
@@ -1574,13 +1021,668 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Pointer<ffi.Char>>,
           ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
+  int grantpt(
+    int arg0,
+  ) {
+    return _grantpt(
+      arg0,
+    );
+  }
+
+  late final _grantptPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('grantpt');
+  late final _grantpt = _grantptPtr.asFunction<int Function(int)>();
+
+  ffi.Pointer<ffi.Char> initstate(
+    int arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    int arg2,
+  ) {
+    return _initstate(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _initstatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
+  late final _initstate = _initstatePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
+
+  int jrand48(
+    ffi.Pointer<ffi.UnsignedShort> arg0,
+  ) {
+    return _jrand48(
+      arg0,
+    );
+  }
+
+  late final _jrand48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
+  late final _jrand48 =
+      _jrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
+
+  ffi.Pointer<ffi.Char> l64a(
+    int arg0,
+  ) {
+    return _l64a(
+      arg0,
+    );
+  }
+
+  late final _l64aPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
+          'l64a');
+  late final _l64a = _l64aPtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
+
+  void lcong48(
+    ffi.Pointer<ffi.UnsignedShort> arg0,
+  ) {
+    return _lcong48(
+      arg0,
+    );
+  }
+
+  late final _lcong48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
+  late final _lcong48 =
+      _lcong48Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
+
+  int lrand48() {
+    return _lrand48();
+  }
+
+  late final _lrand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
+  late final _lrand48 = _lrand48Ptr.asFunction<int Function()>();
+
+  ffi.Pointer<ffi.Char> mktemp(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _mktemp(
+      arg0,
+    );
+  }
+
+  late final _mktempPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
+  late final _mktemp = _mktempPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+
+  int mkstemp(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _mkstemp(
+      arg0,
+    );
+  }
+
+  late final _mkstempPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'mkstemp');
+  late final _mkstemp =
+      _mkstempPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
+  int mrand48() {
+    return _mrand48();
+  }
+
+  late final _mrand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
+  late final _mrand48 = _mrand48Ptr.asFunction<int Function()>();
+
+  int nrand48(
+    ffi.Pointer<ffi.UnsignedShort> arg0,
+  ) {
+    return _nrand48(
+      arg0,
+    );
+  }
+
+  late final _nrand48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
+  late final _nrand48 =
+      _nrand48Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
+
+  int posix_openpt(
+    int arg0,
+  ) {
+    return _posix_openpt(
+      arg0,
+    );
+  }
+
+  late final _posix_openptPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('posix_openpt');
+  late final _posix_openpt = _posix_openptPtr.asFunction<int Function(int)>();
+
+  ffi.Pointer<ffi.Char> ptsname(
+    int arg0,
+  ) {
+    return _ptsname(
+      arg0,
+    );
+  }
+
+  late final _ptsnamePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int)>>(
+          'ptsname');
+  late final _ptsname =
+      _ptsnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
+
+  int ptsname_r(
+    int fildes,
+    ffi.Pointer<ffi.Char> buffer,
+    int buflen,
+  ) {
+    return _ptsname_r(
+      fildes,
+      buffer,
+      buflen,
+    );
+  }
+
+  late final _ptsname_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Size)>>('ptsname_r');
+  late final _ptsname_r =
+      _ptsname_rPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
+
+  int putenv(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _putenv(
+      arg0,
+    );
+  }
+
+  late final _putenvPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'putenv');
+  late final _putenv =
+      _putenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
+  int random() {
+    return _random();
+  }
+
+  late final _randomPtr =
+      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
+  late final _random = _randomPtr.asFunction<int Function()>();
+
+  int rand_r(
+    ffi.Pointer<ffi.UnsignedInt> arg0,
+  ) {
+    return _rand_r(
+      arg0,
+    );
+  }
+
+  late final _rand_rPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
+      'rand_r');
+  late final _rand_r =
+      _rand_rPtr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
+
+  ffi.Pointer<ffi.Char> realpath(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+  ) {
+    return _realpath(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _realpathPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
+  late final _realpath = _realpathPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.UnsignedShort> seed48(
+    ffi.Pointer<ffi.UnsignedShort> arg0,
+  ) {
+    return _seed48(
+      arg0,
+    );
+  }
+
+  late final _seed48Ptr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.UnsignedShort> Function(
+              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
+  late final _seed48 = _seed48Ptr.asFunction<
+      ffi.Pointer<ffi.UnsignedShort> Function(
+          ffi.Pointer<ffi.UnsignedShort>)>();
+
+  int setenv(
+    ffi.Pointer<ffi.Char> __name,
+    ffi.Pointer<ffi.Char> __value,
+    int __overwrite,
+  ) {
+    return _setenv(
+      __name,
+      __value,
+      __overwrite,
+    );
+  }
+
+  late final _setenvPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Int)>>('setenv');
+  late final _setenv = _setenvPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  void setkey(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _setkey(
+      arg0,
+    );
+  }
+
+  late final _setkeyPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'setkey');
+  late final _setkey =
+      _setkeyPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> setstate(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _setstate(
+      arg0,
+    );
+  }
+
+  late final _setstatePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
+  late final _setstate = _setstatePtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+
+  void srand48(
+    int arg0,
+  ) {
+    return _srand48(
+      arg0,
+    );
+  }
+
+  late final _srand48Ptr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
+  late final _srand48 = _srand48Ptr.asFunction<void Function(int)>();
+
+  void srandom(
+    int arg0,
+  ) {
+    return _srandom(
+      arg0,
+    );
+  }
+
+  late final _srandomPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
+          'srandom');
+  late final _srandom = _srandomPtr.asFunction<void Function(int)>();
+
+  int unlockpt(
+    int arg0,
+  ) {
+    return _unlockpt(
+      arg0,
+    );
+  }
+
+  late final _unlockptPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('unlockpt');
+  late final _unlockpt = _unlockptPtr.asFunction<int Function(int)>();
+
+  int unsetenv(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _unsetenv(
+      arg0,
+    );
+  }
+
+  late final _unsetenvPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'unsetenv');
+  late final _unsetenv =
+      _unsetenvPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
+  int arc4random() {
+    return _arc4random();
+  }
+
+  late final _arc4randomPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint32 Function()>>('arc4random');
+  late final _arc4random = _arc4randomPtr.asFunction<int Function()>();
+
+  void arc4random_addrandom(
+    ffi.Pointer<ffi.UnsignedChar> arg0,
+    int arg1,
+  ) {
+    return _arc4random_addrandom(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _arc4random_addrandomPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.UnsignedChar>, ffi.Int)>>('arc4random_addrandom');
+  late final _arc4random_addrandom = _arc4random_addrandomPtr
+      .asFunction<void Function(ffi.Pointer<ffi.UnsignedChar>, int)>();
+
+  void arc4random_buf(
+    ffi.Pointer<ffi.Void> __buf,
+    int __nbytes,
+  ) {
+    return _arc4random_buf(
+      __buf,
+      __nbytes,
+    );
+  }
+
+  late final _arc4random_bufPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('arc4random_buf');
+  late final _arc4random_buf = _arc4random_bufPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
+
+  void arc4random_stir() {
+    return _arc4random_stir();
+  }
+
+  late final _arc4random_stirPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('arc4random_stir');
+  late final _arc4random_stir =
+      _arc4random_stirPtr.asFunction<void Function()>();
+
+  int arc4random_uniform(
+    int __upper_bound,
+  ) {
+    return _arc4random_uniform(
+      __upper_bound,
+    );
+  }
+
+  late final _arc4random_uniformPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint32 Function(ffi.Uint32)>>(
+          'arc4random_uniform');
+  late final _arc4random_uniform =
+      _arc4random_uniformPtr.asFunction<int Function(int)>();
+
+  /// getcap(3) functions
+  ffi.Pointer<ffi.Char> cgetcap(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    int arg2,
+  ) {
+    return _cgetcap(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _cgetcapPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('cgetcap');
+  late final _cgetcap = _cgetcapPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  int cgetclose() {
+    return _cgetclose();
+  }
+
+  late final _cgetclosePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function()>>('cgetclose');
+  late final _cgetclose = _cgetclosePtr.asFunction<int Function()>();
+
+  int cgetent(
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
+    ffi.Pointer<ffi.Char> arg2,
+  ) {
+    return _cgetent(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _cgetentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Char>)>>('cgetent');
+  late final _cgetent = _cgetentPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
+
+  int cgetfirst(
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
+  ) {
+    return _cgetfirst(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _cgetfirstPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetfirst');
+  late final _cgetfirst = _cgetfirstPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  int cgetmatch(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+  ) {
+    return _cgetmatch(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _cgetmatchPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('cgetmatch');
+  late final _cgetmatch = _cgetmatchPtr
+      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  int cgetnext(
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg0,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg1,
+  ) {
+    return _cgetnext(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _cgetnextPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetnext');
+  late final _cgetnext = _cgetnextPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  int cgetnum(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    ffi.Pointer<ffi.Long> arg2,
+  ) {
+    return _cgetnum(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _cgetnumPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Long>)>>('cgetnum');
+  late final _cgetnum = _cgetnumPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Long>)>();
+
+  int cgetset(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _cgetset(
+      arg0,
+    );
+  }
+
+  late final _cgetsetPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'cgetset');
+  late final _cgetset =
+      _cgetsetPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
+  int cgetstr(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg2,
+  ) {
+    return _cgetstr(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _cgetstrPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetstr');
+  late final _cgetstr = _cgetstrPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  int cgetustr(
+    ffi.Pointer<ffi.Char> arg0,
+    ffi.Pointer<ffi.Char> arg1,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> arg2,
+  ) {
+    return _cgetustr(
+      arg0,
+      arg1,
+      arg2,
+    );
+  }
+
+  late final _cgetustrPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('cgetustr');
+  late final _cgetustr = _cgetustrPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  int daemon(
+    int arg0,
+    int arg1,
+  ) {
+    return _daemon(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _daemonPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('daemon');
+  late final _daemon = _daemonPtr.asFunction<int Function(int, int)>();
+
+  ffi.Pointer<ffi.Char> devname(
+    int arg0,
+    int arg1,
+  ) {
+    return _devname(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _devnamePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(dev_t, mode_t)>>(
+      'devname');
+  late final _devname =
+      _devnamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int, int)>();
+
+  ffi.Pointer<ffi.Char> devname_r(
+    int arg0,
+    int arg1,
+    ffi.Pointer<ffi.Char> buf,
+    int len,
+  ) {
+    return _devname_r(
+      arg0,
+      arg1,
+      buf,
+      len,
+    );
+  }
+
+  late final _devname_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              dev_t, mode_t, ffi.Pointer<ffi.Char>, ffi.Int)>>('devname_r');
+  late final _devname_r = _devname_rPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(int, int, ffi.Pointer<ffi.Char>, int)>();
+
+  ffi.Pointer<ffi.Char> getbsize(
+    ffi.Pointer<ffi.Int> arg0,
+    ffi.Pointer<ffi.Long> arg1,
+  ) {
+    return _getbsize(
+      arg0,
+      arg1,
+    );
+  }
+
+  late final _getbsizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>>('getbsize');
+  late final _getbsize = _getbsizePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Long>)>();
+
   int getloadavg(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
+    ffi.Pointer<ffi.Double> arg0,
+    int arg1,
   ) {
     return _getloadavg(
-      __loadavg,
-      __nelem,
+      arg0,
+      arg1,
     );
   }
 
@@ -1589,6 +1691,390 @@ class WarpDartBindings {
           ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
   late final _getloadavg =
       _getloadavgPtr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
+
+  ffi.Pointer<ffi.Char> getprogname() {
+    return _getprogname();
+  }
+
+  late final _getprognamePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'getprogname');
+  late final _getprogname =
+      _getprognamePtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+
+  void setprogname(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _setprogname(
+      arg0,
+    );
+  }
+
+  late final _setprognamePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'setprogname');
+  late final _setprogname =
+      _setprognamePtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
+
+  int heapsort(
+    ffi.Pointer<ffi.Void> __base,
+    int __nel,
+    int __width,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
+  ) {
+    return _heapsort(
+      __base,
+      __nel,
+      __width,
+      __compar,
+    );
+  }
+
+  late final _heapsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('heapsort');
+  late final _heapsort = _heapsortPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+
+  int mergesort(
+    ffi.Pointer<ffi.Void> __base,
+    int __nel,
+    int __width,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
+  ) {
+    return _mergesort(
+      __base,
+      __nel,
+      __width,
+      __compar,
+    );
+  }
+
+  late final _mergesortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('mergesort');
+  late final _mergesort = _mergesortPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+
+  void psort(
+    ffi.Pointer<ffi.Void> __base,
+    int __nel,
+    int __width,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+        __compar,
+  ) {
+    return _psort(
+      __base,
+      __nel,
+      __width,
+      __compar,
+    );
+  }
+
+  late final _psortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('psort');
+  late final _psort = _psortPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(
+                      ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>)>();
+
+  void psort_r(
+    ffi.Pointer<ffi.Void> __base,
+    int __nel,
+    int __width,
+    ffi.Pointer<ffi.Void> arg3,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                    ffi.Pointer<ffi.Void>)>>
+        __compar,
+  ) {
+    return _psort_r(
+      __base,
+      __nel,
+      __width,
+      arg3,
+      __compar,
+    );
+  }
+
+  late final _psort_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('psort_r');
+  late final _psort_r = _psort_rPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                      ffi.Pointer<ffi.Void>)>>)>();
+
+  void qsort_r(
+    ffi.Pointer<ffi.Void> __base,
+    int __nel,
+    int __width,
+    ffi.Pointer<ffi.Void> arg3,
+    ffi.Pointer<
+            ffi.NativeFunction<
+                ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                    ffi.Pointer<ffi.Void>)>>
+        __compar,
+  ) {
+    return _qsort_r(
+      __base,
+      __nel,
+      __width,
+      arg3,
+      __compar,
+    );
+  }
+
+  late final _qsort_rPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Size,
+              ffi.Size,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Int Function(
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>,
+                          ffi.Pointer<ffi.Void>)>>)>>('qsort_r');
+  late final _qsort_r = _qsort_rPtr.asFunction<
+      void Function(
+          ffi.Pointer<ffi.Void>,
+          int,
+          int,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<
+              ffi.NativeFunction<
+                  ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>,
+                      ffi.Pointer<ffi.Void>)>>)>();
+
+  int radixsort(
+    ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>> __base,
+    int __nel,
+    ffi.Pointer<ffi.UnsignedChar> __table,
+    int __endbyte,
+  ) {
+    return _radixsort(
+      __base,
+      __nel,
+      __table,
+      __endbyte,
+    );
+  }
+
+  late final _radixsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int,
+              ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('radixsort');
+  late final _radixsort = _radixsortPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int,
+          ffi.Pointer<ffi.UnsignedChar>, int)>();
+
+  int rpmatch(
+    ffi.Pointer<ffi.Char> arg0,
+  ) {
+    return _rpmatch(
+      arg0,
+    );
+  }
+
+  late final _rpmatchPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
+          'rpmatch');
+  late final _rpmatch =
+      _rpmatchPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
+
+  int sradixsort(
+    ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>> __base,
+    int __nel,
+    ffi.Pointer<ffi.UnsignedChar> __table,
+    int __endbyte,
+  ) {
+    return _sradixsort(
+      __base,
+      __nel,
+      __table,
+      __endbyte,
+    );
+  }
+
+  late final _sradixsortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, ffi.Int,
+              ffi.Pointer<ffi.UnsignedChar>, ffi.UnsignedInt)>>('sradixsort');
+  late final _sradixsort = _sradixsortPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Pointer<ffi.UnsignedChar>>, int,
+          ffi.Pointer<ffi.UnsignedChar>, int)>();
+
+  void sranddev() {
+    return _sranddev();
+  }
+
+  late final _sranddevPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('sranddev');
+  late final _sranddev = _sranddevPtr.asFunction<void Function()>();
+
+  void srandomdev() {
+    return _srandomdev();
+  }
+
+  late final _srandomdevPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('srandomdev');
+  late final _srandomdev = _srandomdevPtr.asFunction<void Function()>();
+
+  ffi.Pointer<ffi.Void> reallocf(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __size,
+  ) {
+    return _reallocf(
+      __ptr,
+      __size,
+    );
+  }
+
+  late final _reallocfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('reallocf');
+  late final _reallocf = _reallocfPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
+
+  int strtonum(
+    ffi.Pointer<ffi.Char> __numstr,
+    int __minval,
+    int __maxval,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __errstrp,
+  ) {
+    return _strtonum(
+      __numstr,
+      __minval,
+      __maxval,
+      __errstrp,
+    );
+  }
+
+  late final _strtonumPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.LongLong Function(ffi.Pointer<ffi.Char>, ffi.LongLong,
+              ffi.LongLong, ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtonum');
+  late final _strtonum = _strtonumPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Char>, int, int,
+          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
+
+  int strtoq(
+    ffi.Pointer<ffi.Char> __str,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
+    int __base,
+  ) {
+    return _strtoq(
+      __str,
+      __endptr,
+      __base,
+    );
+  }
+
+  late final _strtoqPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
+  late final _strtoq = _strtoqPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+
+  int strtouq(
+    ffi.Pointer<ffi.Char> __str,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
+    int __base,
+  ) {
+    return _strtouq(
+      __str,
+      __endptr,
+      __base,
+    );
+  }
+
+  late final _strtouqPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
+  late final _strtouq = _strtouqPtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
+
+  /// getsubopt(3) external variable
+  late final ffi.Pointer<ffi.Pointer<ffi.Char>> _suboptarg =
+      _lookup<ffi.Pointer<ffi.Char>>('suboptarg');
+
+  ffi.Pointer<ffi.Char> get suboptarg => _suboptarg.value;
+
+  set suboptarg(ffi.Pointer<ffi.Char> value) => _suboptarg.value = value;
 
   void constellationadapter_free(
     ffi.Pointer<G_ConstellationAdapter> ptr,
@@ -3381,7 +3867,7 @@ class WarpDartBindings {
   late final _multipass_identity_username = _multipass_identity_usernamePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Identity>)>();
 
-  int multipass_identity_short_id(
+  ffi.Pointer<ffi.Char> multipass_identity_short_id(
     ffi.Pointer<G_Identity> identity,
   ) {
     return _multipass_identity_short_id(
@@ -3389,11 +3875,12 @@ class WarpDartBindings {
     );
   }
 
-  late final _multipass_identity_short_idPtr =
-      _lookup<ffi.NativeFunction<ffi.Uint16 Function(ffi.Pointer<G_Identity>)>>(
-          'multipass_identity_short_id');
+  late final _multipass_identity_short_idPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<G_Identity>)>>('multipass_identity_short_id');
   late final _multipass_identity_short_id = _multipass_identity_short_idPtr
-      .asFunction<int Function(ffi.Pointer<G_Identity>)>();
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Identity>)>();
 
   ffi.Pointer<G_DID> multipass_identity_did_key(
     ffi.Pointer<G_Identity> identity,
@@ -3742,7 +4229,7 @@ class WarpDartBindings {
           G_FFIResult_DID Function(ffi.Pointer<G_MultiPassAdapter>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  G_FFIResult_Identity multipass_get_identity(
+  G_FFIResult_FFIVec_Identity multipass_get_identity(
     ffi.Pointer<G_MultiPassAdapter> ctx,
     ffi.Pointer<G_Identifier> identifier,
   ) {
@@ -3754,10 +4241,10 @@ class WarpDartBindings {
 
   late final _multipass_get_identityPtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_Identity Function(ffi.Pointer<G_MultiPassAdapter>,
+          G_FFIResult_FFIVec_Identity Function(ffi.Pointer<G_MultiPassAdapter>,
               ffi.Pointer<G_Identifier>)>>('multipass_get_identity');
   late final _multipass_get_identity = _multipass_get_identityPtr.asFunction<
-      G_FFIResult_Identity Function(
+      G_FFIResult_FFIVec_Identity Function(
           ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_Identifier>)>();
 
   G_FFIResult_Identity multipass_get_own_identity(
@@ -4201,21 +4688,6 @@ class WarpDartBindings {
   late final _message_free =
       _message_freePtr.asFunction<void Function(ffi.Pointer<G_Message>)>();
 
-  void ffivec_senderid_free(
-    ffi.Pointer<G_FFIVec_SenderId> cvec,
-  ) {
-    return _ffivec_senderid_free(
-      cvec,
-    );
-  }
-
-  late final _ffivec_senderid_freePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<G_FFIVec_SenderId>)>>('ffivec_senderid_free');
-  late final _ffivec_senderid_free = _ffivec_senderid_freePtr
-      .asFunction<void Function(ffi.Pointer<G_FFIVec_SenderId>)>();
-
   void ffivec_reaction_free(
     ffi.Pointer<G_FFIVec_Reaction> cvec,
   ) {
@@ -4316,7 +4788,7 @@ class WarpDartBindings {
     ffi.Pointer<G_RayGunAdapter> ctx,
     ffi.Pointer<ffi.Char> convo_id,
     ffi.Pointer<ffi.Char> message_id,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> messages,
+    ffi.Pointer<ffi.Char> messages,
     int lines,
   ) {
     return _raygun_send(
@@ -4334,14 +4806,14 @@ class WarpDartBindings {
               ffi.Pointer<G_RayGunAdapter>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Pointer<ffi.Char>,
               uintptr_t)>>('raygun_send');
   late final _raygun_send = _raygun_sendPtr.asFunction<
       G_FFIResult_Null Function(
           ffi.Pointer<G_RayGunAdapter>,
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
+          ffi.Pointer<ffi.Char>,
           int)>();
 
   G_FFIResult_Null raygun_delete(
@@ -4526,20 +4998,20 @@ class WarpDartBindings {
   late final _message_conversation_id = _message_conversation_idPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Message>)>();
 
-  ffi.Pointer<G_SenderId> message_sender_id(
+  ffi.Pointer<G_DID> message_sender(
     ffi.Pointer<G_Message> ctx,
   ) {
-    return _message_sender_id(
+    return _message_sender(
       ctx,
     );
   }
 
-  late final _message_sender_idPtr = _lookup<
+  late final _message_senderPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<G_SenderId> Function(
-              ffi.Pointer<G_Message>)>>('message_sender_id');
-  late final _message_sender_id = _message_sender_idPtr
-      .asFunction<ffi.Pointer<G_SenderId> Function(ffi.Pointer<G_Message>)>();
+          ffi.Pointer<G_DID> Function(
+              ffi.Pointer<G_Message>)>>('message_sender');
+  late final _message_sender = _message_senderPtr
+      .asFunction<ffi.Pointer<G_DID> Function(ffi.Pointer<G_Message>)>();
 
   ffi.Pointer<ffi.Char> message_date(
     ffi.Pointer<G_Message> ctx,
@@ -4630,7 +5102,7 @@ class WarpDartBindings {
   late final _reaction_emoji = _reaction_emojiPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Reaction>)>();
 
-  ffi.Pointer<G_FFIVec_SenderId> reaction_users(
+  ffi.Pointer<G_FFIVec_DID> reaction_users(
     ffi.Pointer<G_Reaction> ctx,
   ) {
     return _reaction_users(
@@ -4640,70 +5112,10 @@ class WarpDartBindings {
 
   late final _reaction_usersPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<G_FFIVec_SenderId> Function(
+          ffi.Pointer<G_FFIVec_DID> Function(
               ffi.Pointer<G_Reaction>)>>('reaction_users');
   late final _reaction_users = _reaction_usersPtr.asFunction<
-      ffi.Pointer<G_FFIVec_SenderId> Function(ffi.Pointer<G_Reaction>)>();
-
-  ffi.Pointer<G_SenderId> sender_id_from_id(
-    ffi.Pointer<ffi.Char> id,
-  ) {
-    return _sender_id_from_id(
-      id,
-    );
-  }
-
-  late final _sender_id_from_idPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<G_SenderId> Function(
-              ffi.Pointer<ffi.Char>)>>('sender_id_from_id');
-  late final _sender_id_from_id = _sender_id_from_idPtr
-      .asFunction<ffi.Pointer<G_SenderId> Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<G_SenderId> sender_id_from_did_key(
-    ffi.Pointer<G_DID> public_key,
-  ) {
-    return _sender_id_from_did_key(
-      public_key,
-    );
-  }
-
-  late final _sender_id_from_did_keyPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<G_SenderId> Function(
-              ffi.Pointer<G_DID>)>>('sender_id_from_did_key');
-  late final _sender_id_from_did_key = _sender_id_from_did_keyPtr
-      .asFunction<ffi.Pointer<G_SenderId> Function(ffi.Pointer<G_DID>)>();
-
-  ffi.Pointer<ffi.Char> sender_id_get_id(
-    ffi.Pointer<G_SenderId> sender_id,
-  ) {
-    return _sender_id_get_id(
-      sender_id,
-    );
-  }
-
-  late final _sender_id_get_idPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<G_SenderId>)>>('sender_id_get_id');
-  late final _sender_id_get_id = _sender_id_get_idPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_SenderId>)>();
-
-  ffi.Pointer<G_DID> sender_id_get_did_key(
-    ffi.Pointer<G_SenderId> sender_id,
-  ) {
-    return _sender_id_get_did_key(
-      sender_id,
-    );
-  }
-
-  late final _sender_id_get_did_keyPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<G_DID> Function(
-              ffi.Pointer<G_SenderId>)>>('sender_id_get_did_key');
-  late final _sender_id_get_did_key = _sender_id_get_did_keyPtr
-      .asFunction<ffi.Pointer<G_DID> Function(ffi.Pointer<G_SenderId>)>();
+      ffi.Pointer<G_FFIVec_DID> Function(ffi.Pointer<G_Reaction>)>();
 
   void tesseract_free(
     ffi.Pointer<G_Tesseract> ptr,
@@ -5012,1578 +5424,19 @@ class WarpDartBindings {
   late final _ffierror_free =
       _ffierror_freePtr.asFunction<void Function(ffi.Pointer<G_FFIError>)>();
 
-  int __ctype_get_mb_cur_max1() {
-    return ___ctype_get_mb_cur_max1();
-  }
-
-  late final ___ctype_get_mb_cur_max1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max1 =
-      ___ctype_get_mb_cur_max1Ptr.asFunction<int Function()>();
-
-  double atof1(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof1(
-      __nptr,
-    );
-  }
-
-  late final _atof1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof1 =
-      _atof1Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi1(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi1(
-      __nptr,
-    );
-  }
-
-  late final _atoi1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi1 =
-      _atoi1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol1(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol1(
-      __nptr,
-    );
-  }
-
-  late final _atol1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol1 =
-      _atol1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll1(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll1(
-      __nptr,
-    );
-  }
-
-  late final _atoll1Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll1 =
-      _atoll1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod1(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod1 = _strtod1Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof1(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof1 = _strtof1Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol1(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol1 = _strtol1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul1(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul1 = _strtoul1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq1(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq1 = _strtoq1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq1(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq1 = _strtouq1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll1(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll1 = _strtoll1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull1(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull1(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull1 = _strtoull1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a1(
-    int __n,
-  ) {
-    return _l64a1(
-      __n,
-    );
-  }
-
-  late final _l64a1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a1 =
-      _l64a1Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l1(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l1(
-      __s,
-    );
-  }
-
-  late final _a64l1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l1 =
-      _a64l1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select1(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select1(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select1 = _select1Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect1(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect1(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect1 = _pselect1Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random1() {
-    return _random1();
-  }
-
-  late final _random1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random1 = _random1Ptr.asFunction<int Function()>();
-
-  void srandom1(
-    int __seed,
-  ) {
-    return _srandom1(
-      __seed,
-    );
-  }
-
-  late final _srandom1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom1 = _srandom1Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate1(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate1(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate1 = _initstate1Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate1(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate1(
-      __statebuf,
-    );
-  }
-
-  late final _setstate1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate1 = _setstate1Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r1(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r1(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r1 = _random_r1Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r1(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r1(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r1 = _srandom_r1Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r1(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r1(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r1 = _initstate_r1Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r1(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r1(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r1 = _setstate_r1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand1() {
-    return _rand1();
-  }
-
-  late final _rand1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand1 = _rand1Ptr.asFunction<int Function()>();
-
-  void srand1(
-    int __seed,
-  ) {
-    return _srand1(
-      __seed,
-    );
-  }
-
-  late final _srand1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand1 = _srand1Ptr.asFunction<void Function(int)>();
-
-  int rand_r1(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r1(
-      __seed,
-    );
-  }
-
-  late final _rand_r1Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r1 =
-      _rand_r1Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand481() {
-    return _drand481();
-  }
-
-  late final _drand481Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand481 = _drand481Ptr.asFunction<double Function()>();
-
-  double erand481(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand481(
-      __xsubi,
-    );
-  }
-
-  late final _erand481Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand481 = _erand481Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand481() {
-    return _lrand481();
-  }
-
-  late final _lrand481Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand481 = _lrand481Ptr.asFunction<int Function()>();
-
-  int nrand481(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand481(
-      __xsubi,
-    );
-  }
-
-  late final _nrand481Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand481 =
-      _nrand481Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand481() {
-    return _mrand481();
-  }
-
-  late final _mrand481Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand481 = _mrand481Ptr.asFunction<int Function()>();
-
-  int jrand481(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand481(
-      __xsubi,
-    );
-  }
-
-  late final _jrand481Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand481 =
-      _jrand481Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand481(
-    int __seedval,
-  ) {
-    return _srand481(
-      __seedval,
-    );
-  }
-
-  late final _srand481Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand481 = _srand481Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed481(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed481(
-      __seed16v,
-    );
-  }
-
-  late final _seed481Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed481 = _seed481Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong481(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong481(
-      __param,
-    );
-  }
-
-  late final _lcong481Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong481 =
-      _lcong481Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r1(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r1(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r1 = _drand48_r1Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r1(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r1(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r1 = _erand48_r1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r1(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r1(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r1 = _lrand48_r1Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r1(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r1(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r1 = _nrand48_r1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r1(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r1(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r1 = _mrand48_r1Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r1(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r1(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r1 = _jrand48_r1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r1(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r1(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r1 = _srand48_r1Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r1(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r1(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r1 = _seed48_r1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r1(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r1(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r1 = _lcong48_r1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc1(
-    int __size,
-  ) {
-    return _malloc1(
-      __size,
-    );
-  }
-
-  late final _malloc1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc1 =
-      _malloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc1(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc1(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc1 =
-      _calloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc1(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc1(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc1 = _realloc1Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free1(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free1(
-      __ptr,
-    );
-  }
-
-  late final _free1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free1 =
-      _free1Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray2(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray2(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray2 = _reallocarray2Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray3(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray3(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray3 = _reallocarray3Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca1(
-    int __size,
-  ) {
-    return _alloca1(
-      __size,
-    );
-  }
-
-  late final _alloca1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca1 =
-      _alloca1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc1(
-    int __size,
-  ) {
-    return _valloc1(
-      __size,
-    );
-  }
-
-  late final _valloc1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc1 =
-      _valloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign1(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign1(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign1 = _posix_memalign1Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc1(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc1(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc1 =
-      _aligned_alloc1Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort1() {
-    return _abort1();
-  }
-
-  late final _abort1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort1 = _abort1Ptr.asFunction<void Function()>();
-
-  int atexit1(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit1(
-      __func,
-    );
-  }
-
-  late final _atexit1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit1 = _atexit1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit1(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit1(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit1Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit1 = _at_quick_exit1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit1(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit1(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit1 = _on_exit1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit1(
-    int __status,
-  ) {
-    return _exit1(
-      __status,
-    );
-  }
-
-  late final _exit1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit1 = _exit1Ptr.asFunction<void Function(int)>();
-
-  void quick_exit1(
-    int __status,
-  ) {
-    return _quick_exit1(
-      __status,
-    );
-  }
-
-  late final _quick_exit1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit1 = _quick_exit1Ptr.asFunction<void Function(int)>();
-
-  void _Exit1(
-    int __status,
-  ) {
-    return __Exit1(
-      __status,
-    );
-  }
-
-  late final __Exit1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit1 = __Exit1Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv1(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv1(
-      __name,
-    );
-  }
-
-  late final _getenv1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv1 = _getenv1Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv1(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv1(
-      __string,
-    );
-  }
-
-  late final _putenv1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv1 =
-      _putenv1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv1(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv1(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv1 = _setenv1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv1(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv1(
-      __name,
-    );
-  }
-
-  late final _unsetenv1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv1 =
-      _unsetenv1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv1() {
-    return _clearenv1();
-  }
-
-  late final _clearenv1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv1 = _clearenv1Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp1(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp1(
-      __template,
-    );
-  }
-
-  late final _mktemp1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp1 = _mktemp1Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp1(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp1(
-      __template,
-    );
-  }
-
-  late final _mkstemp1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp1 =
-      _mkstemp1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps1(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps1(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps1Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps1 =
-      _mkstemps1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp1(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp1(
-      __template,
-    );
-  }
-
-  late final _mkdtemp1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp1 = _mkdtemp1Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system1(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system1(
-      __command,
-    );
-  }
-
-  late final _system1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system1 =
-      _system1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath1(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath1(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath1 = _realpath1Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch1(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch1(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch1 = _bsearch1Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort1(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort1(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort1 = _qsort1Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs1(
-    int __x,
-  ) {
-    return _abs1(
-      __x,
-    );
-  }
-
-  late final _abs1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs1 = _abs1Ptr.asFunction<int Function(int)>();
-
-  int labs1(
-    int __x,
-  ) {
-    return _labs1(
-      __x,
-    );
-  }
-
-  late final _labs1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs1 = _labs1Ptr.asFunction<int Function(int)>();
-
-  int llabs1(
-    int __x,
-  ) {
-    return _llabs1(
-      __x,
-    );
-  }
-
-  late final _llabs1Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs1 = _llabs1Ptr.asFunction<int Function(int)>();
-
-  G_div_t div1(
-    int __numer,
-    int __denom,
-  ) {
-    return _div1(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div1Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div1 = _div1Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv1(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv1(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv1Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv1 = _ldiv1Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv1(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv1(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv1Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv1 = _lldiv1Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt1(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt1(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt1 = _ecvt1Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt1(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt1(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt1 = _fcvt1Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt1(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt1(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt1 = _gcvt1Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r1(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r1(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r1 = _ecvt_r1Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r1(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r1(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r1 = _fcvt_r1Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen1(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen1(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen1 =
-      _mblen1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc1(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc1(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc1 = _mbtowc1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb1(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb1(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb1 =
-      _wctomb1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs1(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs1(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs1 = _mbstowcs1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs1(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs1(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs1 = _wcstombs1Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch1(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch1(
-      __response,
-    );
-  }
-
-  late final _rpmatch1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch1 =
-      _rpmatch1Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt1(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt1(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt1 = _getsubopt1Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg1(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
+  void ffivec_string(
+    ffi.Pointer<G_FFIVec_String> cvec,
   ) {
-    return _getloadavg1(
-      __loadavg,
-      __nelem,
+    return _ffivec_string(
+      cvec,
     );
   }
 
-  late final _getloadavg1Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg1 =
-      _getloadavg1Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
+  late final _ffivec_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_FFIVec_String>)>>(
+      'ffivec_string');
+  late final _ffivec_string = _ffivec_stringPtr
+      .asFunction<void Function(ffi.Pointer<G_FFIVec_String>)>();
 
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
     ffi.Pointer<ffi.Char> file,
@@ -6700,1579 +5553,6 @@ class WarpDartBindings {
               ffi.Pointer<G_Tesseract>,
               ffi.Pointer<G_MpIpfsConfig>)>();
 
-  int __ctype_get_mb_cur_max2() {
-    return ___ctype_get_mb_cur_max2();
-  }
-
-  late final ___ctype_get_mb_cur_max2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max2 =
-      ___ctype_get_mb_cur_max2Ptr.asFunction<int Function()>();
-
-  double atof2(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof2(
-      __nptr,
-    );
-  }
-
-  late final _atof2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof2 =
-      _atof2Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi2(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi2(
-      __nptr,
-    );
-  }
-
-  late final _atoi2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi2 =
-      _atoi2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol2(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol2(
-      __nptr,
-    );
-  }
-
-  late final _atol2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol2 =
-      _atol2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll2(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll2(
-      __nptr,
-    );
-  }
-
-  late final _atoll2Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll2 =
-      _atoll2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod2(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod2 = _strtod2Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof2(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof2 = _strtof2Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol2(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol2 = _strtol2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul2(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul2 = _strtoul2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq2(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq2 = _strtoq2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq2(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq2 = _strtouq2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll2(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll2 = _strtoll2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull2(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull2(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull2 = _strtoull2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a2(
-    int __n,
-  ) {
-    return _l64a2(
-      __n,
-    );
-  }
-
-  late final _l64a2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a2 =
-      _l64a2Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l2(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l2(
-      __s,
-    );
-  }
-
-  late final _a64l2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l2 =
-      _a64l2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select2(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select2(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select2 = _select2Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect2(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect2(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect2 = _pselect2Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random2() {
-    return _random2();
-  }
-
-  late final _random2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random2 = _random2Ptr.asFunction<int Function()>();
-
-  void srandom2(
-    int __seed,
-  ) {
-    return _srandom2(
-      __seed,
-    );
-  }
-
-  late final _srandom2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom2 = _srandom2Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate2(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate2(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate2 = _initstate2Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate2(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate2(
-      __statebuf,
-    );
-  }
-
-  late final _setstate2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate2 = _setstate2Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r2(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r2(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r2 = _random_r2Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r2(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r2(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r2 = _srandom_r2Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r2(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r2(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r2 = _initstate_r2Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r2(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r2(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r2 = _setstate_r2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand2() {
-    return _rand2();
-  }
-
-  late final _rand2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand2 = _rand2Ptr.asFunction<int Function()>();
-
-  void srand2(
-    int __seed,
-  ) {
-    return _srand2(
-      __seed,
-    );
-  }
-
-  late final _srand2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand2 = _srand2Ptr.asFunction<void Function(int)>();
-
-  int rand_r2(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r2(
-      __seed,
-    );
-  }
-
-  late final _rand_r2Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r2 =
-      _rand_r2Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand482() {
-    return _drand482();
-  }
-
-  late final _drand482Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand482 = _drand482Ptr.asFunction<double Function()>();
-
-  double erand482(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand482(
-      __xsubi,
-    );
-  }
-
-  late final _erand482Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand482 = _erand482Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand482() {
-    return _lrand482();
-  }
-
-  late final _lrand482Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand482 = _lrand482Ptr.asFunction<int Function()>();
-
-  int nrand482(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand482(
-      __xsubi,
-    );
-  }
-
-  late final _nrand482Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand482 =
-      _nrand482Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand482() {
-    return _mrand482();
-  }
-
-  late final _mrand482Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand482 = _mrand482Ptr.asFunction<int Function()>();
-
-  int jrand482(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand482(
-      __xsubi,
-    );
-  }
-
-  late final _jrand482Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand482 =
-      _jrand482Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand482(
-    int __seedval,
-  ) {
-    return _srand482(
-      __seedval,
-    );
-  }
-
-  late final _srand482Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand482 = _srand482Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed482(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed482(
-      __seed16v,
-    );
-  }
-
-  late final _seed482Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed482 = _seed482Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong482(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong482(
-      __param,
-    );
-  }
-
-  late final _lcong482Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong482 =
-      _lcong482Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r2(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r2(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r2 = _drand48_r2Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r2(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r2(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r2 = _erand48_r2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r2(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r2(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r2 = _lrand48_r2Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r2(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r2(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r2 = _nrand48_r2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r2(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r2(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r2 = _mrand48_r2Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r2(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r2(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r2 = _jrand48_r2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r2(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r2(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r2 = _srand48_r2Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r2(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r2(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r2 = _seed48_r2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r2(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r2(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r2 = _lcong48_r2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc2(
-    int __size,
-  ) {
-    return _malloc2(
-      __size,
-    );
-  }
-
-  late final _malloc2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc2 =
-      _malloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc2(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc2(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc2 =
-      _calloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc2(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc2(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc2 = _realloc2Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free2(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free2(
-      __ptr,
-    );
-  }
-
-  late final _free2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free2 =
-      _free2Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray4(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray4(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray4 = _reallocarray4Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray5(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray5(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray5 = _reallocarray5Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca2(
-    int __size,
-  ) {
-    return _alloca2(
-      __size,
-    );
-  }
-
-  late final _alloca2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca2 =
-      _alloca2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc2(
-    int __size,
-  ) {
-    return _valloc2(
-      __size,
-    );
-  }
-
-  late final _valloc2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc2 =
-      _valloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign2(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign2(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign2 = _posix_memalign2Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc2(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc2(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc2 =
-      _aligned_alloc2Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort2() {
-    return _abort2();
-  }
-
-  late final _abort2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort2 = _abort2Ptr.asFunction<void Function()>();
-
-  int atexit2(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit2(
-      __func,
-    );
-  }
-
-  late final _atexit2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit2 = _atexit2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit2(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit2(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit2Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit2 = _at_quick_exit2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit2(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit2(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit2 = _on_exit2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit2(
-    int __status,
-  ) {
-    return _exit2(
-      __status,
-    );
-  }
-
-  late final _exit2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit2 = _exit2Ptr.asFunction<void Function(int)>();
-
-  void quick_exit2(
-    int __status,
-  ) {
-    return _quick_exit2(
-      __status,
-    );
-  }
-
-  late final _quick_exit2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit2 = _quick_exit2Ptr.asFunction<void Function(int)>();
-
-  void _Exit2(
-    int __status,
-  ) {
-    return __Exit2(
-      __status,
-    );
-  }
-
-  late final __Exit2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit2 = __Exit2Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv2(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv2(
-      __name,
-    );
-  }
-
-  late final _getenv2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv2 = _getenv2Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv2(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv2(
-      __string,
-    );
-  }
-
-  late final _putenv2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv2 =
-      _putenv2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv2(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv2(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv2 = _setenv2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv2(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv2(
-      __name,
-    );
-  }
-
-  late final _unsetenv2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv2 =
-      _unsetenv2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv2() {
-    return _clearenv2();
-  }
-
-  late final _clearenv2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv2 = _clearenv2Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp2(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp2(
-      __template,
-    );
-  }
-
-  late final _mktemp2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp2 = _mktemp2Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp2(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp2(
-      __template,
-    );
-  }
-
-  late final _mkstemp2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp2 =
-      _mkstemp2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps2(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps2(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps2Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps2 =
-      _mkstemps2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp2(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp2(
-      __template,
-    );
-  }
-
-  late final _mkdtemp2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp2 = _mkdtemp2Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system2(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system2(
-      __command,
-    );
-  }
-
-  late final _system2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system2 =
-      _system2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath2(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath2(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath2 = _realpath2Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch2(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch2(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch2 = _bsearch2Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort2(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort2(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort2 = _qsort2Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs2(
-    int __x,
-  ) {
-    return _abs2(
-      __x,
-    );
-  }
-
-  late final _abs2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs2 = _abs2Ptr.asFunction<int Function(int)>();
-
-  int labs2(
-    int __x,
-  ) {
-    return _labs2(
-      __x,
-    );
-  }
-
-  late final _labs2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs2 = _labs2Ptr.asFunction<int Function(int)>();
-
-  int llabs2(
-    int __x,
-  ) {
-    return _llabs2(
-      __x,
-    );
-  }
-
-  late final _llabs2Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs2 = _llabs2Ptr.asFunction<int Function(int)>();
-
-  G_div_t div2(
-    int __numer,
-    int __denom,
-  ) {
-    return _div2(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div2Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div2 = _div2Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv2(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv2(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv2Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv2 = _ldiv2Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv2(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv2(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv2Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv2 = _lldiv2Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt2(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt2(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt2 = _ecvt2Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt2(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt2(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt2 = _fcvt2Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt2(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt2(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt2 = _gcvt2Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r2(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r2(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r2 = _ecvt_r2Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r2(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r2(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r2 = _fcvt_r2Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen2(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen2(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen2 =
-      _mblen2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc2(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc2(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc2 = _mbtowc2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb2(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb2(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb2 =
-      _wctomb2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs2(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs2(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs2 = _mbstowcs2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs2(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs2(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs2 = _wcstombs2Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch2(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch2(
-      __response,
-    );
-  }
-
-  late final _rpmatch2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch2 =
-      _rpmatch2Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt2(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt2(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt2 = _getsubopt2Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg2(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
-  ) {
-    return _getloadavg2(
-      __loadavg,
-      __nelem,
-    );
-  }
-
-  late final _getloadavg2Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg2 =
-      _getloadavg2Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
-
   G_FFIResult_RgIpfsConfig rg_ipfs_config_from_file(
     ffi.Pointer<ffi.Char> file,
   ) {
@@ -8388,1579 +5668,6 @@ class WarpDartBindings {
               ffi.Pointer<G_PocketDimensionAdapter>,
               ffi.Pointer<G_RgIpfsConfig>)>();
 
-  int __ctype_get_mb_cur_max3() {
-    return ___ctype_get_mb_cur_max3();
-  }
-
-  late final ___ctype_get_mb_cur_max3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max3 =
-      ___ctype_get_mb_cur_max3Ptr.asFunction<int Function()>();
-
-  double atof3(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof3(
-      __nptr,
-    );
-  }
-
-  late final _atof3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof3 =
-      _atof3Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi3(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi3(
-      __nptr,
-    );
-  }
-
-  late final _atoi3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi3 =
-      _atoi3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol3(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol3(
-      __nptr,
-    );
-  }
-
-  late final _atol3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol3 =
-      _atol3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll3(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll3(
-      __nptr,
-    );
-  }
-
-  late final _atoll3Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll3 =
-      _atoll3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod3(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod3 = _strtod3Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof3(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof3 = _strtof3Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol3(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol3 = _strtol3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul3(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul3 = _strtoul3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq3(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq3 = _strtoq3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq3(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq3 = _strtouq3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll3(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll3 = _strtoll3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull3(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull3(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull3 = _strtoull3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a3(
-    int __n,
-  ) {
-    return _l64a3(
-      __n,
-    );
-  }
-
-  late final _l64a3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a3 =
-      _l64a3Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l3(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l3(
-      __s,
-    );
-  }
-
-  late final _a64l3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l3 =
-      _a64l3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select3(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select3(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select3 = _select3Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect3(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect3(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect3 = _pselect3Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random3() {
-    return _random3();
-  }
-
-  late final _random3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random3 = _random3Ptr.asFunction<int Function()>();
-
-  void srandom3(
-    int __seed,
-  ) {
-    return _srandom3(
-      __seed,
-    );
-  }
-
-  late final _srandom3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom3 = _srandom3Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate3(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate3(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate3 = _initstate3Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate3(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate3(
-      __statebuf,
-    );
-  }
-
-  late final _setstate3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate3 = _setstate3Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r3(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r3(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r3 = _random_r3Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r3(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r3(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r3 = _srandom_r3Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r3(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r3(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r3 = _initstate_r3Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r3(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r3(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r3 = _setstate_r3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand3() {
-    return _rand3();
-  }
-
-  late final _rand3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand3 = _rand3Ptr.asFunction<int Function()>();
-
-  void srand3(
-    int __seed,
-  ) {
-    return _srand3(
-      __seed,
-    );
-  }
-
-  late final _srand3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand3 = _srand3Ptr.asFunction<void Function(int)>();
-
-  int rand_r3(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r3(
-      __seed,
-    );
-  }
-
-  late final _rand_r3Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r3 =
-      _rand_r3Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand483() {
-    return _drand483();
-  }
-
-  late final _drand483Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand483 = _drand483Ptr.asFunction<double Function()>();
-
-  double erand483(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand483(
-      __xsubi,
-    );
-  }
-
-  late final _erand483Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand483 = _erand483Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand483() {
-    return _lrand483();
-  }
-
-  late final _lrand483Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand483 = _lrand483Ptr.asFunction<int Function()>();
-
-  int nrand483(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand483(
-      __xsubi,
-    );
-  }
-
-  late final _nrand483Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand483 =
-      _nrand483Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand483() {
-    return _mrand483();
-  }
-
-  late final _mrand483Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand483 = _mrand483Ptr.asFunction<int Function()>();
-
-  int jrand483(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand483(
-      __xsubi,
-    );
-  }
-
-  late final _jrand483Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand483 =
-      _jrand483Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand483(
-    int __seedval,
-  ) {
-    return _srand483(
-      __seedval,
-    );
-  }
-
-  late final _srand483Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand483 = _srand483Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed483(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed483(
-      __seed16v,
-    );
-  }
-
-  late final _seed483Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed483 = _seed483Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong483(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong483(
-      __param,
-    );
-  }
-
-  late final _lcong483Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong483 =
-      _lcong483Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r3(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r3(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r3 = _drand48_r3Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r3(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r3(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r3 = _erand48_r3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r3(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r3(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r3 = _lrand48_r3Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r3(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r3(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r3 = _nrand48_r3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r3(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r3(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r3 = _mrand48_r3Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r3(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r3(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r3 = _jrand48_r3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r3(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r3(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r3 = _srand48_r3Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r3(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r3(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r3 = _seed48_r3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r3(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r3(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r3 = _lcong48_r3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc3(
-    int __size,
-  ) {
-    return _malloc3(
-      __size,
-    );
-  }
-
-  late final _malloc3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc3 =
-      _malloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc3(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc3(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc3 =
-      _calloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc3(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc3(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc3 = _realloc3Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free3(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free3(
-      __ptr,
-    );
-  }
-
-  late final _free3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free3 =
-      _free3Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray6(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray6(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray6 = _reallocarray6Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray7(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray7(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray7 = _reallocarray7Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca3(
-    int __size,
-  ) {
-    return _alloca3(
-      __size,
-    );
-  }
-
-  late final _alloca3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca3 =
-      _alloca3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc3(
-    int __size,
-  ) {
-    return _valloc3(
-      __size,
-    );
-  }
-
-  late final _valloc3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc3 =
-      _valloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign3(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign3(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign3 = _posix_memalign3Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc3(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc3(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc3 =
-      _aligned_alloc3Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort3() {
-    return _abort3();
-  }
-
-  late final _abort3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort3 = _abort3Ptr.asFunction<void Function()>();
-
-  int atexit3(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit3(
-      __func,
-    );
-  }
-
-  late final _atexit3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit3 = _atexit3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit3(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit3(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit3Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit3 = _at_quick_exit3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit3(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit3(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit3 = _on_exit3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit3(
-    int __status,
-  ) {
-    return _exit3(
-      __status,
-    );
-  }
-
-  late final _exit3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit3 = _exit3Ptr.asFunction<void Function(int)>();
-
-  void quick_exit3(
-    int __status,
-  ) {
-    return _quick_exit3(
-      __status,
-    );
-  }
-
-  late final _quick_exit3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit3 = _quick_exit3Ptr.asFunction<void Function(int)>();
-
-  void _Exit3(
-    int __status,
-  ) {
-    return __Exit3(
-      __status,
-    );
-  }
-
-  late final __Exit3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit3 = __Exit3Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv3(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv3(
-      __name,
-    );
-  }
-
-  late final _getenv3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv3 = _getenv3Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv3(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv3(
-      __string,
-    );
-  }
-
-  late final _putenv3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv3 =
-      _putenv3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv3(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv3(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv3 = _setenv3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv3(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv3(
-      __name,
-    );
-  }
-
-  late final _unsetenv3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv3 =
-      _unsetenv3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv3() {
-    return _clearenv3();
-  }
-
-  late final _clearenv3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv3 = _clearenv3Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp3(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp3(
-      __template,
-    );
-  }
-
-  late final _mktemp3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp3 = _mktemp3Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp3(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp3(
-      __template,
-    );
-  }
-
-  late final _mkstemp3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp3 =
-      _mkstemp3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps3(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps3(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps3Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps3 =
-      _mkstemps3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp3(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp3(
-      __template,
-    );
-  }
-
-  late final _mkdtemp3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp3 = _mkdtemp3Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system3(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system3(
-      __command,
-    );
-  }
-
-  late final _system3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system3 =
-      _system3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath3(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath3(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath3 = _realpath3Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch3(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch3(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch3 = _bsearch3Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort3(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort3(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort3 = _qsort3Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs3(
-    int __x,
-  ) {
-    return _abs3(
-      __x,
-    );
-  }
-
-  late final _abs3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs3 = _abs3Ptr.asFunction<int Function(int)>();
-
-  int labs3(
-    int __x,
-  ) {
-    return _labs3(
-      __x,
-    );
-  }
-
-  late final _labs3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs3 = _labs3Ptr.asFunction<int Function(int)>();
-
-  int llabs3(
-    int __x,
-  ) {
-    return _llabs3(
-      __x,
-    );
-  }
-
-  late final _llabs3Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs3 = _llabs3Ptr.asFunction<int Function(int)>();
-
-  G_div_t div3(
-    int __numer,
-    int __denom,
-  ) {
-    return _div3(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div3Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div3 = _div3Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv3(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv3(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv3Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv3 = _ldiv3Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv3(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv3(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv3Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv3 = _lldiv3Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt3(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt3(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt3 = _ecvt3Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt3(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt3(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt3 = _fcvt3Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt3(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt3(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt3 = _gcvt3Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r3(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r3(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r3 = _ecvt_r3Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r3(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r3(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r3 = _fcvt_r3Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen3(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen3(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen3 =
-      _mblen3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc3(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc3(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc3 = _mbtowc3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb3(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb3(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb3 =
-      _wctomb3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs3(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs3(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs3 = _mbstowcs3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs3(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs3(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs3 = _wcstombs3Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch3(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch3(
-      __response,
-    );
-  }
-
-  late final _rpmatch3Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch3 =
-      _rpmatch3Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt3(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt3(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt3 = _getsubopt3Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg3(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
-  ) {
-    return _getloadavg3(
-      __loadavg,
-      __nelem,
-    );
-  }
-
-  late final _getloadavg3Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg3 =
-      _getloadavg3Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
-
   ffi.Pointer<ffi.Int> pocketdimension_memory_new() {
     return _pocketdimension_memory_new();
   }
@@ -9971,1579 +5678,6 @@ class WarpDartBindings {
   late final _pocketdimension_memory_new = _pocketdimension_memory_newPtr
       .asFunction<ffi.Pointer<ffi.Int> Function()>();
 
-  int __ctype_get_mb_cur_max4() {
-    return ___ctype_get_mb_cur_max4();
-  }
-
-  late final ___ctype_get_mb_cur_max4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max4 =
-      ___ctype_get_mb_cur_max4Ptr.asFunction<int Function()>();
-
-  double atof4(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof4(
-      __nptr,
-    );
-  }
-
-  late final _atof4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof4 =
-      _atof4Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi4(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi4(
-      __nptr,
-    );
-  }
-
-  late final _atoi4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi4 =
-      _atoi4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol4(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol4(
-      __nptr,
-    );
-  }
-
-  late final _atol4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol4 =
-      _atol4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll4(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll4(
-      __nptr,
-    );
-  }
-
-  late final _atoll4Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll4 =
-      _atoll4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod4(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod4 = _strtod4Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof4(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof4 = _strtof4Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol4(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol4 = _strtol4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul4(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul4 = _strtoul4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq4(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq4 = _strtoq4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq4(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq4 = _strtouq4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll4(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll4 = _strtoll4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull4(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull4(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull4 = _strtoull4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a4(
-    int __n,
-  ) {
-    return _l64a4(
-      __n,
-    );
-  }
-
-  late final _l64a4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a4 =
-      _l64a4Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l4(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l4(
-      __s,
-    );
-  }
-
-  late final _a64l4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l4 =
-      _a64l4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select4(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select4(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select4 = _select4Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect4(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect4(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect4 = _pselect4Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random4() {
-    return _random4();
-  }
-
-  late final _random4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random4 = _random4Ptr.asFunction<int Function()>();
-
-  void srandom4(
-    int __seed,
-  ) {
-    return _srandom4(
-      __seed,
-    );
-  }
-
-  late final _srandom4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom4 = _srandom4Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate4(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate4(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate4 = _initstate4Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate4(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate4(
-      __statebuf,
-    );
-  }
-
-  late final _setstate4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate4 = _setstate4Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r4(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r4(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r4 = _random_r4Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r4(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r4(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r4 = _srandom_r4Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r4(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r4(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r4 = _initstate_r4Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r4(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r4(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r4 = _setstate_r4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand4() {
-    return _rand4();
-  }
-
-  late final _rand4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand4 = _rand4Ptr.asFunction<int Function()>();
-
-  void srand4(
-    int __seed,
-  ) {
-    return _srand4(
-      __seed,
-    );
-  }
-
-  late final _srand4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand4 = _srand4Ptr.asFunction<void Function(int)>();
-
-  int rand_r4(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r4(
-      __seed,
-    );
-  }
-
-  late final _rand_r4Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r4 =
-      _rand_r4Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand484() {
-    return _drand484();
-  }
-
-  late final _drand484Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand484 = _drand484Ptr.asFunction<double Function()>();
-
-  double erand484(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand484(
-      __xsubi,
-    );
-  }
-
-  late final _erand484Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand484 = _erand484Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand484() {
-    return _lrand484();
-  }
-
-  late final _lrand484Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand484 = _lrand484Ptr.asFunction<int Function()>();
-
-  int nrand484(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand484(
-      __xsubi,
-    );
-  }
-
-  late final _nrand484Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand484 =
-      _nrand484Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand484() {
-    return _mrand484();
-  }
-
-  late final _mrand484Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand484 = _mrand484Ptr.asFunction<int Function()>();
-
-  int jrand484(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand484(
-      __xsubi,
-    );
-  }
-
-  late final _jrand484Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand484 =
-      _jrand484Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand484(
-    int __seedval,
-  ) {
-    return _srand484(
-      __seedval,
-    );
-  }
-
-  late final _srand484Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand484 = _srand484Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed484(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed484(
-      __seed16v,
-    );
-  }
-
-  late final _seed484Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed484 = _seed484Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong484(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong484(
-      __param,
-    );
-  }
-
-  late final _lcong484Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong484 =
-      _lcong484Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r4(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r4(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r4 = _drand48_r4Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r4(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r4(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r4 = _erand48_r4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r4(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r4(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r4 = _lrand48_r4Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r4(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r4(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r4 = _nrand48_r4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r4(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r4(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r4 = _mrand48_r4Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r4(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r4(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r4 = _jrand48_r4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r4(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r4(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r4 = _srand48_r4Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r4(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r4(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r4 = _seed48_r4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r4(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r4(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r4 = _lcong48_r4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc4(
-    int __size,
-  ) {
-    return _malloc4(
-      __size,
-    );
-  }
-
-  late final _malloc4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc4 =
-      _malloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc4(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc4(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc4 =
-      _calloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc4(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc4(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc4 = _realloc4Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free4(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free4(
-      __ptr,
-    );
-  }
-
-  late final _free4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free4 =
-      _free4Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray8(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray8(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray8Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray8 = _reallocarray8Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray9(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray9(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray9Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray9 = _reallocarray9Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca4(
-    int __size,
-  ) {
-    return _alloca4(
-      __size,
-    );
-  }
-
-  late final _alloca4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca4 =
-      _alloca4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc4(
-    int __size,
-  ) {
-    return _valloc4(
-      __size,
-    );
-  }
-
-  late final _valloc4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc4 =
-      _valloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign4(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign4(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign4 = _posix_memalign4Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc4(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc4(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc4 =
-      _aligned_alloc4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort4() {
-    return _abort4();
-  }
-
-  late final _abort4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort4 = _abort4Ptr.asFunction<void Function()>();
-
-  int atexit4(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit4(
-      __func,
-    );
-  }
-
-  late final _atexit4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit4 = _atexit4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit4(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit4(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit4Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit4 = _at_quick_exit4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit4(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit4(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit4 = _on_exit4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit4(
-    int __status,
-  ) {
-    return _exit4(
-      __status,
-    );
-  }
-
-  late final _exit4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit4 = _exit4Ptr.asFunction<void Function(int)>();
-
-  void quick_exit4(
-    int __status,
-  ) {
-    return _quick_exit4(
-      __status,
-    );
-  }
-
-  late final _quick_exit4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit4 = _quick_exit4Ptr.asFunction<void Function(int)>();
-
-  void _Exit4(
-    int __status,
-  ) {
-    return __Exit4(
-      __status,
-    );
-  }
-
-  late final __Exit4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit4 = __Exit4Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv4(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv4(
-      __name,
-    );
-  }
-
-  late final _getenv4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv4 = _getenv4Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv4(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv4(
-      __string,
-    );
-  }
-
-  late final _putenv4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv4 =
-      _putenv4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv4(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv4(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv4 = _setenv4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv4(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv4(
-      __name,
-    );
-  }
-
-  late final _unsetenv4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv4 =
-      _unsetenv4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv4() {
-    return _clearenv4();
-  }
-
-  late final _clearenv4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv4 = _clearenv4Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp4(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp4(
-      __template,
-    );
-  }
-
-  late final _mktemp4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp4 = _mktemp4Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp4(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp4(
-      __template,
-    );
-  }
-
-  late final _mkstemp4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp4 =
-      _mkstemp4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps4(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps4(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps4Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps4 =
-      _mkstemps4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp4(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp4(
-      __template,
-    );
-  }
-
-  late final _mkdtemp4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp4 = _mkdtemp4Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system4(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system4(
-      __command,
-    );
-  }
-
-  late final _system4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system4 =
-      _system4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath4(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath4(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath4 = _realpath4Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch4(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch4(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch4 = _bsearch4Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort4(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort4(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort4 = _qsort4Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs4(
-    int __x,
-  ) {
-    return _abs4(
-      __x,
-    );
-  }
-
-  late final _abs4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs4 = _abs4Ptr.asFunction<int Function(int)>();
-
-  int labs4(
-    int __x,
-  ) {
-    return _labs4(
-      __x,
-    );
-  }
-
-  late final _labs4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs4 = _labs4Ptr.asFunction<int Function(int)>();
-
-  int llabs4(
-    int __x,
-  ) {
-    return _llabs4(
-      __x,
-    );
-  }
-
-  late final _llabs4Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs4 = _llabs4Ptr.asFunction<int Function(int)>();
-
-  G_div_t div4(
-    int __numer,
-    int __denom,
-  ) {
-    return _div4(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div4Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div4 = _div4Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv4(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv4(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv4Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv4 = _ldiv4Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv4(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv4(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv4Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv4 = _lldiv4Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt4(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt4(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt4 = _ecvt4Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt4(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt4(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt4 = _fcvt4Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt4(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt4(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt4 = _gcvt4Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r4(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r4(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r4 = _ecvt_r4Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r4(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r4(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r4 = _fcvt_r4Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen4(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen4(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen4 =
-      _mblen4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc4(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc4(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc4 = _mbtowc4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb4(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb4(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb4 =
-      _wctomb4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs4(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs4(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs4 = _mbstowcs4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs4(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs4(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs4 = _wcstombs4Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch4(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch4(
-      __response,
-    );
-  }
-
-  late final _rpmatch4Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch4 =
-      _rpmatch4Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt4(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt4(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt4 = _getsubopt4Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg4(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
-  ) {
-    return _getloadavg4(
-      __loadavg,
-      __nelem,
-    );
-  }
-
-  late final _getloadavg4Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg4 =
-      _getloadavg4Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
-
   ffi.Pointer<ffi.Int> pocketdimension_stretto_new() {
     return _pocketdimension_stretto_new();
   }
@@ -11553,1579 +5687,6 @@ class WarpDartBindings {
           'pocketdimension_stretto_new');
   late final _pocketdimension_stretto_new = _pocketdimension_stretto_newPtr
       .asFunction<ffi.Pointer<ffi.Int> Function()>();
-
-  int __ctype_get_mb_cur_max5() {
-    return ___ctype_get_mb_cur_max5();
-  }
-
-  late final ___ctype_get_mb_cur_max5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max5 =
-      ___ctype_get_mb_cur_max5Ptr.asFunction<int Function()>();
-
-  double atof5(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof5(
-      __nptr,
-    );
-  }
-
-  late final _atof5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof5 =
-      _atof5Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi5(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi5(
-      __nptr,
-    );
-  }
-
-  late final _atoi5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi5 =
-      _atoi5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol5(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol5(
-      __nptr,
-    );
-  }
-
-  late final _atol5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol5 =
-      _atol5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll5(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll5(
-      __nptr,
-    );
-  }
-
-  late final _atoll5Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll5 =
-      _atoll5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod5(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod5 = _strtod5Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof5(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof5 = _strtof5Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol5(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol5 = _strtol5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul5(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul5 = _strtoul5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq5(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq5 = _strtoq5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq5(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq5 = _strtouq5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll5(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll5 = _strtoll5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull5(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull5(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull5 = _strtoull5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a5(
-    int __n,
-  ) {
-    return _l64a5(
-      __n,
-    );
-  }
-
-  late final _l64a5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a5 =
-      _l64a5Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l5(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l5(
-      __s,
-    );
-  }
-
-  late final _a64l5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l5 =
-      _a64l5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select5(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select5(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select5 = _select5Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect5(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect5(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect5 = _pselect5Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random5() {
-    return _random5();
-  }
-
-  late final _random5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random5 = _random5Ptr.asFunction<int Function()>();
-
-  void srandom5(
-    int __seed,
-  ) {
-    return _srandom5(
-      __seed,
-    );
-  }
-
-  late final _srandom5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom5 = _srandom5Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate5(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate5(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate5 = _initstate5Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate5(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate5(
-      __statebuf,
-    );
-  }
-
-  late final _setstate5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate5 = _setstate5Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r5(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r5(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r5 = _random_r5Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r5(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r5(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r5 = _srandom_r5Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r5(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r5(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r5 = _initstate_r5Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r5(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r5(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r5 = _setstate_r5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand5() {
-    return _rand5();
-  }
-
-  late final _rand5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand5 = _rand5Ptr.asFunction<int Function()>();
-
-  void srand5(
-    int __seed,
-  ) {
-    return _srand5(
-      __seed,
-    );
-  }
-
-  late final _srand5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand5 = _srand5Ptr.asFunction<void Function(int)>();
-
-  int rand_r5(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r5(
-      __seed,
-    );
-  }
-
-  late final _rand_r5Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r5 =
-      _rand_r5Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand485() {
-    return _drand485();
-  }
-
-  late final _drand485Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand485 = _drand485Ptr.asFunction<double Function()>();
-
-  double erand485(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand485(
-      __xsubi,
-    );
-  }
-
-  late final _erand485Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand485 = _erand485Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand485() {
-    return _lrand485();
-  }
-
-  late final _lrand485Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand485 = _lrand485Ptr.asFunction<int Function()>();
-
-  int nrand485(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand485(
-      __xsubi,
-    );
-  }
-
-  late final _nrand485Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand485 =
-      _nrand485Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand485() {
-    return _mrand485();
-  }
-
-  late final _mrand485Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand485 = _mrand485Ptr.asFunction<int Function()>();
-
-  int jrand485(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand485(
-      __xsubi,
-    );
-  }
-
-  late final _jrand485Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand485 =
-      _jrand485Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand485(
-    int __seedval,
-  ) {
-    return _srand485(
-      __seedval,
-    );
-  }
-
-  late final _srand485Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand485 = _srand485Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed485(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed485(
-      __seed16v,
-    );
-  }
-
-  late final _seed485Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed485 = _seed485Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong485(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong485(
-      __param,
-    );
-  }
-
-  late final _lcong485Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong485 =
-      _lcong485Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r5(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r5(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r5 = _drand48_r5Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r5(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r5(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r5 = _erand48_r5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r5(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r5(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r5 = _lrand48_r5Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r5(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r5(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r5 = _nrand48_r5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r5(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r5(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r5 = _mrand48_r5Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r5(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r5(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r5 = _jrand48_r5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r5(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r5(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r5 = _srand48_r5Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r5(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r5(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r5 = _seed48_r5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r5(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r5(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r5 = _lcong48_r5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc5(
-    int __size,
-  ) {
-    return _malloc5(
-      __size,
-    );
-  }
-
-  late final _malloc5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc5 =
-      _malloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc5(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc5(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc5 =
-      _calloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc5(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc5(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc5 = _realloc5Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free5(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free5(
-      __ptr,
-    );
-  }
-
-  late final _free5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free5 =
-      _free5Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray10(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray10(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray10Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray10 = _reallocarray10Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray11(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray11(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray11Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray11 = _reallocarray11Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca5(
-    int __size,
-  ) {
-    return _alloca5(
-      __size,
-    );
-  }
-
-  late final _alloca5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca5 =
-      _alloca5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc5(
-    int __size,
-  ) {
-    return _valloc5(
-      __size,
-    );
-  }
-
-  late final _valloc5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc5 =
-      _valloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign5(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign5(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign5 = _posix_memalign5Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc5(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc5(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc5 =
-      _aligned_alloc5Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort5() {
-    return _abort5();
-  }
-
-  late final _abort5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort5 = _abort5Ptr.asFunction<void Function()>();
-
-  int atexit5(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit5(
-      __func,
-    );
-  }
-
-  late final _atexit5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit5 = _atexit5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit5(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit5(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit5Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit5 = _at_quick_exit5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit5(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit5(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit5 = _on_exit5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit5(
-    int __status,
-  ) {
-    return _exit5(
-      __status,
-    );
-  }
-
-  late final _exit5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit5 = _exit5Ptr.asFunction<void Function(int)>();
-
-  void quick_exit5(
-    int __status,
-  ) {
-    return _quick_exit5(
-      __status,
-    );
-  }
-
-  late final _quick_exit5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit5 = _quick_exit5Ptr.asFunction<void Function(int)>();
-
-  void _Exit5(
-    int __status,
-  ) {
-    return __Exit5(
-      __status,
-    );
-  }
-
-  late final __Exit5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit5 = __Exit5Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv5(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv5(
-      __name,
-    );
-  }
-
-  late final _getenv5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv5 = _getenv5Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv5(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv5(
-      __string,
-    );
-  }
-
-  late final _putenv5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv5 =
-      _putenv5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv5(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv5(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv5 = _setenv5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv5(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv5(
-      __name,
-    );
-  }
-
-  late final _unsetenv5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv5 =
-      _unsetenv5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv5() {
-    return _clearenv5();
-  }
-
-  late final _clearenv5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv5 = _clearenv5Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp5(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp5(
-      __template,
-    );
-  }
-
-  late final _mktemp5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp5 = _mktemp5Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp5(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp5(
-      __template,
-    );
-  }
-
-  late final _mkstemp5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp5 =
-      _mkstemp5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps5(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps5(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps5Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps5 =
-      _mkstemps5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp5(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp5(
-      __template,
-    );
-  }
-
-  late final _mkdtemp5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp5 = _mkdtemp5Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system5(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system5(
-      __command,
-    );
-  }
-
-  late final _system5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system5 =
-      _system5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath5(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath5(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath5 = _realpath5Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch5(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch5(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch5 = _bsearch5Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort5(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort5(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort5 = _qsort5Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs5(
-    int __x,
-  ) {
-    return _abs5(
-      __x,
-    );
-  }
-
-  late final _abs5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs5 = _abs5Ptr.asFunction<int Function(int)>();
-
-  int labs5(
-    int __x,
-  ) {
-    return _labs5(
-      __x,
-    );
-  }
-
-  late final _labs5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs5 = _labs5Ptr.asFunction<int Function(int)>();
-
-  int llabs5(
-    int __x,
-  ) {
-    return _llabs5(
-      __x,
-    );
-  }
-
-  late final _llabs5Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs5 = _llabs5Ptr.asFunction<int Function(int)>();
-
-  G_div_t div5(
-    int __numer,
-    int __denom,
-  ) {
-    return _div5(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div5Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div5 = _div5Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv5(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv5(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv5Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv5 = _ldiv5Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv5(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv5(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv5Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv5 = _lldiv5Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt5(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt5(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt5 = _ecvt5Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt5(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt5(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt5 = _fcvt5Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt5(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt5(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt5 = _gcvt5Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r5(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r5(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r5 = _ecvt_r5Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r5(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r5(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r5 = _fcvt_r5Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen5(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen5(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen5 =
-      _mblen5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc5(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc5(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc5 = _mbtowc5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb5(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb5(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb5 =
-      _wctomb5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs5(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs5(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs5 = _mbstowcs5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs5(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs5(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs5 = _wcstombs5Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch5(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch5(
-      __response,
-    );
-  }
-
-  late final _rpmatch5Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch5 =
-      _rpmatch5Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt5(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt5(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt5 = _getsubopt5Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg5(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
-  ) {
-    return _getloadavg5(
-      __loadavg,
-      __nelem,
-    );
-  }
-
-  late final _getloadavg5Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg5 =
-      _getloadavg5Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
 
   G_FFIResult_PocketDimensionAdapter pocket_dimension_flatfile_new(
     ffi.Pointer<ffi.Char> path,
@@ -13145,1579 +5706,6 @@ class WarpDartBindings {
       _pocket_dimension_flatfile_newPtr.asFunction<
           G_FFIResult_PocketDimensionAdapter Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int __ctype_get_mb_cur_max6() {
-    return ___ctype_get_mb_cur_max6();
-  }
-
-  late final ___ctype_get_mb_cur_max6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max6 =
-      ___ctype_get_mb_cur_max6Ptr.asFunction<int Function()>();
-
-  double atof6(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof6(
-      __nptr,
-    );
-  }
-
-  late final _atof6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof6 =
-      _atof6Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi6(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi6(
-      __nptr,
-    );
-  }
-
-  late final _atoi6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi6 =
-      _atoi6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol6(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol6(
-      __nptr,
-    );
-  }
-
-  late final _atol6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol6 =
-      _atol6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll6(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll6(
-      __nptr,
-    );
-  }
-
-  late final _atoll6Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll6 =
-      _atoll6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod6(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod6 = _strtod6Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof6(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof6 = _strtof6Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol6(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol6 = _strtol6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul6(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul6 = _strtoul6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq6(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq6 = _strtoq6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq6(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq6 = _strtouq6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll6(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll6 = _strtoll6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull6(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull6(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull6 = _strtoull6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a6(
-    int __n,
-  ) {
-    return _l64a6(
-      __n,
-    );
-  }
-
-  late final _l64a6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a6 =
-      _l64a6Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l6(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l6(
-      __s,
-    );
-  }
-
-  late final _a64l6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l6 =
-      _a64l6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select6(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select6(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select6 = _select6Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect6(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect6(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect6 = _pselect6Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random6() {
-    return _random6();
-  }
-
-  late final _random6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random6 = _random6Ptr.asFunction<int Function()>();
-
-  void srandom6(
-    int __seed,
-  ) {
-    return _srandom6(
-      __seed,
-    );
-  }
-
-  late final _srandom6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom6 = _srandom6Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate6(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate6(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate6 = _initstate6Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate6(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate6(
-      __statebuf,
-    );
-  }
-
-  late final _setstate6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate6 = _setstate6Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r6(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r6(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r6 = _random_r6Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r6(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r6(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r6 = _srandom_r6Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r6(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r6(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r6 = _initstate_r6Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r6(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r6(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r6 = _setstate_r6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand6() {
-    return _rand6();
-  }
-
-  late final _rand6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand6 = _rand6Ptr.asFunction<int Function()>();
-
-  void srand6(
-    int __seed,
-  ) {
-    return _srand6(
-      __seed,
-    );
-  }
-
-  late final _srand6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand6 = _srand6Ptr.asFunction<void Function(int)>();
-
-  int rand_r6(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r6(
-      __seed,
-    );
-  }
-
-  late final _rand_r6Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r6 =
-      _rand_r6Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand486() {
-    return _drand486();
-  }
-
-  late final _drand486Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand486 = _drand486Ptr.asFunction<double Function()>();
-
-  double erand486(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand486(
-      __xsubi,
-    );
-  }
-
-  late final _erand486Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand486 = _erand486Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand486() {
-    return _lrand486();
-  }
-
-  late final _lrand486Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand486 = _lrand486Ptr.asFunction<int Function()>();
-
-  int nrand486(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand486(
-      __xsubi,
-    );
-  }
-
-  late final _nrand486Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand486 =
-      _nrand486Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand486() {
-    return _mrand486();
-  }
-
-  late final _mrand486Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand486 = _mrand486Ptr.asFunction<int Function()>();
-
-  int jrand486(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand486(
-      __xsubi,
-    );
-  }
-
-  late final _jrand486Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand486 =
-      _jrand486Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand486(
-    int __seedval,
-  ) {
-    return _srand486(
-      __seedval,
-    );
-  }
-
-  late final _srand486Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand486 = _srand486Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed486(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed486(
-      __seed16v,
-    );
-  }
-
-  late final _seed486Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed486 = _seed486Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong486(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong486(
-      __param,
-    );
-  }
-
-  late final _lcong486Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong486 =
-      _lcong486Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r6(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r6(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r6 = _drand48_r6Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r6(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r6(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r6 = _erand48_r6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r6(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r6(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r6 = _lrand48_r6Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r6(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r6(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r6 = _nrand48_r6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r6(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r6(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r6 = _mrand48_r6Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r6(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r6(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r6 = _jrand48_r6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r6(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r6(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r6 = _srand48_r6Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r6(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r6(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r6 = _seed48_r6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r6(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r6(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r6 = _lcong48_r6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc6(
-    int __size,
-  ) {
-    return _malloc6(
-      __size,
-    );
-  }
-
-  late final _malloc6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc6 =
-      _malloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc6(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc6(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc6 =
-      _calloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc6(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc6(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc6 = _realloc6Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free6(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free6(
-      __ptr,
-    );
-  }
-
-  late final _free6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free6 =
-      _free6Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray12(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray12(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray12Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray12 = _reallocarray12Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray13(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray13(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray13Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray13 = _reallocarray13Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca6(
-    int __size,
-  ) {
-    return _alloca6(
-      __size,
-    );
-  }
-
-  late final _alloca6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca6 =
-      _alloca6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc6(
-    int __size,
-  ) {
-    return _valloc6(
-      __size,
-    );
-  }
-
-  late final _valloc6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc6 =
-      _valloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign6(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign6(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign6 = _posix_memalign6Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc6(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc6(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc6 =
-      _aligned_alloc6Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort6() {
-    return _abort6();
-  }
-
-  late final _abort6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort6 = _abort6Ptr.asFunction<void Function()>();
-
-  int atexit6(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit6(
-      __func,
-    );
-  }
-
-  late final _atexit6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit6 = _atexit6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit6(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit6(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit6Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit6 = _at_quick_exit6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit6(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit6(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit6 = _on_exit6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit6(
-    int __status,
-  ) {
-    return _exit6(
-      __status,
-    );
-  }
-
-  late final _exit6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit6 = _exit6Ptr.asFunction<void Function(int)>();
-
-  void quick_exit6(
-    int __status,
-  ) {
-    return _quick_exit6(
-      __status,
-    );
-  }
-
-  late final _quick_exit6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit6 = _quick_exit6Ptr.asFunction<void Function(int)>();
-
-  void _Exit6(
-    int __status,
-  ) {
-    return __Exit6(
-      __status,
-    );
-  }
-
-  late final __Exit6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit6 = __Exit6Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv6(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv6(
-      __name,
-    );
-  }
-
-  late final _getenv6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv6 = _getenv6Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv6(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv6(
-      __string,
-    );
-  }
-
-  late final _putenv6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv6 =
-      _putenv6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv6(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv6(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv6 = _setenv6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv6(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv6(
-      __name,
-    );
-  }
-
-  late final _unsetenv6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv6 =
-      _unsetenv6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv6() {
-    return _clearenv6();
-  }
-
-  late final _clearenv6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv6 = _clearenv6Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp6(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp6(
-      __template,
-    );
-  }
-
-  late final _mktemp6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp6 = _mktemp6Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp6(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp6(
-      __template,
-    );
-  }
-
-  late final _mkstemp6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp6 =
-      _mkstemp6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps6(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps6(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps6Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps6 =
-      _mkstemps6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp6(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp6(
-      __template,
-    );
-  }
-
-  late final _mkdtemp6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp6 = _mkdtemp6Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system6(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system6(
-      __command,
-    );
-  }
-
-  late final _system6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system6 =
-      _system6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath6(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath6(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath6 = _realpath6Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch6(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch6(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch6 = _bsearch6Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort6(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort6(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort6 = _qsort6Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs6(
-    int __x,
-  ) {
-    return _abs6(
-      __x,
-    );
-  }
-
-  late final _abs6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs6 = _abs6Ptr.asFunction<int Function(int)>();
-
-  int labs6(
-    int __x,
-  ) {
-    return _labs6(
-      __x,
-    );
-  }
-
-  late final _labs6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs6 = _labs6Ptr.asFunction<int Function(int)>();
-
-  int llabs6(
-    int __x,
-  ) {
-    return _llabs6(
-      __x,
-    );
-  }
-
-  late final _llabs6Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs6 = _llabs6Ptr.asFunction<int Function(int)>();
-
-  G_div_t div6(
-    int __numer,
-    int __denom,
-  ) {
-    return _div6(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div6Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div6 = _div6Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv6(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv6(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv6Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv6 = _ldiv6Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv6(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv6(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv6Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv6 = _lldiv6Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt6(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt6(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt6 = _ecvt6Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt6(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt6(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt6 = _fcvt6Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt6(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt6(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt6 = _gcvt6Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r6(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r6(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r6 = _ecvt_r6Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r6(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r6(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r6 = _fcvt_r6Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen6(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen6(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen6 =
-      _mblen6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc6(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc6(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc6 = _mbtowc6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb6(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb6(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb6 =
-      _wctomb6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs6(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs6(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs6 = _mbstowcs6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs6(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs6(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs6 = _wcstombs6Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch6(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch6(
-      __response,
-    );
-  }
-
-  late final _rpmatch6Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch6 =
-      _rpmatch6Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt6(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt6(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt6 = _getsubopt6Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg6(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
-  ) {
-    return _getloadavg6(
-      __loadavg,
-      __nelem,
-    );
-  }
-
-  late final _getloadavg6Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg6 =
-      _getloadavg6Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
 
   ffi.Pointer<ffi.Int> constellation_fs_storj_new(
     ffi.Pointer<ffi.Int> pd,
@@ -14742,1579 +5730,6 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Int> Function(ffi.Pointer<ffi.Int>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  int __ctype_get_mb_cur_max7() {
-    return ___ctype_get_mb_cur_max7();
-  }
-
-  late final ___ctype_get_mb_cur_max7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Size Function()>>(
-          '__ctype_get_mb_cur_max');
-  late final ___ctype_get_mb_cur_max7 =
-      ___ctype_get_mb_cur_max7Ptr.asFunction<int Function()>();
-
-  double atof7(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atof7(
-      __nptr,
-    );
-  }
-
-  late final _atof7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function(ffi.Pointer<ffi.Char>)>>(
-          'atof');
-  late final _atof7 =
-      _atof7Ptr.asFunction<double Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoi7(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoi7(
-      __nptr,
-    );
-  }
-
-  late final _atoi7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'atoi');
-  late final _atoi7 =
-      _atoi7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atol7(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atol7(
-      __nptr,
-    );
-  }
-
-  late final _atol7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'atol');
-  late final _atol7 =
-      _atol7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int atoll7(
-    ffi.Pointer<ffi.Char> __nptr,
-  ) {
-    return _atoll7(
-      __nptr,
-    );
-  }
-
-  late final _atoll7Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.Pointer<ffi.Char>)>>(
-          'atoll');
-  late final _atoll7 =
-      _atoll7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  double strtod7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtod7(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtod7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtod');
-  late final _strtod7 = _strtod7Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  double strtof7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-  ) {
-    return _strtof7(
-      __nptr,
-      __endptr,
-    );
-  }
-
-  late final _strtof7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Float Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('strtof');
-  late final _strtof7 = _strtof7Ptr.asFunction<
-      double Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int strtol7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtol7(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtol7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtol');
-  late final _strtol7 = _strtol7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoul7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoul7(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoul7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoul');
-  late final _strtoul7 = _strtoul7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoq7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoq7(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoq7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoq');
-  late final _strtoq7 = _strtoq7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtouq7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtouq7(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtouq7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtouq');
-  late final _strtouq7 = _strtouq7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoll7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoll7(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoll7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.LongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoll');
-  late final _strtoll7 = _strtoll7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  int strtoull7(
-    ffi.Pointer<ffi.Char> __nptr,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __endptr,
-    int __base,
-  ) {
-    return _strtoull7(
-      __nptr,
-      __endptr,
-      __base,
-    );
-  }
-
-  late final _strtoull7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.UnsignedLongLong Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Int)>>('strtoull');
-  late final _strtoull7 = _strtoull7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>, int)>();
-
-  ffi.Pointer<ffi.Char> l64a7(
-    int __n,
-  ) {
-    return _l64a7(
-      __n,
-    );
-  }
-
-  late final _l64a7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Long)>>(
-          'l64a');
-  late final _l64a7 =
-      _l64a7Ptr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int a64l7(
-    ffi.Pointer<ffi.Char> __s,
-  ) {
-    return _a64l7(
-      __s,
-    );
-  }
-
-  late final _a64l7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<ffi.Char>)>>(
-          'a64l');
-  late final _a64l7 =
-      _a64l7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int select7(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timeval> __timeout,
-  ) {
-    return _select7(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-    );
-  }
-
-  late final _select7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timeval>)>>('select');
-  late final _select7 = _select7Ptr.asFunction<
-      int Function(int, ffi.Pointer<G_fd_set>, ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>, ffi.Pointer<G_timeval>)>();
-
-  int pselect7(
-    int __nfds,
-    ffi.Pointer<G_fd_set> __readfds,
-    ffi.Pointer<G_fd_set> __writefds,
-    ffi.Pointer<G_fd_set> __exceptfds,
-    ffi.Pointer<G_timespec> __timeout,
-    ffi.Pointer<G___sigset_t> __sigmask,
-  ) {
-    return _pselect7(
-      __nfds,
-      __readfds,
-      __writefds,
-      __exceptfds,
-      __timeout,
-      __sigmask,
-    );
-  }
-
-  late final _pselect7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_fd_set>,
-              ffi.Pointer<G_timespec>,
-              ffi.Pointer<G___sigset_t>)>>('pselect');
-  late final _pselect7 = _pselect7Ptr.asFunction<
-      int Function(
-          int,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_fd_set>,
-          ffi.Pointer<G_timespec>,
-          ffi.Pointer<G___sigset_t>)>();
-
-  int random7() {
-    return _random7();
-  }
-
-  late final _random7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('random');
-  late final _random7 = _random7Ptr.asFunction<int Function()>();
-
-  void srandom7(
-    int __seed,
-  ) {
-    return _srandom7(
-      __seed,
-    );
-  }
-
-  late final _srandom7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>(
-          'srandom');
-  late final _srandom7 = _srandom7Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> initstate7(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-  ) {
-    return _initstate7(
-      __seed,
-      __statebuf,
-      __statelen,
-    );
-  }
-
-  late final _initstate7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size)>>('initstate');
-  late final _initstate7 = _initstate7Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> setstate7(
-    ffi.Pointer<ffi.Char> __statebuf,
-  ) {
-    return _setstate7(
-      __statebuf,
-    );
-  }
-
-  late final _setstate7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('setstate');
-  late final _setstate7 = _setstate7Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int random_r7(
-    ffi.Pointer<G_random_data> __buf,
-    ffi.Pointer<ffi.Int32> __result,
-  ) {
-    return _random_r7(
-      __buf,
-      __result,
-    );
-  }
-
-  late final _random_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>>('random_r');
-  late final _random_r7 = _random_r7Ptr.asFunction<
-      int Function(ffi.Pointer<G_random_data>, ffi.Pointer<ffi.Int32>)>();
-
-  int srandom_r7(
-    int __seed,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _srandom_r7(
-      __seed,
-      __buf,
-    );
-  }
-
-  late final _srandom_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.UnsignedInt, ffi.Pointer<G_random_data>)>>('srandom_r');
-  late final _srandom_r7 = _srandom_r7Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_random_data>)>();
-
-  int initstate_r7(
-    int __seed,
-    ffi.Pointer<ffi.Char> __statebuf,
-    int __statelen,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _initstate_r7(
-      __seed,
-      __statebuf,
-      __statelen,
-      __buf,
-    );
-  }
-
-  late final _initstate_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.UnsignedInt, ffi.Pointer<ffi.Char>, ffi.Size,
-              ffi.Pointer<G_random_data>)>>('initstate_r');
-  late final _initstate_r7 = _initstate_r7Ptr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<G_random_data>)>();
-
-  int setstate_r7(
-    ffi.Pointer<ffi.Char> __statebuf,
-    ffi.Pointer<G_random_data> __buf,
-  ) {
-    return _setstate_r7(
-      __statebuf,
-      __buf,
-    );
-  }
-
-  late final _setstate_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<G_random_data>)>>('setstate_r');
-  late final _setstate_r7 = _setstate_r7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<G_random_data>)>();
-
-  int rand7() {
-    return _rand7();
-  }
-
-  late final _rand7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('rand');
-  late final _rand7 = _rand7Ptr.asFunction<int Function()>();
-
-  void srand7(
-    int __seed,
-  ) {
-    return _srand7(
-      __seed,
-    );
-  }
-
-  late final _srand7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.UnsignedInt)>>('srand');
-  late final _srand7 = _srand7Ptr.asFunction<void Function(int)>();
-
-  int rand_r7(
-    ffi.Pointer<ffi.UnsignedInt> __seed,
-  ) {
-    return _rand_r7(
-      __seed,
-    );
-  }
-
-  late final _rand_r7Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.UnsignedInt>)>>(
-      'rand_r');
-  late final _rand_r7 =
-      _rand_r7Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedInt>)>();
-
-  double drand487() {
-    return _drand487();
-  }
-
-  late final _drand487Ptr =
-      _lookup<ffi.NativeFunction<ffi.Double Function()>>('drand48');
-  late final _drand487 = _drand487Ptr.asFunction<double Function()>();
-
-  double erand487(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _erand487(
-      __xsubi,
-    );
-  }
-
-  late final _erand487Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Double Function(ffi.Pointer<ffi.UnsignedShort>)>>('erand48');
-  late final _erand487 = _erand487Ptr
-      .asFunction<double Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int lrand487() {
-    return _lrand487();
-  }
-
-  late final _lrand487Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('lrand48');
-  late final _lrand487 = _lrand487Ptr.asFunction<int Function()>();
-
-  int nrand487(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _nrand487(
-      __xsubi,
-    );
-  }
-
-  late final _nrand487Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('nrand48');
-  late final _nrand487 =
-      _nrand487Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int mrand487() {
-    return _mrand487();
-  }
-
-  late final _mrand487Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('mrand48');
-  late final _mrand487 = _mrand487Ptr.asFunction<int Function()>();
-
-  int jrand487(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-  ) {
-    return _jrand487(
-      __xsubi,
-    );
-  }
-
-  late final _jrand487Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.UnsignedShort>)>>('jrand48');
-  late final _jrand487 =
-      _jrand487Ptr.asFunction<int Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void srand487(
-    int __seedval,
-  ) {
-    return _srand487(
-      __seedval,
-    );
-  }
-
-  late final _srand487Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Long)>>('srand48');
-  late final _srand487 = _srand487Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.UnsignedShort> seed487(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-  ) {
-    return _seed487(
-      __seed16v,
-    );
-  }
-
-  late final _seed487Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedShort> Function(
-              ffi.Pointer<ffi.UnsignedShort>)>>('seed48');
-  late final _seed487 = _seed487Ptr.asFunction<
-      ffi.Pointer<ffi.UnsignedShort> Function(
-          ffi.Pointer<ffi.UnsignedShort>)>();
-
-  void lcong487(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-  ) {
-    return _lcong487(
-      __param,
-    );
-  }
-
-  late final _lcong487Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.UnsignedShort>)>>('lcong48');
-  late final _lcong487 =
-      _lcong487Ptr.asFunction<void Function(ffi.Pointer<ffi.UnsignedShort>)>();
-
-  int drand48_r7(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _drand48_r7(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _drand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('drand48_r');
-  late final _drand48_r7 = _drand48_r7Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Double>)>();
-
-  int erand48_r7(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Double> __result,
-  ) {
-    return _erand48_r7(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _erand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Double>)>>('erand48_r');
-  late final _erand48_r7 = _erand48_r7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Double>)>();
-
-  int lrand48_r7(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _lrand48_r7(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _lrand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('lrand48_r');
-  late final _lrand48_r7 = _lrand48_r7Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int nrand48_r7(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _nrand48_r7(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _nrand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('nrand48_r');
-  late final _nrand48_r7 = _nrand48_r7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int mrand48_r7(
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _mrand48_r7(
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _mrand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('mrand48_r');
-  late final _mrand48_r7 = _mrand48_r7Ptr.asFunction<
-      int Function(ffi.Pointer<G_drand48_data>, ffi.Pointer<ffi.Long>)>();
-
-  int jrand48_r7(
-    ffi.Pointer<ffi.UnsignedShort> __xsubi,
-    ffi.Pointer<G_drand48_data> __buffer,
-    ffi.Pointer<ffi.Long> __result,
-  ) {
-    return _jrand48_r7(
-      __xsubi,
-      __buffer,
-      __result,
-    );
-  }
-
-  late final _jrand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>,
-              ffi.Pointer<ffi.Long>)>>('jrand48_r');
-  late final _jrand48_r7 = _jrand48_r7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>,
-          ffi.Pointer<ffi.Long>)>();
-
-  int srand48_r7(
-    int __seedval,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _srand48_r7(
-      __seedval,
-      __buffer,
-    );
-  }
-
-  late final _srand48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Long, ffi.Pointer<G_drand48_data>)>>('srand48_r');
-  late final _srand48_r7 = _srand48_r7Ptr
-      .asFunction<int Function(int, ffi.Pointer<G_drand48_data>)>();
-
-  int seed48_r7(
-    ffi.Pointer<ffi.UnsignedShort> __seed16v,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _seed48_r7(
-      __seed16v,
-      __buffer,
-    );
-  }
-
-  late final _seed48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('seed48_r');
-  late final _seed48_r7 = _seed48_r7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  int lcong48_r7(
-    ffi.Pointer<ffi.UnsignedShort> __param,
-    ffi.Pointer<G_drand48_data> __buffer,
-  ) {
-    return _lcong48_r7(
-      __param,
-      __buffer,
-    );
-  }
-
-  late final _lcong48_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>,
-              ffi.Pointer<G_drand48_data>)>>('lcong48_r');
-  late final _lcong48_r7 = _lcong48_r7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.UnsignedShort>, ffi.Pointer<G_drand48_data>)>();
-
-  ffi.Pointer<ffi.Void> malloc7(
-    int __size,
-  ) {
-    return _malloc7(
-      __size,
-    );
-  }
-
-  late final _malloc7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'malloc');
-  late final _malloc7 =
-      _malloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> calloc7(
-    int __nmemb,
-    int __size,
-  ) {
-    return _calloc7(
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _calloc7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('calloc');
-  late final _calloc7 =
-      _calloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  ffi.Pointer<ffi.Void> realloc7(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _realloc7(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _realloc7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('realloc');
-  late final _realloc7 = _realloc7Ptr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
-  void free7(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free7(
-      __ptr,
-    );
-  }
-
-  late final _free7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free7 =
-      _free7Ptr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> reallocarray14(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray14(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray14Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray14 = _reallocarray14Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> reallocarray15(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __nmemb,
-    int __size,
-  ) {
-    return _reallocarray15(
-      __ptr,
-      __nmemb,
-      __size,
-    );
-  }
-
-  late final _reallocarray15Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size)>>('reallocarray');
-  late final _reallocarray15 = _reallocarray15Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  ffi.Pointer<ffi.Void> alloca7(
-    int __size,
-  ) {
-    return _alloca7(
-      __size,
-    );
-  }
-
-  late final _alloca7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'alloca');
-  late final _alloca7 =
-      _alloca7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  ffi.Pointer<ffi.Void> valloc7(
-    int __size,
-  ) {
-    return _valloc7(
-      __size,
-    );
-  }
-
-  late final _valloc7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Size)>>(
-          'valloc');
-  late final _valloc7 =
-      _valloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int posix_memalign7(
-    ffi.Pointer<ffi.Pointer<ffi.Void>> __memptr,
-    int __alignment,
-    int __size,
-  ) {
-    return _posix_memalign7(
-      __memptr,
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _posix_memalign7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, ffi.Size,
-              ffi.Size)>>('posix_memalign');
-  late final _posix_memalign7 = _posix_memalign7Ptr
-      .asFunction<int Function(ffi.Pointer<ffi.Pointer<ffi.Void>>, int, int)>();
-
-  ffi.Pointer<ffi.Void> aligned_alloc7(
-    int __alignment,
-    int __size,
-  ) {
-    return _aligned_alloc7(
-      __alignment,
-      __size,
-    );
-  }
-
-  late final _aligned_alloc7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(ffi.Size, ffi.Size)>>('aligned_alloc');
-  late final _aligned_alloc7 =
-      _aligned_alloc7Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int, int)>();
-
-  void abort7() {
-    return _abort7();
-  }
-
-  late final _abort7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('abort');
-  late final _abort7 = _abort7Ptr.asFunction<void Function()>();
-
-  int atexit7(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _atexit7(
-      __func,
-    );
-  }
-
-  late final _atexit7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>('atexit');
-  late final _atexit7 = _atexit7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int at_quick_exit7(
-    ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>> __func,
-  ) {
-    return _at_quick_exit7(
-      __func,
-    );
-  }
-
-  late final _at_quick_exit7Ptr = _lookup<
-          ffi.NativeFunction<
-              ffi.Int Function(
-                  ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>>(
-      'at_quick_exit');
-  late final _at_quick_exit7 = _at_quick_exit7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.NativeFunction<ffi.Void Function()>>)>();
-
-  int on_exit7(
-    ffi.Pointer<
-            ffi.NativeFunction<
-                ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>
-        __func,
-    ffi.Pointer<ffi.Void> __arg,
-  ) {
-    return _on_exit7(
-      __func,
-      __arg,
-    );
-  }
-
-  late final _on_exit7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<
-                  ffi.NativeFunction<
-                      ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-              ffi.Pointer<ffi.Void>)>>('on_exit');
-  late final _on_exit7 = _on_exit7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<
-              ffi.NativeFunction<
-                  ffi.Void Function(ffi.Int, ffi.Pointer<ffi.Void>)>>,
-          ffi.Pointer<ffi.Void>)>();
-
-  void exit7(
-    int __status,
-  ) {
-    return _exit7(
-      __status,
-    );
-  }
-
-  late final _exit7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('exit');
-  late final _exit7 = _exit7Ptr.asFunction<void Function(int)>();
-
-  void quick_exit7(
-    int __status,
-  ) {
-    return _quick_exit7(
-      __status,
-    );
-  }
-
-  late final _quick_exit7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('quick_exit');
-  late final _quick_exit7 = _quick_exit7Ptr.asFunction<void Function(int)>();
-
-  void _Exit7(
-    int __status,
-  ) {
-    return __Exit7(
-      __status,
-    );
-  }
-
-  late final __Exit7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_Exit');
-  late final __Exit7 = __Exit7Ptr.asFunction<void Function(int)>();
-
-  ffi.Pointer<ffi.Char> getenv7(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _getenv7(
-      __name,
-    );
-  }
-
-  late final _getenv7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getenv');
-  late final _getenv7 = _getenv7Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int putenv7(
-    ffi.Pointer<ffi.Char> __string,
-  ) {
-    return _putenv7(
-      __string,
-    );
-  }
-
-  late final _putenv7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'putenv');
-  late final _putenv7 =
-      _putenv7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int setenv7(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __value,
-    int __replace,
-  ) {
-    return _setenv7(
-      __name,
-      __value,
-      __replace,
-    );
-  }
-
-  late final _setenv7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Int)>>('setenv');
-  late final _setenv7 = _setenv7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unsetenv7(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unsetenv7(
-      __name,
-    );
-  }
-
-  late final _unsetenv7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unsetenv');
-  late final _unsetenv7 =
-      _unsetenv7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int clearenv7() {
-    return _clearenv7();
-  }
-
-  late final _clearenv7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('clearenv');
-  late final _clearenv7 = _clearenv7Ptr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> mktemp7(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mktemp7(
-      __template,
-    );
-  }
-
-  late final _mktemp7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mktemp');
-  late final _mktemp7 = _mktemp7Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemp7(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkstemp7(
-      __template,
-    );
-  }
-
-  late final _mkstemp7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'mkstemp');
-  late final _mkstemp7 =
-      _mkstemp7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int mkstemps7(
-    ffi.Pointer<ffi.Char> __template,
-    int __suffixlen,
-  ) {
-    return _mkstemps7(
-      __template,
-      __suffixlen,
-    );
-  }
-
-  late final _mkstemps7Ptr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'mkstemps');
-  late final _mkstemps7 =
-      _mkstemps7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> mkdtemp7(
-    ffi.Pointer<ffi.Char> __template,
-  ) {
-    return _mkdtemp7(
-      __template,
-    );
-  }
-
-  late final _mkdtemp7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('mkdtemp');
-  late final _mkdtemp7 = _mkdtemp7Ptr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int system7(
-    ffi.Pointer<ffi.Char> __command,
-  ) {
-    return _system7(
-      __command,
-    );
-  }
-
-  late final _system7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'system');
-  late final _system7 =
-      _system7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> realpath7(
-    ffi.Pointer<ffi.Char> __name,
-    ffi.Pointer<ffi.Char> __resolved,
-  ) {
-    return _realpath7(
-      __name,
-      __resolved,
-    );
-  }
-
-  late final _realpath7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('realpath');
-  late final _realpath7 = _realpath7Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Void> bsearch7(
-    ffi.Pointer<ffi.Void> __key,
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _bsearch7(
-      __key,
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _bsearch7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Void>,
-              ffi.Size,
-              ffi.Size,
-              __compar_fn_t)>>('bsearch');
-  late final _bsearch7 = _bsearch7Ptr.asFunction<
-      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-          ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  void qsort7(
-    ffi.Pointer<ffi.Void> __base,
-    int __nmemb,
-    int __size,
-    __compar_fn_t __compar,
-  ) {
-    return _qsort7(
-      __base,
-      __nmemb,
-      __size,
-      __compar,
-    );
-  }
-
-  late final _qsort7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Size, ffi.Size,
-              __compar_fn_t)>>('qsort');
-  late final _qsort7 = _qsort7Ptr.asFunction<
-      void Function(ffi.Pointer<ffi.Void>, int, int, __compar_fn_t)>();
-
-  int abs7(
-    int __x,
-  ) {
-    return _abs7(
-      __x,
-    );
-  }
-
-  late final _abs7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('abs');
-  late final _abs7 = _abs7Ptr.asFunction<int Function(int)>();
-
-  int labs7(
-    int __x,
-  ) {
-    return _labs7(
-      __x,
-    );
-  }
-
-  late final _labs7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('labs');
-  late final _labs7 = _labs7Ptr.asFunction<int Function(int)>();
-
-  int llabs7(
-    int __x,
-  ) {
-    return _llabs7(
-      __x,
-    );
-  }
-
-  late final _llabs7Ptr =
-      _lookup<ffi.NativeFunction<ffi.LongLong Function(ffi.LongLong)>>('llabs');
-  late final _llabs7 = _llabs7Ptr.asFunction<int Function(int)>();
-
-  G_div_t div7(
-    int __numer,
-    int __denom,
-  ) {
-    return _div7(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _div7Ptr =
-      _lookup<ffi.NativeFunction<G_div_t Function(ffi.Int, ffi.Int)>>('div');
-  late final _div7 = _div7Ptr.asFunction<G_div_t Function(int, int)>();
-
-  G_ldiv_t ldiv7(
-    int __numer,
-    int __denom,
-  ) {
-    return _ldiv7(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _ldiv7Ptr =
-      _lookup<ffi.NativeFunction<G_ldiv_t Function(ffi.Long, ffi.Long)>>(
-          'ldiv');
-  late final _ldiv7 = _ldiv7Ptr.asFunction<G_ldiv_t Function(int, int)>();
-
-  G_lldiv_t lldiv7(
-    int __numer,
-    int __denom,
-  ) {
-    return _lldiv7(
-      __numer,
-      __denom,
-    );
-  }
-
-  late final _lldiv7Ptr = _lookup<
-          ffi.NativeFunction<G_lldiv_t Function(ffi.LongLong, ffi.LongLong)>>(
-      'lldiv');
-  late final _lldiv7 = _lldiv7Ptr.asFunction<G_lldiv_t Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> ecvt7(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _ecvt7(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _ecvt7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('ecvt');
-  late final _ecvt7 = _ecvt7Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> fcvt7(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-  ) {
-    return _fcvt7(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-    );
-  }
-
-  late final _fcvt7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Double, ffi.Int,
-              ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>>('fcvt');
-  late final _fcvt7 = _fcvt7Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>)>();
-
-  ffi.Pointer<ffi.Char> gcvt7(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _gcvt7(
-      __value,
-      __ndigit,
-      __buf,
-    );
-  }
-
-  late final _gcvt7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Double, ffi.Int, ffi.Pointer<ffi.Char>)>>('gcvt');
-  late final _gcvt7 = _gcvt7Ptr.asFunction<
-      ffi.Pointer<ffi.Char> Function(double, int, ffi.Pointer<ffi.Char>)>();
-
-  int ecvt_r7(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _ecvt_r7(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _ecvt_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('ecvt_r');
-  late final _ecvt_r7 = _ecvt_r7Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int fcvt_r7(
-    double __value,
-    int __ndigit,
-    ffi.Pointer<ffi.Int> __decpt,
-    ffi.Pointer<ffi.Int> __sign,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _fcvt_r7(
-      __value,
-      __ndigit,
-      __decpt,
-      __sign,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _fcvt_r7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Double,
-              ffi.Int,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('fcvt_r');
-  late final _fcvt_r7 = _fcvt_r7Ptr.asFunction<
-      int Function(double, int, ffi.Pointer<ffi.Int>, ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Char>, int)>();
-
-  int mblen7(
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mblen7(
-      __s,
-      __n,
-    );
-  }
-
-  late final _mblen7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('mblen');
-  late final _mblen7 =
-      _mblen7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbtowc7(
-    ffi.Pointer<ffi.WChar> __pwc,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbtowc7(
-      __pwc,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbtowc7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbtowc');
-  late final _mbtowc7 = _mbtowc7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wctomb7(
-    ffi.Pointer<ffi.Char> __s,
-    int __wchar,
-  ) {
-    return _wctomb7(
-      __s,
-      __wchar,
-    );
-  }
-
-  late final _wctomb7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.WChar)>>('wctomb');
-  late final _wctomb7 =
-      _wctomb7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int mbstowcs7(
-    ffi.Pointer<ffi.WChar> __pwcs,
-    ffi.Pointer<ffi.Char> __s,
-    int __n,
-  ) {
-    return _mbstowcs7(
-      __pwcs,
-      __s,
-      __n,
-    );
-  }
-
-  late final _mbstowcs7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('mbstowcs');
-  late final _mbstowcs7 = _mbstowcs7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.WChar>, ffi.Pointer<ffi.Char>, int)>();
-
-  int wcstombs7(
-    ffi.Pointer<ffi.Char> __s,
-    ffi.Pointer<ffi.WChar> __pwcs,
-    int __n,
-  ) {
-    return _wcstombs7(
-      __s,
-      __pwcs,
-      __n,
-    );
-  }
-
-  late final _wcstombs7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>,
-              ffi.Size)>>('wcstombs');
-  late final _wcstombs7 = _wcstombs7Ptr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.WChar>, int)>();
-
-  int rpmatch7(
-    ffi.Pointer<ffi.Char> __response,
-  ) {
-    return _rpmatch7(
-      __response,
-    );
-  }
-
-  late final _rpmatch7Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rpmatch');
-  late final _rpmatch7 =
-      _rpmatch7Ptr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int getsubopt7(
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __optionp,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __tokens,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __valuep,
-  ) {
-    return _getsubopt7(
-      __optionp,
-      __tokens,
-      __valuep,
-    );
-  }
-
-  late final _getsubopt7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('getsubopt');
-  late final _getsubopt7 = _getsubopt7Ptr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int getloadavg7(
-    ffi.Pointer<ffi.Double> __loadavg,
-    int __nelem,
-  ) {
-    return _getloadavg7(
-      __loadavg,
-      __nelem,
-    );
-  }
-
-  late final _getloadavg7Ptr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Double>, ffi.Int)>>('getloadavg');
-  late final _getloadavg7 =
-      _getloadavg7Ptr.asFunction<int Function(ffi.Pointer<ffi.Double>, int)>();
-
   ffi.Pointer<ffi.Int> constellation_fs_memory_create_context() {
     return _constellation_fs_memory_create_context();
   }
@@ -16327,23 +5742,1071 @@ class WarpDartBindings {
           .asFunction<ffi.Pointer<ffi.Int> Function()>();
 }
 
-class G___fsid_t extends ffi.Struct {
-  @ffi.Array.multi([2])
-  external ffi.Array<ffi.Int> __val;
+/// mbstate_t is an opaque object to keep conversion state, during multibyte
+/// stream conversions.  The content must not be referenced by user programs.
+class __mbstate_t extends ffi.Union {
+  @ffi.Array.multi([128])
+  external ffi.Array<ffi.Char> __mbstate8;
+
+  /// for alignment
+  @ffi.LongLong()
+  external int _mbstateL;
 }
 
+class G___darwin_pthread_handler_rec extends ffi.Struct {
+  /// Routine to call
+  external ffi
+          .Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>
+      __routine;
+
+  /// Argument to pass
+  external ffi.Pointer<ffi.Void> __arg;
+
+  external ffi.Pointer<G___darwin_pthread_handler_rec> __next;
+}
+
+class G__opaque_pthread_attr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([56])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_cond_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([40])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_condattr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_mutex_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([56])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_mutexattr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_once_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([8])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_rwlock_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([192])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_rwlockattr_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+class G__opaque_pthread_t extends ffi.Struct {
+  @ffi.Long()
+  external int __sig;
+
+  external ffi.Pointer<G___darwin_pthread_handler_rec> __cleanup_stack;
+
+  @ffi.Array.multi([8176])
+  external ffi.Array<ffi.Char> __opaque;
+}
+
+/// [XSI] The type idtype_t shall be defined as an enumeration type whose
+/// possible values shall include at least P_ALL, P_PID, and P_PGID.
+abstract class idtype_t {
+  static const int P_ALL = 0;
+  static const int P_PID = 1;
+  static const int P_PGID = 2;
+}
+
+class G___darwin_arm_exception_state extends ffi.Struct {
+  /// number of arm exception taken
+  @__uint32_t()
+  external int __exception;
+
+  /// Fault status
+  @__uint32_t()
+  external int __fsr;
+
+  /// Virtual Fault Address
+  @__uint32_t()
+  external int __far;
+}
+
+typedef __uint32_t = ffi.UnsignedInt;
+
+class G___darwin_arm_exception_state64 extends ffi.Struct {
+  /// Virtual Fault Address
+  @__uint64_t()
+  external int __far;
+
+  /// Exception syndrome
+  @__uint32_t()
+  external int __esr;
+
+  /// number of arm exception taken
+  @__uint32_t()
+  external int __exception;
+}
+
+typedef __uint64_t = ffi.UnsignedLongLong;
+
+class G___darwin_arm_thread_state extends ffi.Struct {
+  @ffi.Array.multi([13])
+  external ffi.Array<__uint32_t> __r;
+
+  /// Stack pointer r13
+  @__uint32_t()
+  external int __sp;
+
+  /// Link register r14
+  @__uint32_t()
+  external int __lr;
+
+  /// Program counter r15
+  @__uint32_t()
+  external int __pc;
+
+  /// Current program status register
+  @__uint32_t()
+  external int __cpsr;
+}
+
+class G___darwin_arm_thread_state64 extends ffi.Struct {
+  @ffi.Array.multi([29])
+  external ffi.Array<__uint64_t> __x;
+
+  /// Frame pointer x29
+  @__uint64_t()
+  external int __fp;
+
+  /// Link register x30
+  @__uint64_t()
+  external int __lr;
+
+  /// Stack pointer x31
+  @__uint64_t()
+  external int __sp;
+
+  /// Program counter
+  @__uint64_t()
+  external int __pc;
+
+  /// Current program status register
+  @__uint32_t()
+  external int __cpsr;
+
+  /// Same size for 32-bit or 64-bit clients
+  @__uint32_t()
+  external int __pad;
+}
+
+class G___darwin_arm_vfp_state extends ffi.Struct {
+  @ffi.Array.multi([64])
+  external ffi.Array<__uint32_t> __r;
+
+  @__uint32_t()
+  external int __fpscr;
+}
+
+class G___darwin_arm_neon_state64 extends ffi.Opaque {}
+
+class G___darwin_arm_neon_state extends ffi.Opaque {}
+
+class G___arm_pagein_state extends ffi.Struct {
+  @ffi.Int()
+  external int __pagein_error;
+}
+
+class G___arm_legacy_debug_state extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __bvr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __bcr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __wvr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __wcr;
+}
+
+class G___darwin_arm_debug_state32 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __bvr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __bcr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __wvr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint32_t> __wcr;
+
+  /// Bit 0 is SS (Hardware Single Step)
+  @__uint64_t()
+  external int __mdscr_el1;
+}
+
+class G___darwin_arm_debug_state64 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint64_t> __bvr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint64_t> __bcr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint64_t> __wvr;
+
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint64_t> __wcr;
+
+  /// Bit 0 is SS (Hardware Single Step)
+  @__uint64_t()
+  external int __mdscr_el1;
+}
+
+class G___darwin_arm_cpmu_state64 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<__uint64_t> __ctrs;
+}
+
+class G___darwin_mcontext32 extends ffi.Struct {
+  external G___darwin_arm_exception_state __es;
+
+  external G___darwin_arm_thread_state __ss;
+
+  external G___darwin_arm_vfp_state __fs;
+}
+
+class G___darwin_mcontext64 extends ffi.Opaque {}
+
+class G___darwin_sigaltstack extends ffi.Struct {
+  /// signal stack base
+  external ffi.Pointer<ffi.Void> ss_sp;
+
+  /// signal stack length
+  @__darwin_size_t()
+  external int ss_size;
+
+  /// SA_DISABLE and/or SA_ONSTACK
+  @ffi.Int()
+  external int ss_flags;
+}
+
+typedef __darwin_size_t = ffi.UnsignedLong;
+
+class G___darwin_ucontext extends ffi.Struct {
+  @ffi.Int()
+  external int uc_onstack;
+
+  /// signal mask used by this context
+  @__darwin_sigset_t()
+  external int uc_sigmask;
+
+  /// stack used by this context
+  external G___darwin_sigaltstack uc_stack;
+
+  /// pointer to resuming context
+  external ffi.Pointer<G___darwin_ucontext> uc_link;
+
+  /// size of the machine context passed in
+  @__darwin_size_t()
+  external int uc_mcsize;
+
+  /// pointer to machine specific context
+  external ffi.Pointer<G___darwin_mcontext64> uc_mcontext;
+}
+
+typedef __darwin_sigset_t = __uint32_t;
+
+class sigval extends ffi.Union {
+  /// Members as suggested by Annex C of POSIX 1003.1b.
+  @ffi.Int()
+  external int sival_int;
+
+  external ffi.Pointer<ffi.Void> sival_ptr;
+}
+
+class G_sigevent extends ffi.Struct {
+  /// Notification type
+  @ffi.Int()
+  external int sigev_notify;
+
+  /// Signal number
+  @ffi.Int()
+  external int sigev_signo;
+
+  /// Signal value
+  external sigval sigev_value;
+
+  /// Notification function
+  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(sigval)>>
+      sigev_notify_function;
+
+  /// Notification attributes
+  external ffi.Pointer<pthread_attr_t> sigev_notify_attributes;
+}
+
+typedef pthread_attr_t = __darwin_pthread_attr_t;
+typedef __darwin_pthread_attr_t = G__opaque_pthread_attr_t;
+
+class G___siginfo extends ffi.Struct {
+  /// signal number
+  @ffi.Int()
+  external int si_signo;
+
+  /// errno association
+  @ffi.Int()
+  external int si_errno;
+
+  /// signal code
+  @ffi.Int()
+  external int si_code;
+
+  /// sending process
+  @pid_t()
+  external int si_pid;
+
+  /// sender's ruid
+  @uid_t()
+  external int si_uid;
+
+  /// exit value
+  @ffi.Int()
+  external int si_status;
+
+  /// faulting instruction
+  external ffi.Pointer<ffi.Void> si_addr;
+
+  /// signal value
+  external sigval si_value;
+
+  /// band event for SIGPOLL
+  @ffi.Long()
+  external int si_band;
+
+  @ffi.Array.multi([7])
+  external ffi.Array<ffi.UnsignedLong> __pad;
+}
+
+typedef pid_t = __darwin_pid_t;
+typedef __darwin_pid_t = __int32_t;
+typedef __int32_t = ffi.Int;
+typedef uid_t = __darwin_uid_t;
+typedef __darwin_uid_t = __uint32_t;
+
+/// union for signal handlers
+class __sigaction_u extends ffi.Union {
+  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
+      __sa_handler;
+
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Int, ffi.Pointer<G___siginfo>, ffi.Pointer<ffi.Void>)>>
+      __sa_sigaction;
+}
+
+/// Signal vector template for Kernel user boundary
+class G___sigaction extends ffi.Struct {
+  /// signal handler
+  external __sigaction_u __sigaction_u1;
+
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int,
+              ffi.Pointer<siginfo_t>, ffi.Pointer<ffi.Void>)>> sa_tramp;
+
+  /// signal mask to apply
+  @sigset_t()
+  external int sa_mask;
+
+  /// see signal options below
+  @ffi.Int()
+  external int sa_flags;
+}
+
+typedef siginfo_t = G___siginfo;
+typedef sigset_t = __darwin_sigset_t;
+
+/// Signal vector "template" used in sigaction call.
+class G_sigaction extends ffi.Struct {
+  /// signal handler
+  external __sigaction_u __sigaction_u1;
+
+  /// signal mask to apply
+  @sigset_t()
+  external int sa_mask;
+
+  /// see signal options below
+  @ffi.Int()
+  external int sa_flags;
+}
+
+/// 4.3 compatibility:
+/// Signal vector "template" used in sigvec call.
+class G_sigvec extends ffi.Struct {
+  /// signal handler
+  external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
+      sv_handler;
+
+  /// signal mask to apply
+  @ffi.Int()
+  external int sv_mask;
+
+  /// see signal options below
+  @ffi.Int()
+  external int sv_flags;
+}
+
+/// Structure used in sigstack call.
+class G_sigstack extends ffi.Struct {
+  /// signal stack pointer
+  external ffi.Pointer<ffi.Char> ss_sp;
+
+  /// current status
+  @ffi.Int()
+  external int ss_onstack;
+}
+
+class G_timeval extends ffi.Struct {
+  /// seconds
+  @__darwin_time_t()
+  external int tv_sec;
+
+  /// and microseconds
+  @__darwin_suseconds_t()
+  external int tv_usec;
+}
+
+typedef __darwin_time_t = ffi.Long;
+typedef __darwin_suseconds_t = __int32_t;
+
+/// A structure representing an accounting of resource utilization.  The
+/// address of an instance of this structure is the second parameter to
+/// getrusage().
+///
+/// Note: All values other than ru_utime and ru_stime are implementaiton
+/// defined and subject to change in a future release.  Their use
+/// is discouraged for standards compliant programs.
+class G_rusage extends ffi.Struct {
+  /// user time used (PL)
+  external G_timeval ru_utime;
+
+  /// system time used (PL)
+  external G_timeval ru_stime;
+
+  /// max resident set size (PL)
+  @ffi.Long()
+  external int ru_maxrss;
+
+  /// integral shared memory size (NU)
+  @ffi.Long()
+  external int ru_ixrss;
+
+  /// integral unshared data (NU)
+  @ffi.Long()
+  external int ru_idrss;
+
+  /// integral unshared stack (NU)
+  @ffi.Long()
+  external int ru_isrss;
+
+  /// page reclaims (NU)
+  @ffi.Long()
+  external int ru_minflt;
+
+  /// page faults (NU)
+  @ffi.Long()
+  external int ru_majflt;
+
+  /// swaps (NU)
+  @ffi.Long()
+  external int ru_nswap;
+
+  /// block input operations (atomic)
+  @ffi.Long()
+  external int ru_inblock;
+
+  /// block output operations (atomic)
+  @ffi.Long()
+  external int ru_oublock;
+
+  /// messages sent (atomic)
+  @ffi.Long()
+  external int ru_msgsnd;
+
+  /// messages received (atomic)
+  @ffi.Long()
+  external int ru_msgrcv;
+
+  /// signals received (atomic)
+  @ffi.Long()
+  external int ru_nsignals;
+
+  /// voluntary context switches (atomic)
+  @ffi.Long()
+  external int ru_nvcsw;
+
+  /// involuntary "
+  @ffi.Long()
+  external int ru_nivcsw;
+}
+
+class G_rusage_info_v0 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Uint8> ri_uuid;
+
+  @ffi.Uint64()
+  external int ri_user_time;
+
+  @ffi.Uint64()
+  external int ri_system_time;
+
+  @ffi.Uint64()
+  external int ri_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_pageins;
+
+  @ffi.Uint64()
+  external int ri_wired_size;
+
+  @ffi.Uint64()
+  external int ri_resident_size;
+
+  @ffi.Uint64()
+  external int ri_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_proc_start_abstime;
+
+  @ffi.Uint64()
+  external int ri_proc_exit_abstime;
+}
+
+class G_rusage_info_v1 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Uint8> ri_uuid;
+
+  @ffi.Uint64()
+  external int ri_user_time;
+
+  @ffi.Uint64()
+  external int ri_system_time;
+
+  @ffi.Uint64()
+  external int ri_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_pageins;
+
+  @ffi.Uint64()
+  external int ri_wired_size;
+
+  @ffi.Uint64()
+  external int ri_resident_size;
+
+  @ffi.Uint64()
+  external int ri_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_proc_start_abstime;
+
+  @ffi.Uint64()
+  external int ri_proc_exit_abstime;
+
+  @ffi.Uint64()
+  external int ri_child_user_time;
+
+  @ffi.Uint64()
+  external int ri_child_system_time;
+
+  @ffi.Uint64()
+  external int ri_child_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_pageins;
+
+  @ffi.Uint64()
+  external int ri_child_elapsed_abstime;
+}
+
+class G_rusage_info_v2 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Uint8> ri_uuid;
+
+  @ffi.Uint64()
+  external int ri_user_time;
+
+  @ffi.Uint64()
+  external int ri_system_time;
+
+  @ffi.Uint64()
+  external int ri_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_pageins;
+
+  @ffi.Uint64()
+  external int ri_wired_size;
+
+  @ffi.Uint64()
+  external int ri_resident_size;
+
+  @ffi.Uint64()
+  external int ri_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_proc_start_abstime;
+
+  @ffi.Uint64()
+  external int ri_proc_exit_abstime;
+
+  @ffi.Uint64()
+  external int ri_child_user_time;
+
+  @ffi.Uint64()
+  external int ri_child_system_time;
+
+  @ffi.Uint64()
+  external int ri_child_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_pageins;
+
+  @ffi.Uint64()
+  external int ri_child_elapsed_abstime;
+
+  @ffi.Uint64()
+  external int ri_diskio_bytesread;
+
+  @ffi.Uint64()
+  external int ri_diskio_byteswritten;
+}
+
+class G_rusage_info_v3 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Uint8> ri_uuid;
+
+  @ffi.Uint64()
+  external int ri_user_time;
+
+  @ffi.Uint64()
+  external int ri_system_time;
+
+  @ffi.Uint64()
+  external int ri_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_pageins;
+
+  @ffi.Uint64()
+  external int ri_wired_size;
+
+  @ffi.Uint64()
+  external int ri_resident_size;
+
+  @ffi.Uint64()
+  external int ri_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_proc_start_abstime;
+
+  @ffi.Uint64()
+  external int ri_proc_exit_abstime;
+
+  @ffi.Uint64()
+  external int ri_child_user_time;
+
+  @ffi.Uint64()
+  external int ri_child_system_time;
+
+  @ffi.Uint64()
+  external int ri_child_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_pageins;
+
+  @ffi.Uint64()
+  external int ri_child_elapsed_abstime;
+
+  @ffi.Uint64()
+  external int ri_diskio_bytesread;
+
+  @ffi.Uint64()
+  external int ri_diskio_byteswritten;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_default;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_maintenance;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_background;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_utility;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_legacy;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_user_initiated;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_user_interactive;
+
+  @ffi.Uint64()
+  external int ri_billed_system_time;
+
+  @ffi.Uint64()
+  external int ri_serviced_system_time;
+}
+
+class G_rusage_info_v4 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Uint8> ri_uuid;
+
+  @ffi.Uint64()
+  external int ri_user_time;
+
+  @ffi.Uint64()
+  external int ri_system_time;
+
+  @ffi.Uint64()
+  external int ri_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_pageins;
+
+  @ffi.Uint64()
+  external int ri_wired_size;
+
+  @ffi.Uint64()
+  external int ri_resident_size;
+
+  @ffi.Uint64()
+  external int ri_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_proc_start_abstime;
+
+  @ffi.Uint64()
+  external int ri_proc_exit_abstime;
+
+  @ffi.Uint64()
+  external int ri_child_user_time;
+
+  @ffi.Uint64()
+  external int ri_child_system_time;
+
+  @ffi.Uint64()
+  external int ri_child_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_pageins;
+
+  @ffi.Uint64()
+  external int ri_child_elapsed_abstime;
+
+  @ffi.Uint64()
+  external int ri_diskio_bytesread;
+
+  @ffi.Uint64()
+  external int ri_diskio_byteswritten;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_default;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_maintenance;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_background;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_utility;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_legacy;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_user_initiated;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_user_interactive;
+
+  @ffi.Uint64()
+  external int ri_billed_system_time;
+
+  @ffi.Uint64()
+  external int ri_serviced_system_time;
+
+  @ffi.Uint64()
+  external int ri_logical_writes;
+
+  @ffi.Uint64()
+  external int ri_lifetime_max_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_instructions;
+
+  @ffi.Uint64()
+  external int ri_cycles;
+
+  @ffi.Uint64()
+  external int ri_billed_energy;
+
+  @ffi.Uint64()
+  external int ri_serviced_energy;
+
+  @ffi.Uint64()
+  external int ri_interval_max_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_runnable_time;
+}
+
+class G_rusage_info_v5 extends ffi.Struct {
+  @ffi.Array.multi([16])
+  external ffi.Array<ffi.Uint8> ri_uuid;
+
+  @ffi.Uint64()
+  external int ri_user_time;
+
+  @ffi.Uint64()
+  external int ri_system_time;
+
+  @ffi.Uint64()
+  external int ri_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_pageins;
+
+  @ffi.Uint64()
+  external int ri_wired_size;
+
+  @ffi.Uint64()
+  external int ri_resident_size;
+
+  @ffi.Uint64()
+  external int ri_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_proc_start_abstime;
+
+  @ffi.Uint64()
+  external int ri_proc_exit_abstime;
+
+  @ffi.Uint64()
+  external int ri_child_user_time;
+
+  @ffi.Uint64()
+  external int ri_child_system_time;
+
+  @ffi.Uint64()
+  external int ri_child_pkg_idle_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_interrupt_wkups;
+
+  @ffi.Uint64()
+  external int ri_child_pageins;
+
+  @ffi.Uint64()
+  external int ri_child_elapsed_abstime;
+
+  @ffi.Uint64()
+  external int ri_diskio_bytesread;
+
+  @ffi.Uint64()
+  external int ri_diskio_byteswritten;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_default;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_maintenance;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_background;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_utility;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_legacy;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_user_initiated;
+
+  @ffi.Uint64()
+  external int ri_cpu_time_qos_user_interactive;
+
+  @ffi.Uint64()
+  external int ri_billed_system_time;
+
+  @ffi.Uint64()
+  external int ri_serviced_system_time;
+
+  @ffi.Uint64()
+  external int ri_logical_writes;
+
+  @ffi.Uint64()
+  external int ri_lifetime_max_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_instructions;
+
+  @ffi.Uint64()
+  external int ri_cycles;
+
+  @ffi.Uint64()
+  external int ri_billed_energy;
+
+  @ffi.Uint64()
+  external int ri_serviced_energy;
+
+  @ffi.Uint64()
+  external int ri_interval_max_phys_footprint;
+
+  @ffi.Uint64()
+  external int ri_runnable_time;
+
+  @ffi.Uint64()
+  external int ri_flags;
+}
+
+/// A structure representing a resource limit.  The address of an instance
+/// of this structure is the second parameter to getrlimit()/setrlimit().
+class G_rlimit extends ffi.Struct {
+  /// current (soft) limit
+  @rlim_t()
+  external int rlim_cur;
+
+  /// maximum value for rlim_cur
+  @rlim_t()
+  external int rlim_max;
+}
+
+/// Resource limit type (low 63 bits, excluding the sign bit)
+typedef rlim_t = __uint64_t;
+
+class G_proc_rlimit_control_wakeupmon extends ffi.Struct {
+  @ffi.Uint32()
+  external int wm_flags;
+
+  @ffi.Int32()
+  external int wm_rate;
+}
+
+typedef id_t = __darwin_id_t;
+typedef __darwin_id_t = __uint32_t;
+
+/// Functions for byte reversed loads.
+@ffi.Packed(1)
+class G__OSUnalignedU16 extends ffi.Struct {
+  @ffi.Uint16()
+  external int __val;
+}
+
+@ffi.Packed(1)
+class G__OSUnalignedU32 extends ffi.Struct {
+  @ffi.Uint32()
+  external int __val;
+}
+
+@ffi.Packed(1)
+class G__OSUnalignedU64 extends ffi.Struct {
+  @ffi.Uint64()
+  external int __val;
+}
+
+/// Deprecated:
+/// Structure of the information in the status word returned by wait4.
+/// If w_stopval==_WSTOPPED, then the second structure describes
+/// the information returned, else the first.
+class wait extends ffi.Opaque {}
+
 class G_div_t extends ffi.Struct {
+  /// quotient
   @ffi.Int()
   external int quot;
 
+  /// remainder
   @ffi.Int()
   external int rem;
 }
 
 class G_ldiv_t extends ffi.Struct {
+  /// quotient
   @ffi.Long()
   external int quot;
 
+  /// remainder
   @ffi.Long()
   external int rem;
 }
@@ -16356,272 +6819,11 @@ class G_lldiv_t extends ffi.Struct {
   external int rem;
 }
 
-class G___sigset_t extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<ffi.UnsignedLong> __val;
-}
-
-class G_timeval extends ffi.Struct {
-  @__time_t()
-  external int tv_sec;
-
-  @__suseconds_t()
-  external int tv_usec;
-}
-
-typedef __time_t = ffi.Long;
-typedef __suseconds_t = ffi.Long;
-
-class G_timespec extends ffi.Struct {
-  @__time_t()
-  external int tv_sec;
-
-  @__syscall_slong_t()
-  external int tv_nsec;
-}
-
-typedef __syscall_slong_t = ffi.Long;
-
-class G_fd_set extends ffi.Struct {
-  @ffi.Array.multi([16])
-  external ffi.Array<__fd_mask> __fds_bits;
-}
-
-typedef __fd_mask = ffi.Long;
-
-class __atomic_wide_counter extends ffi.Union {
-  @ffi.UnsignedLongLong()
-  external int __value64;
-
-  external UnnamedStruct1 __value32;
-}
-
-class UnnamedStruct1 extends ffi.Struct {
-  @ffi.UnsignedInt()
-  external int __low;
-
-  @ffi.UnsignedInt()
-  external int __high;
-}
-
-class G___pthread_internal_list extends ffi.Struct {
-  external ffi.Pointer<G___pthread_internal_list> __prev;
-
-  external ffi.Pointer<G___pthread_internal_list> __next;
-}
-
-class G___pthread_internal_slist extends ffi.Struct {
-  external ffi.Pointer<G___pthread_internal_slist> __next;
-}
-
-class G___pthread_mutex_s extends ffi.Struct {
-  @ffi.Int()
-  external int __lock;
-
-  @ffi.UnsignedInt()
-  external int __count;
-
-  @ffi.Int()
-  external int __owner;
-
-  @ffi.UnsignedInt()
-  external int __nusers;
-
-  @ffi.Int()
-  external int __kind;
-
-  @ffi.Short()
-  external int __spins;
-
-  @ffi.Short()
-  external int __elision;
-
-  external __pthread_list_t __list;
-}
-
-typedef __pthread_list_t = G___pthread_internal_list;
-
-class G___pthread_rwlock_arch_t extends ffi.Struct {
-  @ffi.UnsignedInt()
-  external int __readers;
-
-  @ffi.UnsignedInt()
-  external int __writers;
-
-  @ffi.UnsignedInt()
-  external int __wrphase_futex;
-
-  @ffi.UnsignedInt()
-  external int __writers_futex;
-
-  @ffi.UnsignedInt()
-  external int __pad3;
-
-  @ffi.UnsignedInt()
-  external int __pad4;
-
-  @ffi.Int()
-  external int __cur_writer;
-
-  @ffi.Int()
-  external int __shared;
-
-  @ffi.SignedChar()
-  external int __rwelision;
-
-  @ffi.Array.multi([7])
-  external ffi.Array<ffi.UnsignedChar> __pad1;
-
-  @ffi.UnsignedLong()
-  external int __pad2;
-
-  @ffi.UnsignedInt()
-  external int __flags;
-}
-
-class G___pthread_cond_s extends ffi.Struct {
-  external __atomic_wide_counter __wseq;
-
-  external __atomic_wide_counter __g1_start;
-
-  @ffi.Array.multi([2])
-  external ffi.Array<ffi.UnsignedInt> __g_refs;
-
-  @ffi.Array.multi([2])
-  external ffi.Array<ffi.UnsignedInt> __g_size;
-
-  @ffi.UnsignedInt()
-  external int __g1_orig_size;
-
-  @ffi.UnsignedInt()
-  external int __wrefs;
-
-  @ffi.Array.multi([2])
-  external ffi.Array<ffi.UnsignedInt> __g_signals;
-}
-
-class G___once_flag extends ffi.Struct {
-  @ffi.Int()
-  external int __data;
-}
-
-class pthread_mutexattr_t extends ffi.Union {
-  @ffi.Array.multi([4])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Int()
-  external int __align;
-}
-
-class pthread_condattr_t extends ffi.Union {
-  @ffi.Array.multi([4])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Int()
-  external int __align;
-}
-
-class pthread_attr_t extends ffi.Union {
-  @ffi.Array.multi([56])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Long()
-  external int __align;
-}
-
-class pthread_mutex_t extends ffi.Union {
-  external G___pthread_mutex_s __data;
-
-  @ffi.Array.multi([40])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Long()
-  external int __align;
-}
-
-class pthread_cond_t extends ffi.Union {
-  external G___pthread_cond_s __data;
-
-  @ffi.Array.multi([48])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.LongLong()
-  external int __align;
-}
-
-class pthread_rwlock_t extends ffi.Union {
-  external G___pthread_rwlock_arch_t __data;
-
-  @ffi.Array.multi([56])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Long()
-  external int __align;
-}
-
-class pthread_rwlockattr_t extends ffi.Union {
-  @ffi.Array.multi([8])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Long()
-  external int __align;
-}
-
-class pthread_barrier_t extends ffi.Union {
-  @ffi.Array.multi([32])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Long()
-  external int __align;
-}
-
-class pthread_barrierattr_t extends ffi.Union {
-  @ffi.Array.multi([4])
-  external ffi.Array<ffi.Char> __size;
-
-  @ffi.Int()
-  external int __align;
-}
-
-class G_random_data extends ffi.Struct {
-  external ffi.Pointer<ffi.Int32> fptr;
-
-  external ffi.Pointer<ffi.Int32> rptr;
-
-  external ffi.Pointer<ffi.Int32> state;
-
-  @ffi.Int()
-  external int rand_type;
-
-  @ffi.Int()
-  external int rand_deg;
-
-  @ffi.Int()
-  external int rand_sep;
-
-  external ffi.Pointer<ffi.Int32> end_ptr;
-}
-
-class G_drand48_data extends ffi.Struct {
-  @ffi.Array.multi([3])
-  external ffi.Array<ffi.UnsignedShort> __x;
-
-  @ffi.Array.multi([3])
-  external ffi.Array<ffi.UnsignedShort> __old_x;
-
-  @ffi.UnsignedShort()
-  external int __c;
-
-  @ffi.UnsignedShort()
-  external int __init;
-
-  @ffi.UnsignedLongLong()
-  external int __a;
-}
-
-typedef __compar_fn_t = ffi.Pointer<
-    ffi.NativeFunction<
-        ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>;
+typedef dev_t = __darwin_dev_t;
+typedef __darwin_dev_t = __int32_t;
+typedef mode_t = __darwin_mode_t;
+typedef __darwin_mode_t = __uint16_t;
+typedef __uint16_t = ffi.UnsignedShort;
 
 abstract class CipherType {
   /// AES256-GCM
@@ -16732,8 +6934,6 @@ class G_RayGunAdapter extends ffi.Opaque {}
 class G_Reaction extends ffi.Opaque {}
 
 class G_Role extends ffi.Opaque {}
-
-class G_SenderId extends ffi.Opaque {}
 
 class G_Tesseract extends ffi.Opaque {}
 
@@ -16914,6 +7114,12 @@ class G_FFIVec_FriendRequest extends ffi.Struct {
   external int cap;
 }
 
+class G_FFIResult_FFIVec_Identity extends ffi.Struct {
+  external ffi.Pointer<G_FFIVec_Identity> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
 class G_FFIResult_Identity extends ffi.Struct {
   external ffi.Pointer<G_Identity> data;
 
@@ -16940,16 +7146,6 @@ class G_FFIResult_QueryBuilder extends ffi.Struct {
 
 class G_FFIVec_Message extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_Message>> ptr;
-
-  @uintptr_t()
-  external int len;
-
-  @uintptr_t()
-  external int cap;
-}
-
-class G_FFIVec_SenderId extends ffi.Struct {
-  external ffi.Pointer<ffi.Pointer<G_SenderId>> ptr;
 
   @uintptr_t()
   external int len;
@@ -17038,135 +7234,67 @@ const int false1 = 0;
 
 const int __bool_true_false_are_defined = 1;
 
-const int _STDINT_H = 1;
-
-const int _FEATURES_H = 1;
-
-const int _DEFAULT_SOURCE = 1;
-
-const int __GLIBC_USE_ISOC2X = 1;
-
-const int __USE_ISOC11 = 1;
-
-const int __USE_ISOC99 = 1;
-
-const int __USE_ISOC95 = 1;
-
-const int _POSIX_SOURCE = 1;
-
-const int _POSIX_C_SOURCE = 200809;
-
-const int __USE_POSIX = 1;
-
-const int __USE_POSIX2 = 1;
-
-const int __USE_POSIX199309 = 1;
-
-const int __USE_POSIX199506 = 1;
-
-const int __USE_XOPEN2K = 1;
-
-const int __USE_XOPEN2K8 = 1;
-
-const int _ATFILE_SOURCE = 1;
-
 const int __WORDSIZE = 64;
 
-const int __WORDSIZE_TIME64_COMPAT32 = 1;
+const int __DARWIN_ONLY_64_BIT_INO_T = 1;
 
-const int __SYSCALL_WORDSIZE = 64;
+const int __DARWIN_ONLY_UNIX_CONFORMANCE = 1;
 
-const int __TIMESIZE = 64;
+const int __DARWIN_ONLY_VERS_1050 = 1;
 
-const int __USE_MISC = 1;
+const int __DARWIN_UNIX03 = 1;
 
-const int __USE_ATFILE = 1;
+const int __DARWIN_64_BIT_INO_T = 1;
 
-const int __USE_FORTIFY_LEVEL = 0;
+const int __DARWIN_VERS_1050 = 1;
 
-const int __GLIBC_USE_DEPRECATED_GETS = 0;
+const int __DARWIN_NON_CANCELABLE = 0;
 
-const int __GLIBC_USE_DEPRECATED_SCANF = 0;
+const String __DARWIN_SUF_EXTSN = '\$DARWIN_EXTSN';
 
-const int _STDC_PREDEF_H = 1;
+const int __DARWIN_C_ANSI = 4096;
 
-const int __STDC_IEC_559__ = 1;
+const int __DARWIN_C_FULL = 900000;
 
-const int __STDC_IEC_60559_BFP__ = 201404;
+const int __DARWIN_C_LEVEL = 900000;
 
-const int __STDC_IEC_559_COMPLEX__ = 1;
+const int __STDC_WANT_LIB_EXT1__ = 1;
 
-const int __STDC_IEC_60559_COMPLEX__ = 201404;
+const int __DARWIN_NO_LONG_LONG = 0;
 
-const int __STDC_ISO_10646__ = 201706;
+const int _DARWIN_FEATURE_64_BIT_INODE = 1;
 
-const int __GNU_LIBRARY__ = 6;
+const int _DARWIN_FEATURE_ONLY_64_BIT_INODE = 1;
 
-const int __GLIBC__ = 2;
+const int _DARWIN_FEATURE_ONLY_VERS_1050 = 1;
 
-const int __GLIBC_MINOR__ = 35;
+const int _DARWIN_FEATURE_ONLY_UNIX_CONFORMANCE = 1;
 
-const int _SYS_CDEFS_H = 1;
+const int _DARWIN_FEATURE_UNIX_CONFORMANCE = 3;
 
-const int __THROW = 1;
+const int __has_ptrcheck = 0;
 
-const int __THROWNL = 1;
+const int __DARWIN_NULL = 0;
 
-const int __glibc_c99_flexarr_available = 1;
+const int __PTHREAD_SIZE__ = 8176;
 
-const int __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI = 0;
+const int __PTHREAD_ATTR_SIZE__ = 56;
 
-const int __HAVE_GENERIC_SELECTION = 0;
+const int __PTHREAD_MUTEXATTR_SIZE__ = 8;
 
-const int __GLIBC_USE_LIB_EXT2 = 1;
+const int __PTHREAD_MUTEX_SIZE__ = 56;
 
-const int __GLIBC_USE_IEC_60559_BFP_EXT = 1;
+const int __PTHREAD_CONDATTR_SIZE__ = 8;
 
-const int __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 1;
+const int __PTHREAD_COND_SIZE__ = 40;
 
-const int __GLIBC_USE_IEC_60559_EXT = 1;
+const int __PTHREAD_ONCE_SIZE__ = 8;
 
-const int __GLIBC_USE_IEC_60559_FUNCS_EXT = 1;
+const int __PTHREAD_RWLOCK_SIZE__ = 192;
 
-const int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 1;
+const int __PTHREAD_RWLOCKATTR_SIZE__ = 16;
 
-const int __GLIBC_USE_IEC_60559_TYPES_EXT = 1;
-
-const int _BITS_TYPES_H = 1;
-
-const int _BITS_TYPESIZES_H = 1;
-
-const int __OFF_T_MATCHES_OFF64_T = 1;
-
-const int __INO_T_MATCHES_INO64_T = 1;
-
-const int __RLIM_T_MATCHES_RLIM64_T = 1;
-
-const int __STATFS_MATCHES_STATFS64 = 1;
-
-const int __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64 = 1;
-
-const int __FD_SETSIZE = 1024;
-
-const int _BITS_TIME64_H = 1;
-
-const int _BITS_WCHAR_H = 1;
-
-const int __WCHAR_MAX = 2147483647;
-
-const int __WCHAR_MIN = -2147483648;
-
-const int _BITS_STDINT_INTN_H = 1;
-
-const int _BITS_STDINT_UINTN_H = 1;
-
-const int INT8_MIN = -128;
-
-const int INT16_MIN = -32768;
-
-const int INT32_MIN = -2147483648;
-
-const int INT64_MIN = -9223372036854775808;
+const int USER_ADDR_NULL = 0;
 
 const int INT8_MAX = 127;
 
@@ -17175,6 +7303,14 @@ const int INT16_MAX = 32767;
 const int INT32_MAX = 2147483647;
 
 const int INT64_MAX = 9223372036854775807;
+
+const int INT8_MIN = -128;
+
+const int INT16_MIN = -32768;
+
+const int INT32_MIN = -2147483648;
+
+const int INT64_MIN = -9223372036854775808;
 
 const int UINT8_MAX = 255;
 
@@ -17210,155 +7346,893 @@ const int UINT_LEAST64_MAX = -1;
 
 const int INT_FAST8_MIN = -128;
 
-const int INT_FAST16_MIN = -9223372036854775808;
+const int INT_FAST16_MIN = -32768;
 
-const int INT_FAST32_MIN = -9223372036854775808;
+const int INT_FAST32_MIN = -2147483648;
 
 const int INT_FAST64_MIN = -9223372036854775808;
 
 const int INT_FAST8_MAX = 127;
 
-const int INT_FAST16_MAX = 9223372036854775807;
+const int INT_FAST16_MAX = 32767;
 
-const int INT_FAST32_MAX = 9223372036854775807;
+const int INT_FAST32_MAX = 2147483647;
 
 const int INT_FAST64_MAX = 9223372036854775807;
 
 const int UINT_FAST8_MAX = 255;
 
-const int UINT_FAST16_MAX = -1;
+const int UINT_FAST16_MAX = 65535;
 
-const int UINT_FAST32_MAX = -1;
+const int UINT_FAST32_MAX = 4294967295;
 
 const int UINT_FAST64_MAX = -1;
 
-const int INTPTR_MIN = -9223372036854775808;
-
 const int INTPTR_MAX = 9223372036854775807;
 
-const int UINTPTR_MAX = -1;
+const int INTPTR_MIN = -9223372036854775808;
 
-const int INTMAX_MIN = -9223372036854775808;
+const int UINTPTR_MAX = -1;
 
 const int INTMAX_MAX = 9223372036854775807;
 
 const int UINTMAX_MAX = -1;
 
+const int INTMAX_MIN = -9223372036854775808;
+
 const int PTRDIFF_MIN = -9223372036854775808;
 
 const int PTRDIFF_MAX = 9223372036854775807;
+
+const int SIZE_MAX = -1;
+
+const int RSIZE_MAX = 9223372036854775807;
+
+const int WCHAR_MAX = 2147483647;
+
+const int WCHAR_MIN = -2147483648;
+
+const int WINT_MIN = -2147483648;
+
+const int WINT_MAX = 2147483647;
 
 const int SIG_ATOMIC_MIN = -2147483648;
 
 const int SIG_ATOMIC_MAX = 2147483647;
 
-const int SIZE_MAX = -1;
+const int __API_TO_BE_DEPRECATED = 100000;
 
-const int WCHAR_MIN = -2147483648;
+const int __MAC_10_0 = 1000;
 
-const int WCHAR_MAX = 2147483647;
+const int __MAC_10_1 = 1010;
 
-const int WINT_MIN = 0;
+const int __MAC_10_2 = 1020;
 
-const int WINT_MAX = 4294967295;
+const int __MAC_10_3 = 1030;
 
-const int NULL = 0;
+const int __MAC_10_4 = 1040;
 
-const int _STDLIB_H = 1;
+const int __MAC_10_5 = 1050;
+
+const int __MAC_10_6 = 1060;
+
+const int __MAC_10_7 = 1070;
+
+const int __MAC_10_8 = 1080;
+
+const int __MAC_10_9 = 1090;
+
+const int __MAC_10_10 = 101000;
+
+const int __MAC_10_10_2 = 101002;
+
+const int __MAC_10_10_3 = 101003;
+
+const int __MAC_10_11 = 101100;
+
+const int __MAC_10_11_2 = 101102;
+
+const int __MAC_10_11_3 = 101103;
+
+const int __MAC_10_11_4 = 101104;
+
+const int __MAC_10_12 = 101200;
+
+const int __MAC_10_12_1 = 101201;
+
+const int __MAC_10_12_2 = 101202;
+
+const int __MAC_10_12_4 = 101204;
+
+const int __MAC_10_13 = 101300;
+
+const int __MAC_10_13_1 = 101301;
+
+const int __MAC_10_13_2 = 101302;
+
+const int __MAC_10_13_4 = 101304;
+
+const int __MAC_10_14 = 101400;
+
+const int __MAC_10_14_1 = 101401;
+
+const int __MAC_10_14_4 = 101404;
+
+const int __MAC_10_14_6 = 101406;
+
+const int __MAC_10_15 = 101500;
+
+const int __MAC_10_15_1 = 101501;
+
+const int __MAC_10_15_4 = 101504;
+
+const int __MAC_10_16 = 101600;
+
+const int __MAC_11_0 = 110000;
+
+const int __MAC_11_1 = 110100;
+
+const int __MAC_11_3 = 110300;
+
+const int __MAC_11_4 = 110400;
+
+const int __MAC_11_5 = 110500;
+
+const int __MAC_11_6 = 110600;
+
+const int __MAC_12_0 = 120000;
+
+const int __MAC_12_1 = 120100;
+
+const int __MAC_12_2 = 120200;
+
+const int __MAC_12_3 = 120300;
+
+const int __IPHONE_2_0 = 20000;
+
+const int __IPHONE_2_1 = 20100;
+
+const int __IPHONE_2_2 = 20200;
+
+const int __IPHONE_3_0 = 30000;
+
+const int __IPHONE_3_1 = 30100;
+
+const int __IPHONE_3_2 = 30200;
+
+const int __IPHONE_4_0 = 40000;
+
+const int __IPHONE_4_1 = 40100;
+
+const int __IPHONE_4_2 = 40200;
+
+const int __IPHONE_4_3 = 40300;
+
+const int __IPHONE_5_0 = 50000;
+
+const int __IPHONE_5_1 = 50100;
+
+const int __IPHONE_6_0 = 60000;
+
+const int __IPHONE_6_1 = 60100;
+
+const int __IPHONE_7_0 = 70000;
+
+const int __IPHONE_7_1 = 70100;
+
+const int __IPHONE_8_0 = 80000;
+
+const int __IPHONE_8_1 = 80100;
+
+const int __IPHONE_8_2 = 80200;
+
+const int __IPHONE_8_3 = 80300;
+
+const int __IPHONE_8_4 = 80400;
+
+const int __IPHONE_9_0 = 90000;
+
+const int __IPHONE_9_1 = 90100;
+
+const int __IPHONE_9_2 = 90200;
+
+const int __IPHONE_9_3 = 90300;
+
+const int __IPHONE_10_0 = 100000;
+
+const int __IPHONE_10_1 = 100100;
+
+const int __IPHONE_10_2 = 100200;
+
+const int __IPHONE_10_3 = 100300;
+
+const int __IPHONE_11_0 = 110000;
+
+const int __IPHONE_11_1 = 110100;
+
+const int __IPHONE_11_2 = 110200;
+
+const int __IPHONE_11_3 = 110300;
+
+const int __IPHONE_11_4 = 110400;
+
+const int __IPHONE_12_0 = 120000;
+
+const int __IPHONE_12_1 = 120100;
+
+const int __IPHONE_12_2 = 120200;
+
+const int __IPHONE_12_3 = 120300;
+
+const int __IPHONE_12_4 = 120400;
+
+const int __IPHONE_13_0 = 130000;
+
+const int __IPHONE_13_1 = 130100;
+
+const int __IPHONE_13_2 = 130200;
+
+const int __IPHONE_13_3 = 130300;
+
+const int __IPHONE_13_4 = 130400;
+
+const int __IPHONE_13_5 = 130500;
+
+const int __IPHONE_13_6 = 130600;
+
+const int __IPHONE_13_7 = 130700;
+
+const int __IPHONE_14_0 = 140000;
+
+const int __IPHONE_14_1 = 140100;
+
+const int __IPHONE_14_2 = 140200;
+
+const int __IPHONE_14_3 = 140300;
+
+const int __IPHONE_14_5 = 140500;
+
+const int __IPHONE_14_6 = 140600;
+
+const int __IPHONE_14_7 = 140700;
+
+const int __IPHONE_14_8 = 140800;
+
+const int __IPHONE_15_0 = 150000;
+
+const int __IPHONE_15_1 = 150100;
+
+const int __IPHONE_15_2 = 150200;
+
+const int __IPHONE_15_3 = 150300;
+
+const int __IPHONE_15_4 = 150400;
+
+const int __TVOS_9_0 = 90000;
+
+const int __TVOS_9_1 = 90100;
+
+const int __TVOS_9_2 = 90200;
+
+const int __TVOS_10_0 = 100000;
+
+const int __TVOS_10_0_1 = 100001;
+
+const int __TVOS_10_1 = 100100;
+
+const int __TVOS_10_2 = 100200;
+
+const int __TVOS_11_0 = 110000;
+
+const int __TVOS_11_1 = 110100;
+
+const int __TVOS_11_2 = 110200;
+
+const int __TVOS_11_3 = 110300;
+
+const int __TVOS_11_4 = 110400;
+
+const int __TVOS_12_0 = 120000;
+
+const int __TVOS_12_1 = 120100;
+
+const int __TVOS_12_2 = 120200;
+
+const int __TVOS_12_3 = 120300;
+
+const int __TVOS_12_4 = 120400;
+
+const int __TVOS_13_0 = 130000;
+
+const int __TVOS_13_2 = 130200;
+
+const int __TVOS_13_3 = 130300;
+
+const int __TVOS_13_4 = 130400;
+
+const int __TVOS_14_0 = 140000;
+
+const int __TVOS_14_1 = 140100;
+
+const int __TVOS_14_2 = 140200;
+
+const int __TVOS_14_3 = 140300;
+
+const int __TVOS_14_5 = 140500;
+
+const int __TVOS_14_6 = 140600;
+
+const int __TVOS_14_7 = 140700;
+
+const int __TVOS_15_0 = 150000;
+
+const int __TVOS_15_1 = 150100;
+
+const int __TVOS_15_2 = 150200;
+
+const int __TVOS_15_3 = 150300;
+
+const int __TVOS_15_4 = 150400;
+
+const int __WATCHOS_1_0 = 10000;
+
+const int __WATCHOS_2_0 = 20000;
+
+const int __WATCHOS_2_1 = 20100;
+
+const int __WATCHOS_2_2 = 20200;
+
+const int __WATCHOS_3_0 = 30000;
+
+const int __WATCHOS_3_1 = 30100;
+
+const int __WATCHOS_3_1_1 = 30101;
+
+const int __WATCHOS_3_2 = 30200;
+
+const int __WATCHOS_4_0 = 40000;
+
+const int __WATCHOS_4_1 = 40100;
+
+const int __WATCHOS_4_2 = 40200;
+
+const int __WATCHOS_4_3 = 40300;
+
+const int __WATCHOS_5_0 = 50000;
+
+const int __WATCHOS_5_1 = 50100;
+
+const int __WATCHOS_5_2 = 50200;
+
+const int __WATCHOS_5_3 = 50300;
+
+const int __WATCHOS_6_0 = 60000;
+
+const int __WATCHOS_6_1 = 60100;
+
+const int __WATCHOS_6_2 = 60200;
+
+const int __WATCHOS_7_0 = 70000;
+
+const int __WATCHOS_7_1 = 70100;
+
+const int __WATCHOS_7_2 = 70200;
+
+const int __WATCHOS_7_3 = 70300;
+
+const int __WATCHOS_7_4 = 70400;
+
+const int __WATCHOS_7_5 = 70500;
+
+const int __WATCHOS_7_6 = 70600;
+
+const int __WATCHOS_8_0 = 80000;
+
+const int __WATCHOS_8_1 = 80100;
+
+const int __WATCHOS_8_3 = 80300;
+
+const int __WATCHOS_8_4 = 80400;
+
+const int __WATCHOS_8_5 = 80500;
+
+const int MAC_OS_X_VERSION_10_0 = 1000;
+
+const int MAC_OS_X_VERSION_10_1 = 1010;
+
+const int MAC_OS_X_VERSION_10_2 = 1020;
+
+const int MAC_OS_X_VERSION_10_3 = 1030;
+
+const int MAC_OS_X_VERSION_10_4 = 1040;
+
+const int MAC_OS_X_VERSION_10_5 = 1050;
+
+const int MAC_OS_X_VERSION_10_6 = 1060;
+
+const int MAC_OS_X_VERSION_10_7 = 1070;
+
+const int MAC_OS_X_VERSION_10_8 = 1080;
+
+const int MAC_OS_X_VERSION_10_9 = 1090;
+
+const int MAC_OS_X_VERSION_10_10 = 101000;
+
+const int MAC_OS_X_VERSION_10_10_2 = 101002;
+
+const int MAC_OS_X_VERSION_10_10_3 = 101003;
+
+const int MAC_OS_X_VERSION_10_11 = 101100;
+
+const int MAC_OS_X_VERSION_10_11_2 = 101102;
+
+const int MAC_OS_X_VERSION_10_11_3 = 101103;
+
+const int MAC_OS_X_VERSION_10_11_4 = 101104;
+
+const int MAC_OS_X_VERSION_10_12 = 101200;
+
+const int MAC_OS_X_VERSION_10_12_1 = 101201;
+
+const int MAC_OS_X_VERSION_10_12_2 = 101202;
+
+const int MAC_OS_X_VERSION_10_12_4 = 101204;
+
+const int MAC_OS_X_VERSION_10_13 = 101300;
+
+const int MAC_OS_X_VERSION_10_13_1 = 101301;
+
+const int MAC_OS_X_VERSION_10_13_2 = 101302;
+
+const int MAC_OS_X_VERSION_10_13_4 = 101304;
+
+const int MAC_OS_X_VERSION_10_14 = 101400;
+
+const int MAC_OS_X_VERSION_10_14_1 = 101401;
+
+const int MAC_OS_X_VERSION_10_14_4 = 101404;
+
+const int MAC_OS_X_VERSION_10_14_6 = 101406;
+
+const int MAC_OS_X_VERSION_10_15 = 101500;
+
+const int MAC_OS_X_VERSION_10_15_1 = 101501;
+
+const int MAC_OS_X_VERSION_10_16 = 101600;
+
+const int MAC_OS_VERSION_11_0 = 110000;
+
+const int MAC_OS_VERSION_12_0 = 120000;
+
+const int __DRIVERKIT_19_0 = 190000;
+
+const int __DRIVERKIT_20_0 = 200000;
+
+const int __DRIVERKIT_21_0 = 210000;
+
+const int __MAC_OS_X_VERSION_MIN_REQUIRED = 120000;
+
+const int __MAC_OS_X_VERSION_MAX_ALLOWED = 120300;
+
+const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
+
+const int __DARWIN_WCHAR_MAX = 2147483647;
+
+const int __DARWIN_WCHAR_MIN = -2147483648;
+
+const int __DARWIN_WEOF = -1;
+
+const int _FORTIFY_SOURCE = 2;
+
+const int __DARWIN_NSIG = 32;
+
+const int NSIG = 32;
+
+const int _ARM_SIGNAL_ = 1;
+
+const int SIGHUP = 1;
+
+const int SIGINT = 2;
+
+const int SIGQUIT = 3;
+
+const int SIGILL = 4;
+
+const int SIGTRAP = 5;
+
+const int SIGABRT = 6;
+
+const int SIGIOT = 6;
+
+const int SIGEMT = 7;
+
+const int SIGFPE = 8;
+
+const int SIGKILL = 9;
+
+const int SIGBUS = 10;
+
+const int SIGSEGV = 11;
+
+const int SIGSYS = 12;
+
+const int SIGPIPE = 13;
+
+const int SIGALRM = 14;
+
+const int SIGTERM = 15;
+
+const int SIGURG = 16;
+
+const int SIGSTOP = 17;
+
+const int SIGTSTP = 18;
+
+const int SIGCONT = 19;
+
+const int SIGCHLD = 20;
+
+const int SIGTTIN = 21;
+
+const int SIGTTOU = 22;
+
+const int SIGIO = 23;
+
+const int SIGXCPU = 24;
+
+const int SIGXFSZ = 25;
+
+const int SIGVTALRM = 26;
+
+const int SIGPROF = 27;
+
+const int SIGWINCH = 28;
+
+const int SIGINFO = 29;
+
+const int SIGUSR1 = 30;
+
+const int SIGUSR2 = 31;
+
+const int __DARWIN_OPAQUE_ARM_THREAD_STATE64 = 0;
+
+const int SIGEV_NONE = 0;
+
+const int SIGEV_SIGNAL = 1;
+
+const int SIGEV_THREAD = 3;
+
+const int ILL_NOOP = 0;
+
+const int ILL_ILLOPC = 1;
+
+const int ILL_ILLTRP = 2;
+
+const int ILL_PRVOPC = 3;
+
+const int ILL_ILLOPN = 4;
+
+const int ILL_ILLADR = 5;
+
+const int ILL_PRVREG = 6;
+
+const int ILL_COPROC = 7;
+
+const int ILL_BADSTK = 8;
+
+const int FPE_NOOP = 0;
+
+const int FPE_FLTDIV = 1;
+
+const int FPE_FLTOVF = 2;
+
+const int FPE_FLTUND = 3;
+
+const int FPE_FLTRES = 4;
+
+const int FPE_FLTINV = 5;
+
+const int FPE_FLTSUB = 6;
+
+const int FPE_INTDIV = 7;
+
+const int FPE_INTOVF = 8;
+
+const int SEGV_NOOP = 0;
+
+const int SEGV_MAPERR = 1;
+
+const int SEGV_ACCERR = 2;
+
+const int BUS_NOOP = 0;
+
+const int BUS_ADRALN = 1;
+
+const int BUS_ADRERR = 2;
+
+const int BUS_OBJERR = 3;
+
+const int TRAP_BRKPT = 1;
+
+const int TRAP_TRACE = 2;
+
+const int CLD_NOOP = 0;
+
+const int CLD_EXITED = 1;
+
+const int CLD_KILLED = 2;
+
+const int CLD_DUMPED = 3;
+
+const int CLD_TRAPPED = 4;
+
+const int CLD_STOPPED = 5;
+
+const int CLD_CONTINUED = 6;
+
+const int POLL_IN = 1;
+
+const int POLL_OUT = 2;
+
+const int POLL_MSG = 3;
+
+const int POLL_ERR = 4;
+
+const int POLL_PRI = 5;
+
+const int POLL_HUP = 6;
+
+const int SA_ONSTACK = 1;
+
+const int SA_RESTART = 2;
+
+const int SA_RESETHAND = 4;
+
+const int SA_NOCLDSTOP = 8;
+
+const int SA_NODEFER = 16;
+
+const int SA_NOCLDWAIT = 32;
+
+const int SA_SIGINFO = 64;
+
+const int SA_USERTRAMP = 256;
+
+const int SA_64REGSET = 512;
+
+const int SA_USERSPACE_MASK = 127;
+
+const int SIG_BLOCK = 1;
+
+const int SIG_UNBLOCK = 2;
+
+const int SIG_SETMASK = 3;
+
+const int SI_USER = 65537;
+
+const int SI_QUEUE = 65538;
+
+const int SI_TIMER = 65539;
+
+const int SI_ASYNCIO = 65540;
+
+const int SI_MESGQ = 65541;
+
+const int SS_ONSTACK = 1;
+
+const int SS_DISABLE = 4;
+
+const int MINSIGSTKSZ = 32768;
+
+const int SIGSTKSZ = 131072;
+
+const int SV_ONSTACK = 1;
+
+const int SV_INTERRUPT = 2;
+
+const int SV_RESETHAND = 4;
+
+const int SV_NODEFER = 16;
+
+const int SV_NOCLDSTOP = 8;
+
+const int SV_SIGINFO = 64;
+
+const int PRIO_PROCESS = 0;
+
+const int PRIO_PGRP = 1;
+
+const int PRIO_USER = 2;
+
+const int PRIO_DARWIN_THREAD = 3;
+
+const int PRIO_DARWIN_PROCESS = 4;
+
+const int PRIO_MIN = -20;
+
+const int PRIO_MAX = 20;
+
+const int PRIO_DARWIN_BG = 4096;
+
+const int PRIO_DARWIN_NONUI = 4097;
+
+const int RUSAGE_SELF = 0;
+
+const int RUSAGE_CHILDREN = -1;
+
+const int RUSAGE_INFO_V0 = 0;
+
+const int RUSAGE_INFO_V1 = 1;
+
+const int RUSAGE_INFO_V2 = 2;
+
+const int RUSAGE_INFO_V3 = 3;
+
+const int RUSAGE_INFO_V4 = 4;
+
+const int RUSAGE_INFO_V5 = 5;
+
+const int RUSAGE_INFO_CURRENT = 5;
+
+const int RU_PROC_RUNS_RESLIDE = 1;
+
+const int RLIM_INFINITY = 9223372036854775807;
+
+const int RLIM_SAVED_MAX = 9223372036854775807;
+
+const int RLIM_SAVED_CUR = 9223372036854775807;
+
+const int RLIMIT_CPU = 0;
+
+const int RLIMIT_FSIZE = 1;
+
+const int RLIMIT_DATA = 2;
+
+const int RLIMIT_STACK = 3;
+
+const int RLIMIT_CORE = 4;
+
+const int RLIMIT_AS = 5;
+
+const int RLIMIT_RSS = 5;
+
+const int RLIMIT_MEMLOCK = 6;
+
+const int RLIMIT_NPROC = 7;
+
+const int RLIMIT_NOFILE = 8;
+
+const int RLIM_NLIMITS = 9;
+
+const int _RLIMIT_POSIX_FLAG = 4096;
+
+const int RLIMIT_WAKEUPS_MONITOR = 1;
+
+const int RLIMIT_CPU_USAGE_MONITOR = 2;
+
+const int RLIMIT_THREAD_CPULIMITS = 3;
+
+const int RLIMIT_FOOTPRINT_INTERVAL = 4;
+
+const int WAKEMON_ENABLE = 1;
+
+const int WAKEMON_DISABLE = 2;
+
+const int WAKEMON_GET_PARAMS = 4;
+
+const int WAKEMON_SET_DEFAULTS = 8;
+
+const int WAKEMON_MAKE_FATAL = 16;
+
+const int CPUMON_MAKE_FATAL = 4096;
+
+const int FOOTPRINT_INTERVAL_RESET = 1;
+
+const int IOPOL_TYPE_DISK = 0;
+
+const int IOPOL_TYPE_VFS_ATIME_UPDATES = 2;
+
+const int IOPOL_TYPE_VFS_MATERIALIZE_DATALESS_FILES = 3;
+
+const int IOPOL_TYPE_VFS_STATFS_NO_DATA_VOLUME = 4;
+
+const int IOPOL_TYPE_VFS_TRIGGER_RESOLVE = 5;
+
+const int IOPOL_TYPE_VFS_IGNORE_CONTENT_PROTECTION = 6;
+
+const int IOPOL_TYPE_VFS_IGNORE_PERMISSIONS = 7;
+
+const int IOPOL_TYPE_VFS_SKIP_MTIME_UPDATE = 8;
+
+const int IOPOL_TYPE_VFS_ALLOW_LOW_SPACE_WRITES = 9;
+
+const int IOPOL_SCOPE_PROCESS = 0;
+
+const int IOPOL_SCOPE_THREAD = 1;
+
+const int IOPOL_SCOPE_DARWIN_BG = 2;
+
+const int IOPOL_DEFAULT = 0;
+
+const int IOPOL_IMPORTANT = 1;
+
+const int IOPOL_PASSIVE = 2;
+
+const int IOPOL_THROTTLE = 3;
+
+const int IOPOL_UTILITY = 4;
+
+const int IOPOL_STANDARD = 5;
+
+const int IOPOL_APPLICATION = 5;
+
+const int IOPOL_NORMAL = 1;
+
+const int IOPOL_ATIME_UPDATES_DEFAULT = 0;
+
+const int IOPOL_ATIME_UPDATES_OFF = 1;
+
+const int IOPOL_MATERIALIZE_DATALESS_FILES_DEFAULT = 0;
+
+const int IOPOL_MATERIALIZE_DATALESS_FILES_OFF = 1;
+
+const int IOPOL_MATERIALIZE_DATALESS_FILES_ON = 2;
+
+const int IOPOL_VFS_STATFS_NO_DATA_VOLUME_DEFAULT = 0;
+
+const int IOPOL_VFS_STATFS_FORCE_NO_DATA_VOLUME = 1;
+
+const int IOPOL_VFS_TRIGGER_RESOLVE_DEFAULT = 0;
+
+const int IOPOL_VFS_TRIGGER_RESOLVE_OFF = 1;
+
+const int IOPOL_VFS_CONTENT_PROTECTION_DEFAULT = 0;
+
+const int IOPOL_VFS_CONTENT_PROTECTION_IGNORE = 1;
+
+const int IOPOL_VFS_IGNORE_PERMISSIONS_OFF = 0;
+
+const int IOPOL_VFS_IGNORE_PERMISSIONS_ON = 1;
+
+const int IOPOL_VFS_SKIP_MTIME_UPDATE_OFF = 0;
+
+const int IOPOL_VFS_SKIP_MTIME_UPDATE_ON = 1;
+
+const int IOPOL_VFS_ALLOW_LOW_SPACE_WRITES_OFF = 0;
+
+const int IOPOL_VFS_ALLOW_LOW_SPACE_WRITES_ON = 1;
 
 const int WNOHANG = 1;
 
 const int WUNTRACED = 2;
 
-const int WSTOPPED = 2;
+const int WCOREFLAG = 128;
+
+const int _WSTOPPED = 127;
 
 const int WEXITED = 4;
 
-const int WCONTINUED = 8;
+const int WSTOPPED = 8;
 
-const int WNOWAIT = 16777216;
+const int WCONTINUED = 16;
 
-const int __WNOTHREAD = 536870912;
+const int WNOWAIT = 32;
 
-const int __WALL = 1073741824;
+const int WAIT_ANY = -1;
 
-const int __WCLONE = 2147483648;
+const int WAIT_MYPGRP = 0;
 
-const int __W_CONTINUED = 65535;
+const int _QUAD_HIGHWORD = 1;
 
-const int __WCOREFLAG = 128;
+const int _QUAD_LOWWORD = 0;
 
-const int __HAVE_FLOAT128 = 0;
+const int __DARWIN_LITTLE_ENDIAN = 1234;
 
-const int __HAVE_DISTINCT_FLOAT128 = 0;
+const int __DARWIN_BIG_ENDIAN = 4321;
 
-const int __HAVE_FLOAT64X = 1;
+const int __DARWIN_PDP_ENDIAN = 3412;
 
-const int __HAVE_FLOAT64X_LONG_DOUBLE = 1;
-
-const int __HAVE_FLOAT16 = 0;
-
-const int __HAVE_FLOAT32 = 1;
-
-const int __HAVE_FLOAT64 = 1;
-
-const int __HAVE_FLOAT32X = 1;
-
-const int __HAVE_FLOAT128X = 0;
-
-const int __HAVE_DISTINCT_FLOAT16 = 0;
-
-const int __HAVE_DISTINCT_FLOAT32 = 0;
-
-const int __HAVE_DISTINCT_FLOAT64 = 0;
-
-const int __HAVE_DISTINCT_FLOAT32X = 0;
-
-const int __HAVE_DISTINCT_FLOAT64X = 0;
-
-const int __HAVE_DISTINCT_FLOAT128X = 0;
-
-const int __HAVE_FLOAT128_UNLIKE_LDBL = 0;
-
-const int __HAVE_FLOATN_NOT_TYPEDEF = 0;
-
-const int __ldiv_t_defined = 1;
-
-const int __lldiv_t_defined = 1;
-
-const int RAND_MAX = 2147483647;
-
-const int EXIT_FAILURE = 1;
-
-const int EXIT_SUCCESS = 0;
-
-const int _SYS_TYPES_H = 1;
-
-const int __clock_t_defined = 1;
-
-const int __clockid_t_defined = 1;
-
-const int __time_t_defined = 1;
-
-const int __timer_t_defined = 1;
-
-const int __BIT_TYPES_DEFINED__ = 1;
-
-const int _ENDIAN_H = 1;
-
-const int _BITS_ENDIAN_H = 1;
-
-const int __LITTLE_ENDIAN = 1234;
-
-const int __BIG_ENDIAN = 4321;
-
-const int __PDP_ENDIAN = 3412;
-
-const int _BITS_ENDIANNESS_H = 1;
-
-const int __BYTE_ORDER = 1234;
-
-const int __FLOAT_WORD_ORDER = 1234;
+const int __DARWIN_BYTE_ORDER = 1234;
 
 const int LITTLE_ENDIAN = 1234;
 
@@ -17368,56 +8242,12 @@ const int PDP_ENDIAN = 3412;
 
 const int BYTE_ORDER = 1234;
 
-const int _BITS_BYTESWAP_H = 1;
+const int NULL = 0;
 
-const int _BITS_UINTN_IDENTITY_H = 1;
+const int EXIT_FAILURE = 1;
 
-const int _SYS_SELECT_H = 1;
+const int EXIT_SUCCESS = 0;
 
-const int __sigset_t_defined = 1;
+const int RAND_MAX = 2147483647;
 
-const int _SIGSET_NWORDS = 16;
-
-const int __timeval_defined = 1;
-
-const int _STRUCT_TIMESPEC = 1;
-
-const int __NFDBITS = 64;
-
-const int FD_SETSIZE = 1024;
-
-const int NFDBITS = 64;
-
-const int _BITS_PTHREADTYPES_COMMON_H = 1;
-
-const int _THREAD_SHARED_TYPES_H = 1;
-
-const int _BITS_PTHREADTYPES_ARCH_H = 1;
-
-const int __SIZEOF_PTHREAD_MUTEX_T = 40;
-
-const int __SIZEOF_PTHREAD_ATTR_T = 56;
-
-const int __SIZEOF_PTHREAD_RWLOCK_T = 56;
-
-const int __SIZEOF_PTHREAD_BARRIER_T = 32;
-
-const int __SIZEOF_PTHREAD_MUTEXATTR_T = 4;
-
-const int __SIZEOF_PTHREAD_COND_T = 48;
-
-const int __SIZEOF_PTHREAD_CONDATTR_T = 4;
-
-const int __SIZEOF_PTHREAD_RWLOCKATTR_T = 8;
-
-const int __SIZEOF_PTHREAD_BARRIERATTR_T = 4;
-
-const int _THREAD_MUTEX_INTERNAL_H = 1;
-
-const int __PTHREAD_MUTEX_HAVE_PREV = 1;
-
-const int __PTHREAD_RWLOCK_ELISION_EXTRA = 0;
-
-const int __have_pthread_attr_t = 1;
-
-const int _ALLOCA_H = 1;
+const int SHORT_ID_SIZE = 8;

@@ -78,8 +78,8 @@ class Raygun {
       message.conversationId =
           bindings.message_conversation_id(pMsg).value.toString();
       // Sender ID, DID only
-      Pointer<G_SenderId> pSenderId = bindings.message_sender_id(pMsg);
-      Pointer<G_DID> pSenderDid = bindings.sender_id_get_did_key(pSenderId);
+      //Pointer<G_SenderId> pSenderId = bindings.message_sender_id();
+      Pointer<G_DID> pSenderDid = bindings.message_sender(pMsg);
       message.senderId = DID(pSenderDid).toString();
       // DateTime
       // TODO: test required
@@ -96,15 +96,15 @@ class Raygun {
         Reaction reaction = Reaction();
         Pointer<G_Reaction> pReaction = pReactions.ref.ptr.elementAt(j).value;
         reaction.emoji = bindings.reaction_emoji(pReaction).toString();
-        Pointer<G_FFIVec_SenderId> pReactionSendersId =
+        Pointer<G_FFIVec_DID> pReactionSenders =
             bindings.reaction_users(pReaction);
-        int reactionSendersIdLen = pReactionSendersId.ref.len;
+        int reactionSendersIdLen = pReactionSenders.ref.len;
         for (int k = 0; k < reactionSendersIdLen; k++) {
           reaction.senderId
-              .add(pReactionSendersId.ref.ptr.elementAt(k).value.toString());
+              .add(pReactionSenders.ref.ptr.elementAt(k).value.toString());
         }
         calloc.free(pReaction);
-        calloc.free(pReactionSendersId);
+        calloc.free(pReactionSenders);
       }
       message.reactions = reactions;
       // Replied
@@ -128,7 +128,6 @@ class Raygun {
       calloc.free(pReplied);
       calloc.free(pLines);
       calloc.free(pSenderDid);
-      calloc.free(pSenderId);
 
       // TODO: Metadata - Rust binding is not ready
 
@@ -142,6 +141,7 @@ class Raygun {
   // If there is message sent, Warp will cover the editing part.
   send(String conversationId, [String? messageId, List<String>? messages]) {
     // Parameter validation
+    String merge = '';
     if (messageId == null && messages == null) {
       throw Exception("Both given message ID and body are null");
     }
@@ -156,13 +156,18 @@ class Raygun {
         ? nullptr
         : pMessageId = messageId.toNativeUtf8().cast<Char>();
     Pointer<Pointer<Char>> pMessages = calloc<Pointer<Char>>();
-    // Pass the address of each message
-    for (int i = 0; i < messages!.length; i++) {
-      pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
+
+    for (var element in messages!) {
+      merge = '$merge$element\n';
     }
+
+    //remove last \n
+    merge = merge.substring(0, merge.length - 1);
+
     // Invoke and result check
-    G_FFIResult_Null result = bindings.raygun_send(
-        this.pRaygun, pConvoId, pMessageId, pMessages, messages.length);
+    G_FFIResult_Null result = bindings.raygun_send(this.pRaygun, pConvoId,
+        pMessageId, merge.toNativeUtf8().cast<Char>(), messages.length);
+
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }

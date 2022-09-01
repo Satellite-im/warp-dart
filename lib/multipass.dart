@@ -123,7 +123,7 @@ class Identity {
   Identity(Pointer<G_Identity> pointer) {
     Pointer<Char> u_ptr = bindings.multipass_identity_username(pointer);
     username = u_ptr.cast<Utf8>().toDartString();
-    short_id = bindings.multipass_identity_short_id(pointer);
+    short_id = bindings.multipass_identity_short_id(pointer).value;
     //Note that DID throws an exception if there is an error. Maybe handle it?
     did_key = DID(bindings.multipass_identity_did_key(pointer));
     graphics = Graphics(bindings.multipass_identity_graphics(pointer));
@@ -178,12 +178,12 @@ class MultiPass {
   }
 
   Identity getIdentity(Identifier identifier) {
-    G_FFIResult_Identity result =
+    G_FFIResult_FFIVec_Identity result =
         bindings.multipass_get_identity(pointer, identifier.pointer());
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    return Identity(result.data);
+    return Identity(result.data.ref.ptr.elementAt(0).value);
   }
 
   Identity getOwnIdentity() {
