@@ -78,6 +78,7 @@ class Raygun {
       message.conversationId =
           bindings.message_conversation_id(pMsg).value.toString();
       // Sender ID, DID only
+
       //Pointer<G_SenderId> pSenderId = bindings.message_sender_id();
       Pointer<G_DID> pSenderDid = bindings.message_sender(pMsg);
       message.senderId = DID(pSenderDid).toString();
@@ -96,6 +97,7 @@ class Raygun {
         Reaction reaction = Reaction();
         Pointer<G_Reaction> pReaction = pReactions.ref.ptr.elementAt(j).value;
         reaction.emoji = bindings.reaction_emoji(pReaction).toString();
+
         Pointer<G_FFIVec_DID> pReactionSenders =
             bindings.reaction_users(pReaction);
         int reactionSendersIdLen = pReactionSenders.ref.len;
@@ -127,6 +129,7 @@ class Raygun {
       calloc.free(pReactions);
       calloc.free(pReplied);
       calloc.free(pLines);
+
       calloc.free(pSenderDid);
 
       // TODO: Metadata - Rust binding is not ready

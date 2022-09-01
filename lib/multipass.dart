@@ -115,7 +115,7 @@ class Identity {
   late int short_id;
   late DID did_key;
   late Graphics graphics;
-  late String status_message;
+  late String? status_message;
   //late List<Role> roles;
   //late List<Badge> available_badges;
   //late Badge active_badge;
@@ -128,11 +128,9 @@ class Identity {
     did_key = DID(bindings.multipass_identity_did_key(pointer));
     graphics = Graphics(bindings.multipass_identity_graphics(pointer));
     Pointer<Char> ptr = bindings.multipass_identity_status_message(pointer);
-
-    status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : "N/A";
+    status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : null;
 
     //TODO: Complete
-    //Once finish, free the pointer
 
     calloc.free(ptr);
     calloc.free(u_ptr);
@@ -183,6 +181,7 @@ class MultiPass {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+
     return Identity(result.data.ref.ptr.elementAt(0).value);
   }
 
