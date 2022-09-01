@@ -62,12 +62,12 @@ void test_rg_ipfs() {
   print("Send messages via account A");
   List<String> chatMessagesA = [];
   chatMessagesA.add("Hello, World!!");
-  // chatMessagesA.add("How are you??");
-  // chatMessagesA.add("Has your day been good???");
-  // chatMessagesA.add("Mine is great");
-  // chatMessagesA.add("You there????");
-  // chatMessagesA.add("Just tired from dealing with C :D");
-  // chatMessagesA.add("Rust rules!!!");
+  chatMessagesA.add("How are you??");
+  chatMessagesA.add("Has your day been good???");
+  chatMessagesA.add("Mine is great");
+  chatMessagesA.add("You there????");
+  chatMessagesA.add("Just tired from dealing with C :D");
+  chatMessagesA.add("Rust rules!!!");
   rgA.send(convoID, null, chatMessagesA);
   sleep(Duration(seconds: 1));
 
@@ -84,11 +84,11 @@ void test_rg_ipfs() {
   print("Send messages via account B");
   List<String> chatMessagesB = [];
   chatMessagesB.add("Hello from Chatter A :D");
-  // chatMessagesB.add("I've grown tired of C");
-  // chatMessagesB.add("Rust is life");
-  // chatMessagesB.add("Sooooooooooo tired");
-  // chatMessagesB.add(
-  //     "Dreamed of being within a dream and waking up from that dream while in a dream :D");
+  chatMessagesB.add("I've grown tired of C");
+  chatMessagesB.add("Rust is life");
+  chatMessagesB.add("Sooooooooooo tired");
+  chatMessagesB.add(
+      "Dreamed of being within a dream and waking up from that dream while in a dream :D");
   rgB.send(convoID, null, chatMessagesB);
   sleep(Duration(seconds: 1));
 
