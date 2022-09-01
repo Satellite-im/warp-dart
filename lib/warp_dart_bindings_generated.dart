@@ -4144,6 +4144,35 @@ class WarpDartBindings {
   late final _querybuilder_limit = _querybuilder_limitPtr
       .asFunction<void Function(ffi.Pointer<G_QueryBuilder>, int)>();
 
+  void ffivec_conversation_free(
+    ffi.Pointer<G_FFIVec_Conversation> cvec,
+  ) {
+    return _ffivec_conversation_free(
+      cvec,
+    );
+  }
+
+  late final _ffivec_conversation_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_FFIVec_Conversation>)>>('ffivec_conversation_free');
+  late final _ffivec_conversation_free = _ffivec_conversation_freePtr
+      .asFunction<void Function(ffi.Pointer<G_FFIVec_Conversation>)>();
+
+  void conversation_free(
+    ffi.Pointer<G_Conversation> ptr,
+  ) {
+    return _conversation_free(
+      ptr,
+    );
+  }
+
+  late final _conversation_freePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_Conversation>)>>(
+      'conversation_free');
+  late final _conversation_free = _conversation_freePtr
+      .asFunction<void Function(ffi.Pointer<G_Conversation>)>();
+
   void ffivec_message_free(
     ffi.Pointer<G_FFIVec_Message> cvec,
   ) {
@@ -4215,7 +4244,7 @@ class WarpDartBindings {
   late final _raygunadapter_free = _raygunadapter_freePtr
       .asFunction<void Function(ffi.Pointer<G_RayGunAdapter>)>();
 
-  G_FFIResult_String raygun_create_conversation(
+  G_FFIResult_Conversation raygun_create_conversation(
     ffi.Pointer<G_RayGunAdapter> ctx,
     ffi.Pointer<G_DID> did_key,
   ) {
@@ -4227,14 +4256,14 @@ class WarpDartBindings {
 
   late final _raygun_create_conversationPtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_String Function(ffi.Pointer<G_RayGunAdapter>,
+          G_FFIResult_Conversation Function(ffi.Pointer<G_RayGunAdapter>,
               ffi.Pointer<G_DID>)>>('raygun_create_conversation');
   late final _raygun_create_conversation =
       _raygun_create_conversationPtr.asFunction<
-          G_FFIResult_String Function(
+          G_FFIResult_Conversation Function(
               ffi.Pointer<G_RayGunAdapter>, ffi.Pointer<G_DID>)>();
 
-  G_FFIResult_FFIVec_String raygun_list_conversations(
+  G_FFIResult_FFIVec_Conversation raygun_list_conversations(
     ffi.Pointer<G_RayGunAdapter> ctx,
   ) {
     return _raygun_list_conversations(
@@ -4244,11 +4273,12 @@ class WarpDartBindings {
 
   late final _raygun_list_conversationsPtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_FFIVec_String Function(
+          G_FFIResult_FFIVec_Conversation Function(
               ffi.Pointer<G_RayGunAdapter>)>>('raygun_list_conversations');
   late final _raygun_list_conversations =
       _raygun_list_conversationsPtr.asFunction<
-          G_FFIResult_FFIVec_String Function(ffi.Pointer<G_RayGunAdapter>)>();
+          G_FFIResult_FFIVec_Conversation Function(
+              ffi.Pointer<G_RayGunAdapter>)>();
 
   G_FFIResult_FFIVec_Message raygun_get_messages(
     ffi.Pointer<G_RayGunAdapter> ctx,
@@ -4601,6 +4631,65 @@ class WarpDartBindings {
   late final _reaction_users = _reaction_usersPtr.asFunction<
       ffi.Pointer<G_FFIVec_DID> Function(ffi.Pointer<G_Reaction>)>();
 
+  ffi.Pointer<ffi.Char> conversation_id(
+    ffi.Pointer<G_Conversation> conversation,
+  ) {
+    return _conversation_id(
+      conversation,
+    );
+  }
+
+  late final _conversation_idPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<G_Conversation>)>>('conversation_id');
+  late final _conversation_id = _conversation_idPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Conversation>)>();
+
+  ffi.Pointer<ffi.Char> conversation_name(
+    ffi.Pointer<G_Conversation> conversation,
+  ) {
+    return _conversation_name(
+      conversation,
+    );
+  }
+
+  late final _conversation_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<G_Conversation>)>>('conversation_name');
+  late final _conversation_name = _conversation_namePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Conversation>)>();
+
+  int conversation_type(
+    ffi.Pointer<G_Conversation> conversation,
+  ) {
+    return _conversation_type(
+      conversation,
+    );
+  }
+
+  late final _conversation_typePtr = _lookup<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<G_Conversation>)>>(
+      'conversation_type');
+  late final _conversation_type = _conversation_typePtr
+      .asFunction<int Function(ffi.Pointer<G_Conversation>)>();
+
+  ffi.Pointer<G_FFIVec_DID> conversation_recipients(
+    ffi.Pointer<G_Conversation> conversation,
+  ) {
+    return _conversation_recipients(
+      conversation,
+    );
+  }
+
+  late final _conversation_recipientsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<G_FFIVec_DID> Function(
+              ffi.Pointer<G_Conversation>)>>('conversation_recipients');
+  late final _conversation_recipients = _conversation_recipientsPtr.asFunction<
+      ffi.Pointer<G_FFIVec_DID> Function(ffi.Pointer<G_Conversation>)>();
+
   void tesseract_free(
     ffi.Pointer<G_Tesseract> ptr,
   ) {
@@ -4908,18 +4997,18 @@ class WarpDartBindings {
   late final _ffierror_free =
       _ffierror_freePtr.asFunction<void Function(ffi.Pointer<G_FFIError>)>();
 
-  void ffivec_string(
+  void ffivec_string_free(
     ffi.Pointer<G_FFIVec_String> cvec,
   ) {
-    return _ffivec_string(
+    return _ffivec_string_free(
       cvec,
     );
   }
 
-  late final _ffivec_stringPtr = _lookup<
+  late final _ffivec_string_freePtr = _lookup<
           ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_FFIVec_String>)>>(
-      'ffivec_string');
-  late final _ffivec_string = _ffivec_stringPtr
+      'ffivec_string_free');
+  late final _ffivec_string_free = _ffivec_string_freePtr
       .asFunction<void Function(ffi.Pointer<G_FFIVec_String>)>();
 
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
@@ -5531,6 +5620,11 @@ abstract class ConstellationDataType {
   static const int Toml = 2;
 }
 
+abstract class ConversationType {
+  static const int Direct = 0;
+  static const int Group = 1;
+}
+
 abstract class DataType {
   static const int Messaging = 0;
   static const int FileSystem = 1;
@@ -5575,6 +5669,8 @@ class G_Badge extends ffi.Opaque {}
 class G_Cipher extends ffi.Opaque {}
 
 class G_ConstellationAdapter extends ffi.Opaque {}
+
+class G_Conversation extends ffi.Opaque {}
 
 class G_DID extends ffi.Opaque {}
 
@@ -5823,6 +5919,16 @@ class G_FFIResult_QueryBuilder extends ffi.Struct {
   external ffi.Pointer<G_FFIError> error;
 }
 
+class G_FFIVec_Conversation extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<G_Conversation>> ptr;
+
+  @uintptr_t()
+  external int len;
+
+  @uintptr_t()
+  external int cap;
+}
+
 class G_FFIVec_Message extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_Message>> ptr;
 
@@ -5843,18 +5949,14 @@ class G_FFIVec_Reaction extends ffi.Struct {
   external int cap;
 }
 
-class G_FFIVec_String extends ffi.Struct {
-  external ffi.Pointer<ffi.Pointer<ffi.Char>> ptr;
+class G_FFIResult_Conversation extends ffi.Struct {
+  external ffi.Pointer<G_Conversation> data;
 
-  @uintptr_t()
-  external int len;
-
-  @uintptr_t()
-  external int cap;
+  external ffi.Pointer<G_FFIError> error;
 }
 
-class G_FFIResult_FFIVec_String extends ffi.Struct {
-  external ffi.Pointer<G_FFIVec_String> data;
+class G_FFIResult_FFIVec_Conversation extends ffi.Struct {
+  external ffi.Pointer<G_FFIVec_Conversation> data;
 
   external ffi.Pointer<G_FFIError> error;
 }
@@ -5863,6 +5965,16 @@ class G_FFIResult_FFIVec_Message extends ffi.Struct {
   external ffi.Pointer<G_FFIVec_Message> data;
 
   external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIVec_String extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<ffi.Char>> ptr;
+
+  @uintptr_t()
+  external int len;
+
+  @uintptr_t()
+  external int cap;
 }
 
 class G_FFIResult_Tesseract extends ffi.Struct {
