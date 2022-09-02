@@ -1,0 +1,19 @@
+name: example_console
+description: A sample command-line application.
+version: 1.0.0
+# homepage: https://www.example.com
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: "3.0.5"
+
+dependencies:
+  path: ^1.8.0
+  warp_dart:
+    path: ../
+
+publish_to: 'none' # the above path needs this configuration to avoid warnings.
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0

@@ -6,17 +6,20 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libName = 'warp';
 
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
-    return DynamicLibrary.open('$_libName.framework/$_libName');
+    return DynamicLibrary.open('../macos/lib$_libName.dylib');
   }
-  if (Platform.isAndroid || Platform.isLinux) {
+  if (Platform.isAndroid) {
     return DynamicLibrary.open('lib$_libName.so');
+  }
+  if (Platform.isLinux) {
+    return DynamicLibrary.open('../linux/lib$_libName.so');
   }
   if (Platform.isWindows) {
     return DynamicLibrary.open('$_libName.dll');
@@ -66,7 +69,8 @@ String mnemonic_secured_phrase() {
 }
 
 void mnemonic_into_tesseract(Tesseract tesseract, String phrase) {
-  G_FFIResult_Null result = bindings.mnemonic_into_tesseract(tesseract.getPointer(), phrase.toNativeUtf8().cast<Char>());
+  G_FFIResult_Null result = bindings.mnemonic_into_tesseract(
+      tesseract.getPointer(), phrase.toNativeUtf8().cast<Char>());
   if (result.error != nullptr) {
     throw WarpException(result.error);
   }
@@ -171,7 +175,8 @@ class Tesseract {
   }
 
   bool exist(String key) {
-    return bindings.tesseract_exist(_pointer, key.toNativeUtf8().cast<Char>()) !=
+    return bindings.tesseract_exist(
+            _pointer, key.toNativeUtf8().cast<Char>()) !=
         0;
   }
 

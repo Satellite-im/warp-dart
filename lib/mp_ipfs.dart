@@ -8,13 +8,27 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libNameIpfs = 'warp_mp_ipfs';
-DynamicLibrary ipfs_dlib = DynamicLibrary.open('lib$_libNameIpfs.so');
+final DynamicLibrary ipfs_dlib = () {
+  if (Platform.isMacOS || Platform.isIOS) {
+    return DynamicLibrary.open('../macos/lib$_libNameIpfs.dylib');
+  }
+  if (Platform.isAndroid) {
+    return DynamicLibrary.open('lib$_libNameIpfs.so');
+  }
+  if (Platform.isLinux) {
+    return DynamicLibrary.open('../linux/lib$_libNameIpfs.so');
+  }
+  if (Platform.isWindows) {
+    return DynamicLibrary.open('$_libNameIpfs.dll');
+  }
+  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+}();
 final WarpDartBindings _ipfs_bindings = WarpDartBindings(ipfs_dlib);
 
 MultiPass multipass_ipfs_temporary(Tesseract tesseract) {

@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
@@ -114,9 +114,11 @@ class Raygun {
       // Message body
       Pointer<G_FFIVec_String> pLines = bindings.message_lines(pMsg);
       int lineLen = pLines.ref.len;
+      message.value = [];
       for (int j = 0; j < lineLen; j++) {
-        message.value
-            .add(pLines.ref.ptr.elementAt(j).cast<Utf8>().toDartString());
+        String msg =
+            pLines.ref.ptr.elementAt(j).value.cast<Utf8>().toDartString();
+        message.value.add(msg);
       }
       // Add to the upstream variable
       msgs.add(message);
@@ -137,6 +139,7 @@ class Raygun {
   // If there is message sent, Warp will cover the editing part.
   send(String conversationId, [String? messageId, List<String>? messages]) {
     // Parameter validation
+    String merge = '';
     if (messageId == null && messages == null) {
       throw Exception("Both given message ID and body are null");
     }
@@ -154,13 +157,15 @@ class Raygun {
       // Allocation
       Pointer<Pointer<Char>> pMessages =
           Arena().allocate<Pointer<Char>>(messages!.length);
-      // Copy
-      for (int i = 0; i < messages.length; i++) {
-        pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
+      //merge all messages in one whole string
+      for (var element in messages) {
+        merge = '$merge$element\n';
       }
+      //remove last \n
+      merge = merge.substring(0, merge.length - 1);
       // Invoke and result check
-      G_FFIResult_Null result = bindings.raygun_send(
-          pRaygun, pConvoId, pMessageId, pMessages, messages.length);
+      G_FFIResult_Null result = bindings.raygun_send(pRaygun, pConvoId,
+          pMessageId, merge.toNativeUtf8().cast<Char>(), messages.length);
       if (result.error != nullptr) {
         throw WarpException(result.error);
       }
