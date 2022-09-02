@@ -152,10 +152,10 @@ class FriendRequest {
     bindings.friendrequest_free(pointer);
   }
 
-  // void drop() {
-  //   from.drop();
-  //   to.drop();
-  // }
+  void drop() {
+    from.drop();
+    to.drop();
+  }
 }
 
 class MultiPass {
