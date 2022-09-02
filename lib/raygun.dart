@@ -63,15 +63,17 @@ class Message {
 
     Pointer<G_FFIVec_String> pLines = bindings.message_lines(pointer);
     int lineLen = pLines.ref.len;
+    List<String> mList = [];
     for (int j = 0; j < lineLen; j++) {
       Pointer<Char> line = pLines.ref.ptr.elementAt(j).value;
-      value.add(pLines.cast<Utf8>().toDartString());
-      calloc.free(line);
+      mList.add(line.cast<Utf8>().toDartString());
     }
+
+    value = mList;
 
     calloc.free(pId);
     calloc.free(pConversationId);
-    calloc.free(pLines);
+    bindings.ffivec_string_free(pLines);
     calloc.free(pReplied);
     bindings.ffivec_reaction_free(pReactions);
     bindings.message_free(pointer);
@@ -105,13 +107,20 @@ class Conversation {
     Pointer<Char> pId = bindings.conversation_id(pointer);
     id = pId.cast<Utf8>().toDartString();
     Pointer<Char> pName = bindings.conversation_name(pointer);
-    name = pName.cast<Utf8>().toDartString();
-    type = bindings.conversation_type(pointer) as ConversationType;
+    name = pName != nullptr ? pName.cast<Utf8>().toDartString() : null;
+    //TODO: Investigate in right conversation
+    // type = bindings.conversation_type(pointer) as ConversationType;
+
     Pointer<G_FFIVec_DID> pDIDs = bindings.conversation_recipients(pointer);
     int len = pDIDs.ref.len;
+    List<DID> rList = [];
     for (int i = 0; i < len; i++) {
-      recipients.add(DID(pDIDs.ref.ptr[i]));
+      rList.add(DID(pDIDs.ref.ptr[i]));
     }
+
+    recipients = rList;
+
+    bindings.conversation_free(pointer);
   }
 }
 
@@ -151,14 +160,13 @@ class Raygun {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    // Collect conversation 
+    // Collect conversation
     int conversationsLen = result.data.ref.len;
     List<Conversation> conversations = [];
     for (int i = 0; i < conversationsLen; i++) {
       Pointer<G_Conversation> pConversation =
           result.data.ref.ptr.elementAt(i).value;
       conversations.add(Conversation(pConversation));
-      calloc.free(pConversation);
     }
 
     return conversations;
@@ -176,9 +184,6 @@ class Raygun {
     for (int i = 0; i < length; i++) {
       msgs.add(Message(result.data.ref.ptr.elementAt(i).value));
     }
-
-    bindings.ffivec_message_free(result.data);
-
     return msgs;
   }
 
@@ -187,12 +192,16 @@ class Raygun {
       throw Exception("Message cannot be empty");
     }
 
-    Pointer<Pointer<Char>> pMessages =
-        calloc.allocate<Pointer<Char>>(messages.length);
-    // Copy
-    for (int i = 0; i < messages.length; i++) {
-      pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
-    }
+    List<Pointer<Char>> pointerList =
+        messages.map((str) => str.toNativeUtf8().cast<Char>()).toList();
+
+    final Pointer<Pointer<Char>> pMessages = malloc
+        .allocate<Pointer<Char>>(sizeOf<Pointer<Utf8>>() * pointerList.length);
+
+    messages.asMap().forEach((index, utf) {
+      pMessages[index] = pointerList[index];
+    });
+
     // Invoke and result check
     G_FFIResult_Null result = bindings.raygun_send(
         pRaygun,
@@ -205,7 +214,7 @@ class Raygun {
       throw WarpException(result.error);
     }
     // Release
-    calloc.free(pMessages);
+    malloc.free(pMessages);
   }
 
   edit(String conversationId, String messageId, List<String> messages) {
@@ -213,12 +222,16 @@ class Raygun {
       throw Exception("Message cannot be empty");
     }
 
-    Pointer<Pointer<Char>> pMessages =
-        calloc.allocate<Pointer<Char>>(messages.length);
-    // Copy
-    for (int i = 0; i < messages.length; i++) {
-      pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
-    }
+    List<Pointer<Char>> pointerList =
+        messages.map((str) => str.toNativeUtf8().cast<Char>()).toList();
+
+    final Pointer<Pointer<Char>> pMessages = malloc
+        .allocate<Pointer<Char>>(sizeOf<Pointer<Utf8>>() * pointerList.length);
+
+    messages.asMap().forEach((index, utf) {
+      pMessages[index] = pointerList[index];
+    });
+
     // Invoke and result check
     G_FFIResult_Null result = bindings.raygun_send(
         pRaygun,
@@ -230,7 +243,7 @@ class Raygun {
       throw WarpException(result.error);
     }
     // Release
-    calloc.free(pMessages);
+    malloc.free(pMessages);
   }
 
   delete(String conversationId, [String? messageId]) {
@@ -289,12 +302,16 @@ class Raygun {
       throw Exception("Message cannot be empty");
     }
 
-    Pointer<Pointer<Char>> pMessages =
-        calloc.allocate<Pointer<Char>>(messages.length);
-    // Copy
-    for (int i = 0; i < messages.length; i++) {
-      pMessages[i] = messages[i].toNativeUtf8().cast<Char>();
-    }
+    List<Pointer<Char>> pointerList =
+        messages.map((str) => str.toNativeUtf8().cast<Char>()).toList();
+
+    final Pointer<Pointer<Char>> pMessages = malloc
+        .allocate<Pointer<Char>>(sizeOf<Pointer<Utf8>>() * pointerList.length);
+
+    messages.asMap().forEach((index, utf) {
+      pMessages[index] = pointerList[index];
+    });
+
     // Invoke and result check
     G_FFIResult_Null result = bindings.raygun_reply(
         pRaygun,
