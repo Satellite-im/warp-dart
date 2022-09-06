@@ -46,7 +46,11 @@ class Message {
     sender = DID(pSender);
 
     Pointer<Char> pDate = bindings.message_date(pointer);
-    date = DateTime.parse(pDate.cast<Utf8>().toDartString());
+    
+    // Rust Chrono uses "UTC" while in dart, UTC is identified by "Z"
+    String rawDate = pDate.cast<Utf8>().toDartString().replaceAll(" UTC", 'Z');
+
+    date = DateTime.parse(rawDate);
 
     pinned = bindings.message_pinned(pointer) != 0;
 
