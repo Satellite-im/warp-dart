@@ -2658,35 +2658,6 @@ class WarpDartBindings {
       G_FFIResult_FFIVec_u8 Function(
           ffi.Pointer<G_Cipher>, int, ffi.Pointer<ffi.Uint8>, int)>();
 
-  void x25519secret_free(
-    ffi.Pointer<G_X25519Secret> ptr,
-  ) {
-    return _x25519secret_free(
-      ptr,
-    );
-  }
-
-  late final _x25519secret_freePtr = _lookup<
-          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_X25519Secret>)>>(
-      'x25519secret_free');
-  late final _x25519secret_free = _x25519secret_freePtr
-      .asFunction<void Function(ffi.Pointer<G_X25519Secret>)>();
-
-  void x25519publickey_free(
-    ffi.Pointer<G_X25519PublicKey> ptr,
-  ) {
-    return _x25519publickey_free(
-      ptr,
-    );
-  }
-
-  late final _x25519publickey_freePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<G_X25519PublicKey>)>>('x25519publickey_free');
-  late final _x25519publickey_free = _x25519publickey_freePtr
-      .asFunction<void Function(ffi.Pointer<G_X25519PublicKey>)>();
-
   G_FFIVec_u8 crypto_sha1_hash(
     ffi.Pointer<ffi.Uint8> data,
     int data_size,
@@ -2798,50 +2769,6 @@ class WarpDartBindings {
   late final _mnemonic_into_tesseract = _mnemonic_into_tesseractPtr.asFunction<
       G_FFIResult_Null Function(
           ffi.Pointer<G_Tesseract>, ffi.Pointer<ffi.Char>)>();
-
-  void ed25519keypair_free(
-    ffi.Pointer<G_Ed25519Keypair> ptr,
-  ) {
-    return _ed25519keypair_free(
-      ptr,
-    );
-  }
-
-  late final _ed25519keypair_freePtr = _lookup<
-          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_Ed25519Keypair>)>>(
-      'ed25519keypair_free');
-  late final _ed25519keypair_free = _ed25519keypair_freePtr
-      .asFunction<void Function(ffi.Pointer<G_Ed25519Keypair>)>();
-
-  void ffivec_ed25519publickey_free(
-    ffi.Pointer<G_FFIVec_Ed25519PublicKey> cvec,
-  ) {
-    return _ffivec_ed25519publickey_free(
-      cvec,
-    );
-  }
-
-  late final _ffivec_ed25519publickey_freePtr = _lookup<
-          ffi.NativeFunction<
-              ffi.Void Function(ffi.Pointer<G_FFIVec_Ed25519PublicKey>)>>(
-      'ffivec_ed25519publickey_free');
-  late final _ffivec_ed25519publickey_free = _ffivec_ed25519publickey_freePtr
-      .asFunction<void Function(ffi.Pointer<G_FFIVec_Ed25519PublicKey>)>();
-
-  void ed25519publickey_free(
-    ffi.Pointer<G_Ed25519PublicKey> ptr,
-  ) {
-    return _ed25519publickey_free(
-      ptr,
-    );
-  }
-
-  late final _ed25519publickey_freePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<G_Ed25519PublicKey>)>>('ed25519publickey_free');
-  late final _ed25519publickey_free = _ed25519publickey_freePtr
-      .asFunction<void Function(ffi.Pointer<G_Ed25519PublicKey>)>();
 
   ffi.Pointer<ffi.Char> did_to_string(
     ffi.Pointer<G_DID> did_key,
@@ -5678,10 +5605,6 @@ class G_Data extends ffi.Opaque {}
 
 class G_Directory extends ffi.Opaque {}
 
-class G_Ed25519Keypair extends ffi.Opaque {}
-
-class G_Ed25519PublicKey extends ffi.Opaque {}
-
 class G_File extends ffi.Opaque {}
 
 class G_FriendRequest extends ffi.Opaque {}
@@ -5711,10 +5634,6 @@ class G_Reaction extends ffi.Opaque {}
 class G_Role extends ffi.Opaque {}
 
 class G_Tesseract extends ffi.Opaque {}
-
-class G_X25519PublicKey extends ffi.Opaque {}
-
-class G_X25519Secret extends ffi.Opaque {}
 
 class G_FFIVec_Directory extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_Directory>> ptr;
@@ -5821,16 +5740,6 @@ class G_FFIResult_DID extends ffi.Struct {
   external ffi.Pointer<G_DID> data;
 
   external ffi.Pointer<G_FFIError> error;
-}
-
-class G_FFIVec_Ed25519PublicKey extends ffi.Struct {
-  external ffi.Pointer<ffi.Pointer<G_Ed25519PublicKey>> ptr;
-
-  @uintptr_t()
-  external int len;
-
-  @uintptr_t()
-  external int cap;
 }
 
 class G_FFIVec_Data extends ffi.Struct {
