@@ -162,14 +162,26 @@ class MultiPass {
   Pointer<G_MultiPassAdapter> pointer;
   MultiPass(this.pointer);
 
-  DID createIdentity(String username, String password) {
-    G_FFIResult_DID result = bindings.multipass_create_identity(
-        pointer,
-        username.toNativeUtf8().cast<Char>(),
-        password.toNativeUtf8().cast<Char>());
+  DID createIdentity(String? username, String? passphrase) {
+    Pointer<Char> pUsername =
+        username != null ? username.toNativeUtf8().cast<Char>() : nullptr;
+
+    Pointer<Char> pPassphrase =
+        passphrase != null ? passphrase.toNativeUtf8().cast<Char>() : nullptr;
+
+    G_FFIResult_DID result =
+        bindings.multipass_create_identity(pointer, pUsername, pPassphrase);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
+    }
+
+    if (pUsername != nullptr) {
+      calloc.free(pUsername);
+    }
+
+    if (pPassphrase != nullptr) {
+      calloc.free(pPassphrase);
     }
 
     return DID(result.data);
@@ -222,7 +234,7 @@ class MultiPass {
     if (list.isEmpty) {
       throw Exception("Identity not found");
     }
-    
+
     return list.first;
   }
 
@@ -413,9 +425,12 @@ class MultiPass {
   }
 }
 
-String generateName() {
+String? generateName() {
   Pointer<Char> ptr = bindings.multipass_generate_name();
+  if (ptr == nullptr) {
+    return null;
+  }
   String name = ptr.cast<Utf8>().toDartString();
-  //TODO: Free ptr
+  calloc.free(ptr);
   return name;
 }
