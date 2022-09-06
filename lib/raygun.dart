@@ -37,7 +37,7 @@ class Message {
   late Map<String, String> metadata;
   Message(Pointer<G_Message> pointer) {
     Pointer<Char> pId = bindings.message_id(pointer);
-    id = pId.value.toString();
+    id = pId.cast<Utf8>().toDartString();
 
     Pointer<Char> pConversationId = bindings.message_conversation_id(pointer);
     conversationId = pConversationId.cast<Utf8>().toDartString();
