@@ -34,7 +34,7 @@ class Message {
   late List<Reaction> reactions;
   late String? replied;
   late List<String> value;
-  late Map<String, String> metadata;
+  late Map<String, String>? metadata;
   Message(Pointer<G_Message> pointer) {
     Pointer<Char> pId = bindings.message_id(pointer);
     id = pId.cast<Utf8>().toDartString();
@@ -45,7 +45,8 @@ class Message {
     Pointer<G_DID> pSender = bindings.message_sender(pointer);
     sender = DID(pSender);
 
-    date = DateTime(bindings.message_date(pointer).value);
+    Pointer<Char> pDate = bindings.message_date(pointer);
+    date = DateTime.parse(pDate.cast<Utf8>().toDartString());
 
     pinned = bindings.message_pinned(pointer) != 0;
 
@@ -71,6 +72,7 @@ class Message {
 
     value = mList;
 
+    calloc.free(pDate);
     calloc.free(pId);
     calloc.free(pConversationId);
     bindings.ffivec_string_free(pLines);
