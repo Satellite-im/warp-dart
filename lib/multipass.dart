@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
@@ -141,15 +141,42 @@ class Identity {
 class FriendRequest {
   late DID from;
   late DID to;
-  late FriendRequestStatus status;
+  late String status;
   // late int date;
 
   FriendRequest(Pointer<G_FriendRequest> pointer) {
     from = DID(bindings.multipass_friend_request_from(pointer));
     to = DID(bindings.multipass_friend_request_to(pointer));
-    status = bindings.multipass_friend_request_status(pointer)
-        as FriendRequestStatus;
-    bindings.friendrequest_free(pointer);
+    int statusInt = bindings.multipass_friend_request_status(pointer);
+    switch (statusInt) {
+      case 0:
+        status = "Uninitialized";
+        break;
+      case 1:
+        status = "Pending";
+        break;
+      case 2:
+        status = "Accepted";
+        break;
+      case 3:
+        status = "Denied";
+        break;
+      case 4:
+        status = "FriendRemoved";
+        break;
+      case 5:
+        status = "RequestRemoved";
+        break;
+    }
+    //bindings.friendrequest_free(pointer);
+  }
+
+  String toString() {
+    String fromString = from.toString();
+    String toString = to.toString();
+
+    String request = "From: $fromString\nTo: $to\nStatus: $status";
+    return request;
   }
 
   void drop() {
@@ -162,26 +189,14 @@ class MultiPass {
   Pointer<G_MultiPassAdapter> pointer;
   MultiPass(this.pointer);
 
-  DID createIdentity(String? username, String? passphrase) {
-    Pointer<Char> pUsername =
-        username != null ? username.toNativeUtf8().cast<Char>() : nullptr;
-
-    Pointer<Char> pPassphrase =
-        passphrase != null ? passphrase.toNativeUtf8().cast<Char>() : nullptr;
-
-    G_FFIResult_DID result =
-        bindings.multipass_create_identity(pointer, pUsername, pPassphrase);
+  DID createIdentity(String username, String password) {
+    G_FFIResult_DID result = bindings.multipass_create_identity(
+        pointer,
+        username.toNativeUtf8().cast<Char>(),
+        password.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
-    }
-
-    if (pUsername != nullptr) {
-      calloc.free(pUsername);
-    }
-
-    if (pPassphrase != nullptr) {
-      calloc.free(pPassphrase);
     }
 
     return DID(result.data);
@@ -220,8 +235,8 @@ class MultiPass {
     return list;
   }
 
-  Identity getIdentityByDID(String did_key) {
-    Identifier identifier = Identifier.fromDIDString(did_key);
+  Identity getIdentityByDID(String didKey) {
+    Identifier identifier = Identifier.fromDIDString(didKey);
     List<Identity> list;
     try {
       list = getIdentity(identifier);
@@ -425,12 +440,9 @@ class MultiPass {
   }
 }
 
-String? generateName() {
+String generateName() {
   Pointer<Char> ptr = bindings.multipass_generate_name();
-  if (ptr == nullptr) {
-    return null;
-  }
   String name = ptr.cast<Utf8>().toDartString();
-  calloc.free(ptr);
+  //TODO: Free ptr
   return name;
 }

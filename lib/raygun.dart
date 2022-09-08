@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
@@ -34,7 +34,7 @@ class Message {
   late List<Reaction> reactions;
   late String? replied;
   late List<String> value;
-  late Map<String, String>? metadata;
+  late Map<String, String> metadata;
   Message(Pointer<G_Message> pointer) {
     Pointer<Char> pId = bindings.message_id(pointer);
     id = pId.cast<Utf8>().toDartString();
@@ -45,17 +45,13 @@ class Message {
     Pointer<G_DID> pSender = bindings.message_sender(pointer);
     sender = DID(pSender);
 
-    Pointer<Char> pDate = bindings.message_date(pointer);
-    
-    // Rust Chrono uses "UTC" while in dart, UTC is identified by "Z"
-    String rawDate = pDate.cast<Utf8>().toDartString().replaceAll(" UTC", 'Z');
-
-    date = DateTime.parse(rawDate);
+    date = DateTime(bindings.message_date(pointer).value);
 
     pinned = bindings.message_pinned(pointer) != 0;
 
     Pointer<G_FFIVec_Reaction> pReactions = bindings.message_reactions(pointer);
     int reactionLen = pReactions.ref.len;
+    reactions = <Reaction>[];
     for (int i = 0; i < reactionLen; i++) {
       reactions.add(Reaction(pReactions.ref.ptr.elementAt(i).value));
     }
@@ -63,7 +59,7 @@ class Message {
     Pointer<Char> pReplied = bindings.message_replied(pointer);
     if (pReplied != nullptr) {
       replied = pReplied.cast<Utf8>().toDartString();
-      calloc.free(pReplied);
+      //calloc.free(pReplied);
     }
 
     Pointer<G_FFIVec_String> pLines = bindings.message_lines(pointer);
@@ -76,7 +72,6 @@ class Message {
 
     value = mList;
 
-    calloc.free(pDate);
     calloc.free(pId);
     calloc.free(pConversationId);
     bindings.ffivec_string_free(pLines);
@@ -95,6 +90,7 @@ class Reaction {
     Pointer<G_FFIVec_DID> pReactionSenders = bindings.reaction_users(pointer);
 
     int reactionSendersIdLen = pReactionSenders.ref.len;
+    sender = <DID>[];
     for (int k = 0; k < reactionSendersIdLen; k++) {
       Pointer<G_DID> pSenderId = pReactionSenders.ref.ptr.elementAt(k).value;
       sender.add(DID(pSenderId));

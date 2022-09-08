@@ -6,14 +6,15 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libName = 'warp';
 
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
-    return DynamicLibrary.open('$_libName.framework/$_libName');
+    String currentPath = Directory.current.path;
+    return DynamicLibrary.open('$currentPath/macos/lib$_libName.dylib');
   }
   if (Platform.isAndroid || Platform.isLinux) {
     return DynamicLibrary.open('lib$_libName.so');
@@ -47,8 +48,8 @@ class WarpException implements Exception {
 
 String mnemonic_standard_phrase() {
   Pointer<Char> ptr = bindings.generate_mnemonic_phrase(PhraseType.Standard);
-  if (ptr == nullptr) {
-    throw Exception("Unable to generate mnemonic phrase");
+  if (ptr.address.toString() != "0") {
+    throw Exception("Invalid Pointer");
   }
   String phrase = ptr.cast<Utf8>().toDartString();
   calloc.free(ptr);
@@ -57,8 +58,8 @@ String mnemonic_standard_phrase() {
 
 String mnemonic_secured_phrase() {
   Pointer<Char> ptr = bindings.generate_mnemonic_phrase(PhraseType.Secure);
-  if (ptr == nullptr) {
-    throw Exception("Unable to generate mnemonic phrase");
+  if (ptr.address.toString() != "0") {
+    throw Exception("Invalid Pointer");
   }
   String phrase = ptr.cast<Utf8>().toDartString();
   calloc.free(ptr);
@@ -66,7 +67,8 @@ String mnemonic_secured_phrase() {
 }
 
 void mnemonic_into_tesseract(Tesseract tesseract, String phrase) {
-  G_FFIResult_Null result = bindings.mnemonic_into_tesseract(tesseract.getPointer(), phrase.toNativeUtf8().cast<Char>());
+  G_FFIResult_Null result = bindings.mnemonic_into_tesseract(
+      tesseract.getPointer(), phrase.toNativeUtf8().cast<Char>());
   if (result.error != nullptr) {
     throw WarpException(result.error);
   }
@@ -88,7 +90,7 @@ class DID {
   String toString() {
     Pointer<Char> ptr = bindings.did_to_string(pointer);
     if (ptr == nullptr) {
-      throw Exception("Unable to convert DID to string");
+      throw Exception("Invalid Pointer");
     }
     String key = ptr.cast<Utf8>().toDartString();
     calloc.free(ptr);
@@ -171,7 +173,8 @@ class Tesseract {
   }
 
   bool exist(String key) {
-    return bindings.tesseract_exist(_pointer, key.toNativeUtf8().cast<Char>()) !=
+    return bindings.tesseract_exist(
+            _pointer, key.toNativeUtf8().cast<Char>()) !=
         0;
   }
 
