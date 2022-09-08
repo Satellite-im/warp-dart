@@ -47,8 +47,8 @@ class WarpException implements Exception {
 
 String mnemonic_standard_phrase() {
   Pointer<Char> ptr = bindings.generate_mnemonic_phrase(PhraseType.Standard);
-  if (ptr.address.toString() != "0") {
-    throw Exception("Invalid Pointer");
+  if (ptr == nullptr) {
+    throw Exception("Unable to generate mnemonic phrase");
   }
   String phrase = ptr.cast<Utf8>().toDartString();
   calloc.free(ptr);
@@ -57,8 +57,8 @@ String mnemonic_standard_phrase() {
 
 String mnemonic_secured_phrase() {
   Pointer<Char> ptr = bindings.generate_mnemonic_phrase(PhraseType.Secure);
-  if (ptr.address.toString() != "0") {
-    throw Exception("Invalid Pointer");
+  if (ptr == nullptr) {
+    throw Exception("Unable to generate mnemonic phrase");
   }
   String phrase = ptr.cast<Utf8>().toDartString();
   calloc.free(ptr);
@@ -88,7 +88,7 @@ class DID {
   String toString() {
     Pointer<Char> ptr = bindings.did_to_string(pointer);
     if (ptr == nullptr) {
-      throw Exception("Invalid Pointer");
+      throw Exception("Unable to convert DID to string");
     }
     String key = ptr.cast<Utf8>().toDartString();
     calloc.free(ptr);
