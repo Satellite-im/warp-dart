@@ -28,8 +28,7 @@ final DynamicLibrary raygun_ipfs_dlib = () {
     return DynamicLibrary.open('$currentPath/linux/lib$_libNameRaygunIpfs.so');
   }
   if (Platform.isWindows) {
-    return DynamicLibrary.open(
-        '$currentPath/windows/lib$_libNameRaygunIpfs.dll');
+    return DynamicLibrary.open('$currentPath/windows/$_libNameRaygunIpfs.dll');
   }
   throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
 }();
