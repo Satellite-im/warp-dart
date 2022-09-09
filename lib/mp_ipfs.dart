@@ -28,7 +28,7 @@ final DynamicLibrary ipfs_dlib = () {
     return DynamicLibrary.open('$currentPath/linux/lib$_libNameIpfs.so');
   }
   if (Platform.isWindows) {
-    return DynamicLibrary.open('$currentPath/windows/$_libNameIpfs.dll');
+    return DynamicLibrary.open('$currentPath/windows/lib$_libNameIpfs.dll');
   }
   throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
 }();

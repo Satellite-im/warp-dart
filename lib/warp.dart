@@ -24,7 +24,7 @@ final DynamicLibrary _dylib = () {
     return DynamicLibrary.open('$currentPath/linux/lib$_libName.so');
   }
   if (Platform.isWindows) {
-    return DynamicLibrary.open('$currentPath/windows/$_libName.dll');
+    return DynamicLibrary.open('$currentPath/windows/lib$_libName.dll');
   }
   throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
 }();
