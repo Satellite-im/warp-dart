@@ -15,8 +15,23 @@ import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libNameIpfs = 'warp_mp_ipfs';
 String currentPath = Directory.current.path;
-DynamicLibrary ipfs_dlib =
-    DynamicLibrary.open('$currentPath/macos/lib$_libNameIpfs.dylib');
+
+final DynamicLibrary ipfs_dlib = () {
+  if (Platform.isMacOS || Platform.isIOS) {
+    String currentPath = Directory.current.path;
+    return DynamicLibrary.open('$currentPath/macos/lib$_libNameIpfs.dylib');
+  }
+  if (Platform.isAndroid) {
+    return DynamicLibrary.open('lib$_libNameIpfs.so');
+  }
+  if (Platform.isLinux) {
+    return DynamicLibrary.open('$currentPath/linux/lib$_libNameIpfs.so');
+  }
+  if (Platform.isWindows) {
+    return DynamicLibrary.open('$currentPath/windows/$_libNameIpfs.dll');
+  }
+  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+}();
 final WarpDartBindings _ipfs_bindings = WarpDartBindings(ipfs_dlib);
 
 MultiPass multipass_ipfs_temporary(Tesseract tesseract) {

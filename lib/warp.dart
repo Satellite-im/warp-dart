@@ -6,6 +6,7 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
+import 'package:warp_dart/rg_ipfs.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
@@ -16,11 +17,14 @@ final DynamicLibrary _dylib = () {
     String currentPath = Directory.current.path;
     return DynamicLibrary.open('$currentPath/macos/lib$_libName.dylib');
   }
-  if (Platform.isAndroid || Platform.isLinux) {
+  if (Platform.isAndroid) {
     return DynamicLibrary.open('lib$_libName.so');
   }
+  if (Platform.isLinux) {
+    return DynamicLibrary.open('$currentPath/linux/lib$_libName.so');
+  }
   if (Platform.isWindows) {
-    return DynamicLibrary.open('$_libName.dll');
+    return DynamicLibrary.open('$currentPath/windows/$_libName.dll');
   }
   throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
 }();

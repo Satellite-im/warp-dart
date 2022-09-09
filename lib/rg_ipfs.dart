@@ -14,8 +14,25 @@ import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libNameRaygunIpfs = 'warp_rg_ipfs';
 String currentPath = Directory.current.path;
-DynamicLibrary raygun_ipfs_dlib =
-    DynamicLibrary.open('$currentPath/macos/lib$_libNameRaygunIpfs.dylib');
+
+final DynamicLibrary raygun_ipfs_dlib = () {
+  if (Platform.isMacOS || Platform.isIOS) {
+    String currentPath = Directory.current.path;
+    return DynamicLibrary.open(
+        '$currentPath/macos/lib$_libNameRaygunIpfs.dylib');
+  }
+  if (Platform.isAndroid) {
+    return DynamicLibrary.open('lib$_libNameRaygunIpfs.so');
+  }
+  if (Platform.isLinux) {
+    return DynamicLibrary.open('$currentPath/linux/lib$_libNameRaygunIpfs.so');
+  }
+  if (Platform.isWindows) {
+    return DynamicLibrary.open(
+        '$currentPath/windows/lib$_libNameRaygunIpfs.dll');
+  }
+  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+}();
 final WarpDartBindings _raygun_ipfs_bindings =
     WarpDartBindings(raygun_ipfs_dlib);
 
