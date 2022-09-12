@@ -1,6 +1,8 @@
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:warp_dart/costellation.dart';
+import 'package:warp_dart/fs_memory.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/mp_ipfs.dart';
 import 'package:warp_dart/multipass.dart';
@@ -408,7 +410,27 @@ void test_mp_ipfs() {
 }
 
 void test_fs_memory() {
-  try {} on WarpException catch (e) {
+  try {
+    print("==== Test for fs_memory ====");
+
+    print("\nCreate Filesystem\n");
+    Constellation constellation = initConstellation();
+
+    print("\nCreateDiretory\n");
+    Directory directory = constellation.newDirectory("warp-dart-directory-1");
+
+    print("\nGet directory details\n");
+    print("Directory Id: ${directory.id}");
+    print("Directory Name: ${directory.name}");
+
+    print("\nAdd description to Directory\n");
+    directory.setDescription("This is my directory");
+
+    print("\nGet directory details\n");
+    print("Directory Id: ${directory.id}");
+    print("Directory Name: ${directory.name}");
+    print("Directory Description: ${directory.description}");
+  } on WarpException catch (e) {
     print(e.errorMessage());
   }
 }

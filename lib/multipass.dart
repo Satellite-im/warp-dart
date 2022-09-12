@@ -191,9 +191,7 @@ class MultiPass {
 
   DID createIdentity(String username, String password) {
     G_FFIResult_DID result = bindings.multipass_create_identity(
-        pointer,
-        username.toNativeUtf8().cast<Char>(),
-        password.toNativeUtf8().cast<Char>());
+        pointer, username.toNativeUtf8().cast<Char>(), nullptr);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);

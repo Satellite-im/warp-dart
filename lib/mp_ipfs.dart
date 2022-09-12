@@ -19,7 +19,7 @@ String currentPath = Directory.current.path;
 final DynamicLibrary ipfs_dlib = () {
   if (Platform.isMacOS || Platform.isIOS) {
     String currentPath = Directory.current.path;
-    return DynamicLibrary.open('$currentPath/macos/lib$_libNameIpfs.dylib');
+    return DynamicLibrary.open('$currentPath/macos/new/lib$_libNameIpfs.dylib');
   }
   if (Platform.isAndroid) {
     return DynamicLibrary.open('lib$_libNameIpfs.so');
