@@ -28,7 +28,7 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
-macos/
+/macos/
 android/app/
 ios/Flutter/
 ios/Runner/
