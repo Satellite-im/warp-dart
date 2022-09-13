@@ -433,8 +433,9 @@ class Constellation {
     if (pointerDirectory == nullptr) {
       throw Exception("Directory not found");
     }
-    bindings.directory_free(pointerDirectory);
-    return Directory(pointerDirectory);
+    Directory dir = Directory(pointerDirectory);
+    //bindings.directory_free(pointerDirectory);
+    return dir;
   }
 
   Directory getCurrentDirectoryMutable() {
@@ -521,7 +522,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   Directory openDirectory(String name) {
@@ -531,8 +531,9 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.directory_free(result.data);
-    return Directory(result.data);
+    Directory dir = Directory(result.data);
+    //bindings.directory_free(result.data);
+    return dir;
   }
 
   void UploadToFilesystem(String remotePath, String localPath) {
@@ -544,7 +545,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   Directory getRootDirectory() {
@@ -554,24 +554,18 @@ class Constellation {
     if (pointerDirectory == nullptr) {
       throw Exception("Directory not found");
     }
-    bindings.directory_free(pointerDirectory);
-    return Directory(pointerDirectory);
+    Directory dir = Directory(pointerDirectory);
+    //bindings.directory_free(pointerDirectory);
+    return dir;
   }
 
   void removeItem(String remotePath, bool recursive) {
-    int intRecursive = 0;
-
-    if (recursive == true) {
-      intRecursive = 1;
-    }
-
     G_FFIResult_Null result = bindings.constellation_remove(
         _pointer, remotePath.toNativeUtf8().cast<Char>(), recursive);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   void selectItem(String name) {
@@ -581,7 +575,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   void syncReference(String src) {
@@ -591,7 +584,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   /*void UploadToFilesystemFromBuffer(String remotePath, List<Uint8> buffer) {
