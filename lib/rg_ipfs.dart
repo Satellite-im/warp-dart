@@ -19,7 +19,7 @@ final DynamicLibrary raygun_ipfs_dlib = () {
   if (Platform.isMacOS || Platform.isIOS) {
     String currentPath = Directory.current.path;
     return DynamicLibrary.open(
-        '$currentPath/macos/new/lib$_libNameRaygunIpfs.dylib');
+        '$currentPath/macos/lib$_libNameRaygunIpfs.dylib');
   }
   if (Platform.isAndroid) {
     return DynamicLibrary.open('lib$_libNameRaygunIpfs.so');

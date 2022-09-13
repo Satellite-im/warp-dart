@@ -15,7 +15,7 @@ const String _libName = 'warp';
 final DynamicLibrary _dylib = () {
   if (Platform.isMacOS || Platform.isIOS) {
     String currentPath = Directory.current.path;
-    return DynamicLibrary.open('$currentPath/macos/new/lib$_libName.dylib');
+    return DynamicLibrary.open('$currentPath/macos/lib$_libName.dylib');
   }
   if (Platform.isAndroid) {
     return DynamicLibrary.open('lib$_libName.so');
