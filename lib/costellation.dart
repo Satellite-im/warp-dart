@@ -187,9 +187,8 @@ class File {
     bindings.item_free(item);
   }
 
-  File newFile(String name) {
-    Pointer<G_File> file = bindings.file_new(name.toNativeUtf8().cast<Char>());
-    return File(file);
+  File.newFile(String name) {
+    _pointer = bindings.file_new(name.toNativeUtf8().cast<Char>());
   }
 
   void drop() {

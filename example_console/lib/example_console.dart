@@ -90,6 +90,7 @@ void test_rg_ipfs() {
     print("Create conversation");
     DID didB = idB.did_key;
     String didBString = didB.toString();
+    print(didBString);
     late Conversation convo;
     if (conversations.isEmpty) {
       convo = rgA.createConversation(didBString);
@@ -231,13 +232,13 @@ void test_rg_ipfs() {
     List<Message> messages9 = rgA.getMessages(convo.id);
     print("Reply:  ${messages9[1].replied}");
 
-    print("Embed a Message");
+    /*print("Embed a Message");
     rgB.embed(convo.id, messages2[0].id, EmbedState.enabled);
     sleep(Duration(seconds: 1));
 
     print("Get Reply");
     List<Message> messages10 = rgA.getMessages(convo.id);
-    print("Reply:  ${messages10[0]}");
+    print("Reply:  ${messages10[0]}");*/
   } on WarpException catch (e) {
     print(e.errorMessage());
   }
@@ -423,13 +424,20 @@ void test_fs_memory() {
     print("Directory Id: ${directory.id}");
     print("Directory Name: ${directory.name}");
 
-    print("\nAdd description to Directory\n");
+    /*print("\nAdd description to Directory\n");
     directory.setDescription("This is my directory");
 
     print("\nGet directory details\n");
     print("Directory Id: ${directory.id}");
     print("Directory Name: ${directory.name}");
-    print("Directory Description: ${directory.description}");
+    print("Directory Description: ${directory.description}");*/
+
+    String remote = "test";
+    String local = "test";
+
+    constellation.UploadToFilesystem(remote, local);
+
+    //constellation.downloadFileFromFilesystem("file.txt", "/tmp/file.txt");
   } on WarpException catch (e) {
     print(e.errorMessage());
   }
