@@ -30,11 +30,11 @@ class Message {
   late String conversationId;
   late DID sender;
   late DateTime date;
-  late bool pinned;
-  late List<Reaction> reactions;
-  late String? replied;
+  bool pinned = false;
+  List<Reaction> reactions = [];
+  String? replied;
   late List<String> value;
-  late Map<String, String> metadata;
+  Map<String, String>? metadata;
   Message(Pointer<G_Message> pointer) {
     Pointer<Char> pId = bindings.message_id(pointer);
     id = pId.cast<Utf8>().toDartString();
@@ -45,7 +45,12 @@ class Message {
     Pointer<G_DID> pSender = bindings.message_sender(pointer);
     sender = DID(pSender);
 
-    date = DateTime(bindings.message_date(pointer).value);
+    Pointer<Char> pDate = bindings.message_date(pointer);
+
+    // Rust Chrono uses "UTC" while in dart, UTC is identified by "Z"
+    String rawDate = pDate.cast<Utf8>().toDartString().replaceAll(" UTC", 'Z');
+
+    date = DateTime.parse(rawDate);
 
     pinned = bindings.message_pinned(pointer) != 0;
 
