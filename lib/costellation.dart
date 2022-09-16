@@ -17,9 +17,9 @@ class Item {
   late Pointer<G_Item> _pointer;
   Item(this._pointer);
 
-  String getItemId(Item item) {
+  String getItemId() {
     String id;
-    Pointer<Char> pointerId = bindings.item_id(item.pointer());
+    Pointer<Char> pointerId = bindings.item_id(_pointer);
     if (pointerId == nullptr) {
       throw Exception("Directory not found");
     }
@@ -28,8 +28,8 @@ class Item {
     return id;
   }
 
-  String getItemName(Item item) {
-    Pointer<Char> pointerName = bindings.item_name(item.pointer());
+  String getItemName() {
+    Pointer<Char> pointerName = bindings.item_name(_pointer);
 
     if (pointerName == nullptr) {
       throw Exception("Item not found");
@@ -108,7 +108,6 @@ class Item {
     }
     Directory directory = Directory(result.data);
 
-    bindings.directory_free(result.data);
     return directory;
   }
 
@@ -159,7 +158,6 @@ class File {
   late String description;
   late DateTime creation;
   late DateTime modified;
-  //late FileType fileType;
   late String hash;
   late String? reference;
   late Pointer<G_File> _pointer;
@@ -174,9 +172,13 @@ class File {
     Pointer<Char> pDescription = bindings.item_description(item);
     description = pDescription.cast<Utf8>().toDartString();
     Pointer<Char> pCreation = bindings.item_creation(item);
-    creation = DateTime.parse(pCreation.cast<Utf8>().toDartString());
+    String creationString = pCreation.cast<Utf8>().toDartString();
+    creation =
+        DateTime.parse(creationString.substring(0, creationString.length - 4));
     Pointer<Char> pModified = bindings.item_modified(item);
-    modified = DateTime.parse(pModified.cast<Utf8>().toDartString());
+    String modifiedString = pModified.cast<Utf8>().toDartString();
+    modified =
+        DateTime.parse(modifiedString.substring(0, modifiedString.length - 4));
     hash = item.hashCode.toString();
 
     calloc.free(pId);
@@ -184,11 +186,35 @@ class File {
     calloc.free(pDescription);
     calloc.free(pCreation);
     calloc.free(pModified);
-    bindings.item_free(item);
   }
 
-  File.newFile(String name) {
-    _pointer = bindings.file_new(name.toNativeUtf8().cast<Char>());
+  File setDescription(String descritpion) {
+    Pointer<G_Item> item = bindings.file_into_item(_pointer);
+
+    if (item == nullptr) {
+      throw Exception("File not found");
+    }
+
+    bindings.item_set_description(
+        item, descritpion.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_file(item).data;
+
+    return File(_pointer);
+  }
+
+  File rename(String name) {
+    Pointer<G_Item> item = bindings.file_into_item(_pointer);
+
+    if (item == nullptr) {
+      throw Exception("File not found");
+    }
+
+    bindings.item_rename(item, name.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_file(item).data;
+
+    return File(_pointer);
   }
 
   void drop() {
@@ -219,7 +245,6 @@ class Directory {
     calloc.free(pId);
     calloc.free(pName);
     calloc.free(pDescription);
-    bindings.directory_free(_pointer);
   }
 
   void addDirectory(Directory directory) {
@@ -275,7 +300,7 @@ class Directory {
     return item;
   }
 
-  void setDescription(String descritpion) {
+  Directory setDescription(String descritpion) {
     Pointer<G_Item> item = bindings.directory_into_item(_pointer);
 
     if (item == nullptr) {
@@ -285,11 +310,23 @@ class Directory {
     bindings.item_set_description(
         item, descritpion.toNativeUtf8().cast<Char>());
 
-    Pointer<Char> pDescription = bindings.item_description(item);
+    _pointer = bindings.item_into_directory(item).data;
 
-    description = pDescription.cast<Utf8>().toDartString();
+    return Directory(_pointer);
+  }
 
-    calloc.free(pDescription);
+  Directory rename(String name) {
+    Pointer<G_Item> item = bindings.directory_into_item(_pointer);
+
+    if (item == nullptr) {
+      throw Exception("File not found");
+    }
+
+    bindings.item_rename(item, name.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_directory(item).data;
+
+    return Directory(_pointer);
   }
 
   Item getItem(String itemS) {
@@ -407,6 +444,13 @@ class Constellation {
     return Directory(pointer);
   }
 
+  File newFile(String name) {
+    Pointer<G_File> pointer =
+        bindings.file_new(name.toNativeUtf8().cast<Char>());
+
+    return File(pointer);
+  }
+
   void createDirectoryInFilesystem(String path) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
         _pointer, path.toNativeUtf8().cast<Char>(), false);
@@ -434,7 +478,6 @@ class Constellation {
       throw Exception("Directory not found");
     }
     Directory dir = Directory(pointerDirectory);
-    //bindings.directory_free(pointerDirectory);
     return dir;
   }
 
@@ -532,7 +575,6 @@ class Constellation {
       throw WarpException(result.error);
     }
     Directory dir = Directory(result.data);
-    //bindings.directory_free(result.data);
     return dir;
   }
 
@@ -555,7 +597,7 @@ class Constellation {
       throw Exception("Directory not found");
     }
     Directory dir = Directory(pointerDirectory);
-    //bindings.directory_free(pointerDirectory);
+
     return dir;
   }
 

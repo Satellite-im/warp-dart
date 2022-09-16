@@ -113,20 +113,48 @@ void test_fs_memory() {
       print(e.errorMessage());
     }
 
-    /*print("\nRemove Directory\n");
+    print("\nChange directory description\n");
     try {
-      constellation.removeItem("text.txt", false);
+      directory = directory.rename("warp-dart-directory-fs-2");
+      print("Directory name: ${directory.name}");
     } on WarpException catch (e) {
       print(e.errorMessage());
     }
 
-    print("\nGet Constellation filesystem structure in toml format\n");
+    print("\nChange directory description\n");
     try {
-      print(
-          "Toml:\n ${constellation.exportConstellationInOtherTypes(ConstellationDataType.toml)}");
+      directory = directory.setDescription("my first directory");
+      print("Directory name: ${directory.name}");
+      print("Directory description: ${directory.description}");
     } on WarpException catch (e) {
       print(e.errorMessage());
-    }*/
+    }
+
+    print("\nNew file\n");
+    File file = constellation.newFile("File");
+    try {
+      print("File name: ${file.name}");
+      print("File description: ${file.description}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nChange file description\n");
+    try {
+      file = file.rename("File 2");
+      print("File name: ${file.name}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nChange directory description\n");
+    try {
+      file = file.setDescription("my first file");
+      print("File name: ${file.name}");
+      print("File description: ${file.description}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
   } on WarpException catch (e) {
     print(e.errorMessage());
   }
