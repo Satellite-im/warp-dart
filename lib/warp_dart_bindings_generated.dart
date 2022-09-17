@@ -4938,6 +4938,51 @@ class WarpDartBindings {
   late final _ffivec_string_free = _ffivec_string_freePtr
       .asFunction<void Function(ffi.Pointer<G_FFIVec_String>)>();
 
+  void log_to_file(
+    int interval,
+    ffi.Pointer<ffi.Char> directory,
+    ffi.Pointer<ffi.Char> file,
+    ffi.Pointer<ffi.Char> env,
+    ffi.Pointer<ffi.Char> directive,
+  ) {
+    return _log_to_file(
+      interval,
+      directory,
+      file,
+      env,
+      directive,
+    );
+  }
+
+  late final _log_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int32,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('log_to_file');
+  late final _log_to_file = _log_to_filePtr.asFunction<
+      void Function(int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void log_to_stdout(
+    ffi.Pointer<ffi.Char> env,
+    ffi.Pointer<ffi.Char> directive,
+  ) {
+    return _log_to_stdout(
+      env,
+      directive,
+    );
+  }
+
+  late final _log_to_stdoutPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('log_to_stdout');
+  late final _log_to_stdout = _log_to_stdoutPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
     ffi.Pointer<ffi.Char> file,
   ) {
@@ -4952,6 +4997,23 @@ class WarpDartBindings {
               ffi.Pointer<ffi.Char>)>>('mp_ipfs_config_from_file');
   late final _mp_ipfs_config_from_file = _mp_ipfs_config_from_filePtr
       .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
+  int mp_ipfs_config_to_file(
+    ffi.Pointer<G_MpIpfsConfig> config,
+    ffi.Pointer<ffi.Char> file,
+  ) {
+    return _mp_ipfs_config_to_file(
+      config,
+      file,
+    );
+  }
+
+  late final _mp_ipfs_config_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<G_MpIpfsConfig>,
+              ffi.Pointer<ffi.Char>)>>('mp_ipfs_config_to_file');
+  late final _mp_ipfs_config_to_file = _mp_ipfs_config_to_filePtr.asFunction<
+      int Function(ffi.Pointer<G_MpIpfsConfig>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_str(
     ffi.Pointer<ffi.Char> config,
@@ -5068,6 +5130,24 @@ class WarpDartBindings {
   late final _rg_ipfs_config_from_file = _rg_ipfs_config_from_filePtr
       .asFunction<G_FFIResult_RgIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
 
+  G_FFIResult_Null rg_ipfs_config_to_file(
+    ffi.Pointer<G_RgIpfsConfig> config,
+    ffi.Pointer<ffi.Char> file,
+  ) {
+    return _rg_ipfs_config_to_file(
+      config,
+      file,
+    );
+  }
+
+  late final _rg_ipfs_config_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Null Function(ffi.Pointer<G_RgIpfsConfig>,
+              ffi.Pointer<ffi.Char>)>>('rg_ipfs_config_to_file');
+  late final _rg_ipfs_config_to_file = _rg_ipfs_config_to_filePtr.asFunction<
+      G_FFIResult_Null Function(
+          ffi.Pointer<G_RgIpfsConfig>, ffi.Pointer<ffi.Char>)>();
+
   G_FFIResult_RgIpfsConfig rg_ipfs_config_from_str(
     ffi.Pointer<ffi.Char> config,
   ) {
@@ -5167,26 +5247,6 @@ class WarpDartBindings {
               ffi.Pointer<G_MultiPassAdapter>,
               ffi.Pointer<G_PocketDimensionAdapter>,
               ffi.Pointer<G_RgIpfsConfig>)>();
-
-  ffi.Pointer<ffi.Int> pocketdimension_memory_new() {
-    return _pocketdimension_memory_new();
-  }
-
-  late final _pocketdimension_memory_newPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int> Function()>>(
-          'pocketdimension_memory_new');
-  late final _pocketdimension_memory_new = _pocketdimension_memory_newPtr
-      .asFunction<ffi.Pointer<ffi.Int> Function()>();
-
-  ffi.Pointer<ffi.Int> pocketdimension_stretto_new() {
-    return _pocketdimension_stretto_new();
-  }
-
-  late final _pocketdimension_stretto_newPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int> Function()>>(
-          'pocketdimension_stretto_new');
-  late final _pocketdimension_stretto_new = _pocketdimension_stretto_newPtr
-      .asFunction<ffi.Pointer<ffi.Int> Function()>();
 
   G_FFIResult_PocketDimensionAdapter pocket_dimension_flatfile_new(
     ffi.Pointer<ffi.Char> path,
@@ -5574,6 +5634,12 @@ abstract class FriendRequestStatus {
   static const int Denied = 3;
   static const int FriendRemoved = 4;
   static const int RequestRemoved = 5;
+}
+
+abstract class LogRotateInterval {
+  static const int Minute = 0;
+  static const int Hourly = 1;
+  static const int Daily = 2;
 }
 
 abstract class PhraseType {
