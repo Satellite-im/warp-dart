@@ -4210,20 +4210,24 @@ class WarpDartBindings {
   G_FFIResult_FFIVec_Message raygun_get_messages(
     ffi.Pointer<G_RayGunAdapter> ctx,
     ffi.Pointer<ffi.Char> convo_id,
+    ffi.Pointer<G_MessageOptions> option,
   ) {
     return _raygun_get_messages(
       ctx,
       convo_id,
+      option,
     );
   }
 
   late final _raygun_get_messagesPtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_FFIVec_Message Function(ffi.Pointer<G_RayGunAdapter>,
-              ffi.Pointer<ffi.Char>)>>('raygun_get_messages');
+          G_FFIResult_FFIVec_Message Function(
+              ffi.Pointer<G_RayGunAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<G_MessageOptions>)>>('raygun_get_messages');
   late final _raygun_get_messages = _raygun_get_messagesPtr.asFunction<
-      G_FFIResult_FFIVec_Message Function(
-          ffi.Pointer<G_RayGunAdapter>, ffi.Pointer<ffi.Char>)>();
+      G_FFIResult_FFIVec_Message Function(ffi.Pointer<G_RayGunAdapter>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<G_MessageOptions>)>();
 
   G_FFIResult_Null raygun_send(
     ffi.Pointer<G_RayGunAdapter> ctx,
@@ -4616,6 +4620,58 @@ class WarpDartBindings {
               ffi.Pointer<G_Conversation>)>>('conversation_recipients');
   late final _conversation_recipients = _conversation_recipientsPtr.asFunction<
       ffi.Pointer<G_FFIVec_DID> Function(ffi.Pointer<G_Conversation>)>();
+
+  ffi.Pointer<G_MessageOptions> messageoptions_new() {
+    return _messageoptions_new();
+  }
+
+  late final _messageoptions_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_MessageOptions> Function()>>(
+          'messageoptions_new');
+  late final _messageoptions_new = _messageoptions_newPtr
+      .asFunction<ffi.Pointer<G_MessageOptions> Function()>();
+
+  ffi.Pointer<G_MessageOptions> messageoptions_set_range(
+    ffi.Pointer<G_MessageOptions> option,
+    int start,
+    int end,
+  ) {
+    return _messageoptions_set_range(
+      option,
+      start,
+      end,
+    );
+  }
+
+  late final _messageoptions_set_rangePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<G_MessageOptions> Function(ffi.Pointer<G_MessageOptions>,
+              uintptr_t, uintptr_t)>>('messageoptions_set_range');
+  late final _messageoptions_set_range =
+      _messageoptions_set_rangePtr.asFunction<
+          ffi.Pointer<G_MessageOptions> Function(
+              ffi.Pointer<G_MessageOptions>, int, int)>();
+
+  ffi.Pointer<G_MessageOptions> messageoptions_set_date_range(
+    ffi.Pointer<G_MessageOptions> option,
+    int start,
+    int end,
+  ) {
+    return _messageoptions_set_date_range(
+      option,
+      start,
+      end,
+    );
+  }
+
+  late final _messageoptions_set_date_rangePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<G_MessageOptions> Function(ffi.Pointer<G_MessageOptions>,
+              ffi.Int64, ffi.Int64)>>('messageoptions_set_date_range');
+  late final _messageoptions_set_date_range =
+      _messageoptions_set_date_rangePtr.asFunction<
+          ffi.Pointer<G_MessageOptions> Function(
+              ffi.Pointer<G_MessageOptions>, int, int)>();
 
   void tesseract_free(
     ffi.Pointer<G_Tesseract> ptr,
@@ -5130,7 +5186,7 @@ class WarpDartBindings {
   late final _rg_ipfs_config_from_file = _rg_ipfs_config_from_filePtr
       .asFunction<G_FFIResult_RgIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
 
-  G_FFIResult_Null rg_ipfs_config_to_file(
+  int rg_ipfs_config_to_file(
     ffi.Pointer<G_RgIpfsConfig> config,
     ffi.Pointer<ffi.Char> file,
   ) {
@@ -5142,11 +5198,10 @@ class WarpDartBindings {
 
   late final _rg_ipfs_config_to_filePtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_Null Function(ffi.Pointer<G_RgIpfsConfig>,
+          ffi.Int Function(ffi.Pointer<G_RgIpfsConfig>,
               ffi.Pointer<ffi.Char>)>>('rg_ipfs_config_to_file');
   late final _rg_ipfs_config_to_file = _rg_ipfs_config_to_filePtr.asFunction<
-      G_FFIResult_Null Function(
-          ffi.Pointer<G_RgIpfsConfig>, ffi.Pointer<ffi.Char>)>();
+      int Function(ffi.Pointer<G_RgIpfsConfig>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_RgIpfsConfig rg_ipfs_config_from_str(
     ffi.Pointer<ffi.Char> config,
@@ -5686,6 +5741,8 @@ class G_IdentityUpdate extends ffi.Opaque {}
 class G_Item extends ffi.Opaque {}
 
 class G_Message extends ffi.Opaque {}
+
+class G_MessageOptions extends ffi.Opaque {}
 
 class G_MultiPassAdapter extends ffi.Opaque {}
 
