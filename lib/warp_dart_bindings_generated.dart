@@ -4210,20 +4210,24 @@ class WarpDartBindings {
   G_FFIResult_FFIVec_Message raygun_get_messages(
     ffi.Pointer<G_RayGunAdapter> ctx,
     ffi.Pointer<ffi.Char> convo_id,
+    ffi.Pointer<G_MessageOptions> option,
   ) {
     return _raygun_get_messages(
       ctx,
       convo_id,
+      option,
     );
   }
 
   late final _raygun_get_messagesPtr = _lookup<
       ffi.NativeFunction<
-          G_FFIResult_FFIVec_Message Function(ffi.Pointer<G_RayGunAdapter>,
-              ffi.Pointer<ffi.Char>)>>('raygun_get_messages');
+          G_FFIResult_FFIVec_Message Function(
+              ffi.Pointer<G_RayGunAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<G_MessageOptions>)>>('raygun_get_messages');
   late final _raygun_get_messages = _raygun_get_messagesPtr.asFunction<
-      G_FFIResult_FFIVec_Message Function(
-          ffi.Pointer<G_RayGunAdapter>, ffi.Pointer<ffi.Char>)>();
+      G_FFIResult_FFIVec_Message Function(ffi.Pointer<G_RayGunAdapter>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<G_MessageOptions>)>();
 
   G_FFIResult_Null raygun_send(
     ffi.Pointer<G_RayGunAdapter> ctx,
@@ -4617,6 +4621,58 @@ class WarpDartBindings {
   late final _conversation_recipients = _conversation_recipientsPtr.asFunction<
       ffi.Pointer<G_FFIVec_DID> Function(ffi.Pointer<G_Conversation>)>();
 
+  ffi.Pointer<G_MessageOptions> messageoptions_new() {
+    return _messageoptions_new();
+  }
+
+  late final _messageoptions_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_MessageOptions> Function()>>(
+          'messageoptions_new');
+  late final _messageoptions_new = _messageoptions_newPtr
+      .asFunction<ffi.Pointer<G_MessageOptions> Function()>();
+
+  ffi.Pointer<G_MessageOptions> messageoptions_set_range(
+    ffi.Pointer<G_MessageOptions> option,
+    int start,
+    int end,
+  ) {
+    return _messageoptions_set_range(
+      option,
+      start,
+      end,
+    );
+  }
+
+  late final _messageoptions_set_rangePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<G_MessageOptions> Function(ffi.Pointer<G_MessageOptions>,
+              uintptr_t, uintptr_t)>>('messageoptions_set_range');
+  late final _messageoptions_set_range =
+      _messageoptions_set_rangePtr.asFunction<
+          ffi.Pointer<G_MessageOptions> Function(
+              ffi.Pointer<G_MessageOptions>, int, int)>();
+
+  ffi.Pointer<G_MessageOptions> messageoptions_set_date_range(
+    ffi.Pointer<G_MessageOptions> option,
+    int start,
+    int end,
+  ) {
+    return _messageoptions_set_date_range(
+      option,
+      start,
+      end,
+    );
+  }
+
+  late final _messageoptions_set_date_rangePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<G_MessageOptions> Function(ffi.Pointer<G_MessageOptions>,
+              ffi.Int64, ffi.Int64)>>('messageoptions_set_date_range');
+  late final _messageoptions_set_date_range =
+      _messageoptions_set_date_rangePtr.asFunction<
+          ffi.Pointer<G_MessageOptions> Function(
+              ffi.Pointer<G_MessageOptions>, int, int)>();
+
   void tesseract_free(
     ffi.Pointer<G_Tesseract> ptr,
   ) {
@@ -4938,6 +4994,51 @@ class WarpDartBindings {
   late final _ffivec_string_free = _ffivec_string_freePtr
       .asFunction<void Function(ffi.Pointer<G_FFIVec_String>)>();
 
+  void log_to_file(
+    int interval,
+    ffi.Pointer<ffi.Char> directory,
+    ffi.Pointer<ffi.Char> file,
+    ffi.Pointer<ffi.Char> env,
+    ffi.Pointer<ffi.Char> directive,
+  ) {
+    return _log_to_file(
+      interval,
+      directory,
+      file,
+      env,
+      directive,
+    );
+  }
+
+  late final _log_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int32,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('log_to_file');
+  late final _log_to_file = _log_to_filePtr.asFunction<
+      void Function(int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  void log_to_stdout(
+    ffi.Pointer<ffi.Char> env,
+    ffi.Pointer<ffi.Char> directive,
+  ) {
+    return _log_to_stdout(
+      env,
+      directive,
+    );
+  }
+
+  late final _log_to_stdoutPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('log_to_stdout');
+  late final _log_to_stdout = _log_to_stdoutPtr.asFunction<
+      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
     ffi.Pointer<ffi.Char> file,
   ) {
@@ -4952,6 +5053,23 @@ class WarpDartBindings {
               ffi.Pointer<ffi.Char>)>>('mp_ipfs_config_from_file');
   late final _mp_ipfs_config_from_file = _mp_ipfs_config_from_filePtr
       .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
+  int mp_ipfs_config_to_file(
+    ffi.Pointer<G_MpIpfsConfig> config,
+    ffi.Pointer<ffi.Char> file,
+  ) {
+    return _mp_ipfs_config_to_file(
+      config,
+      file,
+    );
+  }
+
+  late final _mp_ipfs_config_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<G_MpIpfsConfig>,
+              ffi.Pointer<ffi.Char>)>>('mp_ipfs_config_to_file');
+  late final _mp_ipfs_config_to_file = _mp_ipfs_config_to_filePtr.asFunction<
+      int Function(ffi.Pointer<G_MpIpfsConfig>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_str(
     ffi.Pointer<ffi.Char> config,
@@ -5068,6 +5186,23 @@ class WarpDartBindings {
   late final _rg_ipfs_config_from_file = _rg_ipfs_config_from_filePtr
       .asFunction<G_FFIResult_RgIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
 
+  int rg_ipfs_config_to_file(
+    ffi.Pointer<G_RgIpfsConfig> config,
+    ffi.Pointer<ffi.Char> file,
+  ) {
+    return _rg_ipfs_config_to_file(
+      config,
+      file,
+    );
+  }
+
+  late final _rg_ipfs_config_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<G_RgIpfsConfig>,
+              ffi.Pointer<ffi.Char>)>>('rg_ipfs_config_to_file');
+  late final _rg_ipfs_config_to_file = _rg_ipfs_config_to_filePtr.asFunction<
+      int Function(ffi.Pointer<G_RgIpfsConfig>, ffi.Pointer<ffi.Char>)>();
+
   G_FFIResult_RgIpfsConfig rg_ipfs_config_from_str(
     ffi.Pointer<ffi.Char> config,
   ) {
@@ -5167,26 +5302,6 @@ class WarpDartBindings {
               ffi.Pointer<G_MultiPassAdapter>,
               ffi.Pointer<G_PocketDimensionAdapter>,
               ffi.Pointer<G_RgIpfsConfig>)>();
-
-  ffi.Pointer<ffi.Int> pocketdimension_memory_new() {
-    return _pocketdimension_memory_new();
-  }
-
-  late final _pocketdimension_memory_newPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int> Function()>>(
-          'pocketdimension_memory_new');
-  late final _pocketdimension_memory_new = _pocketdimension_memory_newPtr
-      .asFunction<ffi.Pointer<ffi.Int> Function()>();
-
-  ffi.Pointer<ffi.Int> pocketdimension_stretto_new() {
-    return _pocketdimension_stretto_new();
-  }
-
-  late final _pocketdimension_stretto_newPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int> Function()>>(
-          'pocketdimension_stretto_new');
-  late final _pocketdimension_stretto_new = _pocketdimension_stretto_newPtr
-      .asFunction<ffi.Pointer<ffi.Int> Function()>();
 
   G_FFIResult_PocketDimensionAdapter pocket_dimension_flatfile_new(
     ffi.Pointer<ffi.Char> path,
@@ -5576,6 +5691,12 @@ abstract class FriendRequestStatus {
   static const int RequestRemoved = 5;
 }
 
+abstract class LogRotateInterval {
+  static const int Minute = 0;
+  static const int Hourly = 1;
+  static const int Daily = 2;
+}
+
 abstract class PhraseType {
   static const int Standard = 0;
   static const int Secure = 1;
@@ -5620,6 +5741,8 @@ class G_IdentityUpdate extends ffi.Opaque {}
 class G_Item extends ffi.Opaque {}
 
 class G_Message extends ffi.Opaque {}
+
+class G_MessageOptions extends ffi.Opaque {}
 
 class G_MultiPassAdapter extends ffi.Opaque {}
 
