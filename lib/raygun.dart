@@ -18,6 +18,49 @@ enum EmbedState {
   disabled,
 }
 
+class DateRange {
+  DateTime start;
+  DateTime end;
+  DateRange(this.start, this.end);
+}
+
+class Range {
+  int start;
+  int end;
+  Range(this.start, this.end);
+}
+
+class MessageOptions {
+  Range? range;
+  DateRange? dateRange;
+  MessageOptions(this.range, this.dateRange);
+
+  setRange(int start, int end) {
+    range = Range(start, end);
+  }
+
+  setDateRange(DateTime start, DateTime end) {
+    dateRange = DateRange(start, end);
+  }
+
+  Pointer<G_MessageOptions> toPointer() {
+    Pointer<G_MessageOptions> optPtr = bindings.messageoptions_new();
+    if (range != null) {
+      optPtr =
+          bindings.messageoptions_set_range(optPtr, range!.start, range!.end);
+    }
+
+    if (dateRange != null) {
+      optPtr = bindings.messageoptions_set_date_range(
+          optPtr,
+          dateRange!.start.microsecondsSinceEpoch,
+          dateRange!.end.microsecondsSinceEpoch);
+    }
+
+    return optPtr;
+  }
+}
+
 class Message {
   late String id;
   late String conversationId;
@@ -100,16 +143,16 @@ class Reaction {
 class Conversation {
   late String id;
   late ConversationType type;
-  late String? name;
+  String? name;
   late List<DID> recipients;
   Conversation(Pointer<G_Conversation> pointer) {
     Pointer<Char> pId = bindings.conversation_id(pointer);
     id = pId.cast<Utf8>().toDartString();
     Pointer<Char> pName = bindings.conversation_name(pointer);
     name = pName != nullptr ? pName.cast<Utf8>().toDartString() : null;
-    //TODO: Investigate in right conversation
-    // type = bindings.conversation_type(pointer) as ConversationType;
-
+    //TODO: Investigate right conversion conversation
+    //type = bindings.conversation_type(pointer) as ConversationType;
+    //type = ConversationType.Direct as ConversationType; //?
     Pointer<G_FFIVec_DID> pDIDs = bindings.conversation_recipients(pointer);
     int len = pDIDs.ref.len;
     List<DID> rList = [];
@@ -171,9 +214,19 @@ class Raygun {
     return conversations;
   }
 
-  List<Message> getMessages(String conversationID) {
+  List<Message> getMessages(String conversationID, [MessageOptions? options]) {
+    Pointer<G_MessageOptions> optPtr =
+        options != null ? options.toPointer() : nullptr;
+
     G_FFIResult_FFIVec_Message result = bindings.raygun_get_messages(
-        pRaygun, conversationID.toNativeUtf8().cast<Char>());
+        pRaygun, conversationID.toNativeUtf8().cast<Char>(), optPtr);
+
+    // Because we no longer need the pointer, it would be better off freeing early
+    // in the event of an error
+    if (optPtr != nullptr) {
+      calloc.free(optPtr);
+    }
+
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
