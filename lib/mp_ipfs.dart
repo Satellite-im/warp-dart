@@ -1,14 +1,8 @@
 //Note: When it comes to extensions, they should be generated separately if at all possible
 //      This would allow for them to be plugged into the interface (eg Multipass, etc) easily
-import 'dart:async';
-import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
-import 'dart:isolate';
-import 'dart:math';
-import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
