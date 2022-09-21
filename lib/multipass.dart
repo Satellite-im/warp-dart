@@ -131,17 +131,36 @@ class Identity {
   }
 }
 
+enum FriendRequestStatusEnum {
+  unintialized,
+  pending,
+  accepted,
+  denied,
+  friendRemoved,
+  requestRemoved
+}
+
 class FriendRequest {
   late DID from;
   late DID to;
-  late FriendRequestStatus status;
+  late FriendRequestStatusEnum status;
   // late int date;
 
   FriendRequest(Pointer<G_FriendRequest> pointer) {
     from = DID(bindings.multipass_friend_request_from(pointer));
     to = DID(bindings.multipass_friend_request_to(pointer));
-    status = bindings.multipass_friend_request_status(pointer)
-        as FriendRequestStatus;
+    final _friendRequestStatusNum =
+        bindings.multipass_friend_request_status(pointer);
+
+    final _friendRequestStatusMap = {
+      0: FriendRequestStatusEnum.unintialized,
+      1: FriendRequestStatusEnum.pending,
+      2: FriendRequestStatusEnum.accepted,
+      3: FriendRequestStatusEnum.denied,
+      4: FriendRequestStatusEnum.friendRemoved,
+      5: FriendRequestStatusEnum.requestRemoved,
+    };
+    status = _friendRequestStatusMap[_friendRequestStatusNum]!;
     bindings.friendrequest_free(pointer);
   }
 
