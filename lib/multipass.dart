@@ -148,10 +148,14 @@ class Relationship {
   bool sentFriendRequest = false;
   bool blocked = false;
   Relationship(Pointer<G_Relationship> pointer) {
-    friends = pointer.ref.blocked != 0;
-    receivedFriendRequest = pointer.ref.received_friend_request != 0;
-    sentFriendRequest = pointer.ref.sent_friend_request != 0;
-    blocked = pointer.ref.blocked != 0;
+    friends = bindings.multipass_identity_relationship_friends(pointer) != 0;
+    receivedFriendRequest = bindings
+            .multipass_identity_relationship_received_friend_request(pointer) !=
+        0;
+    sentFriendRequest =
+        bindings.multipass_identity_relationship_sent_friend_request(pointer) !=
+            0;
+    blocked = bindings.multipass_identity_relationship_blocked(pointer) != 0;
 
     bindings.relationship_free(pointer);
   }
