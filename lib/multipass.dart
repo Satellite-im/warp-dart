@@ -140,7 +140,7 @@ enum FriendRequestStatusEnum {
   requestRemoved
 }
 
-enum IdentityStatus { Online, Offline }
+enum IdentityStatus { online, offline }
 
 class Relationship {
   bool friends = false;
@@ -492,10 +492,10 @@ class MultiPass {
     late IdentityStatus status;
     switch (result.data.value) {
       case 0:
-        status = IdentityStatus.Online;
+        status = IdentityStatus.online;
         break;
       case 1:
-        status = IdentityStatus.Offline;
+        status = IdentityStatus.offline;
         break;
     }
     calloc.free(result.data);
