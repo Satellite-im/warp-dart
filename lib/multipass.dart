@@ -140,6 +140,23 @@ enum FriendRequestStatusEnum {
   requestRemoved
 }
 
+enum IdentityStatus { Online, Offline }
+
+class Relationship {
+  bool friends = false;
+  bool receivedFriendRequest = false;
+  bool sentFriendRequest = false;
+  bool blocked = false;
+  Relationship(Pointer<G_Relationship> pointer) {
+    friends = pointer.ref.blocked != 0;
+    receivedFriendRequest = pointer.ref.received_friend_request != 0;
+    sentFriendRequest = pointer.ref.sent_friend_request != 0;
+    blocked = pointer.ref.blocked != 0;
+
+    bindings.relationship_free(pointer);
+  }
+}
+
 class FriendRequest {
   late DID from;
   late DID to;
@@ -266,7 +283,7 @@ class MultiPass {
     }
   }
 
-  void refresh_cache() {
+  void refreshCache() {
     G_FFIResult_Null result = bindings.multipass_refresh_cache(pointer);
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -305,6 +322,34 @@ class MultiPass {
     }
   }
 
+  bool receivedFriendRequestFrom(DID did) {
+    G_FFIResult_bool result =
+        bindings.multipass_received_friend_request_from(pointer, did.pointer);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    bool received = result.data.value != 0;
+    calloc.free(result.data);
+
+    return received;
+  }
+
+  bool sentFriendRequestTo(DID did) {
+    G_FFIResult_bool result =
+        bindings.multipass_sent_friend_request_to(pointer, did.pointer);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    bool sent = result.data.value != 0;
+    calloc.free(result.data);
+
+    return sent;
+  }
+
   List<FriendRequest> listIncomingRequest() {
     G_FFIResult_FFIVec_FriendRequest result =
         bindings.multipass_list_incoming_request(pointer);
@@ -319,8 +364,6 @@ class MultiPass {
       FriendRequest request = FriendRequest(pointer);
       list.add(request);
     }
-
-    //TODO: Free result.data
 
     return list;
   }
@@ -340,8 +383,6 @@ class MultiPass {
       list.add(request);
     }
 
-    //TODO: Determine if we should free the pointers in the list first
-    bindings.ffivec_friendrequest_free(result.data);
     return list;
   }
 
@@ -360,8 +401,6 @@ class MultiPass {
       list.add(request);
     }
 
-    //TODO: Determine if we should free the pointers in the list first
-    bindings.ffivec_friendrequest_free(result.data);
     return list;
   }
 
@@ -387,6 +426,19 @@ class MultiPass {
     }
   }
 
+  bool isBlocked(DID did) {
+    G_FFIResult_bool result =
+        bindings.multipass_is_blocked(pointer, did.pointer);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    bool blocked = result.data.value != 0;
+    calloc.free(result.data);
+    return blocked;
+  }
+
   List<DID> blockList() {
     G_FFIResult_FFIVec_DID result = bindings.multipass_block_list(pointer);
     if (result.error != nullptr) {
@@ -401,8 +453,6 @@ class MultiPass {
       list.add(key);
     }
 
-    //TODO: Determine if we should free the pointers in the list first
-    //bindings.ffivec_did_free(result.data);
     return list;
   }
 
@@ -419,8 +469,7 @@ class MultiPass {
       DID key = DID(pointer);
       list.add(key);
     }
-    //TODO: Determine if we should free the pointers in the list first
-    //bindings.ffivec_did_free(result.data);
+
     return list;
   }
 
@@ -430,6 +479,39 @@ class MultiPass {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+  }
+
+  IdentityStatus identityStatus(DID did) {
+    G_FFIResult_IdentityStatus result =
+        bindings.multipass_identity_status(pointer, did.pointer);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    late IdentityStatus status;
+    switch (result.data.value) {
+      case 0:
+        status = IdentityStatus.Online;
+        break;
+      case 1:
+        status = IdentityStatus.Offline;
+        break;
+    }
+    calloc.free(result.data);
+
+    return status;
+  }
+
+  Relationship identityRelationship(DID did) {
+    G_FFIResult_Relationship result =
+        bindings.multipass_identity_relationship(pointer, did.pointer);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    return Relationship(result.data);
   }
 
   void drop() {
