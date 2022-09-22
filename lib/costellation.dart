@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 import 'package:warp_dart/fs_memory.dart';
@@ -17,25 +17,26 @@ class Item {
   late Pointer<G_Item> _pointer;
   Item(this._pointer);
 
-  String getItemId(Item item) {
-    Pointer<Char> pointerId;
+  String getItemId() {
     String id;
-    pointerId = bindings.item_id(item.pointer());
+    Pointer<Char> pointerId = bindings.item_id(_pointer);
     if (pointerId == nullptr) {
       throw Exception("Directory not found");
     }
     id = pointerId.cast<Utf8>().toDartString();
-
+    calloc.free(pointerId);
     return id;
   }
 
-  String getItemName(Item item) {
-    Pointer<Char> pointerName = bindings.item_name(item.pointer());
+  String getItemName() {
+    Pointer<Char> pointerName = bindings.item_name(_pointer);
 
     if (pointerName == nullptr) {
       throw Exception("Item not found");
     }
-    return pointerName.cast<Utf8>().toDartString();
+    String name = pointerName.cast<Utf8>().toDartString();
+    calloc.free(pointerName);
+    return name;
   }
 
   String getItemTimestamp() {
@@ -84,7 +85,7 @@ class Item {
   }
 
   void setItemDescription(String description) {
-    int result = bindings.item_set_description(
+    bool result = bindings.item_set_description(
         _pointer, description.toNativeUtf8().cast<Char>());
 
     if (result == 0) {
@@ -100,9 +101,8 @@ class Item {
     }
   }
 
-  Directory itemToDirectory(Item item) {
-    G_FFIResult_Directory result = bindings.item_into_directory(item.pointer());
-
+  Directory itemToDirectory() {
+    G_FFIResult_Directory result = bindings.item_into_directory(_pointer);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -123,7 +123,7 @@ class Item {
   }
 
   bool itemIsDirectory() {
-    int result = bindings.item_is_directory(_pointer);
+    bool result = bindings.item_is_directory(_pointer);
 
     if (result == 0) {
       return false;
@@ -133,7 +133,7 @@ class Item {
   }
 
   bool itemIsFile() {
-    int result = bindings.item_is_file(_pointer);
+    bool result = bindings.item_is_file(_pointer);
 
     if (result == 0) {
       return false;
@@ -152,25 +152,69 @@ class Item {
 }
 
 class File {
+  late String id;
+  late String name;
+  late int size;
+  late String description;
+  late DateTime creation;
+  late DateTime modified;
+  late String hash;
+  late String? reference;
   late Pointer<G_File> _pointer;
-  File(this._pointer);
 
-  File.newFile(String name) {
-    _pointer = bindings.file_new(name.toNativeUtf8().cast<Char>());
+  File(this._pointer) {
+    Pointer<G_Item> item = bindings.file_into_item(_pointer);
+    Pointer<Char> pId = bindings.item_id(item);
+    id = pId.cast<Utf8>().toDartString();
+    Pointer<Char> pName = bindings.item_name(item);
+    name = pName.cast<Utf8>().toDartString();
+    size = bindings.item_size(item);
+    Pointer<Char> pDescription = bindings.item_description(item);
+    description = pDescription.cast<Utf8>().toDartString();
+    Pointer<Char> pCreation = bindings.item_creation(item);
+    String creationString = pCreation.cast<Utf8>().toDartString();
+    creation =
+        DateTime.parse(creationString.substring(0, creationString.length - 4));
+    Pointer<Char> pModified = bindings.item_modified(item);
+    String modifiedString = pModified.cast<Utf8>().toDartString();
+    modified =
+        DateTime.parse(modifiedString.substring(0, modifiedString.length - 4));
+    hash = item.hashCode.toString();
+
+    calloc.free(pId);
+    calloc.free(pName);
+    calloc.free(pDescription);
+    calloc.free(pCreation);
+    calloc.free(pModified);
   }
 
-  Item fileToItem(File file) {
-    Pointer<G_Item> result = bindings.file_into_item(file.pointer());
+  File setDescription(String descritpion) {
+    Pointer<G_Item> item = bindings.file_into_item(_pointer);
 
-    if (result == nullptr) {
+    if (item == nullptr) {
       throw Exception("File not found");
     }
 
-    return Item(result);
+    bindings.item_set_description(
+        item, descritpion.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_file(item).data;
+
+    return File(_pointer);
   }
 
-  Pointer<G_File> pointer() {
-    return _pointer;
+  File rename(String name) {
+    Pointer<G_Item> item = bindings.file_into_item(_pointer);
+
+    if (item == nullptr) {
+      throw Exception("File not found");
+    }
+
+    bindings.item_rename(item, name.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_file(item).data;
+
+    return File(_pointer);
   }
 
   void drop() {
@@ -180,22 +224,27 @@ class File {
 
 class Directory {
   late Pointer<G_Directory> _pointer;
-  Directory(this._pointer);
+  late String id;
+  late String name;
+  late String description;
+  late DateTime creation;
+  late DateTime modified;
 
-  Directory.newDirectory(String name) {
-    _pointer = bindings.directory_new(name.toNativeUtf8().cast<Char>());
-  }
+  Directory(this._pointer) {
+    Pointer<Char> pId = bindings.directory_id(_pointer);
+    id = pId.cast<Utf8>().toDartString();
+    Pointer<Char> pName = bindings.directory_name(_pointer);
+    name = pName.cast<Utf8>().toDartString();
+    Pointer<Char> pDescription = bindings.directory_description(_pointer);
+    description = pDescription.cast<Utf8>().toDartString();
+    int pCreation = bindings.directory_creation(_pointer);
+    creation = DateTime.fromMillisecondsSinceEpoch(pCreation);
+    int pModified = bindings.directory_modified(_pointer);
+    modified = DateTime.fromMillisecondsSinceEpoch(pModified);
 
-  String getDirectoryId(Directory directory) {
-    Pointer<Char> pointerId;
-    String id;
-    pointerId = bindings.directory_id(directory.pointer());
-    if (pointerId == nullptr) {
-      throw Exception("Directory not found");
-    }
-    id = bindings.directory_id(directory.pointer()).cast<Utf8>().toDartString();
-
-    return id;
+    calloc.free(pId);
+    calloc.free(pName);
+    calloc.free(pDescription);
   }
 
   void addDirectory(Directory directory) {
@@ -205,58 +254,29 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-  }
-
-  String getDirectoryName(Directory directory) {
-    return bindings
-        .directory_name(directory.pointer())
-        .cast<Utf8>()
-        .toDartString();
-  }
-
-  String getDirectoryTimestamp() {
-    int timestamp = bindings.directory_creation(_pointer);
-
-    var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-
-    return date.toString();
-  }
-
-  String getDirectoryDateModification() {
-    int timestamp = bindings.directory_modified(_pointer);
-
-    var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-
-    return date.toString();
-  }
-
-  String getDirectoryDescription() {
-    Pointer<Char> pointerDescription = bindings.directory_description(_pointer);
-
-    String description = pointerDescription.cast<Utf8>().toDartString();
-
-    return description;
+    bindings.free(result.data);
   }
 
   bool hasItem(Directory directory) {
-    Pointer<Char> item =
-        getDirectoryName(directory).toNativeUtf8().cast<Char>();
+    Pointer<Char> item = directory.name.toNativeUtf8().cast<Char>();
 
-    int has_item = bindings.directory_has_item(_pointer, item);
+    bool has_item = bindings.directory_has_item(_pointer, item);
 
     if (has_item == 0) {
       return false;
     }
+    calloc.free(item);
     return true;
   }
 
   void addFile(File file) {
     G_FFIResult_Null result =
-        bindings.directory_add_file(_pointer, file.pointer());
+        bindings.directory_add_file(_pointer, file._pointer);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
   void addItem(Item item) {
@@ -266,26 +286,60 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
-  Item directoryToItem(Directory directory) {
-    Pointer<G_Item> result = bindings.directory_into_item(directory.pointer());
+  Item directoryToItem() {
+    Pointer<G_Item> result = bindings.directory_into_item(_pointer);
 
     if (result == nullptr) {
       throw Exception("File not found");
     }
-    return Item(result);
+    Item item = Item(result);
+    bindings.item_free(result);
+    return item;
   }
 
-  Item getItem(String item) {
-    G_FFIResult_Item result =
-        bindings.directory_get_item(_pointer, item.toNativeUtf8().cast<Char>());
+  Directory setDescription(String descritpion) {
+    Pointer<G_Item> item = bindings.directory_into_item(_pointer);
+
+    if (item == nullptr) {
+      throw Exception("File not found");
+    }
+
+    bindings.item_set_description(
+        item, descritpion.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_directory(item).data;
+
+    return Directory(_pointer);
+  }
+
+  Directory rename(String name) {
+    Pointer<G_Item> item = bindings.directory_into_item(_pointer);
+
+    if (item == nullptr) {
+      throw Exception("File not found");
+    }
+
+    bindings.item_rename(item, name.toNativeUtf8().cast<Char>());
+
+    _pointer = bindings.item_into_directory(item).data;
+
+    return Directory(_pointer);
+  }
+
+  Item getItem(String itemS) {
+    G_FFIResult_Item result = bindings.directory_get_item(
+        _pointer, itemS.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    Item item = Item(result.data);
 
-    return Item(result.data);
+    bindings.item_free(result.data);
+    return item;
   }
 
   int getItemIndex(String item) {
@@ -295,8 +349,9 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-
-    return result.data.cast<Uint64>().value;
+    int index = result.data.value;
+    calloc.free(result.data);
+    return index;
   }
 
   List<Item> listItems() {
@@ -312,12 +367,16 @@ class Directory {
       Pointer<G_Item> pointer = pointerListItem.ref.ptr.elementAt(i).value;
       Item key = Item(pointer);
       list.add(key);
+      bindings.item_free(pointer);
     }
+
+    bindings.ffivec_item_free(pointerListItem);
+
     return list;
   }
 
   void moveItemTo(String src, String dst) {
-    int result = bindings.directory_move_item_to(_pointer,
+    bool result = bindings.directory_move_item_to(_pointer,
         src.toNativeUtf8().cast<Char>(), dst.toNativeUtf8().cast<Char>());
 
     if (result == 0) {
@@ -340,6 +399,7 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
   void removeItem(String name) {
@@ -349,6 +409,7 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.item_free(result.data);
   }
 
   void removeItemFromPath(String directory, String item) {
@@ -360,6 +421,7 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.item_free(result.data);
   }
 
   Pointer<G_Directory> pointer() {
@@ -375,21 +437,37 @@ class Constellation {
   late Pointer<G_ConstellationAdapter> _pointer;
   Constellation(this._pointer);
 
+  Directory newDirectory(String name) {
+    Pointer<G_Directory> pointer =
+        bindings.directory_new(name.toNativeUtf8().cast<Char>());
+
+    return Directory(pointer);
+  }
+
+  File newFile(String name) {
+    Pointer<G_File> pointer =
+        bindings.file_new(name.toNativeUtf8().cast<Char>());
+
+    return File(pointer);
+  }
+
   void createDirectoryInFilesystem(String path) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
-        _pointer, path.toNativeUtf8().cast<Char>(), 0);
+        _pointer, path.toNativeUtf8().cast<Char>(), false);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
   Constellation.createRecursiveDirectoryInFilesystem(String path) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
-        _pointer, path.toNativeUtf8().cast<Char>(), 1);
+        _pointer, path.toNativeUtf8().cast<Char>(), true);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
   Directory getCurrentDirectory() {
@@ -399,7 +477,8 @@ class Constellation {
     if (pointerDirectory == nullptr) {
       throw Exception("Directory not found");
     }
-    return Directory(pointerDirectory);
+    Directory dir = Directory(pointerDirectory);
+    return dir;
   }
 
   Directory getCurrentDirectoryMutable() {
@@ -409,7 +488,7 @@ class Constellation {
     if (pointerDirectory == nullptr) {
       throw Exception("Directory not found");
     }
-
+    bindings.directory_free(pointerDirectory);
     return Directory(pointerDirectory);
   }
 
@@ -423,6 +502,7 @@ class Constellation {
 
     String data = result.data.cast<Utf8>().toDartString();
 
+    calloc.free(result.data);
     return data;
   }
 
@@ -435,11 +515,11 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
-  List<int> downloadFileFromFilesystemIntoBuffer(
-      String remotePath, String localPath) {
-    List<int>? buffer;
+  List<int> downloadFileFromFilesystemIntoBuffer(String remotePath) {
+    List<int> buffer = [];
     G_FFIResult_FFIVec_u8 result = bindings.constellation_get_buffer(
         _pointer, remotePath.toNativeUtf8().cast<Char>());
 
@@ -452,10 +532,11 @@ class Constellation {
     for (int i = 0; i < length; i++) {
       int pointer = result.data.ref.ptr.elementAt(i).value;
       int key = pointer;
-      buffer!.add(key);
+      buffer.add(key);
     }
 
-    return buffer!;
+    calloc.free(result.data);
+    return buffer;
   }
 
   void previousDirectory() {
@@ -464,6 +545,7 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
   void importDataToFilesystem(ConstellationDataType dataType, String data) {
@@ -473,6 +555,7 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    bindings.free(result.data);
   }
 
   void moveItem(String src, String dst) {
@@ -491,7 +574,8 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    return Directory(result.data);
+    Directory dir = Directory(result.data);
+    return dir;
   }
 
   void UploadToFilesystem(String remotePath, String localPath) {
@@ -512,19 +596,14 @@ class Constellation {
     if (pointerDirectory == nullptr) {
       throw Exception("Directory not found");
     }
+    Directory dir = Directory(pointerDirectory);
 
-    return Directory(pointerDirectory);
+    return dir;
   }
 
   void removeItem(String remotePath, bool recursive) {
-    int intRecursive = 0;
-
-    if (recursive == true) {
-      intRecursive = 1;
-    }
-
     G_FFIResult_Null result = bindings.constellation_remove(
-        _pointer, remotePath.toNativeUtf8().cast<Char>(), intRecursive);
+        _pointer, remotePath.toNativeUtf8().cast<Char>(), recursive);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -552,7 +631,6 @@ class Constellation {
   /*void UploadToFilesystemFromBuffer(String remotePath, List<Uint8> buffer) {
     G_FFIResult_Null result = bindings.constellation_put_buffer(_pointer,
         remotePath.toNativeUtf8().cast<Char>(), , buffer.length);
-
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -561,9 +639,4 @@ class Constellation {
   void drop() {
     bindings.constellationadapter_free(_pointer);
   }
-}
-
-Constellation constellation = initConstellation();
-void hey() {
-  constellation.createDirectoryInFilesystem("path");
 }
