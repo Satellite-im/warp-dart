@@ -132,7 +132,7 @@ class Identity {
 }
 
 enum FriendRequestStatusEnum {
-  unintialized,
+  uninitialized,
   pending,
   accepted,
   denied,
@@ -170,7 +170,7 @@ class FriendRequest {
         bindings.multipass_friend_request_status(pointer);
 
     final _friendRequestStatusMap = {
-      0: FriendRequestStatusEnum.unintialized,
+      0: FriendRequestStatusEnum.uninitialized,
       1: FriendRequestStatusEnum.pending,
       2: FriendRequestStatusEnum.accepted,
       3: FriendRequestStatusEnum.denied,
