@@ -3086,6 +3086,34 @@ class WarpDartBindings {
   late final _graphics_free =
       _graphics_freePtr.asFunction<void Function(ffi.Pointer<G_Graphics>)>();
 
+  void identitystatus_free(
+    ffi.Pointer<ffi.Int32> ptr,
+  ) {
+    return _identitystatus_free(
+      ptr,
+    );
+  }
+
+  late final _identitystatus_freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Int32>)>>(
+          'identitystatus_free');
+  late final _identitystatus_free = _identitystatus_freePtr
+      .asFunction<void Function(ffi.Pointer<ffi.Int32>)>();
+
+  void relationship_free(
+    ffi.Pointer<G_Relationship> ptr,
+  ) {
+    return _relationship_free(
+      ptr,
+    );
+  }
+
+  late final _relationship_freePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_Relationship>)>>(
+      'relationship_free');
+  late final _relationship_free = _relationship_freePtr
+      .asFunction<void Function(ffi.Pointer<G_Relationship>)>();
+
   void ffivec_identity_free(
     ffi.Pointer<G_FFIVec_Identity> cvec,
   ) {
@@ -3955,6 +3983,100 @@ class WarpDartBindings {
       G_FFIResult_Null Function(
           ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
 
+  G_FFIResult_bool multipass_received_friend_request_from(
+    ffi.Pointer<G_MultiPassAdapter> ctx,
+    ffi.Pointer<G_DID> pubkey,
+  ) {
+    return _multipass_received_friend_request_from(
+      ctx,
+      pubkey,
+    );
+  }
+
+  late final _multipass_received_friend_request_fromPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_bool Function(ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_DID>)>>('multipass_received_friend_request_from');
+  late final _multipass_received_friend_request_from =
+      _multipass_received_friend_request_fromPtr.asFunction<
+          G_FFIResult_bool Function(
+              ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
+
+  G_FFIResult_bool multipass_sent_friend_request_to(
+    ffi.Pointer<G_MultiPassAdapter> ctx,
+    ffi.Pointer<G_DID> pubkey,
+  ) {
+    return _multipass_sent_friend_request_to(
+      ctx,
+      pubkey,
+    );
+  }
+
+  late final _multipass_sent_friend_request_toPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_bool Function(ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_DID>)>>('multipass_sent_friend_request_to');
+  late final _multipass_sent_friend_request_to =
+      _multipass_sent_friend_request_toPtr.asFunction<
+          G_FFIResult_bool Function(
+              ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
+
+  G_FFIResult_bool multipass_is_blocked(
+    ffi.Pointer<G_MultiPassAdapter> ctx,
+    ffi.Pointer<G_DID> pubkey,
+  ) {
+    return _multipass_is_blocked(
+      ctx,
+      pubkey,
+    );
+  }
+
+  late final _multipass_is_blockedPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_bool Function(ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_DID>)>>('multipass_is_blocked');
+  late final _multipass_is_blocked = _multipass_is_blockedPtr.asFunction<
+      G_FFIResult_bool Function(
+          ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
+
+  G_FFIResult_IdentityStatus multipass_identity_status(
+    ffi.Pointer<G_MultiPassAdapter> ctx,
+    ffi.Pointer<G_DID> pubkey,
+  ) {
+    return _multipass_identity_status(
+      ctx,
+      pubkey,
+    );
+  }
+
+  late final _multipass_identity_statusPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_IdentityStatus Function(ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_DID>)>>('multipass_identity_status');
+  late final _multipass_identity_status =
+      _multipass_identity_statusPtr.asFunction<
+          G_FFIResult_IdentityStatus Function(
+              ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
+
+  G_FFIResult_Relationship multipass_identity_relationship(
+    ffi.Pointer<G_MultiPassAdapter> ctx,
+    ffi.Pointer<G_DID> pubkey,
+  ) {
+    return _multipass_identity_relationship(
+      ctx,
+      pubkey,
+    );
+  }
+
+  late final _multipass_identity_relationshipPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Relationship Function(ffi.Pointer<G_MultiPassAdapter>,
+              ffi.Pointer<G_DID>)>>('multipass_identity_relationship');
+  late final _multipass_identity_relationship =
+      _multipass_identity_relationshipPtr.asFunction<
+          G_FFIResult_Relationship Function(
+              ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
+
   void pocketdimensionadapter_free(
     ffi.Pointer<G_PocketDimensionAdapter> ptr,
   ) {
@@ -4207,6 +4329,28 @@ class WarpDartBindings {
           G_FFIResult_FFIVec_Conversation Function(
               ffi.Pointer<G_RayGunAdapter>)>();
 
+  G_FFIResult_Message raygun_get_message(
+    ffi.Pointer<G_RayGunAdapter> ctx,
+    ffi.Pointer<ffi.Char> convo_id,
+    ffi.Pointer<ffi.Char> message_id,
+  ) {
+    return _raygun_get_message(
+      ctx,
+      convo_id,
+      message_id,
+    );
+  }
+
+  late final _raygun_get_messagePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Message Function(
+              ffi.Pointer<G_RayGunAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('raygun_get_message');
+  late final _raygun_get_message = _raygun_get_messagePtr.asFunction<
+      G_FFIResult_Message Function(ffi.Pointer<G_RayGunAdapter>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
   G_FFIResult_FFIVec_Message raygun_get_messages(
     ffi.Pointer<G_RayGunAdapter> ctx,
     ffi.Pointer<ffi.Char> convo_id,
@@ -4369,24 +4513,6 @@ class WarpDartBindings {
           ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Pointer<ffi.Char>>,
           int)>();
-
-  G_FFIResult_Null raygun_ping(
-    ffi.Pointer<G_RayGunAdapter> ctx,
-    ffi.Pointer<ffi.Char> convo_id,
-  ) {
-    return _raygun_ping(
-      ctx,
-      convo_id,
-    );
-  }
-
-  late final _raygun_pingPtr = _lookup<
-      ffi.NativeFunction<
-          G_FFIResult_Null Function(ffi.Pointer<G_RayGunAdapter>,
-              ffi.Pointer<ffi.Char>)>>('raygun_ping');
-  late final _raygun_ping = _raygun_pingPtr.asFunction<
-      G_FFIResult_Null Function(
-          ffi.Pointer<G_RayGunAdapter>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_Null raygun_embeds(
     ffi.Pointer<G_RayGunAdapter> ctx,
@@ -5691,6 +5817,11 @@ abstract class FriendRequestStatus {
   static const int RequestRemoved = 5;
 }
 
+abstract class IdentityStatus {
+  static const int Online = 0;
+  static const int Offline = 1;
+}
+
 abstract class LogRotateInterval {
   static const int Minute = 0;
   static const int Hourly = 1;
@@ -5901,6 +6032,20 @@ class G_FFIVec_Badge extends ffi.Struct {
   external int cap;
 }
 
+class G_Relationship extends ffi.Struct {
+  @ffi.Int()
+  external int friends;
+
+  @ffi.Int()
+  external int received_friend_request;
+
+  @ffi.Int()
+  external int sent_friend_request;
+
+  @ffi.Int()
+  external int blocked;
+}
+
 class G_FFIVec_Identity extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_Identity>> ptr;
 
@@ -5941,6 +6086,24 @@ class G_FFIResult_FFIVec_FriendRequest extends ffi.Struct {
 
 class G_FFIResult_FFIVec_DID extends ffi.Struct {
   external ffi.Pointer<G_FFIVec_DID> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIResult_bool extends ffi.Struct {
+  external ffi.Pointer<ffi.Int> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIResult_IdentityStatus extends ffi.Struct {
+  external ffi.Pointer<ffi.Int32> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIResult_Relationship extends ffi.Struct {
+  external ffi.Pointer<G_Relationship> data;
 
   external ffi.Pointer<G_FFIError> error;
 }
@@ -5989,6 +6152,12 @@ class G_FFIResult_Conversation extends ffi.Struct {
 
 class G_FFIResult_FFIVec_Conversation extends ffi.Struct {
   external ffi.Pointer<G_FFIVec_Conversation> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIResult_Message extends ffi.Struct {
+  external ffi.Pointer<G_Message> data;
 
   external ffi.Pointer<G_FFIError> error;
 }
