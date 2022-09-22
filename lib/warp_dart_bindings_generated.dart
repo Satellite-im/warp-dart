@@ -3645,6 +3645,68 @@ class WarpDartBindings {
       _multipass_identity_update_status_messagePtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_IdentityUpdate>)>();
 
+  int multipass_identity_relationship_friends(
+    ffi.Pointer<G_Relationship> context,
+  ) {
+    return _multipass_identity_relationship_friends(
+      context,
+    );
+  }
+
+  late final _multipass_identity_relationship_friendsPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Relationship>)>>(
+      'multipass_identity_relationship_friends');
+  late final _multipass_identity_relationship_friends =
+      _multipass_identity_relationship_friendsPtr
+          .asFunction<int Function(ffi.Pointer<G_Relationship>)>();
+
+  int multipass_identity_relationship_received_friend_request(
+    ffi.Pointer<G_Relationship> context,
+  ) {
+    return _multipass_identity_relationship_received_friend_request(
+      context,
+    );
+  }
+
+  late final _multipass_identity_relationship_received_friend_requestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Int Function(ffi.Pointer<G_Relationship>)>>(
+          'multipass_identity_relationship_received_friend_request');
+  late final _multipass_identity_relationship_received_friend_request =
+      _multipass_identity_relationship_received_friend_requestPtr
+          .asFunction<int Function(ffi.Pointer<G_Relationship>)>();
+
+  int multipass_identity_relationship_sent_friend_request(
+    ffi.Pointer<G_Relationship> context,
+  ) {
+    return _multipass_identity_relationship_sent_friend_request(
+      context,
+    );
+  }
+
+  late final _multipass_identity_relationship_sent_friend_requestPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Relationship>)>>(
+      'multipass_identity_relationship_sent_friend_request');
+  late final _multipass_identity_relationship_sent_friend_request =
+      _multipass_identity_relationship_sent_friend_requestPtr
+          .asFunction<int Function(ffi.Pointer<G_Relationship>)>();
+
+  int multipass_identity_relationship_blocked(
+    ffi.Pointer<G_Relationship> context,
+  ) {
+    return _multipass_identity_relationship_blocked(
+      context,
+    );
+  }
+
+  late final _multipass_identity_relationship_blockedPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Relationship>)>>(
+      'multipass_identity_relationship_blocked');
+  late final _multipass_identity_relationship_blocked =
+      _multipass_identity_relationship_blockedPtr
+          .asFunction<int Function(ffi.Pointer<G_Relationship>)>();
+
   G_FFIResult_DID multipass_create_identity(
     ffi.Pointer<G_MultiPassAdapter> ctx,
     ffi.Pointer<ffi.Char> username,
@@ -5885,6 +5947,8 @@ class G_RayGunAdapter extends ffi.Opaque {}
 
 class G_Reaction extends ffi.Opaque {}
 
+class G_Relationship extends ffi.Opaque {}
+
 class G_Role extends ffi.Opaque {}
 
 class G_Tesseract extends ffi.Opaque {}
@@ -6030,20 +6094,6 @@ class G_FFIVec_Badge extends ffi.Struct {
 
   @uintptr_t()
   external int cap;
-}
-
-class G_Relationship extends ffi.Struct {
-  @ffi.Int()
-  external int friends;
-
-  @ffi.Int()
-  external int received_friend_request;
-
-  @ffi.Int()
-  external int sent_friend_request;
-
-  @ffi.Int()
-  external int blocked;
 }
 
 class G_FFIVec_Identity extends ffi.Struct {
