@@ -239,19 +239,6 @@ class Raygun {
     return msgs;
   }
 
-  Message getMessage(String conversationID, String messageId) {
-
-    G_FFIResult_Message result = bindings.raygun_get_message(
-        pRaygun, conversationID.toNativeUtf8().cast<Char>(), messageId.toNativeUtf8().cast<Char>());
-
-    if (result.error != nullptr) {
-      throw WarpException(result.error);
-    }
-    // Iterate over the messages
-
-    return Message(result.data);
-  }
-
   send(String conversationId, List<String> messages) {
     if (messages.isEmpty) {
       throw Exception("Message cannot be empty");
