@@ -43,9 +43,7 @@ MultiPass newAccount(String path, String username, String pass) {
 Raygun newChat(MultiPass mp, String path) {
   late Raygun rg;
   try {
-    rg = raygun_ipfs_temporary(
-      mp, /*path*/
-    );
+    rg = raygun_ipfs_persistent(mp, path);
   } on WarpException {
     rethrow;
   }

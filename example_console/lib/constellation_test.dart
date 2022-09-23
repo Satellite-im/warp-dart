@@ -1,4 +1,6 @@
+import 'dart:ffi';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:warp_dart/costellation.dart';
 import 'package:warp_dart/fs_memory.dart';
 import 'package:warp_dart/warp.dart';
@@ -12,7 +14,8 @@ void test_fs_memory() {
     Constellation constellation = initConstellation();
 
     print("\nCreate Diretory\n");
-    Directory directory = constellation.newDirectory("warp-dart-directory-1");
+    Directory directory = Directory.newDirectory("warp-dart-directory-1");
+    directory = directory.getDirectory();
 
     print("\nCreate Diretory on filesystem\n");
     constellation.createDirectoryInFilesystem("warp-dart-directory-fs-1");
@@ -33,7 +36,7 @@ void test_fs_memory() {
     String remote = "test.txt";
     String local = "./filesystem";
     try {
-      constellation.UploadToFilesystem(remote, "$local/in/test.txt");
+      constellation.uploadToFilesystem(remote, "$local/in/test.txt");
       print("File uploaded to /$remote");
     } on WarpException catch (e) {
       print(e.errorMessage());
@@ -48,11 +51,20 @@ void test_fs_memory() {
     }
 
     print("\nDownload file into buffer\n");
-    List<int> buffer;
+    Uint8List buffer = Uint8List(0);
     try {
       buffer = constellation.downloadFileFromFilesystemIntoBuffer(remote);
       sleep(Duration(seconds: 1));
       print(buffer);
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nUpload file to filesystem from buffer...");
+    String remote2 = "test2.txt";
+    try {
+      constellation.uploadToFilesystemFromBuffer(remote2, buffer);
+      print("File uploaded to /$remote2");
     } on WarpException catch (e) {
       print(e.errorMessage());
     }
@@ -89,6 +101,56 @@ void test_fs_memory() {
       print(e.errorMessage());
     }
 
+    print("\nChange directory description\n");
+    try {
+      directory.rename("warp-dart-directory-fs-2");
+      directory = directory.getDirectory();
+      print("Directory name: ${directory.name}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nChange directory description\n");
+    try {
+      directory.setDescription("my first directory");
+      directory = directory.getDirectory();
+      print("Directory name: ${directory.name}");
+      print("Directory description: ${directory.description}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nNew file\n");
+    File file = File.newFile("File");
+    file = file.getOwnFile();
+    sleep(Duration(seconds: 1));
+    //file = File(file.pointer());
+    try {
+      print("File name: ${file.name}");
+      print("File description: ${file.description}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nChange file name\n");
+    try {
+      file.rename("File 2");
+      file = file.getOwnFile();
+      print("File name: ${file.name}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
+    print("\nChange directory description\n");
+    try {
+      file.setDescription("my first file");
+      file = file.getOwnFile();
+      print("File name: ${file.name}");
+      print("File description: ${file.description}");
+    } on WarpException catch (e) {
+      print(e.errorMessage());
+    }
+
     print("\nGet Constellation filesystem structure in json format\n");
     try {
       print(
@@ -109,49 +171,6 @@ void test_fs_memory() {
     try {
       print(
           "Yaml:\n ${constellation.exportConstellationInOtherTypes(ConstellationDataType.yaml)}");
-    } on WarpException catch (e) {
-      print(e.errorMessage());
-    }
-
-    print("\nChange directory description\n");
-    try {
-      directory = directory.rename("warp-dart-directory-fs-2");
-      print("Directory name: ${directory.name}");
-    } on WarpException catch (e) {
-      print(e.errorMessage());
-    }
-
-    print("\nChange directory description\n");
-    try {
-      directory = directory.setDescription("my first directory");
-      print("Directory name: ${directory.name}");
-      print("Directory description: ${directory.description}");
-    } on WarpException catch (e) {
-      print(e.errorMessage());
-    }
-
-    print("\nNew file\n");
-    File file = constellation.newFile("File");
-    try {
-      print("File name: ${file.name}");
-      print("File description: ${file.description}");
-    } on WarpException catch (e) {
-      print(e.errorMessage());
-    }
-
-    print("\nChange file description\n");
-    try {
-      file = file.rename("File 2");
-      print("File name: ${file.name}");
-    } on WarpException catch (e) {
-      print(e.errorMessage());
-    }
-
-    print("\nChange directory description\n");
-    try {
-      file = file.setDescription("my first file");
-      print("File name: ${file.name}");
-      print("File description: ${file.description}");
     } on WarpException catch (e) {
       print(e.errorMessage());
     }

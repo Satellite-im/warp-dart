@@ -50,12 +50,14 @@ void test_rg_ipfs() {
 
     print("Get messages via account B");
     List<Message> messages = rgB.getMessages(convo.id);
+    print(convo.id);
     for (var msg in messages) {
       Identity id = accountB.getIdentityByDID(msg.sender.toString());
       for (var line in msg.value) {
         print(id.username + " - $line");
       }
     }
+    sleep(Duration(seconds: 1));
 
     print("");
 
@@ -73,17 +75,19 @@ void test_rg_ipfs() {
 
     print("Get messages via account A");
     List<Message> messages2 = rgA.getMessages(convo.id);
+    print(convo.id);
     for (var msg in messages2) {
       Identity id = accountA.getIdentityByDID(msg.sender.toString());
       for (var line in msg.value) {
         print("${id.username} - $line");
       }
     }
+    sleep(Duration(seconds: 1));
 
-    print("Edit second Message");
+    print("Edit first Message");
     chatMessagesB[0] = "hello";
     chatMessagesB[1] = "hi";
-    rgB.edit(convo.id, messages2[1].id, chatMessagesB);
+    rgB.edit(convo.id, messages2[0].id, chatMessagesB);
     sleep(Duration(seconds: 1));
 
     print("Get messages via account A after change");
@@ -95,8 +99,8 @@ void test_rg_ipfs() {
       }
     }
 
-    print("Delete second Message");
-    rgB.delete(convo.id, messages2[1].id);
+    print("Delete first Message");
+    rgB.delete(convo.id, messages2[0].id);
     sleep(Duration(seconds: 1));
 
     print("Get messages via account A after deleting");

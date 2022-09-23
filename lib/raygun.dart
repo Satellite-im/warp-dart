@@ -188,6 +188,7 @@ class Raygun {
     // Iterate over the messages
     List<Message> msgs = [];
     int length = result.data.ref.len;
+
     for (int i = 0; i < length; i++) {
       msgs.add(Message(result.data.ref.ptr.elementAt(i).value));
     }
