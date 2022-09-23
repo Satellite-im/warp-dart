@@ -186,9 +186,18 @@ class File {
     calloc.free(pDescription);
     calloc.free(pCreation);
     calloc.free(pModified);
+    bindings.item_free(item);
   }
 
-  File setDescription(String descritpion) {
+  File.newFile(String name) {
+    _pointer = bindings.file_new(name.toNativeUtf8().cast<Char>());
+  }
+
+  File getOwnFile() {
+    return File(_pointer);
+  }
+
+  void setDescription(String descritpion) {
     Pointer<G_Item> item = bindings.file_into_item(_pointer);
 
     if (item == nullptr) {
@@ -199,11 +208,9 @@ class File {
         item, descritpion.toNativeUtf8().cast<Char>());
 
     _pointer = bindings.item_into_file(item).data;
-
-    return File(_pointer);
   }
 
-  File rename(String name) {
+  void rename(String name) {
     Pointer<G_Item> item = bindings.file_into_item(_pointer);
 
     if (item == nullptr) {
@@ -213,8 +220,6 @@ class File {
     bindings.item_rename(item, name.toNativeUtf8().cast<Char>());
 
     _pointer = bindings.item_into_file(item).data;
-
-    return File(_pointer);
   }
 
   void drop() {
@@ -247,6 +252,14 @@ class Directory {
     calloc.free(pDescription);
   }
 
+  Directory.newDirectory(String name) {
+    _pointer = bindings.directory_new(name.toNativeUtf8().cast<Char>());
+  }
+
+  Directory getDirectory() {
+    return Directory(_pointer);
+  }
+
   void addDirectory(Directory directory) {
     G_FFIResult_Null result =
         bindings.directory_add_directory(_pointer, directory.pointer());
@@ -254,7 +267,6 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   bool hasItem(Directory directory) {
@@ -276,7 +288,6 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   void addItem(Item item) {
@@ -286,7 +297,6 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   Item directoryToItem() {
@@ -300,7 +310,7 @@ class Directory {
     return item;
   }
 
-  Directory setDescription(String descritpion) {
+  void setDescription(String descritpion) {
     Pointer<G_Item> item = bindings.directory_into_item(_pointer);
 
     if (item == nullptr) {
@@ -311,11 +321,9 @@ class Directory {
         item, descritpion.toNativeUtf8().cast<Char>());
 
     _pointer = bindings.item_into_directory(item).data;
-
-    return Directory(_pointer);
   }
 
-  Directory rename(String name) {
+  void rename(String name) {
     Pointer<G_Item> item = bindings.directory_into_item(_pointer);
 
     if (item == nullptr) {
@@ -325,8 +333,6 @@ class Directory {
     bindings.item_rename(item, name.toNativeUtf8().cast<Char>());
 
     _pointer = bindings.item_into_directory(item).data;
-
-    return Directory(_pointer);
   }
 
   Item getItem(String itemS) {
@@ -367,10 +373,7 @@ class Directory {
       Pointer<G_Item> pointer = pointerListItem.ref.ptr.elementAt(i).value;
       Item key = Item(pointer);
       list.add(key);
-      bindings.item_free(pointer);
     }
-
-    bindings.ffivec_item_free(pointerListItem);
 
     return list;
   }
@@ -379,7 +382,7 @@ class Directory {
     bool result = bindings.directory_move_item_to(_pointer,
         src.toNativeUtf8().cast<Char>(), dst.toNativeUtf8().cast<Char>());
 
-    if (result == 0) {
+    if (!result) {
       throw Exception("Item not found or path is wrong");
     }
   }
@@ -399,7 +402,6 @@ class Directory {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   void removeItem(String name) {
@@ -437,27 +439,12 @@ class Constellation {
   late Pointer<G_ConstellationAdapter> _pointer;
   Constellation(this._pointer);
 
-  Directory newDirectory(String name) {
-    Pointer<G_Directory> pointer =
-        bindings.directory_new(name.toNativeUtf8().cast<Char>());
-
-    return Directory(pointer);
-  }
-
-  File newFile(String name) {
-    Pointer<G_File> pointer =
-        bindings.file_new(name.toNativeUtf8().cast<Char>());
-
-    return File(pointer);
-  }
-
   void createDirectoryInFilesystem(String path) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
         _pointer, path.toNativeUtf8().cast<Char>(), false);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   Constellation.createRecursiveDirectoryInFilesystem(String path) {
@@ -467,7 +454,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   Directory getCurrentDirectory() {
@@ -515,10 +501,9 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
-  List<int> downloadFileFromFilesystemIntoBuffer(String remotePath) {
+  Uint8List downloadFileFromFilesystemIntoBuffer(String remotePath) {
     List<int> buffer = [];
     G_FFIResult_FFIVec_u8 result = bindings.constellation_get_buffer(
         _pointer, remotePath.toNativeUtf8().cast<Char>());
@@ -531,12 +516,12 @@ class Constellation {
 
     for (int i = 0; i < length; i++) {
       int pointer = result.data.ref.ptr.elementAt(i).value;
-      int key = pointer;
-      buffer.add(key);
+      buffer.add(pointer);
     }
 
+    Uint8List list = Uint8List.fromList(buffer);
     calloc.free(result.data);
-    return buffer;
+    return list;
   }
 
   void previousDirectory() {
@@ -545,7 +530,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   void importDataToFilesystem(ConstellationDataType dataType, String data) {
@@ -555,7 +539,6 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    bindings.free(result.data);
   }
 
   void moveItem(String src, String dst) {
@@ -578,7 +561,7 @@ class Constellation {
     return dir;
   }
 
-  void UploadToFilesystem(String remotePath, String localPath) {
+  void uploadToFilesystem(String remotePath, String localPath) {
     G_FFIResult_Null result = bindings.constellation_put(
         _pointer,
         remotePath.toNativeUtf8().cast<Char>(),
@@ -628,13 +611,16 @@ class Constellation {
     }
   }
 
-  /*void UploadToFilesystemFromBuffer(String remotePath, List<Uint8> buffer) {
+  void uploadToFilesystemFromBuffer(String remotePath, Uint8List buffer) {
+    Pointer<Uint8> bufferP = malloc.allocate(buffer.length);
+    bufferP[0] = buffer[0];
     G_FFIResult_Null result = bindings.constellation_put_buffer(_pointer,
-        remotePath.toNativeUtf8().cast<Char>(), , buffer.length);
+        remotePath.toNativeUtf8().cast<Char>(), bufferP, buffer.length);
+
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-  }*/
+  }
 
   void drop() {
     bindings.constellationadapter_free(_pointer);
