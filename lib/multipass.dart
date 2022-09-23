@@ -334,7 +334,7 @@ class MultiPass {
       throw WarpException(result.error);
     }
 
-    bool received = result.data.value != 0;
+    bool received = result.data.cast<Int8>().value != 0;
     calloc.free(result.data);
 
     return received;
@@ -348,7 +348,7 @@ class MultiPass {
       throw WarpException(result.error);
     }
 
-    bool sent = result.data.value != 0;
+    bool sent = result.data.cast<Int8>().value != 0;
     calloc.free(result.data);
 
     return sent;
