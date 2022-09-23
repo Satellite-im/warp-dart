@@ -438,7 +438,7 @@ class MultiPass {
       throw WarpException(result.error);
     }
 
-    bool blocked = result.data.value != 0;
+    bool blocked = result.data.cast<Int8>().value != 0;
     calloc.free(result.data);
     return blocked;
   }
