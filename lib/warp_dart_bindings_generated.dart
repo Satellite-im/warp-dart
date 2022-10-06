@@ -5274,6 +5274,20 @@ class WarpDartBindings {
   late final _mp_ipfs_config_from_str = _mp_ipfs_config_from_strPtr
       .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
 
+  int mp_ipfs_config_to_str(
+    ffi.Pointer<G_MpIpfsConfig> config,
+  ) {
+    return _mp_ipfs_config_to_str(
+      config,
+    );
+  }
+
+  late final _mp_ipfs_config_to_strPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_MpIpfsConfig>)>>(
+      'mp_ipfs_config_to_str');
+  late final _mp_ipfs_config_to_str = _mp_ipfs_config_to_strPtr
+      .asFunction<int Function(ffi.Pointer<G_MpIpfsConfig>)>();
+
   ffi.Pointer<G_MpIpfsConfig> mp_ipfs_config_development() {
     return _mp_ipfs_config_development();
   }
