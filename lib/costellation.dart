@@ -85,7 +85,7 @@ class Item {
   }
 
   void setItemDescription(String description) {
-    bool result = bindings.item_set_description(
+    int result = bindings.item_set_description(
         _pointer, description.toNativeUtf8().cast<Char>());
 
     if (result == 0) {
@@ -123,7 +123,7 @@ class Item {
   }
 
   bool itemIsDirectory() {
-    bool result = bindings.item_is_directory(_pointer);
+    int result = bindings.item_is_directory(_pointer);
 
     if (result == 0) {
       return false;
@@ -133,7 +133,7 @@ class Item {
   }
 
   bool itemIsFile() {
-    bool result = bindings.item_is_file(_pointer);
+    int result = bindings.item_is_file(_pointer);
 
     if (result == 0) {
       return false;
@@ -272,7 +272,7 @@ class Directory {
   bool hasItem(Directory directory) {
     Pointer<Char> item = directory.name.toNativeUtf8().cast<Char>();
 
-    bool has_item = bindings.directory_has_item(_pointer, item);
+    int has_item = bindings.directory_has_item(_pointer, item);
 
     if (has_item == 0) {
       return false;
@@ -379,10 +379,10 @@ class Directory {
   }
 
   void moveItemTo(String src, String dst) {
-    bool result = bindings.directory_move_item_to(_pointer,
+    int result = bindings.directory_move_item_to(_pointer,
         src.toNativeUtf8().cast<Char>(), dst.toNativeUtf8().cast<Char>());
 
-    if (!result) {
+    if (result == 0) {
       throw Exception("Item not found or path is wrong");
     }
   }
@@ -441,7 +441,7 @@ class Constellation {
 
   void createDirectoryInFilesystem(String path) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
-        _pointer, path.toNativeUtf8().cast<Char>(), false);
+        _pointer, path.toNativeUtf8().cast<Char>(), 0);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -449,7 +449,7 @@ class Constellation {
 
   Constellation.createRecursiveDirectoryInFilesystem(String path) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
-        _pointer, path.toNativeUtf8().cast<Char>(), true);
+        _pointer, path.toNativeUtf8().cast<Char>(), 1);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -586,7 +586,7 @@ class Constellation {
 
   void removeItem(String remotePath, bool recursive) {
     G_FFIResult_Null result = bindings.constellation_remove(
-        _pointer, remotePath.toNativeUtf8().cast<Char>(), recursive);
+        _pointer, remotePath.toNativeUtf8().cast<Char>(), recursive ? 1 : 0);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
