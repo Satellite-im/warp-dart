@@ -11,8 +11,37 @@ const String _libNameIpfs = 'warp_mp_ipfs';
 DynamicLibrary ipfs_dlib = DynamicLibrary.open('lib$_libNameIpfs.so');
 final WarpDartBindings _ipfs_bindings = WarpDartBindings(ipfs_dlib);
 
-MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
-  Pointer<G_MpIpfsConfig> config = _ipfs_bindings.mp_ipfs_config_testing();
+enum Bootstrap { ipfs, experimental }
+
+// class Mdns {
+
+// }
+
+// class RelayClient {
+
+// }
+
+// class RelayServer {
+
+// }
+
+// class IpfsSetting {
+
+// }
+
+// class MpIpfsConfig {
+//   String? path;
+//   Bootstrap bootstrap = Bootstrap.ipfs;
+//   List<String> listenOn = ["/ip4/0.0.0.0/tcp/0", "/ip6/::/tcp/0"];
+
+// }
+
+MultiPass multipass_ipfs_temporary(Tesseract tesseract,
+    [Bootstrap bootstrap = Bootstrap.ipfs]) {
+  int experimental = bootstrap == Bootstrap.experimental ? 1 : 0;
+
+  Pointer<G_MpIpfsConfig> config =
+      _ipfs_bindings.mp_ipfs_config_testing(experimental);
 
   G_FFIResult_MultiPassAdapter result = _ipfs_bindings
       .multipass_mp_ipfs_temporary(nullptr, tesseract.getPointer(), config);
@@ -24,13 +53,12 @@ MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
   return MultiPass(result.data);
 }
 
-//Note: Before this function is called, we should make sure tesseract
-// - Is unlocked
-// - Has a file set
-// - Has autosave enabled
-MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path) {
-  G_FFIResult_MpIpfsConfig config = _ipfs_bindings
-      .mp_ipfs_config_production(path.toNativeUtf8().cast<Char>());
+MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path,
+    [Bootstrap bootstrap = Bootstrap.ipfs]) {
+  int experimental = bootstrap == Bootstrap.experimental ? 1 : 0;
+
+  G_FFIResult_MpIpfsConfig config = _ipfs_bindings.mp_ipfs_config_production(
+      path.toNativeUtf8().cast<Char>(), experimental);
 
   final _repoLockExist = File('$path/repo_lock').existsSync();
   if (_repoLockExist) {

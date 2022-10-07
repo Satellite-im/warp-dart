@@ -5274,6 +5274,20 @@ class WarpDartBindings {
   late final _mp_ipfs_config_from_str = _mp_ipfs_config_from_strPtr
       .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
 
+  int mp_ipfs_config_to_str(
+    ffi.Pointer<G_MpIpfsConfig> config,
+  ) {
+    return _mp_ipfs_config_to_str(
+      config,
+    );
+  }
+
+  late final _mp_ipfs_config_to_strPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_MpIpfsConfig>)>>(
+      'mp_ipfs_config_to_str');
+  late final _mp_ipfs_config_to_str = _mp_ipfs_config_to_strPtr
+      .asFunction<int Function(ffi.Pointer<G_MpIpfsConfig>)>();
+
   ffi.Pointer<G_MpIpfsConfig> mp_ipfs_config_development() {
     return _mp_ipfs_config_development();
   }
@@ -5284,30 +5298,37 @@ class WarpDartBindings {
   late final _mp_ipfs_config_development = _mp_ipfs_config_developmentPtr
       .asFunction<ffi.Pointer<G_MpIpfsConfig> Function()>();
 
-  ffi.Pointer<G_MpIpfsConfig> mp_ipfs_config_testing() {
-    return _mp_ipfs_config_testing();
+  ffi.Pointer<G_MpIpfsConfig> mp_ipfs_config_testing(
+    int experimental,
+  ) {
+    return _mp_ipfs_config_testing(
+      experimental,
+    );
   }
 
-  late final _mp_ipfs_config_testingPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<G_MpIpfsConfig> Function()>>(
-          'mp_ipfs_config_testing');
+  late final _mp_ipfs_config_testingPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<G_MpIpfsConfig> Function(ffi.Int)>>(
+      'mp_ipfs_config_testing');
   late final _mp_ipfs_config_testing = _mp_ipfs_config_testingPtr
-      .asFunction<ffi.Pointer<G_MpIpfsConfig> Function()>();
+      .asFunction<ffi.Pointer<G_MpIpfsConfig> Function(int)>();
 
   G_FFIResult_MpIpfsConfig mp_ipfs_config_production(
     ffi.Pointer<ffi.Char> path,
+    int experimental,
   ) {
     return _mp_ipfs_config_production(
       path,
+      experimental,
     );
   }
 
   late final _mp_ipfs_config_productionPtr = _lookup<
       ffi.NativeFunction<
           G_FFIResult_MpIpfsConfig Function(
-              ffi.Pointer<ffi.Char>)>>('mp_ipfs_config_production');
-  late final _mp_ipfs_config_production = _mp_ipfs_config_productionPtr
-      .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+              ffi.Pointer<ffi.Char>, ffi.Int)>>('mp_ipfs_config_production');
+  late final _mp_ipfs_config_production =
+      _mp_ipfs_config_productionPtr.asFunction<
+          G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>, int)>();
 
   G_FFIResult_MultiPassAdapter multipass_mp_ipfs_temporary(
     ffi.Pointer<G_PocketDimensionAdapter> pocketdimension,
