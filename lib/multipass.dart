@@ -32,15 +32,11 @@ class Identifier {
         .multipass_identifier_user_name(username.toNativeUtf8().cast<Char>());
   }
 
-  Identifier.fromDID(DID did_key) {
-    _pointer = bindings.multipass_identifier_did_key(did_key.pointer);
-  }
-
-  Identifier.fromDIDString(String did_key) {
+  Identifier.fromDID(String did_key) {
     DID did;
     try {
       did = DID.fromString(did_key);
-    } on WarpException catch (e) {
+    } on WarpException {
       rethrow;
     }
     Pointer<G_Identifier> ptr =
@@ -106,7 +102,7 @@ class Graphics {
 class Identity {
   late String username;
   late String short_id;
-  late DID did_key;
+  late String did_key;
   late Graphics graphics;
   late String? status_message;
   //late List<Role> roles;
@@ -118,7 +114,8 @@ class Identity {
     username = pUsername.cast<Utf8>().toDartString();
     Pointer<Char> pShortId = bindings.multipass_identity_short_id(pointer);
     short_id = pShortId.cast<Utf8>().toDartString();
-    did_key = DID(bindings.multipass_identity_did_key(pointer));
+    DID did = DID(bindings.multipass_identity_did_key(pointer));
+    did_key = did.toString();
     graphics = Graphics(bindings.multipass_identity_graphics(pointer));
     Pointer<Char> ptr = bindings.multipass_identity_status_message(pointer);
     status_message = ptr != nullptr ? ptr.cast<Utf8>().toDartString() : null;
@@ -127,6 +124,7 @@ class Identity {
     calloc.free(pShortId);
     calloc.free(ptr);
     calloc.free(pUsername);
+    did.drop();
     bindings.identity_free(pointer);
   }
 }
@@ -162,14 +160,25 @@ class Relationship {
 }
 
 class FriendRequest {
-  late DID from;
-  late DID to;
+  late String from;
+  late String to;
   late FriendRequestStatusEnum status;
   // late int date;
 
   FriendRequest(Pointer<G_FriendRequest> pointer) {
-    from = DID(bindings.multipass_friend_request_from(pointer));
-    to = DID(bindings.multipass_friend_request_to(pointer));
+    DID did_from;
+    DID did_to;
+
+    try {
+      did_from = DID(bindings.multipass_friend_request_from(pointer));
+      did_to = DID(bindings.multipass_friend_request_to(pointer));
+    } on WarpException {
+      rethrow;
+    }
+
+    from = did_from.toString();
+    to = did_to.toString();
+
     final _friendRequestStatusNum =
         bindings.multipass_friend_request_status(pointer);
 
@@ -182,12 +191,9 @@ class FriendRequest {
       5: FriendRequestStatusEnum.requestRemoved,
     };
     status = _friendRequestStatusMap[_friendRequestStatusNum]!;
+    did_from.drop();
+    did_to.drop();
     bindings.friendrequest_free(pointer);
-  }
-
-  void drop() {
-    from.drop();
-    to.drop();
   }
 }
 
@@ -234,9 +240,6 @@ class MultiPass {
       Identity identity = Identity(pointer);
       list.add(identity);
     }
-
-    //TODO: Determine if we need to free the pointer array
-    // bindings.ffivec_identity_free(result.data);
     return list;
   }
 
@@ -253,8 +256,8 @@ class MultiPass {
     return list;
   }
 
-  Identity getIdentityByDID(String did_key) {
-    Identifier identifier = Identifier.fromDIDString(did_key);
+  Identity getIdentityByDID(String did) {
+    Identifier identifier = Identifier.fromDID(did);
     List<Identity> list;
     try {
       list = getIdentity(identifier);
@@ -485,9 +488,17 @@ class MultiPass {
     }
   }
 
-  IdentityStatus identityStatus(DID did) {
+  IdentityStatus identityStatus(String did) {
+    DID didkey;
+
+    try {
+      didkey = DID.fromString(did);
+    } on WarpException {
+      rethrow;
+    }
+
     G_FFIResult_IdentityStatus result =
-        bindings.multipass_identity_status(pointer, did.pointer);
+        bindings.multipass_identity_status(pointer, didkey.pointer);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -502,19 +513,28 @@ class MultiPass {
         status = IdentityStatus.offline;
         break;
     }
+
+    didkey.drop();
     calloc.free(result.data);
 
     return status;
   }
 
-  Relationship identityRelationship(DID did) {
+  Relationship identityRelationship(String did) {
+    DID didkey;
+
+    try {
+      didkey = DID.fromString(did);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_Relationship result =
-        bindings.multipass_identity_relationship(pointer, did.pointer);
+        bindings.multipass_identity_relationship(pointer, didkey.pointer);
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-
+    didkey.drop();
     return Relationship(result.data);
   }
 
