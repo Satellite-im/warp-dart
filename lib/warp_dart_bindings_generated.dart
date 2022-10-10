@@ -5330,6 +5330,21 @@ class WarpDartBindings {
       _mp_ipfs_config_productionPtr.asFunction<
           G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>, int)>();
 
+  G_FFIResult_MpIpfsConfig mp_ipfs_config_minimial(
+    ffi.Pointer<ffi.Char> path,
+  ) {
+    return _mp_ipfs_config_minimial(
+      path,
+    );
+  }
+
+  late final _mp_ipfs_config_minimialPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MpIpfsConfig Function(
+              ffi.Pointer<ffi.Char>)>>('mp_ipfs_config_minimial');
+  late final _mp_ipfs_config_minimial = _mp_ipfs_config_minimialPtr
+      .asFunction<G_FFIResult_MpIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
   G_FFIResult_MultiPassAdapter multipass_mp_ipfs_temporary(
     ffi.Pointer<G_PocketDimensionAdapter> pocketdimension,
     ffi.Pointer<G_Tesseract> tesseract,
