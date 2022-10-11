@@ -23,6 +23,31 @@ class Badge {
   }
 }
 
+class MultiPassEventStream {
+  bool _running = false;
+  Pointer<G_MultiPassEventStream> _pointer;
+  MultiPassEventStream(this._pointer);
+
+  Stream<String> watch() async* {
+    _running = true;
+    while (_running) {
+      G_FFIResult_String result = bindings.multipass_stream_next(_pointer);
+      if (result.error != nullptr) {
+        //TODO: Provide error and break stream (?)
+        break;
+      }
+      String data = result.data.cast<Utf8>().toDartString();
+      calloc.free(result.data);
+      yield data;
+    }
+  }
+
+  void drop() {
+    _running = false;
+    bindings.multipasseventstream_free(_pointer);
+  }
+}
+
 class Identifier {
   late Pointer<G_Identifier> _pointer;
   Identifier(this._pointer);
@@ -516,6 +541,16 @@ class MultiPass {
     }
 
     return Relationship(result.data);
+  }
+
+  MultiPassEventStream subscribe() {
+    G_FFIResult_MultiPassEventStream result =
+        bindings.multipass_subscribe(pointer);
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    return MultiPassEventStream(result.data);
   }
 
   void drop() {
