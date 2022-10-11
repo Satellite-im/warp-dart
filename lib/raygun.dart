@@ -30,6 +30,56 @@ class Range {
   Range(this.start, this.end);
 }
 
+class RayGunEventStream {
+  bool _running = false;
+  Pointer<G_RayGunEventStream> _pointer;
+  RayGunEventStream(this._pointer);
+
+  Stream<String> watch() async* {
+    _running = true;
+    while (_running) {
+      G_FFIResult_String result = bindings.raygun_stream_next(_pointer);
+      if (result.error != nullptr) {
+        //TODO: Provide error and break stream (?)
+        break;
+      }
+      String data = result.data.cast<Utf8>().toDartString();
+      calloc.free(result.data);
+      yield data;
+    }
+  }
+
+  void drop() {
+    _running = false;
+    bindings.rayguneventstream_free(_pointer);
+  }
+}
+
+class MessageEventStream {
+  bool _running = false;
+  Pointer<G_MessageEventStream> _pointer;
+  MessageEventStream(this._pointer);
+
+  Stream<String> watch() async* {
+    _running = true;
+    while (_running) {
+      G_FFIResult_String result = bindings.message_stream_next(_pointer);
+      if (result.error != nullptr) {
+        //TODO: Provide error and break stream (?)
+        break;
+      }
+      String data = result.data.cast<Utf8>().toDartString();
+      calloc.free(result.data);
+      yield data;
+    }
+  }
+
+  void drop() {
+    _running = false;
+    bindings.messageeventstream_free(_pointer);
+  }
+}
+
 class MessageOptions {
   Range? range;
   DateRange? dateRange;
@@ -240,9 +290,10 @@ class Raygun {
   }
 
   Message getMessage(String conversationID, String messageId) {
-
     G_FFIResult_Message result = bindings.raygun_get_message(
-        pRaygun, conversationID.toNativeUtf8().cast<Char>(), messageId.toNativeUtf8().cast<Char>());
+        pRaygun,
+        conversationID.toNativeUtf8().cast<Char>(),
+        messageId.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
@@ -406,6 +457,29 @@ class Raygun {
     // Release
     calloc.free(pConvoId);
     calloc.free(pMessageId);
+  }
+
+  RayGunEventStream subscribe() {
+    G_FFIResult_RayGunEventStream result = bindings.raygun_subscribe(pRaygun);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    return RayGunEventStream(result.data);
+  }
+
+  MessageEventStream getConversationStream(String conversationId) {
+    Pointer<Char> pConvoId = conversationId.toNativeUtf8().cast<Char>();
+
+    G_FFIResult_MessageEventStream result =
+        bindings.raygun_get_conversation_stream(pRaygun, pConvoId);
+
+    if (result.error != nullptr) {
+      throw WarpException(result.error);
+    }
+
+    return MessageEventStream(result.data);
   }
 
   drop() {
