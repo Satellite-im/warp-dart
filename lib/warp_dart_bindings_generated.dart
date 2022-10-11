@@ -2991,6 +2991,52 @@ class WarpDartBindings {
   late final _data_payload = _data_payloadPtr
       .asFunction<G_FFIResult_String Function(ffi.Pointer<G_Data>)>();
 
+  void ffivec_multipasseventkind_free(
+    ffi.Pointer<G_FFIVec_MultiPassEventKind> cvec,
+  ) {
+    return _ffivec_multipasseventkind_free(
+      cvec,
+    );
+  }
+
+  late final _ffivec_multipasseventkind_freePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<G_FFIVec_MultiPassEventKind>)>>(
+      'ffivec_multipasseventkind_free');
+  late final _ffivec_multipasseventkind_free =
+      _ffivec_multipasseventkind_freePtr.asFunction<
+          void Function(ffi.Pointer<G_FFIVec_MultiPassEventKind>)>();
+
+  void multipasseventkind_free(
+    ffi.Pointer<G_MultiPassEventKind> ptr,
+  ) {
+    return _multipasseventkind_free(
+      ptr,
+    );
+  }
+
+  late final _multipasseventkind_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_MultiPassEventKind>)>>('multipasseventkind_free');
+  late final _multipasseventkind_free = _multipasseventkind_freePtr
+      .asFunction<void Function(ffi.Pointer<G_MultiPassEventKind>)>();
+
+  void multipasseventstream_free(
+    ffi.Pointer<G_MultiPassEventStream> ptr,
+  ) {
+    return _multipasseventstream_free(
+      ptr,
+    );
+  }
+
+  late final _multipasseventstream_freePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<G_MultiPassEventStream>)>>(
+      'multipasseventstream_free');
+  late final _multipasseventstream_free = _multipasseventstream_freePtr
+      .asFunction<void Function(ffi.Pointer<G_MultiPassEventStream>)>();
+
   void multipassadapter_free(
     ffi.Pointer<G_MultiPassAdapter> ptr,
   ) {
@@ -4139,6 +4185,37 @@ class WarpDartBindings {
           G_FFIResult_Relationship Function(
               ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_DID>)>();
 
+  G_FFIResult_MultiPassEventStream multipass_subscribe(
+    ffi.Pointer<G_MultiPassAdapter> ctx,
+  ) {
+    return _multipass_subscribe(
+      ctx,
+    );
+  }
+
+  late final _multipass_subscribePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MultiPassEventStream Function(
+              ffi.Pointer<G_MultiPassAdapter>)>>('multipass_subscribe');
+  late final _multipass_subscribe = _multipass_subscribePtr.asFunction<
+      G_FFIResult_MultiPassEventStream Function(
+          ffi.Pointer<G_MultiPassAdapter>)>();
+
+  G_FFIResult_String multipass_stream_next(
+    ffi.Pointer<G_MultiPassEventStream> ctx,
+  ) {
+    return _multipass_stream_next(
+      ctx,
+    );
+  }
+
+  late final _multipass_stream_nextPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_String Function(
+              ffi.Pointer<G_MultiPassEventStream>)>>('multipass_stream_next');
+  late final _multipass_stream_next = _multipass_stream_nextPtr.asFunction<
+      G_FFIResult_String Function(ffi.Pointer<G_MultiPassEventStream>)>();
+
   void pocketdimensionadapter_free(
     ffi.Pointer<G_PocketDimensionAdapter> ptr,
   ) {
@@ -4254,6 +4331,96 @@ class WarpDartBindings {
               ffi.Pointer<G_QueryBuilder>, uintptr_t)>>('querybuilder_limit');
   late final _querybuilder_limit = _querybuilder_limitPtr
       .asFunction<void Function(ffi.Pointer<G_QueryBuilder>, int)>();
+
+  void ffivec_rayguneventkind_free(
+    ffi.Pointer<G_FFIVec_RayGunEventKind> cvec,
+  ) {
+    return _ffivec_rayguneventkind_free(
+      cvec,
+    );
+  }
+
+  late final _ffivec_rayguneventkind_freePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<G_FFIVec_RayGunEventKind>)>>(
+      'ffivec_rayguneventkind_free');
+  late final _ffivec_rayguneventkind_free = _ffivec_rayguneventkind_freePtr
+      .asFunction<void Function(ffi.Pointer<G_FFIVec_RayGunEventKind>)>();
+
+  void rayguneventkind_free(
+    ffi.Pointer<G_RayGunEventKind> ptr,
+  ) {
+    return _rayguneventkind_free(
+      ptr,
+    );
+  }
+
+  late final _rayguneventkind_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_RayGunEventKind>)>>('rayguneventkind_free');
+  late final _rayguneventkind_free = _rayguneventkind_freePtr
+      .asFunction<void Function(ffi.Pointer<G_RayGunEventKind>)>();
+
+  void rayguneventstream_free(
+    ffi.Pointer<G_RayGunEventStream> ptr,
+  ) {
+    return _rayguneventstream_free(
+      ptr,
+    );
+  }
+
+  late final _rayguneventstream_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_RayGunEventStream>)>>('rayguneventstream_free');
+  late final _rayguneventstream_free = _rayguneventstream_freePtr
+      .asFunction<void Function(ffi.Pointer<G_RayGunEventStream>)>();
+
+  void ffivec_messageeventkind_free(
+    ffi.Pointer<G_FFIVec_MessageEventKind> cvec,
+  ) {
+    return _ffivec_messageeventkind_free(
+      cvec,
+    );
+  }
+
+  late final _ffivec_messageeventkind_freePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<G_FFIVec_MessageEventKind>)>>(
+      'ffivec_messageeventkind_free');
+  late final _ffivec_messageeventkind_free = _ffivec_messageeventkind_freePtr
+      .asFunction<void Function(ffi.Pointer<G_FFIVec_MessageEventKind>)>();
+
+  void messageeventkind_free(
+    ffi.Pointer<G_MessageEventKind> ptr,
+  ) {
+    return _messageeventkind_free(
+      ptr,
+    );
+  }
+
+  late final _messageeventkind_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_MessageEventKind>)>>('messageeventkind_free');
+  late final _messageeventkind_free = _messageeventkind_freePtr
+      .asFunction<void Function(ffi.Pointer<G_MessageEventKind>)>();
+
+  void messageeventstream_free(
+    ffi.Pointer<G_MessageEventStream> ptr,
+  ) {
+    return _messageeventstream_free(
+      ptr,
+    );
+  }
+
+  late final _messageeventstream_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_MessageEventStream>)>>('messageeventstream_free');
+  late final _messageeventstream_free = _messageeventstream_freePtr
+      .asFunction<void Function(ffi.Pointer<G_MessageEventStream>)>();
 
   void ffivec_conversation_free(
     ffi.Pointer<G_FFIVec_Conversation> cvec,
@@ -4600,6 +4767,70 @@ class WarpDartBindings {
   late final _raygun_embeds = _raygun_embedsPtr.asFunction<
       G_FFIResult_Null Function(ffi.Pointer<G_RayGunAdapter>,
           ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  G_FFIResult_RayGunEventStream raygun_subscribe(
+    ffi.Pointer<G_RayGunAdapter> ctx,
+  ) {
+    return _raygun_subscribe(
+      ctx,
+    );
+  }
+
+  late final _raygun_subscribePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_RayGunEventStream Function(
+              ffi.Pointer<G_RayGunAdapter>)>>('raygun_subscribe');
+  late final _raygun_subscribe = _raygun_subscribePtr.asFunction<
+      G_FFIResult_RayGunEventStream Function(ffi.Pointer<G_RayGunAdapter>)>();
+
+  G_FFIResult_String raygun_stream_next(
+    ffi.Pointer<G_RayGunEventStream> ctx,
+  ) {
+    return _raygun_stream_next(
+      ctx,
+    );
+  }
+
+  late final _raygun_stream_nextPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_String Function(
+              ffi.Pointer<G_RayGunEventStream>)>>('raygun_stream_next');
+  late final _raygun_stream_next = _raygun_stream_nextPtr.asFunction<
+      G_FFIResult_String Function(ffi.Pointer<G_RayGunEventStream>)>();
+
+  G_FFIResult_MessageEventStream raygun_get_conversation_stream(
+    ffi.Pointer<G_RayGunAdapter> ctx,
+    ffi.Pointer<ffi.Char> conversation_id,
+  ) {
+    return _raygun_get_conversation_stream(
+      ctx,
+      conversation_id,
+    );
+  }
+
+  late final _raygun_get_conversation_streamPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_MessageEventStream Function(ffi.Pointer<G_RayGunAdapter>,
+              ffi.Pointer<ffi.Char>)>>('raygun_get_conversation_stream');
+  late final _raygun_get_conversation_stream =
+      _raygun_get_conversation_streamPtr.asFunction<
+          G_FFIResult_MessageEventStream Function(
+              ffi.Pointer<G_RayGunAdapter>, ffi.Pointer<ffi.Char>)>();
+
+  G_FFIResult_String message_stream_next(
+    ffi.Pointer<G_MessageEventStream> ctx,
+  ) {
+    return _message_stream_next(
+      ctx,
+    );
+  }
+
+  late final _message_stream_nextPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_String Function(
+              ffi.Pointer<G_MessageEventStream>)>>('message_stream_next');
+  late final _message_stream_next = _message_stream_nextPtr.asFunction<
+      G_FFIResult_String Function(ffi.Pointer<G_MessageEventStream>)>();
 
   ffi.Pointer<ffi.Char> message_id(
     ffi.Pointer<G_Message> ctx,
@@ -5971,15 +6202,27 @@ class G_Item extends ffi.Opaque {}
 
 class G_Message extends ffi.Opaque {}
 
+class G_MessageEventKind extends ffi.Opaque {}
+
+class G_MessageEventStream extends ffi.Opaque {}
+
 class G_MessageOptions extends ffi.Opaque {}
 
 class G_MultiPassAdapter extends ffi.Opaque {}
+
+class G_MultiPassEventKind extends ffi.Opaque {}
+
+class G_MultiPassEventStream extends ffi.Opaque {}
 
 class G_PocketDimensionAdapter extends ffi.Opaque {}
 
 class G_QueryBuilder extends ffi.Opaque {}
 
 class G_RayGunAdapter extends ffi.Opaque {}
+
+class G_RayGunEventKind extends ffi.Opaque {}
+
+class G_RayGunEventStream extends ffi.Opaque {}
 
 class G_Reaction extends ffi.Opaque {}
 
@@ -6112,6 +6355,16 @@ class G_FFIResult_Data extends ffi.Struct {
   external ffi.Pointer<G_FFIError> error;
 }
 
+class G_FFIVec_MultiPassEventKind extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<G_MultiPassEventKind>> ptr;
+
+  @uintptr_t()
+  external int len;
+
+  @uintptr_t()
+  external int cap;
+}
+
 class G_FFIVec_Role extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_Role>> ptr;
 
@@ -6194,10 +6447,36 @@ class G_FFIResult_Relationship extends ffi.Struct {
   external ffi.Pointer<G_FFIError> error;
 }
 
+class G_FFIResult_MultiPassEventStream extends ffi.Struct {
+  external ffi.Pointer<G_MultiPassEventStream> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
 class G_FFIResult_QueryBuilder extends ffi.Struct {
   external ffi.Pointer<G_QueryBuilder> data;
 
   external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIVec_RayGunEventKind extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<G_RayGunEventKind>> ptr;
+
+  @uintptr_t()
+  external int len;
+
+  @uintptr_t()
+  external int cap;
+}
+
+class G_FFIVec_MessageEventKind extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<G_MessageEventKind>> ptr;
+
+  @uintptr_t()
+  external int len;
+
+  @uintptr_t()
+  external int cap;
 }
 
 class G_FFIVec_Conversation extends ffi.Struct {
@@ -6250,6 +6529,18 @@ class G_FFIResult_Message extends ffi.Struct {
 
 class G_FFIResult_FFIVec_Message extends ffi.Struct {
   external ffi.Pointer<G_FFIVec_Message> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIResult_RayGunEventStream extends ffi.Struct {
+  external ffi.Pointer<G_RayGunEventStream> data;
+
+  external ffi.Pointer<G_FFIError> error;
+}
+
+class G_FFIResult_MessageEventStream extends ffi.Struct {
+  external ffi.Pointer<G_MessageEventStream> data;
 
   external ffi.Pointer<G_FFIError> error;
 }
