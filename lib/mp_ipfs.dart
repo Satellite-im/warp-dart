@@ -30,86 +30,21 @@ enum Bootstrap { ipfs, experimental }
 // }
 
 // class MpIpfsConfig {
+//   String? path;
+//   Bootstrap bootstrap = Bootstrap.ipfs;
+//   List<String> listenOn = ["/ip4/0.0.0.0/tcp/0", "/ip6/::/tcp/0"];
 
 // }
 
-class MpIpfsConfig {
-  //String? path;
-  //Bootstrap bootstrap = Bootstrap.ipfs;
-  //List<String> listenOn = ["/ip4/0.0.0.0/tcp/0", "/ip6/::/tcp/0"];
-  late Pointer<G_MpIpfsConfig> _pointer;
+MultiPass multipass_ipfs_temporary(Tesseract tesseract,
+    [Bootstrap bootstrap = Bootstrap.ipfs]) {
+  int experimental = bootstrap == Bootstrap.experimental ? 1 : 0;
 
-  MpIpfsConfig(this._pointer);
-  MpIpfsConfig.fromFile(String file) {
-    G_FFIResult_MpIpfsConfig result = _ipfs_bindings
-        .mp_ipfs_config_from_file(file.toNativeUtf8().cast<Char>());
+  Pointer<G_MpIpfsConfig> config =
+      _ipfs_bindings.mp_ipfs_config_testing(experimental);
 
-    if (result.error != nullptr) {
-      throw WarpException(result.error.cast());
-    }
-
-    _pointer = result.data;
-  }
-
-  MpIpfsConfig.fromString(String jsonData) {
-    G_FFIResult_MpIpfsConfig result = _ipfs_bindings
-        .mp_ipfs_config_from_str(jsonData.toNativeUtf8().cast<Char>());
-
-    if (result.error != nullptr) {
-      throw WarpException(result.error.cast());
-    }
-
-    _pointer = result.data;
-  }
-
-  MpIpfsConfig.development() {
-    _pointer = _ipfs_bindings.mp_ipfs_config_development();
-  }
-
-  MpIpfsConfig.testing([Bootstrap? bootstrap = Bootstrap.ipfs]) {
-    int experimental = bootstrap == Bootstrap.experimental ? 1 : 0;
-    _pointer = _ipfs_bindings.mp_ipfs_config_testing(experimental);
-  }
-
-  MpIpfsConfig.production(String path, [Bootstrap bootstrap = Bootstrap.ipfs]) {
-    int experimental = bootstrap == Bootstrap.experimental ? 1 : 0;
-    G_FFIResult_MpIpfsConfig result = _ipfs_bindings.mp_ipfs_config_production(
-        path.toNativeUtf8().cast<Char>(), experimental);
-
-    if (result.error != nullptr) {
-      throw WarpException(result.error.cast());
-    }
-
-    _pointer = result.data;
-  }
-
-  MpIpfsConfig.minimial(String path) {
-    G_FFIResult_MpIpfsConfig result = _ipfs_bindings
-        .mp_ipfs_config_minimial(path.toNativeUtf8().cast<Char>());
-
-    if (result.error != nullptr) {
-      throw WarpException(result.error.cast());
-    }
-
-    _pointer = result.data;
-  }
-
-  Pointer<G_MpIpfsConfig> toPointer() {
-    return _pointer;
-  }
-
-  @override
-  String toString() {
-    return "TODO";
-  }
-}
-
-MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
-  MpIpfsConfig config = MpIpfsConfig.testing();
-
-  G_FFIResult_MultiPassAdapter result =
-      _ipfs_bindings.multipass_mp_ipfs_temporary(
-          nullptr, tesseract.getPointer(), config.toPointer());
+  G_FFIResult_MultiPassAdapter result = _ipfs_bindings
+      .multipass_mp_ipfs_temporary(nullptr, tesseract.getPointer(), config);
 
   if (result.error != nullptr) {
     throw WarpException(result.error.cast());
@@ -119,25 +54,24 @@ MultiPass multipass_ipfs_temporary(Tesseract tesseract) {
 }
 
 MultiPass multipass_ipfs_persistent(Tesseract tesseract, String path,
-    [MpIpfsConfig? config]) {
-  MpIpfsConfig? internalConfig = config;
+    [Bootstrap bootstrap = Bootstrap.ipfs]) {
+  int experimental = bootstrap == Bootstrap.experimental ? 1 : 0;
 
-  if (internalConfig == null) {
-    try {
-      internalConfig = MpIpfsConfig.production(path);
-    } on WarpException {
-      rethrow;
-    }
-  }
+  G_FFIResult_MpIpfsConfig config = _ipfs_bindings.mp_ipfs_config_production(
+      path.toNativeUtf8().cast<Char>(), experimental);
 
   final _repoLockExist = File('$path/repo_lock').existsSync();
   if (_repoLockExist) {
     File('$path/repo_lock').deleteSync();
   }
 
+  if (config.error != nullptr) {
+    throw WarpException(config.error.cast());
+  }
+
   G_FFIResult_MultiPassAdapter result =
       _ipfs_bindings.multipass_mp_ipfs_persistent(
-          nullptr, tesseract.getPointer(), internalConfig.toPointer());
+          nullptr, tesseract.getPointer(), config.data);
 
   if (result.error != nullptr) {
     throw WarpException(result.error.cast());
