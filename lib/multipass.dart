@@ -201,7 +201,7 @@ class MultiPass {
   Pointer<G_MultiPassAdapter> pointer;
   MultiPass(this.pointer);
 
-  DID createIdentity(String? username, String? passphrase) {
+  String createIdentity(String? username, String? passphrase) {
     Pointer<Char> pUsername =
         username != null ? username.toNativeUtf8().cast<Char>() : nullptr;
 
@@ -223,7 +223,10 @@ class MultiPass {
       calloc.free(pPassphrase);
     }
 
-    return DID(result.data);
+    DID did = DID(result.data);
+    String didString = did.toString();
+    did.drop();
+    return didString;
   }
 
   List<Identity> getIdentity(Identifier identifier) {
@@ -446,35 +449,37 @@ class MultiPass {
     return blocked;
   }
 
-  List<DID> blockList() {
+  List<String> blockList() {
     G_FFIResult_FFIVec_DID result = bindings.multipass_block_list(pointer);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    List<DID> list = [];
+    List<String> list = [];
     int length = result.data.ref.len;
 
     for (int i = 0; i < length; i++) {
       Pointer<G_DID> pointer = result.data.ref.ptr.elementAt(i).value;
       DID key = DID(pointer);
-      list.add(key);
+      list.add(key.toString());
+      key.drop();
     }
 
     return list;
   }
 
-  List<DID> listFriends() {
+  List<String> listFriends() {
     G_FFIResult_FFIVec_DID result = bindings.multipass_list_friends(pointer);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    List<DID> list = [];
+    List<String> list = [];
     int length = result.data.ref.len;
 
     for (int i = 0; i < length; i++) {
       Pointer<G_DID> pointer = result.data.ref.ptr.elementAt(i).value;
       DID key = DID(pointer);
-      list.add(key);
+      list.add(key.toString());
+      key.drop();
     }
 
     return list;
