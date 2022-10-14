@@ -300,42 +300,78 @@ class MultiPass {
     }
   }
 
-  void sendFriendRequest(DID key) {
+  void sendFriendRequest(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
+
     G_FFIResult_Null result =
-        bindings.multipass_send_request(pointer, key.pointer);
+        bindings.multipass_send_request(pointer, did.pointer);
+    did.drop();
+
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  void acceptFriendRequest(DID key) {
+  void acceptFriendRequest(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_Null result =
-        bindings.multipass_accept_request(pointer, key.pointer);
+        bindings.multipass_accept_request(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  void denyFriendRequest(DID key) {
+  void denyFriendRequest(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_Null result =
-        bindings.multipass_deny_request(pointer, key.pointer);
+        bindings.multipass_deny_request(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  void closeFriendRequest(DID key) {
+  void closeFriendRequest(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_Null result =
-        bindings.multipass_close_request(pointer, key.pointer);
+        bindings.multipass_close_request(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  bool receivedFriendRequestFrom(DID did) {
+  bool receivedFriendRequestFrom(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_bool result =
         bindings.multipass_received_friend_request_from(pointer, did.pointer);
-
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -346,10 +382,16 @@ class MultiPass {
     return received;
   }
 
-  bool sentFriendRequestTo(DID did) {
+  bool sentFriendRequestTo(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_bool result =
         bindings.multipass_sent_friend_request_to(pointer, did.pointer);
-
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -414,32 +456,59 @@ class MultiPass {
     return list;
   }
 
-  void removeFriend(DID key) {
+  void removeFriend(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_Null result =
-        bindings.multipass_remove_friend(pointer, key.pointer);
+        bindings.multipass_remove_friend(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  void block(DID key) {
-    G_FFIResult_Null result = bindings.multipass_block(pointer, key.pointer);
+  void block(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
+    G_FFIResult_Null result = bindings.multipass_block(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  void unblock(DID key) {
-    G_FFIResult_Null result = bindings.multipass_unblock(pointer, key.pointer);
+  void unblock(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
+    G_FFIResult_Null result = bindings.multipass_unblock(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  bool isBlocked(DID did) {
+  bool isBlocked(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_bool result =
         bindings.multipass_is_blocked(pointer, did.pointer);
-
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -485,9 +554,16 @@ class MultiPass {
     return list;
   }
 
-  void hasFriend(DID key) {
+  void hasFriend(String key) {
+    DID did;
+    try {
+      did = DID.fromString(key);
+    } on WarpException {
+      rethrow;
+    }
     G_FFIResult_Null result =
-        bindings.multipass_has_friend(pointer, key.pointer);
+        bindings.multipass_has_friend(pointer, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -504,7 +580,7 @@ class MultiPass {
 
     G_FFIResult_IdentityStatus result =
         bindings.multipass_identity_status(pointer, didkey.pointer);
-
+    didkey.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
