@@ -137,8 +137,8 @@ class Reaction {
       Pointer<G_DID> pSenderId = pReactionSenders.ref.ptr.elementAt(k).value;
       DID did = DID(pSenderId);
       sender.add(did.toString());
-      // did.drop();
-      calloc.free(pSenderId);
+      did.drop();
+      // calloc.free(pSenderId);
     }
     calloc.free(pEmoji);
   }
@@ -148,7 +148,7 @@ class Conversation {
   late String id;
   late ConversationType type;
   String? name;
-  late List<DID> recipients;
+  late List<String> recipients;
   Conversation(Pointer<G_Conversation> pointer) {
     Pointer<Char> pId = bindings.conversation_id(pointer);
     id = pId.cast<Utf8>().toDartString();
@@ -159,9 +159,11 @@ class Conversation {
     //type = ConversationType.Direct as ConversationType; //?
     Pointer<G_FFIVec_DID> pDIDs = bindings.conversation_recipients(pointer);
     int len = pDIDs.ref.len;
-    List<DID> rList = [];
+    List<String> rList = [];
     for (int i = 0; i < len; i++) {
-      rList.add(DID(pDIDs.ref.ptr[i]));
+      DID did = DID(pDIDs.ref.ptr[i]);
+      rList.add(did.toString());
+      did.drop();
     }
 
     recipients = rList;
@@ -187,13 +189,12 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_Conversation result =
         bindings.raygun_create_conversation(pRaygun, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
 
     Conversation convoId = Conversation(result.data);
-
-    did.drop();
 
     return convoId;
   }
