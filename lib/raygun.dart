@@ -64,7 +64,7 @@ class MessageOptions {
 class Message {
   late String id;
   late String conversationId;
-  late DID sender;
+  late String sender;
   late DateTime date;
   bool pinned = false;
   List<Reaction> reactions = [];
@@ -79,7 +79,8 @@ class Message {
     conversationId = pConversationId.cast<Utf8>().toDartString();
 
     Pointer<G_DID> pSender = bindings.message_sender(pointer);
-    sender = DID(pSender);
+    DID iSender = DID(pSender);
+    sender = iSender.toString();
 
     Pointer<Char> pDate = bindings.message_date(pointer);
 
@@ -115,6 +116,7 @@ class Message {
     calloc.free(pDate);
     calloc.free(pId);
     calloc.free(pConversationId);
+    iSender.drop();
     bindings.ffivec_string_free(pLines);
     calloc.free(pReplied);
     bindings.ffivec_reaction_free(pReactions);
@@ -124,7 +126,7 @@ class Message {
 
 class Reaction {
   late String emoji;
-  late List<DID> sender;
+  late List<String> sender;
   Reaction(Pointer<G_Reaction> pointer) {
     Pointer<Char> pEmoji = bindings.reaction_emoji(pointer);
     emoji = pEmoji.cast<Utf8>().toDartString();
@@ -133,8 +135,10 @@ class Reaction {
     int reactionSendersIdLen = pReactionSenders.ref.len;
     for (int k = 0; k < reactionSendersIdLen; k++) {
       Pointer<G_DID> pSenderId = pReactionSenders.ref.ptr.elementAt(k).value;
-      sender.add(DID(pSenderId));
-      calloc.free(pSenderId);
+      DID did = DID(pSenderId);
+      sender.add(did.toString());
+      did.drop();
+      // calloc.free(pSenderId);
     }
     calloc.free(pEmoji);
   }
@@ -144,7 +148,7 @@ class Conversation {
   late String id;
   late ConversationType type;
   String? name;
-  late List<DID> recipients;
+  late List<String> recipients;
   Conversation(Pointer<G_Conversation> pointer) {
     Pointer<Char> pId = bindings.conversation_id(pointer);
     id = pId.cast<Utf8>().toDartString();
@@ -155,9 +159,11 @@ class Conversation {
     //type = ConversationType.Direct as ConversationType; //?
     Pointer<G_FFIVec_DID> pDIDs = bindings.conversation_recipients(pointer);
     int len = pDIDs.ref.len;
-    List<DID> rList = [];
+    List<String> rList = [];
     for (int i = 0; i < len; i++) {
-      rList.add(DID(pDIDs.ref.ptr[i]));
+      DID did = DID(pDIDs.ref.ptr[i]);
+      rList.add(did.toString());
+      did.drop();
     }
 
     recipients = rList;
@@ -172,7 +178,7 @@ class Raygun {
 
   Conversation createConversation(String didKey) {
     // Prepare a DID
-    late DID did;
+    DID did;
 
     try {
       did = DID.fromString(didKey);
@@ -183,13 +189,12 @@ class Raygun {
     // Invoke and result check
     G_FFIResult_Conversation result =
         bindings.raygun_create_conversation(pRaygun, did.pointer);
+    did.drop();
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
 
     Conversation convoId = Conversation(result.data);
-
-    did.drop();
 
     return convoId;
   }
@@ -240,9 +245,10 @@ class Raygun {
   }
 
   Message getMessage(String conversationID, String messageId) {
-
     G_FFIResult_Message result = bindings.raygun_get_message(
-        pRaygun, conversationID.toNativeUtf8().cast<Char>(), messageId.toNativeUtf8().cast<Char>());
+        pRaygun,
+        conversationID.toNativeUtf8().cast<Char>(),
+        messageId.toNativeUtf8().cast<Char>());
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
