@@ -58,12 +58,13 @@ class Item {
     Pointer<Char> pointerDescription = bindings.item_description(_pointer);
 
     String description = pointerDescription.cast<Utf8>().toDartString();
-    calloc.free(pointerDescription);
+
     return description;
   }
 
   int getItemSize() {
     int size = bindings.item_size(_pointer);
+
     return size;
   }
 
@@ -77,8 +78,12 @@ class Item {
   }
 
   void setItemDescription(String description) {
-    bindings.item_set_description(
+    int result = bindings.item_set_description(
         _pointer, description.toNativeUtf8().cast<Char>());
+
+    if (result == 0) {
+      throw Exception("Setting of item is failed");
+    }
   }
 
   void setItemSize(int size) {
@@ -94,8 +99,9 @@ class Item {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    Directory directory = Directory(result.data);
 
-    return Directory(result.data);
+    return directory;
   }
 
   File itemToFile(Item item) {
@@ -104,18 +110,29 @@ class Item {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
+    File file = File(result.data);
 
-    return File(result.data);
+    return file;
   }
 
   bool itemIsDirectory() {
     int result = bindings.item_is_directory(_pointer);
-    return result != 0;
+
+    if (result == 0) {
+      return false;
+    }
+
+    return true;
   }
 
   bool itemIsFile() {
     int result = bindings.item_is_file(_pointer);
-    return result != 0;
+
+    if (result == 0) {
+      return false;
+    }
+
+    return true;
   }
 
   Pointer<G_Item> pointer() {
@@ -355,11 +372,11 @@ class Directory {
   }
 
   void moveItemTo(String src, String dst) {
-    G_FFIResult_Null result = bindings.directory_move_item_to(_pointer,
+    int result = bindings.directory_move_item_to(_pointer,
         src.toNativeUtf8().cast<Char>(), dst.toNativeUtf8().cast<Char>());
 
-    if (result.error != nullptr) {
-      throw WarpException(result.error);
+    if (result == 0) {
+      throw Exception("Item not found or path is wrong");
     }
   }
 
@@ -433,14 +450,25 @@ class Constellation {
   }
 
   Directory getCurrentDirectory() {
-    G_FFIResult_Directory result =
+    Pointer<G_Directory> pointerDirectory =
         bindings.constellation_current_directory(_pointer);
 
-    if (result.error != nullptr) {
-      throw WarpException(result.error);
+    if (pointerDirectory == nullptr) {
+      throw Exception("Directory not found");
     }
+    Directory dir = Directory(pointerDirectory);
+    return dir;
+  }
 
-    return Directory(result.data);
+  Directory getCurrentDirectoryMutable() {
+    Pointer<G_Directory> pointerDirectory =
+        bindings.constellation_current_directory_mut(_pointer);
+
+    if (pointerDirectory == nullptr) {
+      throw Exception("Directory not found");
+    }
+    bindings.directory_free(pointerDirectory);
+    return Directory(pointerDirectory);
   }
 
   String exportConstellationInOtherTypes(ConstellationDataType type) {
@@ -522,7 +550,8 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    return Directory(result.data);
+    Directory dir = Directory(result.data);
+    return dir;
   }
 
   void uploadToFilesystem(String remotePath, String localPath) {
