@@ -243,6 +243,7 @@ class MultiPass {
       Identity identity = Identity(pointer);
       list.add(identity);
     }
+
     return list;
   }
 
@@ -586,7 +587,8 @@ class MultiPass {
     }
 
     late IdentityStatus status;
-    switch (result.data.value) {
+    final value = result.data.value;
+    switch (value) {
       case 0:
         status = IdentityStatus.online;
         break;
@@ -595,7 +597,6 @@ class MultiPass {
         break;
     }
 
-    didkey.drop();
     calloc.free(result.data);
 
     return status;
@@ -611,11 +612,11 @@ class MultiPass {
     }
     G_FFIResult_Relationship result =
         bindings.multipass_identity_relationship(pointer, didkey.pointer);
+    didkey.drop();
 
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    didkey.drop();
     return Relationship(result.data);
   }
 
