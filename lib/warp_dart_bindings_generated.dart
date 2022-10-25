@@ -1805,7 +1805,7 @@ class WarpDartBindings {
           G_FFIResult_Item Function(ffi.Pointer<G_Directory>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  int directory_move_item_to(
+  G_FFIResult_Null directory_move_item_to(
     ffi.Pointer<G_Directory> ptr,
     ffi.Pointer<ffi.Char> src,
     ffi.Pointer<ffi.Char> dst,
@@ -1819,10 +1819,12 @@ class WarpDartBindings {
 
   late final _directory_move_item_toPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
+          G_FFIResult_Null Function(
+              ffi.Pointer<G_Directory>,
+              ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('directory_move_item_to');
   late final _directory_move_item_to = _directory_move_item_toPtr.asFunction<
-      int Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
+      G_FFIResult_Null Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> directory_id(
@@ -1855,6 +1857,23 @@ class WarpDartBindings {
   late final _directory_name = _directory_namePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Directory>)>();
 
+  void directory_set_name(
+    ffi.Pointer<G_Directory> dir,
+    ffi.Pointer<ffi.Char> desc,
+  ) {
+    return _directory_set_name(
+      dir,
+      desc,
+    );
+  }
+
+  late final _directory_set_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<G_Directory>,
+              ffi.Pointer<ffi.Char>)>>('directory_set_name');
+  late final _directory_set_name = _directory_set_namePtr.asFunction<
+      void Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>)>();
+
   ffi.Pointer<ffi.Char> directory_description(
     ffi.Pointer<G_Directory> dir,
   ) {
@@ -1870,6 +1889,24 @@ class WarpDartBindings {
   late final _directory_description = _directory_descriptionPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Directory>)>();
 
+  void directory_set_description(
+    ffi.Pointer<G_Directory> dir,
+    ffi.Pointer<ffi.Char> desc,
+  ) {
+    return _directory_set_description(
+      dir,
+      desc,
+    );
+  }
+
+  late final _directory_set_descriptionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<G_Directory>,
+              ffi.Pointer<ffi.Char>)>>('directory_set_description');
+  late final _directory_set_description =
+      _directory_set_descriptionPtr.asFunction<
+          void Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>)>();
+
   int directory_size(
     ffi.Pointer<G_Directory> dir,
   ) {
@@ -1879,7 +1916,7 @@ class WarpDartBindings {
   }
 
   late final _directory_sizePtr =
-      _lookup<ffi.NativeFunction<ffi.Int64 Function(ffi.Pointer<G_Directory>)>>(
+      _lookup<ffi.NativeFunction<uintptr_t Function(ffi.Pointer<G_Directory>)>>(
           'directory_size');
   late final _directory_size =
       _directory_sizePtr.asFunction<int Function(ffi.Pointer<G_Directory>)>();
@@ -1911,6 +1948,69 @@ class WarpDartBindings {
           'directory_modified');
   late final _directory_modified = _directory_modifiedPtr
       .asFunction<int Function(ffi.Pointer<G_Directory>)>();
+
+  ffi.Pointer<ffi.Char> directory_thumbnail(
+    ffi.Pointer<G_Directory> dir,
+  ) {
+    return _directory_thumbnail(
+      dir,
+    );
+  }
+
+  late final _directory_thumbnailPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<G_Directory>)>>('directory_thumbnail');
+  late final _directory_thumbnail = _directory_thumbnailPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Directory>)>();
+
+  void directory_set_thumbnail(
+    ffi.Pointer<G_Directory> dir,
+    ffi.Pointer<ffi.Char> thumbnail,
+  ) {
+    return _directory_set_thumbnail(
+      dir,
+      thumbnail,
+    );
+  }
+
+  late final _directory_set_thumbnailPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<G_Directory>,
+              ffi.Pointer<ffi.Char>)>>('directory_set_thumbnail');
+  late final _directory_set_thumbnail = _directory_set_thumbnailPtr.asFunction<
+      void Function(ffi.Pointer<G_Directory>, ffi.Pointer<ffi.Char>)>();
+
+  int directory_favorite(
+    ffi.Pointer<G_Directory> dir,
+  ) {
+    return _directory_favorite(
+      dir,
+    );
+  }
+
+  late final _directory_favoritePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Directory>)>>(
+          'directory_favorite');
+  late final _directory_favorite = _directory_favoritePtr
+      .asFunction<int Function(ffi.Pointer<G_Directory>)>();
+
+  void directory_set_favorite(
+    ffi.Pointer<G_Directory> dir,
+    int fav,
+  ) {
+    return _directory_set_favorite(
+      dir,
+      fav,
+    );
+  }
+
+  late final _directory_set_favoritePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_Directory>, ffi.Int)>>('directory_set_favorite');
+  late final _directory_set_favorite = _directory_set_favoritePtr
+      .asFunction<void Function(ffi.Pointer<G_Directory>, int)>();
 
   void ffivec_file_free(
     ffi.Pointer<G_FFIVec_File> cvec,
@@ -2113,6 +2213,20 @@ class WarpDartBindings {
   late final _item_description = _item_descriptionPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Item>)>();
 
+  int item_type(
+    ffi.Pointer<G_Item> item,
+  ) {
+    return _item_type(
+      item,
+    );
+  }
+
+  late final _item_typePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<G_Item>)>>(
+          'item_type');
+  late final _item_type =
+      _item_typePtr.asFunction<int Function(ffi.Pointer<G_Item>)>();
+
   int item_size(
     ffi.Pointer<G_Item> item,
   ) {
@@ -2122,10 +2236,72 @@ class WarpDartBindings {
   }
 
   late final _item_sizePtr =
-      _lookup<ffi.NativeFunction<ffi.Int64 Function(ffi.Pointer<G_Item>)>>(
+      _lookup<ffi.NativeFunction<uintptr_t Function(ffi.Pointer<G_Item>)>>(
           'item_size');
   late final _item_size =
       _item_sizePtr.asFunction<int Function(ffi.Pointer<G_Item>)>();
+
+  int item_favorite(
+    ffi.Pointer<G_Item> item,
+  ) {
+    return _item_favorite(
+      item,
+    );
+  }
+
+  late final _item_favoritePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_Item>)>>(
+          'item_favorite');
+  late final _item_favorite =
+      _item_favoritePtr.asFunction<int Function(ffi.Pointer<G_Item>)>();
+
+  void item_set_favorite(
+    ffi.Pointer<G_Item> item,
+    int fav,
+  ) {
+    return _item_set_favorite(
+      item,
+      fav,
+    );
+  }
+
+  late final _item_set_favoritePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<G_Item>, ffi.Int)>>(
+      'item_set_favorite');
+  late final _item_set_favorite = _item_set_favoritePtr
+      .asFunction<void Function(ffi.Pointer<G_Item>, int)>();
+
+  ffi.Pointer<ffi.Char> item_thumbnail(
+    ffi.Pointer<G_Item> item,
+  ) {
+    return _item_thumbnail(
+      item,
+    );
+  }
+
+  late final _item_thumbnailPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<G_Item>)>>('item_thumbnail');
+  late final _item_thumbnail = _item_thumbnailPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<G_Item>)>();
+
+  void item_set_thumbnail(
+    ffi.Pointer<G_Item> item,
+    ffi.Pointer<ffi.Char> data,
+  ) {
+    return _item_set_thumbnail(
+      item,
+      data,
+    );
+  }
+
+  late final _item_set_thumbnailPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<G_Item>,
+              ffi.Pointer<ffi.Char>)>>('item_set_thumbnail');
+  late final _item_set_thumbnail = _item_set_thumbnailPtr
+      .asFunction<void Function(ffi.Pointer<G_Item>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_Null item_rename(
     ffi.Pointer<G_Item> item,
@@ -2172,7 +2348,7 @@ class WarpDartBindings {
   late final _item_is_file =
       _item_is_filePtr.asFunction<int Function(ffi.Pointer<G_Item>)>();
 
-  int item_set_description(
+  void item_set_description(
     ffi.Pointer<G_Item> item,
     ffi.Pointer<ffi.Char> desc,
   ) {
@@ -2184,10 +2360,10 @@ class WarpDartBindings {
 
   late final _item_set_descriptionPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<G_Item>,
+          ffi.Void Function(ffi.Pointer<G_Item>,
               ffi.Pointer<ffi.Char>)>>('item_set_description');
   late final _item_set_description = _item_set_descriptionPtr
-      .asFunction<int Function(ffi.Pointer<G_Item>, ffi.Pointer<ffi.Char>)>();
+      .asFunction<void Function(ffi.Pointer<G_Item>, ffi.Pointer<ffi.Char>)>();
 
   G_FFIResult_Null item_set_size(
     ffi.Pointer<G_Item> item,
@@ -2202,7 +2378,7 @@ class WarpDartBindings {
   late final _item_set_sizePtr = _lookup<
       ffi.NativeFunction<
           G_FFIResult_Null Function(
-              ffi.Pointer<G_Item>, ffi.Int64)>>('item_set_size');
+              ffi.Pointer<G_Item>, uintptr_t)>>('item_set_size');
   late final _item_set_size = _item_set_sizePtr
       .asFunction<G_FFIResult_Null Function(ffi.Pointer<G_Item>, int)>();
 
@@ -2276,7 +2452,7 @@ class WarpDartBindings {
           ffi.Pointer<G_Directory> Function(
               ffi.Pointer<G_ConstellationAdapter>)>();
 
-  ffi.Pointer<G_Directory> constellation_current_directory(
+  G_FFIResult_Directory constellation_current_directory(
     ffi.Pointer<G_ConstellationAdapter> ctx,
   ) {
     return _constellation_current_directory(
@@ -2286,31 +2462,82 @@ class WarpDartBindings {
 
   late final _constellation_current_directoryPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Pointer<G_Directory> Function(
+              G_FFIResult_Directory Function(
                   ffi.Pointer<G_ConstellationAdapter>)>>(
       'constellation_current_directory');
   late final _constellation_current_directory =
       _constellation_current_directoryPtr.asFunction<
-          ffi.Pointer<G_Directory> Function(
+          G_FFIResult_Directory Function(
               ffi.Pointer<G_ConstellationAdapter>)>();
 
-  ffi.Pointer<G_Directory> constellation_current_directory_mut(
+  G_FFIResult_Null constellation_update_item(
     ffi.Pointer<G_ConstellationAdapter> ctx,
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<G_Item> item,
   ) {
-    return _constellation_current_directory_mut(
+    return _constellation_update_item(
       ctx,
+      path,
+      item,
     );
   }
 
-  late final _constellation_current_directory_mutPtr = _lookup<
-          ffi.NativeFunction<
-              ffi.Pointer<G_Directory> Function(
-                  ffi.Pointer<G_ConstellationAdapter>)>>(
-      'constellation_current_directory_mut');
-  late final _constellation_current_directory_mut =
-      _constellation_current_directory_mutPtr.asFunction<
-          ffi.Pointer<G_Directory> Function(
-              ffi.Pointer<G_ConstellationAdapter>)>();
+  late final _constellation_update_itemPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Null Function(
+              ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<G_Item>)>>('constellation_update_item');
+  late final _constellation_update_item =
+      _constellation_update_itemPtr.asFunction<
+          G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<G_Item>)>();
+
+  G_FFIResult_Null constellation_update_file(
+    ffi.Pointer<G_ConstellationAdapter> ctx,
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<G_File> file,
+  ) {
+    return _constellation_update_file(
+      ctx,
+      path,
+      file,
+    );
+  }
+
+  late final _constellation_update_filePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Null Function(
+              ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<G_File>)>>('constellation_update_file');
+  late final _constellation_update_file =
+      _constellation_update_filePtr.asFunction<
+          G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<G_File>)>();
+
+  G_FFIResult_Null constellation_update_directory(
+    ffi.Pointer<G_ConstellationAdapter> ctx,
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<G_Directory> directory,
+  ) {
+    return _constellation_update_directory(
+      ctx,
+      path,
+      directory,
+    );
+  }
+
+  late final _constellation_update_directoryPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Null Function(
+              ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<G_Directory>)>>('constellation_update_directory');
+  late final _constellation_update_directory =
+      _constellation_update_directoryPtr.asFunction<
+          G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<G_Directory>)>();
 
   G_FFIResult_Null constellation_put(
     ffi.Pointer<G_ConstellationAdapter> ctx,
@@ -2463,6 +2690,28 @@ class WarpDartBindings {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>>('constellation_move_item');
   late final _constellation_move_item = _constellation_move_itemPtr.asFunction<
+      G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  G_FFIResult_Null constellation_rename(
+    ffi.Pointer<G_ConstellationAdapter> ctx,
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> name,
+  ) {
+    return _constellation_rename(
+      ctx,
+      path,
+      name,
+    );
+  }
+
+  late final _constellation_renamePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_Null Function(
+              ffi.Pointer<G_ConstellationAdapter>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('constellation_rename');
+  late final _constellation_rename = _constellation_renamePtr.asFunction<
       G_FFIResult_Null Function(ffi.Pointer<G_ConstellationAdapter>,
           ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
@@ -6149,6 +6398,15 @@ abstract class FriendRequestStatus {
 abstract class IdentityStatus {
   static const int Online = 0;
   static const int Offline = 1;
+}
+
+/// The type that `Item` represents
+abstract class ItemType {
+  static const int FileItem = 0;
+  static const int DirectoryItem = 1;
+
+  /// Would be invalid or undetermined
+  static const int InvalidItem = 2;
 }
 
 abstract class LogRotateInterval {
