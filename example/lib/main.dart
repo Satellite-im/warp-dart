@@ -524,9 +524,7 @@ class SendRequest extends StatelessWidget {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    DID did = DID.fromString(textEditingController.text);
-    multipass!.sendFriendRequest(did);
-    did.drop();
+    multipass!.sendFriendRequest(textEditingController.text);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const Details()));
   }
@@ -692,7 +690,7 @@ class SelectRequest extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          AcceptOrDenyRequest(did: DID.fromString(newValue!))));
+                          AcceptOrDenyRequest(did: newValue!)));
             },
             items: list.map<DropdownMenuItem<String>>((FriendRequest value) {
               return DropdownMenuItem<String>(
@@ -708,7 +706,7 @@ class SelectRequest extends StatelessWidget {
 }
 
 class AcceptOrDenyRequest extends StatelessWidget {
-  final DID? did;
+  final String? did;
   const AcceptOrDenyRequest({
     Key? key,
     this.did,
