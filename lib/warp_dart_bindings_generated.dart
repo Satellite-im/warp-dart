@@ -6026,29 +6026,6 @@ class WarpDartBindings {
           G_FFIResult_PocketDimensionAdapter Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Int> constellation_fs_storj_new(
-    ffi.Pointer<ffi.Int> pd,
-    ffi.Pointer<ffi.Char> akey,
-    ffi.Pointer<ffi.Char> skey,
-  ) {
-    return _constellation_fs_storj_new(
-      pd,
-      akey,
-      skey,
-    );
-  }
-
-  late final _constellation_fs_storj_newPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Int> Function(
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('constellation_fs_storj_new');
-  late final _constellation_fs_storj_new =
-      _constellation_fs_storj_newPtr.asFunction<
-          ffi.Pointer<ffi.Int> Function(ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   ffi.Pointer<ffi.Int> constellation_fs_memory_create_context() {
     return _constellation_fs_memory_create_context();
   }
