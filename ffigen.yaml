@@ -13,7 +13,7 @@ headers:
     - '../extensions/warp-pd-memory/warp-pd-memory.h'
     - '../extensions/warp-pd-stretto/warp-pd-stretto.h'
     - '../extensions/warp-pd-flatfile/warp-pd-flatfile.h'
-    - '../extensions/warp-fs-storj/warp-fs-storj.h'
+    - '../extensions/warp-fs-ipfs/warp-fs-ipfs.h'
     - '../extensions/warp-fs-memory/warp-fs-memory.h'
   # include-directives:
   #   - 'src/warp_dart.h'
