@@ -7,8 +7,23 @@ import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/costellation.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
-const String _libNameIpfs = 'warp_fs_ipfs';
-DynamicLibrary _fs_ipfs_dlib = DynamicLibrary.open('lib$_libNameIpfs.so');
+const String _libName = 'warp_fs_ipfs';
+final DynamicLibrary _fs_ipfs_dlib = () {
+  if (Platform.isMacOS || Platform.isIOS) {
+    return DynamicLibrary.open('../macos/lib$_libName.dylib');
+  }
+  if (Platform.isAndroid) {
+    return DynamicLibrary.open('lib$_libName.so');
+  }
+  if (Platform.isLinux) {
+    return DynamicLibrary.open('../linux/lib$_libName.so');
+  }
+  if (Platform.isWindows) {
+    return DynamicLibrary.open('$_libName.dll');
+  }
+  throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+}();
+
 final WarpDartBindings _ipfs_bindings = WarpDartBindings(_fs_ipfs_dlib);
 
 enum Bootstrap { ipfs, experimental }
