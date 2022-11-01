@@ -430,18 +430,17 @@ class Constellation {
   late Pointer<G_ConstellationAdapter> _pointer;
   Constellation(this._pointer);
 
-  void createDirectoryInFilesystem(String path) {
+  void createDirectory(String path, [bool recursive = false]) {
     G_FFIResult_Null result = bindings.constellation_create_directory(
-        _pointer, path.toNativeUtf8().cast<Char>(), 0);
+        _pointer, path.toNativeUtf8().cast<Char>(), recursive ? 1 : 0);
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
   }
 
-  Constellation.createRecursiveDirectoryInFilesystem(String path) {
-    G_FFIResult_Null result = bindings.constellation_create_directory(
-        _pointer, path.toNativeUtf8().cast<Char>(), 1);
-
+  void rename(String path, String name) {
+    G_FFIResult_Null result = bindings.constellation_rename(_pointer,
+        path.toNativeUtf8().cast<Char>(), name.toNativeUtf8().cast<Char>());
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
@@ -512,7 +511,7 @@ class Constellation {
     }
   }
 
-  void importDataToFilesystem(ConstellationDataType dataType, String data) {
+  void importData(ConstellationDataType dataType, String data) {
     G_FFIResult_Null result = bindings.constellation_import(
         _pointer, dataType.index, data.toNativeUtf8().cast<Char>());
 
@@ -537,8 +536,7 @@ class Constellation {
     if (result.error != nullptr) {
       throw WarpException(result.error);
     }
-    Directory dir = Directory(result.data);
-    return dir;
+    return Directory(result.data);
   }
 
   void uploadToFilesystem(String remotePath, String localPath) {
@@ -559,12 +557,11 @@ class Constellation {
     if (pointerDirectory == nullptr) {
       throw Exception("Directory not found");
     }
-    Directory dir = Directory(pointerDirectory);
 
-    return dir;
+    return Directory(pointerDirectory);
   }
 
-  void removeItem(String remotePath, bool recursive) {
+  void remove(String remotePath, bool recursive) {
     G_FFIResult_Null result = bindings.constellation_remove(
         _pointer, remotePath.toNativeUtf8().cast<Char>(), recursive ? 1 : 0);
 
@@ -573,7 +570,7 @@ class Constellation {
     }
   }
 
-  void selectItem(String name) {
+  void select(String name) {
     G_FFIResult_Null result = bindings.constellation_select(
         _pointer, name.toNativeUtf8().cast<Char>());
 
@@ -591,7 +588,7 @@ class Constellation {
     }
   }
 
-  void uploadToFilesystemFromBuffer(String remotePath, Uint8List buffer) {
+  void uploadFileFromBuffer(String remotePath, Uint8List buffer) {
     Pointer<Uint8> bufferP = malloc.allocate(buffer.length);
     bufferP[0] = buffer[0];
     G_FFIResult_Null result = bindings.constellation_put_buffer(_pointer,
