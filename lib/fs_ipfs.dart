@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/multipass.dart';
-import 'package:warp_dart/costellation.dart';
+import 'package:warp_dart/constellation.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
 
 const String _libName = 'warp_fs_ipfs';
