@@ -6026,6 +6026,159 @@ class WarpDartBindings {
           G_FFIResult_PocketDimensionAdapter Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
+  G_FFIResult_FsIpfsConfig fs_ipfs_config_from_file(
+    ffi.Pointer<ffi.Char> file,
+  ) {
+    return _fs_ipfs_config_from_file(
+      file,
+    );
+  }
+
+  late final _fs_ipfs_config_from_filePtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_FsIpfsConfig Function(
+              ffi.Pointer<ffi.Char>)>>('fs_ipfs_config_from_file');
+  late final _fs_ipfs_config_from_file = _fs_ipfs_config_from_filePtr
+      .asFunction<G_FFIResult_FsIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
+  int fs_ipfs_config_to_file(
+    ffi.Pointer<G_FsIpfsConfig> config,
+    ffi.Pointer<ffi.Char> file,
+  ) {
+    return _fs_ipfs_config_to_file(
+      config,
+      file,
+    );
+  }
+
+  late final _fs_ipfs_config_to_filePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int Function(ffi.Pointer<G_FsIpfsConfig>,
+              ffi.Pointer<ffi.Char>)>>('fs_ipfs_config_to_file');
+  late final _fs_ipfs_config_to_file = _fs_ipfs_config_to_filePtr.asFunction<
+      int Function(ffi.Pointer<G_FsIpfsConfig>, ffi.Pointer<ffi.Char>)>();
+
+  G_FFIResult_FsIpfsConfig fs_ipfs_config_from_str(
+    ffi.Pointer<ffi.Char> config,
+  ) {
+    return _fs_ipfs_config_from_str(
+      config,
+    );
+  }
+
+  late final _fs_ipfs_config_from_strPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_FsIpfsConfig Function(
+              ffi.Pointer<ffi.Char>)>>('fs_ipfs_config_from_str');
+  late final _fs_ipfs_config_from_str = _fs_ipfs_config_from_strPtr
+      .asFunction<G_FFIResult_FsIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
+  int fs_ipfs_config_to_str(
+    ffi.Pointer<G_FsIpfsConfig> config,
+  ) {
+    return _fs_ipfs_config_to_str(
+      config,
+    );
+  }
+
+  late final _fs_ipfs_config_to_strPtr = _lookup<
+          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<G_FsIpfsConfig>)>>(
+      'fs_ipfs_config_to_str');
+  late final _fs_ipfs_config_to_str = _fs_ipfs_config_to_strPtr
+      .asFunction<int Function(ffi.Pointer<G_FsIpfsConfig>)>();
+
+  ffi.Pointer<G_FsIpfsConfig> fs_ipfs_config_development() {
+    return _fs_ipfs_config_development();
+  }
+
+  late final _fs_ipfs_config_developmentPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_FsIpfsConfig> Function()>>(
+          'fs_ipfs_config_development');
+  late final _fs_ipfs_config_development = _fs_ipfs_config_developmentPtr
+      .asFunction<ffi.Pointer<G_FsIpfsConfig> Function()>();
+
+  ffi.Pointer<G_FsIpfsConfig> fs_ipfs_config_testing() {
+    return _fs_ipfs_config_testing();
+  }
+
+  late final _fs_ipfs_config_testingPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<G_FsIpfsConfig> Function()>>(
+          'fs_ipfs_config_testing');
+  late final _fs_ipfs_config_testing = _fs_ipfs_config_testingPtr
+      .asFunction<ffi.Pointer<G_FsIpfsConfig> Function()>();
+
+  G_FFIResult_FsIpfsConfig fs_ipfs_config_production(
+    ffi.Pointer<ffi.Char> path,
+  ) {
+    return _fs_ipfs_config_production(
+      path,
+    );
+  }
+
+  late final _fs_ipfs_config_productionPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_FsIpfsConfig Function(
+              ffi.Pointer<ffi.Char>)>>('fs_ipfs_config_production');
+  late final _fs_ipfs_config_production = _fs_ipfs_config_productionPtr
+      .asFunction<G_FFIResult_FsIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
+  G_FFIResult_FsIpfsConfig fs_ipfs_config_minimial(
+    ffi.Pointer<ffi.Char> path,
+  ) {
+    return _fs_ipfs_config_minimial(
+      path,
+    );
+  }
+
+  late final _fs_ipfs_config_minimialPtr = _lookup<
+      ffi.NativeFunction<
+          G_FFIResult_FsIpfsConfig Function(
+              ffi.Pointer<ffi.Char>)>>('fs_ipfs_config_minimial');
+  late final _fs_ipfs_config_minimial = _fs_ipfs_config_minimialPtr
+      .asFunction<G_FFIResult_FsIpfsConfig Function(ffi.Pointer<ffi.Char>)>();
+
+  G_FFIResult_ConstellationAdapter constellation_fs_ipfs_temporary_new(
+    ffi.Pointer<G_MultiPassAdapter> multipass,
+    ffi.Pointer<G_FsIpfsConfig> config,
+  ) {
+    return _constellation_fs_ipfs_temporary_new(
+      multipass,
+      config,
+    );
+  }
+
+  late final _constellation_fs_ipfs_temporary_newPtr = _lookup<
+          ffi.NativeFunction<
+              G_FFIResult_ConstellationAdapter Function(
+                  ffi.Pointer<G_MultiPassAdapter>,
+                  ffi.Pointer<G_FsIpfsConfig>)>>(
+      'constellation_fs_ipfs_temporary_new');
+  late final _constellation_fs_ipfs_temporary_new =
+      _constellation_fs_ipfs_temporary_newPtr.asFunction<
+          G_FFIResult_ConstellationAdapter Function(
+              ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_FsIpfsConfig>)>();
+
+  G_FFIResult_ConstellationAdapter constellation_fs_ipfs_persistent_new(
+    ffi.Pointer<G_MultiPassAdapter> multipass,
+    ffi.Pointer<G_FsIpfsConfig> config,
+  ) {
+    return _constellation_fs_ipfs_persistent_new(
+      multipass,
+      config,
+    );
+  }
+
+  late final _constellation_fs_ipfs_persistent_newPtr = _lookup<
+          ffi.NativeFunction<
+              G_FFIResult_ConstellationAdapter Function(
+                  ffi.Pointer<G_MultiPassAdapter>,
+                  ffi.Pointer<G_FsIpfsConfig>)>>(
+      'constellation_fs_ipfs_persistent_new');
+  late final _constellation_fs_ipfs_persistent_new =
+      _constellation_fs_ipfs_persistent_newPtr.asFunction<
+          G_FFIResult_ConstellationAdapter Function(
+              ffi.Pointer<G_MultiPassAdapter>, ffi.Pointer<G_FsIpfsConfig>)>();
+
   ffi.Pointer<ffi.Int> constellation_fs_memory_create_context() {
     return _constellation_fs_memory_create_context();
   }
@@ -6826,6 +6979,20 @@ class G_FFIResult_RayGunAdapter extends ffi.Struct {
 
 class G_FFIResult_PocketDimensionAdapter extends ffi.Struct {
   external ffi.Pointer<G_PocketDimensionAdapter> data;
+
+  external ffi.Pointer<ffi.Int> error;
+}
+
+class G_FsIpfsConfig extends ffi.Opaque {}
+
+class G_FFIResult_FsIpfsConfig extends ffi.Struct {
+  external ffi.Pointer<G_FsIpfsConfig> data;
+
+  external ffi.Pointer<ffi.Int> error;
+}
+
+class G_FFIResult_ConstellationAdapter extends ffi.Struct {
+  external ffi.Pointer<G_ConstellationAdapter> data;
 
   external ffi.Pointer<ffi.Int> error;
 }
