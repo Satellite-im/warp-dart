@@ -4587,6 +4587,35 @@ class WarpDartBindings {
   late final _messageeventkind_free = _messageeventkind_freePtr
       .asFunction<void Function(ffi.Pointer<G_MessageEventKind>)>();
 
+  void ffivec_messageevent_free(
+    ffi.Pointer<G_FFIVec_MessageEvent> cvec,
+  ) {
+    return _ffivec_messageevent_free(
+      cvec,
+    );
+  }
+
+  late final _ffivec_messageevent_freePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<G_FFIVec_MessageEvent>)>>('ffivec_messageevent_free');
+  late final _ffivec_messageevent_free = _ffivec_messageevent_freePtr
+      .asFunction<void Function(ffi.Pointer<G_FFIVec_MessageEvent>)>();
+
+  void messageevent_free(
+    ffi.Pointer<ffi.Int32> ptr,
+  ) {
+    return _messageevent_free(
+      ptr,
+    );
+  }
+
+  late final _messageevent_freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Int32>)>>(
+          'messageevent_free');
+  late final _messageevent_free =
+      _messageevent_freePtr.asFunction<void Function(ffi.Pointer<ffi.Int32>)>();
+
   void messageeventstream_free(
     ffi.Pointer<G_MessageEventStream> ptr,
   ) {
@@ -6476,6 +6505,11 @@ abstract class LogRotateInterval {
   static const int Daily = 2;
 }
 
+abstract class MessageEvent {
+  /// Event that represents typing
+  static const int Typing = 0;
+}
+
 abstract class PhraseType {
   static const int Standard = 0;
   static const int Secure = 1;
@@ -6790,6 +6824,16 @@ class G_FFIVec_RayGunEventKind extends ffi.Struct {
 
 class G_FFIVec_MessageEventKind extends ffi.Struct {
   external ffi.Pointer<ffi.Pointer<G_MessageEventKind>> ptr;
+
+  @uintptr_t()
+  external int len;
+
+  @uintptr_t()
+  external int cap;
+}
+
+class G_FFIVec_MessageEvent extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<ffi.Int32>> ptr;
 
   @uintptr_t()
   external int len;
