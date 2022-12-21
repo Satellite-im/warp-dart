@@ -816,6 +816,20 @@ class WarpDartBindings {
   late final _realloc = _reallocPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
+  void free(
+    ffi.Pointer<ffi.Void> __ptr,
+  ) {
+    return _free(
+      __ptr,
+    );
+  }
+
+  late final _freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'free');
+  late final _free =
+      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
   ffi.Pointer<ffi.Void> reallocarray(
     ffi.Pointer<ffi.Void> __ptr,
     int __nmemb,
@@ -834,20 +848,6 @@ class WarpDartBindings {
               ffi.Pointer<ffi.Void>, ffi.Int, ffi.Int)>>('reallocarray');
   late final _reallocarray = _reallocarrayPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int, int)>();
-
-  void free(
-    ffi.Pointer<ffi.Void> __ptr,
-  ) {
-    return _free(
-      __ptr,
-    );
-  }
-
-  late final _freePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
-          'free');
-  late final _free =
-      _freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   ffi.Pointer<ffi.Void> alloca(
     int __size,
@@ -6156,12 +6156,6 @@ class G___fsid_t extends ffi.Struct {
   external ffi.Array<ffi.Int> __val;
 }
 
-abstract class idtype_t {
-  static const int P_ALL = 0;
-  static const int P_PID = 1;
-  static const int P_PGID = 2;
-}
-
 class G_div_t extends ffi.Struct {
   @ffi.Int()
   external int quot;
@@ -6218,6 +6212,21 @@ class G_fd_set extends ffi.Struct {
 }
 
 typedef __fd_mask = ffi.Long;
+
+class __atomic_wide_counter extends ffi.Union {
+  @ffi.UnsignedLongLong()
+  external int __value64;
+
+  external UnnamedStruct1 __value32;
+}
+
+class UnnamedStruct1 extends ffi.Struct {
+  @ffi.UnsignedInt()
+  external int __low;
+
+  @ffi.UnsignedInt()
+  external int __high;
+}
 
 class G___pthread_internal_list extends ffi.Struct {
   external ffi.Pointer<G___pthread_internal_list> __prev;
@@ -6295,6 +6304,10 @@ class G___pthread_rwlock_arch_t extends ffi.Struct {
 }
 
 class G___pthread_cond_s extends ffi.Struct {
+  external __atomic_wide_counter __wseq;
+
+  external __atomic_wide_counter __g1_start;
+
   @ffi.Array.multi([2])
   external ffi.Array<ffi.UnsignedInt> __g_refs;
 
@@ -6309,6 +6322,11 @@ class G___pthread_cond_s extends ffi.Struct {
 
   @ffi.Array.multi([2])
   external ffi.Array<ffi.UnsignedInt> __g_signals;
+}
+
+class G___once_flag extends ffi.Struct {
+  @ffi.Int()
+  external int __data;
 }
 
 class pthread_mutexattr_t extends ffi.Union {
@@ -7004,6 +7022,14 @@ const int __USE_XOPEN2K8 = 1;
 
 const int _ATFILE_SOURCE = 1;
 
+const int __WORDSIZE = 64;
+
+const int __WORDSIZE_TIME64_COMPAT32 = 1;
+
+const int __SYSCALL_WORDSIZE = 64;
+
+const int __TIMESIZE = 64;
+
 const int __USE_MISC = 1;
 
 const int __USE_ATFILE = 1;
@@ -7018,7 +7044,11 @@ const int _STDC_PREDEF_H = 1;
 
 const int __STDC_IEC_559__ = 1;
 
+const int __STDC_IEC_60559_BFP__ = 201404;
+
 const int __STDC_IEC_559_COMPLEX__ = 1;
+
+const int __STDC_IEC_60559_COMPLEX__ = 201404;
 
 const int __STDC_ISO_10646__ = 201706;
 
@@ -7026,19 +7056,17 @@ const int __GNU_LIBRARY__ = 6;
 
 const int __GLIBC__ = 2;
 
-const int __GLIBC_MINOR__ = 31;
+const int __GLIBC_MINOR__ = 35;
 
 const int _SYS_CDEFS_H = 1;
 
+const int __THROW = 1;
+
+const int __THROWNL = 1;
+
 const int __glibc_c99_flexarr_available = 1;
 
-const int __WORDSIZE = 64;
-
-const int __WORDSIZE_TIME64_COMPAT32 = 1;
-
-const int __SYSCALL_WORDSIZE = 64;
-
-const int __LONG_DOUBLE_USES_FLOAT128 = 0;
+const int __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI = 0;
 
 const int __HAVE_GENERIC_SELECTION = 0;
 
@@ -7048,6 +7076,8 @@ const int __GLIBC_USE_IEC_60559_BFP_EXT = 1;
 
 const int __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 1;
 
+const int __GLIBC_USE_IEC_60559_EXT = 1;
+
 const int __GLIBC_USE_IEC_60559_FUNCS_EXT = 1;
 
 const int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 1;
@@ -7055,8 +7085,6 @@ const int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 1;
 const int __GLIBC_USE_IEC_60559_TYPES_EXT = 1;
 
 const int _BITS_TYPES_H = 1;
-
-const int __TIMESIZE = 64;
 
 const int _BITS_TYPESIZES_H = 1;
 
@@ -7067,6 +7095,8 @@ const int __INO_T_MATCHES_INO64_T = 1;
 const int __RLIM_T_MATCHES_RLIM64_T = 1;
 
 const int __STATFS_MATCHES_STATFS64 = 1;
+
+const int __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64 = 1;
 
 const int __FD_SETSIZE = 1024;
 
@@ -7204,8 +7234,6 @@ const int __WALL = 1073741824;
 
 const int __WCLONE = 2147483648;
 
-const int __ENUM_IDTYPE_T = 1;
-
 const int __W_CONTINUED = 65535;
 
 const int __WCOREFLAG = 128;
@@ -7295,8 +7323,6 @@ const int _BITS_BYTESWAP_H = 1;
 const int _BITS_UINTN_IDENTITY_H = 1;
 
 const int _SYS_SELECT_H = 1;
-
-const String __FD_ZERO_STOS = 'stosq';
 
 const int __sigset_t_defined = 1;
 
