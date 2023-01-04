@@ -3326,6 +3326,20 @@ class WarpDartBindings {
   late final _identitystatus_free = _identitystatus_freePtr
       .asFunction<void Function(ffi.Pointer<ffi.Int32>)>();
 
+  void platform_free(
+    ffi.Pointer<ffi.Int32> ptr,
+  ) {
+    return _platform_free(
+      ptr,
+    );
+  }
+
+  late final _platform_freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Int32>)>>(
+          'platform_free');
+  late final _platform_free =
+      _platform_freePtr.asFunction<void Function(ffi.Pointer<ffi.Int32>)>();
+
   void relationship_free(
     ffi.Pointer<G_Relationship> ptr,
   ) {
@@ -5622,51 +5636,6 @@ class WarpDartBindings {
   late final _ffivec_string_free = _ffivec_string_freePtr
       .asFunction<void Function(ffi.Pointer<G_FFIVec_String>)>();
 
-  void log_to_file(
-    int interval,
-    ffi.Pointer<ffi.Char> directory,
-    ffi.Pointer<ffi.Char> file,
-    ffi.Pointer<ffi.Char> env,
-    ffi.Pointer<ffi.Char> directive,
-  ) {
-    return _log_to_file(
-      interval,
-      directory,
-      file,
-      env,
-      directive,
-    );
-  }
-
-  late final _log_to_filePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Int32,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('log_to_file');
-  late final _log_to_file = _log_to_filePtr.asFunction<
-      void Function(int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  void log_to_stdout(
-    ffi.Pointer<ffi.Char> env,
-    ffi.Pointer<ffi.Char> directive,
-  ) {
-    return _log_to_stdout(
-      env,
-      directive,
-    );
-  }
-
-  late final _log_to_stdoutPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('log_to_stdout');
-  late final _log_to_stdout = _log_to_stdoutPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
   G_FFIResult_MpIpfsConfig mp_ipfs_config_from_file(
     ffi.Pointer<ffi.Char> file,
   ) {
@@ -6450,9 +6419,6 @@ typedef __compar_fn_t = ffi.Pointer<
 abstract class CipherType {
   /// AES256-GCM
   static const int Aes256Gcm = 0;
-
-  /// Xchacha20poly1305
-  static const int Xchacha20poly1305 = 1;
 }
 
 abstract class Comparator {
@@ -6505,7 +6471,9 @@ abstract class FriendRequestStatus {
 
 abstract class IdentityStatus {
   static const int Online = 0;
-  static const int Offline = 1;
+  static const int Away = 1;
+  static const int Busy = 2;
+  static const int Offline = 3;
 }
 
 /// The type that `Item` represents
@@ -6515,12 +6483,6 @@ abstract class ItemType {
 
   /// Would be invalid or undetermined
   static const int InvalidItem = 2;
-}
-
-abstract class LogRotateInterval {
-  static const int Minute = 0;
-  static const int Hourly = 1;
-  static const int Daily = 2;
 }
 
 abstract class MessageEvent {
@@ -6536,6 +6498,12 @@ abstract class PhraseType {
 abstract class PinState {
   static const int Pin = 0;
   static const int Unpin = 1;
+}
+
+abstract class Platform {
+  static const int Desktop = 0;
+  static const int Mobile = 1;
+  static const int Web = 2;
 }
 
 abstract class ReactionState {
