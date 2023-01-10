@@ -8,7 +8,7 @@ This project is a starting point for a Flutter
 [FFI plugin](https://docs.flutter.dev/development/platform-integration/c-interop),
 a specialized package that includes native code directly invoked with Dart FFI.
 
-## Project stucture
+## Project structure
 
 This template uses the following structure:
 
@@ -21,7 +21,7 @@ This template uses the following structure:
 * platform folders (`android`, `ios`, `windows`, etc.): Contains the build files
   for building and bundling the native code library with the platform application.
 
-## Buidling and bundling native code
+## Building and bundling native code
 
 The `pubspec.yaml` specifies FFI plugins as follows:
 
@@ -61,7 +61,7 @@ The native build systems that are invoked by FFI (and method channel) plugins ar
 
 * For Android: Gradle, which invokes the Android NDK for native builds.
   * See the documentation in android/build.gradle.
-* For iOS and MacOS: Xcode, via CocoaPods.
+* For iOS and macOS: Xcode, via CocoaPods.
   * See the documentation in ios/warp_dart.podspec.
   * See the documentation in macos/warp_dart.podspec.
 * For Linux and Windows: CMake.
@@ -89,4 +89,3 @@ For example, see `sumAsync` in `lib/warp_dart.dart`.
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-
