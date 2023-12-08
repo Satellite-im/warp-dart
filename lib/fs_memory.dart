@@ -10,7 +10,7 @@ import 'package:ffi/ffi.dart';
 import 'package:warp_dart/warp.dart';
 import 'package:warp_dart/multipass.dart';
 import 'package:warp_dart/warp_dart_bindings_generated.dart';
-import 'package:warp_dart/costellation.dart';
+import 'package:warp_dart/constellation.dart';
 
 const String _libNameIpfs = 'warp_fs_memory';
 String currentPath = io.Directory.current.path;
